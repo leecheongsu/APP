@@ -19,6 +19,7 @@
 		38B9EE6AB2D215B83314BDED /* libPods-insurobo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B5C7252F95840ED31DEFDF /* libPods-insurobo.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		90E1EC50257A8ACCE2DCBFA3 /* libPods-insurobo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F5B404C45C2E1B8A1E847A /* libPods-insurobo-tvOSTests.a */; };
+		E5266CF725B570DA00EA049C /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = E5266CF625B570DA00EA049C /* Fonts */; };
 		F8ED55F56703208AAEFC013C /* libPods-insurobo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6A93EB5A6E3EA46B635E19 /* libPods-insurobo-tvOS.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		A1D83B0B264D1E077D962940 /* Pods-insurobo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insurobo.debug.xcconfig"; path = "Target Support Files/Pods-insurobo/Pods-insurobo.debug.xcconfig"; sourceTree = "<group>"; };
 		A720EC4E66CF0BB834AD5DA8 /* libPods-insurobo-insuroboTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-insurobo-insuroboTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE26C36DD30BE5499F22A337 /* Pods-insurobo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insurobo.release.xcconfig"; path = "Target Support Files/Pods-insurobo/Pods-insurobo.release.xcconfig"; sourceTree = "<group>"; };
+		E5266CF625B570DA00EA049C /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F3800322D938A59997F3F4E6 /* Pods-insurobo-insuroboTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insurobo-insuroboTests.release.xcconfig"; path = "Target Support Files/Pods-insurobo-insuroboTests/Pods-insurobo-insuroboTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E5266CF625B570DA00EA049C /* Fonts */,
 				13B07FAE1A68108700A75B9A /* insurobo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* insuroboTests */,
@@ -194,7 +197,6 @@
 				4781D1867F9B6939C4168855 /* Pods-insurobo-tvOSTests.debug.xcconfig */,
 				1D7E19E383F29B8E40F825BF /* Pods-insurobo-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -294,6 +296,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = ZGDUA22ZV8;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -340,6 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5266CF725B570DA00EA049C /* Fonts in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -656,6 +660,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGDUA22ZV8;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = insurobo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -679,6 +684,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZGDUA22ZV8;
 				INFOPLIST_FILE = insurobo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (

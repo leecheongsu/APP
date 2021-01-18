@@ -1,14 +1,17 @@
-import { FocusAwareStatusBar, SafeArea } from '@app/components';
 import React from 'react';
+import { MainLayout } from '@app/layout';
 import { Text, View } from 'react-native';
+import styled from '@app/style/typed-components';
 
 function HomePresenter() {
   return (
-    <View>
-      <SafeArea />
-      <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
-      <Text>Home</Text>
-    </View>
+    <>
+      <MainLayout>
+        <View>
+     
+        </View>
+      </MainLayout>
+    </>
   );
 }
 

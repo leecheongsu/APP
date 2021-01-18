@@ -1,6 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Home } from '@app/screens';
+import theme from '@app/style/theme';
 
 function RootStackPresenter() {
   const Stacks = createStackNavigator();
@@ -10,7 +11,6 @@ function RootStackPresenter() {
       screenOptions={{
         headerStyle: null,
         headerTitleAlign: 'center',
-        // headerTitleStyle: Object.assign(defaultHeaderStyle),
         gestureEnabled: false,
       }}>
       <Stacks.Screen
@@ -18,8 +18,17 @@ function RootStackPresenter() {
         component={Home}
         options={{
           title: '',
-          headerShown: false,
+          headerShown: true,
           animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.BLUE,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
         }}
       />
     </Stacks.Navigator>
