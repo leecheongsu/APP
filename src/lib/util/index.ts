@@ -1,7 +1,8 @@
+import { Dimensions, PixelRatio, Platform } from 'react-native';
 //font weight 적용하는 함수
-export const setFont = (type: 'NOTO_SANS' | 'ROBOTO', weight: 'THIN' | 'LIGHT' | 'REGULAR' | 'MEDIUM' | 'BOLD') => {
+export const setFont = (type: 'NOTO' | 'ROBOTO', weight: 'THIN' | 'LIGHT' | 'REGULAR' | 'MEDIUM' | 'BOLD') => {
   switch (type) {
-    case 'NOTO_SANS':
+    case 'NOTO':
       if (weight === 'THIN') {
         return 'NotoSansCJKkr-Thin';
       } else if (weight === 'LIGHT') {
@@ -31,4 +32,25 @@ export const setFont = (type: 'NOTO_SANS' | 'ROBOTO', weight: 'THIN' | 'LIGHT' |
       throw new Error('wrong Name');
   }
   return;
+};
+
+// 기기별 폰트사이즈 적용
+export const nomalize = (size: number) => {
+  const scale = Dimensions.get('window').width / 320;
+  const newSize = size * scale;
+  if (Platform.OS === 'ios') {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize));
+  } else {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 3;
+  }
+};
+
+export const screenWidth = () => {
+  const width = Dimensions.get('window').width;
+  return width;
+};
+
+export const screenHeight = () => {
+  const height = Dimensions.get('window').height;
+  return height;
 };

@@ -1,4 +1,4 @@
-import { FocusAwareStatusBar, MainMenuModal, SafeArea } from '@app/components';
+import { FocusAwareStatusBar, SafeArea } from '@app/components';
 import styled from '@app/style/typed-components';
 import React from 'react';
 
@@ -12,7 +12,6 @@ function MainLayout({ children }) {
         <FocusAwareStatusBar barStyle="light-content" translucent={true} backgroundColor={'transparent'} />
         {children}
       </Container>
-      <MainMenuModal />
     </>
   );
 }
