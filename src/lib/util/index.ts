@@ -54,3 +54,19 @@ export const screenHeight = () => {
   const height = Dimensions.get('window').height;
   return height;
 };
+
+//아이폰x 이상버젼 체크
+export const isIphoneX = () => {
+  const dimen = Dimensions.get('window');
+  return (
+    Platform.OS === 'ios' &&
+    !Platform.isPad &&
+    !Platform.isTVOS &&
+    (dimen.height === 812 ||
+      dimen.width === 812 ||
+      dimen.height === 896 ||
+      dimen.width === 896 ||
+      dimen.height === 926 ||
+      dimen.width === 428)
+  );
+};

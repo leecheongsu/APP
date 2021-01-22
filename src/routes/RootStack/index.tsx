@@ -1,10 +1,9 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Home } from '@app/screens';
-import { BackButton, LogoTitle, MenuButton } from '@app/components/index';
+import { AddressSearch, Home, HouseFire } from '@app/screens';
+import { BackButton, LogoTitle, MenuButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';
 import Login from '@app/screens/Login';
-import { Text, View } from 'react-native';
 import UserButton from '@app/components/Header/UserButton';
 
 function RootStack() {
@@ -43,17 +42,64 @@ function RootStack() {
         name="LOGIN"
         component={Login}
         options={{
-          headerLeft: () => (
-            <View>
-              <Text>Left</Text>
-            </View>
-          ),
-
+          headerLeft: () => <BackButton />,
           title: '',
           headerShown: true,
           animationEnabled: true,
           headerStyle: {
             backgroundColor: theme.color.BLUE,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+      <Stacks.Screen
+        name="HOUSE_FIRE"
+        component={HouseFire}
+        options={{
+          headerLeft: () => <BackButton />,
+          headerLeftContainerStyle: { paddingHorizontal: 10 },
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              주택화재
+            </Typhograph>
+          ),
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomColor: theme.color.BORDER_GRAY,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+      <Stacks.Screen
+        name="ADDRESS_SEARCH"
+        component={AddressSearch}
+        options={{
+          headerLeft: () => <BackButton />,
+          headerLeftContainerStyle: { paddingHorizontal: 10 },
+          headerTitle: () => (
+            <Typhograph type="ROBOTO" weight="BOLD" size={16} color="BLACK2">
+              주택화재
+            </Typhograph>
+          ),
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomColor: theme.color.BORDER_GRAY,
+            borderBottomWidth: 1,
             shadowRadius: 0,
             shadowOffset: {
               width: 0,

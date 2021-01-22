@@ -1,16 +1,34 @@
-import { FocusAwareStatusBar, SafeArea } from '@app/components';
+import { SafeArea } from '@app/components';
+import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import React from 'react';
+import { ColorName } from 'styled-components';
 
-const Container = styled.View``;
+type MainLayoutTypes = {
+  children: React.ReactNode;
+  headerbackcolor?: ColorName;
+  barstyle?: 'light-content' | 'dark-content';
+};
 
-function MainLayout({ children }) {
+const Container = styled.View`
+  background-color: ${theme.color.WHITE};
+`;
+const ScrollContainer = styled.ScrollView``;
+const HeaderBack = styled.View`
+  position: absolute;
+  top: 0px;
+  height: 300px;
+  width: 100%;
+  background-color: ${(props) => theme.color[props.headerbackcolor]};
+`;
+
+function MainLayout({ children, headerbackcolor }: MainLayoutTypes) {
   return (
     <>
       <Container>
+        {headerbackcolor && <HeaderBack headerbackcolor={headerbackcolor} />}
         <SafeArea />
-        <FocusAwareStatusBar barStyle="light-content" translucent={true} backgroundColor={'transparent'} />
-        {children}
+        <ScrollContainer keyboardShouldPersistTaps="handled">{children}</ScrollContainer>
       </Container>
     </>
   );

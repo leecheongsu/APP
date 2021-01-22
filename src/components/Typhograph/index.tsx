@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@app/style/typed-components';
-import { TextProps } from 'react-native';
+import { Platform, TextProps, TextStyle } from 'react-native';
 import { ColorName } from 'styled-components';
 import { FontweightTypes } from '@app/types';
 import { nomalize, setFont } from '@app/lib';
@@ -12,6 +12,7 @@ type TyphographTypes = {
   option?: TextProps;
   color?: ColorName;
   weight?: FontweightTypes;
+  style?: TextStyle;
   size?: number;
   lineheight?: number;
 };
@@ -31,9 +32,10 @@ function Typhograph({
   option,
   children,
   lineheight = 9,
+  style,
 }: TyphographTypes) {
   return (
-    <Text type={type} color={color} weight={weight} size={size} lineheight={lineheight} {...option}>
+    <Text type={type} color={color} weight={weight} size={size} lineheight={lineheight} style={style} {...option}>
       {children}
     </Text>
   );

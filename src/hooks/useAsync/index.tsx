@@ -33,10 +33,12 @@ export default function useAsync(callback, deps: any = [], skip = false) {
     data: null,
     error: false,
   });
-  const fetchData = async () => {
+  const fetchData: any = async () => {
     dispatch({ type: 'LOADING' });
+
     try {
       const data = await callback();
+      console.log(data, 'data');
       if (data?.data?.result === 'fail') {
         dispatch({ type: 'ERROR', error: data?.data?.error?.message });
         // console.log(data, 'fail');

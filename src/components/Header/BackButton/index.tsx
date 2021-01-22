@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 function BackButton() {
   const navigation: any = useNavigation();
   return (
-    <IconButton onPress={() => navigation.navigate.goBack()}>
+    <IconButton onPress={() => navigation.goBack()}>
       <Image source={insuIcon.BACK_BUTTON} />
     </IconButton>
   );

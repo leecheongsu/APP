@@ -1,12 +1,11 @@
 import React from 'react';
 import { GlobalContextProvider } from '@app/context';
-import theme from '@app/style/theme';
+import theme, { navigationTheme } from '@app/style/theme';
 import { LogBox } from 'react-native';
 import { ignoreWarningLists } from '@app/lib/util/ignoreWarningLists';
 import { ThemeProvider } from '@app/style/typed-components';
 import { NavigationContainer } from '@react-navigation/native';
 import DrawerStack from '@app/routes/DrawerStack';
-
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare const global: { HermesInternal: null | {} };
 
@@ -16,7 +15,7 @@ const App = () => {
     <React.Fragment>
       <GlobalContextProvider>
         <ThemeProvider theme={theme}>
-          <NavigationContainer>
+          <NavigationContainer theme={navigationTheme}>
             <DrawerStack />
           </NavigationContainer>
         </ThemeProvider>
