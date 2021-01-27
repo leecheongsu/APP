@@ -61,6 +61,8 @@ function BottomFixButton({
           </WideBox>
         </Container>
       );
+    case 2:
+      return null;
     default:
       return (
         <Container isKeybordView={isKeybordView}>

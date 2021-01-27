@@ -18,6 +18,7 @@ declare module 'styled-components' {
     | 'SOFTPUPLE2'
     | 'SKYBLUE2'
     | 'SOFTGRAY'
+    | 'DIVIDER_BACK'
     | 'LIGHTGRAY'
     | 'ROUND_STEPPER'
     | 'BACKGROUND_GRAY'
@@ -35,6 +36,7 @@ declare module 'styled-components' {
       SOFTBLUE: string;
       GRAY: string;
       GRAY2: string;
+      DIVIDER_BACK: string;
       GRAY3: string;
       BLUE_RGB: string;
       GRAY_RGB: string;

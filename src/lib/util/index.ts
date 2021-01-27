@@ -1,4 +1,6 @@
 import { Dimensions, PixelRatio, Platform } from 'react-native';
+import Toast from 'react-native-simple-toast';
+
 //font weight 적용하는 함수
 export const setFont = (type: 'NOTO' | 'ROBOTO', weight: 'THIN' | 'LIGHT' | 'REGULAR' | 'MEDIUM' | 'BOLD') => {
   switch (type) {
@@ -69,4 +71,41 @@ export const isIphoneX = () => {
       dimen.height === 926 ||
       dimen.width === 428)
   );
+};
+
+//숫자앞에 0붙이는 함수
+export const fillZero = (width, str) => {
+  return str.length >= width ? str : new Array(width - str.length + 1).join('0') + str; //남는 길이만큼 0으로 채움
+};
+
+//error toast
+export const errorToast = (e, title) => {
+  if (e.response.data.status === 406) {
+    console.log(e.response, title);
+    Toast.show(e.response.data.message);
+  } else {
+    Toast.show('오류가 발생하였습니다.');
+    console.log(e.response, title);
+  }
+};
+
+//오름차순 정렬
+export const sortArray = (arr, label) => {
+  const newArr = arr.sort(function (a, b) {
+    return a[label] < b[label] ? -1 : a[label] > b[label] ? 1 : 0;
+  });
+  return newArr.sort((a, b) => a.label.length - b.label.length);
+};
+
+//내림차순 정렬
+export const sortArrayDesc = (arr, value) => {
+  const newArr = arr.sort(function (a, b) {
+    return a[value] > b[value] ? -1 : a[value] < b[value] ? 1 : 0;
+  });
+  return newArr.sort((a, b) => a.value.length - b.value.length);
+};
+
+//숫자 3자리,
+export const priceDot = (value) => {
+  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };

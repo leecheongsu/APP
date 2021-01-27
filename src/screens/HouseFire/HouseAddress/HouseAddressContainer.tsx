@@ -13,9 +13,21 @@ type HouseAddressContainerTypes = {
   state: HouseFireStateTypes;
   inputState: HouseFireInputStateTypes;
   onChangeState: (name: HouseFireStateName, value: any) => void;
+  SelectAddress: (item) => void;
+  handleSelectDong: (value: any) => void;
+  handleSelectDetail: (value: any) => void;
+  submitAddressDetail: () => void;
 };
 
-export default function HouseAddressContainer({ state, inputState, onChangeState }: HouseAddressContainerTypes) {
+export default function HouseAddressContainer({
+  state,
+  inputState,
+  onChangeState,
+  SelectAddress,
+  handleSelectDong,
+  handleSelectDetail,
+  submitAddressDetail,
+}: HouseAddressContainerTypes) {
   const [getAddress, getAddressDispatch] = useAsync(
     () => insuApis.getAddress({ search: inputState.searchInput.value }),
     [],
@@ -48,8 +60,12 @@ export default function HouseAddressContainer({ state, inputState, onChangeState
       state={state}
       inputState={inputState}
       submitSearchAddress={submitSearchAddress}
-      loading={getAddress.loading}
+      loading={getAddress.loading || state.loading}
       onChangeState={onChangeState}
+      SelectAddress={SelectAddress}
+      handleSelectDong={handleSelectDong}
+      handleSelectDetail={handleSelectDetail}
+      submitAddressDetail={submitAddressDetail}
     />
   );
 }

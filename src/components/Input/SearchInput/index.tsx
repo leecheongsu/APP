@@ -40,6 +40,7 @@ function SearchInput(props: SearchInputTypes & SearchInputPropsTypes) {
     props.setValue('');
     props.onChangeState('addressCommon', {});
     props.onChangeState('addressData', []);
+    props.onChangeState('loading', false);
   };
   return (
     <Container>

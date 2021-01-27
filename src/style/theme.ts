@@ -8,6 +8,7 @@ const BLUE = '#013561';
 const GRAY = '#707070';
 const GRAY2 = '#f5f6fa';
 const GRAY3 = '#b1b6cc';
+const DIVIDER_BACK = '#f6f5f5';
 const ROUND_STEPPER = '#ddd';
 const BORDER_GRAY = '#e0e0e0';
 const BACKGROUND_GRAY = '#cbcbcb';
@@ -36,6 +37,7 @@ const theme: DefaultTheme = {
     GRAY,
     GRAY2,
     GRAY3,
+    DIVIDER_BACK,
     BORDER_GRAY,
     ROUND_STEPPER,
     MENU_BACKGROUD_COLOR,

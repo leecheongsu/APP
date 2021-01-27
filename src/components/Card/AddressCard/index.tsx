@@ -4,10 +4,17 @@ import styled from '@app/style/typed-components';
 import theme from '@app/style/theme';
 import { HighlightText } from '@app/components';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View } from 'react-native';
+
+type AddressCardTypes = {
+  item: any;
+  index?: number;
+  highlight?: string;
+  onPress?: (item: any) => void;
+};
 
 const Container = styled.View`
-  margin-top: 10px;
-  padding: 20px 30px 30px 30px;
+  padding: 20px;
   border-bottom-width: 1px;
   border-bottom-color: ${theme.color.BORDER_GRAY};
 `;
@@ -28,34 +35,59 @@ const LabelBox = styled.View`
 `;
 
 const InfoBox = styled.View`
-  width: 90%;
+  width: 85%;
 `;
 
-function AddressCard({ item, index, highlight }) {
+function AddressCard({ item, index, highlight, onPress }: AddressCardTypes) {
   return (
     <Container>
-      <TouchableOpacity>
-        <RowBox>
-          <LabelBox backgroundcolor="SKYBLUE2">
-            <Typhograph type="ROBOTO" color="WHITE" size={11}>
-              도로명
-            </Typhograph>
-          </LabelBox>
-          <InfoBox>
-            <HighlightText title={item?.roadAddr} highlight={highlight} />
-          </InfoBox>
-        </RowBox>
-        <RowBox>
-          <LabelBox backgroundcolor="GRAY3">
-            <Typhograph type="ROBOTO" color="WHITE" size={11}>
-              지번
-            </Typhograph>
-          </LabelBox>
-          <InfoBox>
-            <HighlightText title={item?.jibunAddr} highlight={highlight} />
-          </InfoBox>
-        </RowBox>
-      </TouchableOpacity>
+      {onPress ? (
+        <TouchableOpacity onPress={() => onPress(item)}>
+          <RowBox>
+            <LabelBox backgroundcolor="SKYBLUE2">
+              <Typhograph type="ROBOTO" color="WHITE" size={11}>
+                도로명
+              </Typhograph>
+            </LabelBox>
+            <InfoBox>
+              <HighlightText title={item?.roadAddr} highlight={highlight} />
+            </InfoBox>
+          </RowBox>
+          <RowBox>
+            <LabelBox backgroundcolor="GRAY3">
+              <Typhograph type="ROBOTO" color="WHITE" size={11}>
+                지번
+              </Typhograph>
+            </LabelBox>
+            <InfoBox>
+              <HighlightText title={item?.jibunAddr} highlight={highlight} />
+            </InfoBox>
+          </RowBox>
+        </TouchableOpacity>
+      ) : (
+        <View>
+          <RowBox>
+            <LabelBox backgroundcolor="SKYBLUE2">
+              <Typhograph type="ROBOTO" color="WHITE" size={11}>
+                도로명
+              </Typhograph>
+            </LabelBox>
+            <InfoBox>
+              <HighlightText title={item?.roadAddr} highlight={highlight} />
+            </InfoBox>
+          </RowBox>
+          <RowBox>
+            <LabelBox backgroundcolor="GRAY3">
+              <Typhograph type="ROBOTO" color="WHITE" size={11}>
+                지번
+              </Typhograph>
+            </LabelBox>
+            <InfoBox>
+              <HighlightText title={item?.jibunAddr} highlight={highlight} />
+            </InfoBox>
+          </RowBox>
+        </View>
+      )}
     </Container>
   );
 }

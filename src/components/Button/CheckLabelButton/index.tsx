@@ -8,27 +8,33 @@ const Container = styled.TouchableOpacity`
   padding: 10px;
   background-color: ${(props) => theme.color[props.backgroundcolor]};
   border-radius: 10px;
-  border-width: ${(props) => (props.active ? '0px' : '1px')};
-  border-color: rgb(224, 224, 224);
+  border-width: ${(props) => (props.active ? '1px' : '1px')};
+  border-color: ${(props) => (props.active ? theme.color[props.backgroundcolor] : 'rgb(224, 224, 224)')};
 `;
 
 const Box = styled.View`
   flex-direction: row;
-  justify-content: center;
   align-items: center;
+  justify-content: ${(props) => (props.iscenter ? 'center' : 'flex-start')};
+  padding: 0px 20px;
 `;
 
 const Icon = styled.Image`
-  margin-right: 5px;
+  margin-right: 10px;
 `;
-function CheckLabelButton({ title, active = false, onPress }) {
+const TextBox = styled.View`
+  padding-right: 10px;
+`;
+function CheckLabelButton({ title, active = false, onPress, iscenter }) {
   return (
     <Container activeOpacity={0.6} onPress={onPress} backgroundcolor={active ? 'SKYBLUE' : 'WHITE'} active={active}>
-      <Box active>
+      <Box active iscenter={iscenter}>
         <Icon source={active ? insuIcon.BTN_OFF : insuIcon.BTN_ON} />
-        <Typhograph type="NOTO" size={15} color={active ? 'WHITE' : 'BLUE'} weight="MEDIUM">
-          {title}
-        </Typhograph>
+        <TextBox>
+          <Typhograph type="NOTO" size={12} color={active ? 'WHITE' : 'BLUE'} weight="MEDIUM">
+            {title}
+          </Typhograph>
+        </TextBox>
       </Box>
     </Container>
   );

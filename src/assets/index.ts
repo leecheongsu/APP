@@ -9,6 +9,7 @@ const BTN_OFF = require('./icon/ico-btn-on/ico-btn-on.png');
 const BTN_SEARCH = require('./icon/btn-search/btn-search.png');
 const BTN_DEL = require('./icon/btn-del/btn-del.png');
 const BTN_DEL2 = require('./icon/btn-del2/btn-del2.png');
+const SELECT_ICON = require('./icon/ico-select/ico-select.png');
 
 const MAIN_S_ROBOT = require('./img/img-mainSrobot/img-mainSrobot.png');
 const MAIN_B_ROBOT = require('./img/img-mainBrobot/img-mainBrobot.png');
@@ -25,6 +26,7 @@ export const insuIcon = {
   BTN_SEARCH,
   BTN_DEL,
   BTN_DEL2,
+  SELECT_ICON,
 };
 
 export const insuImg = {

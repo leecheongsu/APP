@@ -8,9 +8,7 @@ type FullLabelTypes = {
 };
 
 const Container = styled.View`
-  background-color: ${theme.color.GRAY2};
-  border-top-width: 1px;
-  border-top-color: ${theme.color.BORDER_GRAY};
+  background-color: ${theme.color.WHITE};
   border-bottom-width: 1px;
   border-bottom-color: ${theme.color.BORDER_GRAY};
   flex-direction: row;
@@ -18,14 +16,21 @@ const Container = styled.View`
   align-items: center;
   padding: 15px 20px;
 `;
+const Diveder = styled.View`
+  height: 8px;
+  background-color: ${theme.color.DIVIDER_BACK};
+`;
 
 function FullLabel({ title }: FullLabelTypes) {
   return (
-    <Container>
-      <Typhograph type="NOTO" color="GRAY" size={11} weight="REGULAR">
-        {title}
-      </Typhograph>
-    </Container>
+    <>
+      <Container>
+        <Typhograph type="NOTO" color="GRAY" size={11} weight="REGULAR">
+          {title}
+        </Typhograph>
+      </Container>
+      <Diveder />
+    </>
   );
 }
 
