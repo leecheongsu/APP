@@ -1,5 +1,4 @@
 import 'styled-components';
-import { DefaultTheme } from 'styled-components/native';
 
 declare module 'styled-components' {
   export type ColorName =
@@ -9,6 +8,7 @@ declare module 'styled-components' {
     | 'SKYBLUE3'
     | 'BLACK'
     | 'BLACK2'
+    | 'BLACK3'
     | 'BORDER_GRAY'
     | 'GRAY'
     | 'GRAY2'
@@ -29,6 +29,7 @@ declare module 'styled-components' {
     color: {
       BLACK: string;
       BLACK2: string;
+      BLACK3: string;
       BORDER_GRAY: string;
       SKYBLUE2: string;
       WHITE: string;

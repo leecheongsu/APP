@@ -1,37 +1,39 @@
 import React, { useEffect, useReducer, useRef } from 'react';
-import { errorToast, screenWidth, sortArray } from '@app/lib';
+import { screenWidth } from '@app/lib';
 import { HouseAddress, HouseEvaluation, JoinType } from '@app/screens';
 import { ColorName } from 'styled-components';
 import HouseFirePresenter from './HouseFirePresenter';
 import { useInput } from '@app/hooks';
 import { Keyboard } from 'react-native';
-import { insuApis } from '@app/api/Insurance';
 import HouseInfo from '@app/screens/HouseFire/HouseInfo';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
 
 export type HouseFireStateName =
-  | 'stepperTitle'
-  | 'stepNumber'
-  | 'joinType'
-  | 'selectType'
-  | 'houseStep'
-  | 'addressCommon'
-  | 'addressErrorMessage'
-  | 'addressData'
-  | 'isKeybordView'
-  | 'selectAddress'
-  | 'isDetailModal'
-  | 'sedeAddress'
+  | 'stepperTitle' //step 타이틀 네임
+  | 'stepNumber' // step숫자
+  | 'joinType' //가입타임 T=단체 S=세대
+  | 'selectType' //선택한 가입타입 세대 | 단체
+  | 'houseStep' //주택화재 가입 스텝
+  | 'addressCommon' // 주소검색후 나온 주소의 common데이터
+  | 'addressErrorMessage' //주소검색후 서버로부터 받는 에러메세지
+  | 'addressData' // 주소검색후 나온 주소의 datas
+  | 'isKeybordView' //키보드가 올라와있는상태인지 체크
+  | 'selectAddress' //최종적으로 주소를 선택한뒤 서버에서부터 받아온 datas (세대or단체)
+  | 'isDetailModal' // 세대별 가입시에 주소를 선택하면 동호를 선택할수있는 모달페이지 flag
+  | 'sedeAddress' //세대가입일때 주소선택시 받아오는 데이터
   | 'loading'
-  | 'resultDongList'
-  | 'resultDong'
-  | 'resultDetailList'
-  | 'resultDetail'
-  | 'lat'
-  | 'lng'
-  | 'currentPage';
+  | 'resultDongList' //세대별가입일때 주소의 동 리스트
+  | 'resultDong' //세대별가입일때 선택한 주소의 동
+  | 'resultDetailList' //세대별가입일때 주소의 호 리스트
+  | 'resultDetail' //세대별가입일때 선택한 주소의 호
+  | 'infoTitle' //안내모달 타이틀
+  | 'infoContents' // 안내모달 컨텐츠
+  | 'isInfoModal' // 안내모달 flag
+  | 'dancheJoin' //단체보험의 가입유무
+  | 'lat' //로드뷰를 표시하기위한 lat
+  | 'lng'; //로드뷰를 표시하기위한 lag
 
 export type HouseFireStateTypes = {
   stepperTitle: string;
@@ -57,6 +59,10 @@ export type HouseFireStateTypes = {
   resultDong: any;
   resultDetailList: Array<any>;
   resultDetail: any;
+  isInfoModal: boolean;
+  infoTitle: string;
+  infoContents: any;
+  dancheJoin: 'Y' | 'N';
 };
 export type HouseFireInputStateTypes = {
   searchInput: any;
@@ -96,6 +102,10 @@ const initialState: HouseFireStateTypes = {
   resultDong: '',
   resultDetailList: [],
   resultDetail: {},
+  isInfoModal: false,
+  infoTitle: '',
+  infoContents: '',
+  dancheJoin: 'N',
   houseStep: [
     {
       id: 'joinType',
@@ -178,134 +188,6 @@ export default function HouseFireContainer() {
     }
   };
 
-  //주소검색후 선택시 도는 로직
-  const SelectAddress = (item) => {
-    onChangeState('resultDong', '');
-    onChangeState('resultDetail', '');
-    onChangeState('resultDongList', []);
-    onChangeState('resultDetailList', []);
-    const params = {
-      sigungucd: item.admCd?.slice(0, 5),
-      bjdongcd: item.admCd?.slice(5),
-      bun: Number(item?.lnbrMnnm),
-      ji: Number(item?.lnbrSlno),
-    };
-    if (state.selectType === 'T') {
-      onChangeState('loading', true);
-      insuApis
-        .getDancheInfo(params)
-        .then((res) => {
-          onChangeState('selectAddress', res);
-          onChangeState('loading', false);
-          handleJoinTypeNextButton();
-        })
-        .catch((e) => {
-          errorToast(e, 'getDancheInfo');
-          onChangeState('loading', false);
-        });
-    } else {
-      onChangeState('loading', true);
-      onChangeState('sedeAddress', item);
-      insuApis
-        .getSedeCover(params)
-        .then((res) => {
-          console.log(res, '123123123');
-          const newCover: any = [];
-          res?.map((i: any) => {
-            if (i.hhldCnt > 0) {
-              const newItem = {
-                label: i.dongNm === '' ? i.bldNm : i.dongNm,
-                value: i,
-              };
-              return newCover.push(newItem);
-            }
-          });
-          onChangeState('resultDongList', sortArray(newCover, 'label'));
-          onChangeState('loading', false);
-          onChangeState('isDetailModal', true);
-        })
-        .catch((e) => {
-          errorToast(e, 'getSedeCover');
-          onChangeState('resultDongList', []);
-          onChangeState('loading', false);
-        });
-    }
-  };
-
-  //주소찾기 상세정보 동 셀렉트박스
-  const handleSelectDong = (value) => {
-    onChangeState('loading', true);
-    onChangeState('resultDong', value);
-    onChangeState('resultDetailList', []);
-    if (value !== undefined && value !== '') {
-      const params = {
-        sigungucd: state.sedeAddress.admCd?.slice(0, 5),
-        bjdongcd: state.sedeAddress.admCd?.slice(5),
-        bun: Number(state.sedeAddress?.lnbrMnnm),
-        ji: Number(state.sedeAddress?.lnbrSlno),
-        dongnm: value.dongNm,
-      };
-
-      insuApis
-        .getSedeDetail(params)
-        .then((res) => {
-          const newDetail: any = [];
-          res?.map((item) => {
-            if (item.hoNm !== '' && item.hoNm !== undefined) {
-              const newItem = {
-                label: String(item.hoNm),
-                value: item,
-              };
-              return newDetail.push(newItem);
-            }
-          });
-          onChangeState('resultDetailList', sortArray(newDetail, 'label'));
-          onChangeState('loading', false);
-        })
-        .catch((e) => {
-          errorToast(e, 'getSedeDetail');
-          onChangeState('resultDetailList', []);
-          onChangeState('loading', false);
-        });
-    } else {
-      onChangeState('resultDetailList', []);
-      onChangeState('loading', false);
-    }
-  };
-
-  //주소 찾기 상세정보 호수 셀렉트
-  const handleSelectDetail = (value: any) => {
-    onChangeState('resultDetail', value);
-  };
-
-  //주소찾기 상세정보 최종 제출
-  const submitAddressDetail = () => {
-    onChangeState('loading', true);
-    if (state.resultDong === '') {
-      Toast.show('동을 선택해주세요.');
-    } else if (state.resultDetail === '') {
-      Toast.show('호를 선택해주세요');
-    } else {
-      const data = {
-        cover: state.resultDong,
-        detail: state.resultDetail,
-      };
-      insuApis
-        .getSedeInfo(data)
-        .then((res) => {
-          onChangeState('selectAddress', res);
-          handleJoinTypeNextButton();
-          onChangeState('isDetailModal', false);
-          onChangeState('loading', false);
-        })
-        .catch((e) => {
-          errorToast(e, 'getSedeInfo');
-          onChangeState('isDetailModal', false);
-          onChangeState('loading', false);
-        });
-    }
-  };
-
   //houseStep 스텝별 컴퍼넌트 셋팅
   const returnComponent = (id: 'joinType' | 'address' | 'info' | 'evaluation' | 'priceConfirm') => {
     switch (id) {
@@ -318,10 +200,7 @@ export default function HouseFireContainer() {
             state={state}
             inputState={inputState}
             onChangeState={onChangeState}
-            SelectAddress={SelectAddress}
-            handleSelectDong={handleSelectDong}
-            handleSelectDetail={handleSelectDetail}
-            submitAddressDetail={submitAddressDetail}
+            handleJoinTypeNextButton={handleJoinTypeNextButton}
           />
         );
       case 'info':
@@ -392,5 +271,12 @@ export default function HouseFireContainer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <HouseFirePresenter state={state} scrollRef={scrollRef} returnComponent={returnComponent} />;
+  return (
+    <HouseFirePresenter
+      state={state}
+      scrollRef={scrollRef}
+      returnComponent={returnComponent}
+      onChangeState={onChangeState}
+    />
+  );
 }

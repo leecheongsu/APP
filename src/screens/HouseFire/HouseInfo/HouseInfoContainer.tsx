@@ -39,7 +39,6 @@ export default function HouseInfoContainer({
     use_apr_date: moment(state.selectAddress?.use_apr_date).format('YYYY.MM.DD'),
     roof_name: state.selectAddress?.roof_name,
   };
-  console.log(state.selectAddress);
   return (
     <HouseInfoPresenter
       state={state}

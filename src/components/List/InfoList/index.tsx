@@ -46,7 +46,6 @@ const ListItem2Rigth = styled.View`
 `;
 
 export default function InfoList({ list }: InfoListPropsTypes) {
-  console.log(list);
   return (
     <Container>
       <ListBox>

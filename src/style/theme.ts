@@ -4,6 +4,7 @@ import { DefaultTheme } from 'styled-components/native';
 const WHITE = '#FFFFFF';
 const BLACK = '#000000';
 const BLACK2 = '#333';
+const BLACK3 = '#666';
 const BLUE = '#013561';
 const GRAY = '#707070';
 const GRAY2 = '#f5f6fa';
@@ -29,6 +30,7 @@ const theme: DefaultTheme = {
   color: {
     BLACK,
     BLACK2,
+    BLACK3,
     WHITE,
     BLUE,
     SKYBLUE,

@@ -4,6 +4,7 @@ export { default as SafeArea } from './Bar/SafeArea';
 //input
 export { default as SearchInput } from './Input/SearchInput';
 export { default as Select } from './Input/Select';
+export { default as MiniSelect } from './Input/MiniSelect';
 
 //menu
 export { default as Menu } from './Menu';
@@ -18,6 +19,7 @@ export { default as CheckLabelButton } from './Button/CheckLabelButton';
 
 //modal
 export { default as MainMenuModal } from './Modal/MainMenuModal';
+export { default as InfoModal } from './Modal/InfoModal';
 
 //avatar
 export { default as Avatar } from './Avatar';
@@ -37,6 +39,7 @@ export { default as HomeCard } from './Card/HomeCard';
 export { default as AddressCard } from './Card/AddressCard';
 export { default as EmptyCard } from './Card/EmptyCard';
 export { default as InsuCard } from './Card/InsuCard';
+export { default as CheckButtonCard } from './Card/CheckButtonCard';
 
 //stepper
 export { default as RoundStepper } from './Stepper/RoundStepper';
@@ -50,3 +53,6 @@ export { default as OverayLoading } from './OverayLoading';
 
 //List
 export { default as InfoList } from './List/InfoList';
+
+//Collapse
+export { default as Collapse } from './Collapse';

@@ -96,6 +96,13 @@ export const sortArray = (arr, label) => {
   });
   return newArr.sort((a, b) => a.label.length - b.label.length);
 };
+//오름차순 정렬
+export const sortArray2 = (arr, label) => {
+  const newArr = arr.sort(function (a, b) {
+    return a.value[label] < b.value[label] ? -1 : a.value[label] > b.value[label] ? 1 : 0;
+  });
+  return newArr;
+};
 
 //내림차순 정렬
 export const sortArrayDesc = (arr, value) => {
@@ -107,5 +114,19 @@ export const sortArrayDesc = (arr, value) => {
 
 //숫자 3자리,
 export const priceDot = (value) => {
-  return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  if (value !== undefined) {
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+  return 0;
+};
+
+//만원단위 변환
+export const sliceTenThousand = (value) => {
+  return Number(value) / 10000;
+};
+
+//백원단위 절삭
+export const floorPrice = (value) => {
+  const result = Math.floor(value / 100) * 100; // 10으로 나누면 211.7, floor 함수로 소수점을 버리면 211, 다시 10을 곱하면 2110
+  return result;
 };

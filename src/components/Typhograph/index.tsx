@@ -15,6 +15,8 @@ type TyphographTypes = {
   style?: TextStyle;
   size?: number;
   lineheight?: number;
+  maxLength?: number;
+  numberOfLines?: number;
 };
 
 const Text = styled.Text`
@@ -33,9 +35,21 @@ function Typhograph({
   children,
   lineheight = 9,
   style,
+  maxLength = 100,
+  numberOfLines = 10,
 }: TyphographTypes) {
   return (
-    <Text type={type} color={color} weight={weight} size={size} lineheight={lineheight} style={style} {...option}>
+    <Text
+      type={type}
+      color={color}
+      weight={weight}
+      size={size}
+      lineheight={lineheight}
+      style={style}
+      maxLength={maxLength}
+      numberOfLines={numberOfLines}
+      ellipsizeMode="middle"
+      {...option}>
       {children}
     </Text>
   );

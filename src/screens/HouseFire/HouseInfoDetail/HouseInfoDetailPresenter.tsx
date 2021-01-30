@@ -101,7 +101,7 @@ function HouseInfoDetailPresenter({
                   상세 주소 선택(동, 호)
                 </Typhograph>
               </ButtonInfoTitle>
-              <CheckLabelButton onPress={() => submitAddressDetail()} title={buttonLabel} />
+              <CheckLabelButton iscenter={false} onPress={() => submitAddressDetail()} title={buttonLabel} />
             </SubmitButtonBox>
             <SelectBox>
               <Select

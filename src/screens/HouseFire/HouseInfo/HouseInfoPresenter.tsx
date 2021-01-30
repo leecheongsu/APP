@@ -3,6 +3,7 @@ import { BottomFixButton, InfoList, Loading } from '@app/components';
 import { screenWidth } from '@app/lib';
 import styled from '@app/style/typed-components';
 import { WebView } from 'react-native-webview';
+import { Text } from 'react-native';
 const Container = styled.View`
   width: ${screenWidth()}px;
   padding-bottom: 65px;
@@ -60,7 +61,6 @@ function HouseInfoPresenter({ state, handleNextButton, handlePreviousButton, inf
             </>
           )}
         </ContentsContainer>
-
         <BottomFixButton
           index={state.stepNumber}
           leftTitle="이전"

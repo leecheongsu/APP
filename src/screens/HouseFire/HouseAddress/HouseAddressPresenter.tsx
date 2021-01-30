@@ -49,9 +49,11 @@ function HouseAddressPresenter({
 }: HouseAddressPresenterTypes) {
   const PLACEHOLDER = '도로명이나 건물명을 입력하세요.';
   const isErrorAndEmpty = state.addressErrorMessage !== '' && state.addressErrorMessage !== '정상';
+
   return (
     <Container>
       <FullLabel title="주소를 입력해주세요." />
+
       <SearchBox>
         <SearchInput
           {...inputState.searchInput}

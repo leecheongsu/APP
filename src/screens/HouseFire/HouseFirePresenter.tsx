@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from '@app/style/typed-components';
-import { FocusAwareStatusBar, Typhograph, RoundStepper } from '@app/components';
+import { FocusAwareStatusBar, InfoModal } from '@app/components';
 import { useNavigation } from '@react-navigation/native';
 import { HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -8,6 +8,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 type HouseFirePresenterTypes = {
   state: HouseFireStateTypes;
   scrollRef: React.MutableRefObject<null>;
+  onChangeState: (name, value) => void;
   returnComponent: (id: 'joinType' | 'address' | 'info' | 'evaluation' | 'priceConfirm') => JSX.Element | undefined;
 };
 
@@ -24,7 +25,7 @@ const SteperBox = styled.View`
   padding: 0px 115px 20px 115px;
 `;
 
-function HouseFirePresenter({ state, scrollRef, returnComponent }: HouseFirePresenterTypes) {
+function HouseFirePresenter({ state, scrollRef, returnComponent, onChangeState }: HouseFirePresenterTypes) {
   const navigation: any = useNavigation();
 
   return (
@@ -39,10 +40,16 @@ function HouseFirePresenter({ state, scrollRef, returnComponent }: HouseFirePres
         showsHorizontalScrollIndicator={false}
         keyboardShouldPersistTaps="handled"
         ref={scrollRef}>
-        {state.houseStep.map((item, index) => {
+        {state.houseStep.map((item) => {
           return returnComponent(item.id);
         })}
       </ScrollView>
+      <InfoModal
+        open={state.isInfoModal}
+        title={state.infoTitle}
+        contents={state.infoContents}
+        onClose={() => onChangeState('isInfoModal', false)}
+      />
     </>
   );
 }
