@@ -47,7 +47,7 @@ export default function HouseAddressContainer({
       insuApis
         .getDancheInfo(params)
         .then((res) => {
-          onChangeState('selectAddress', res);
+          onChangeState('selectAddress', res.data);
           onChangeState('loading', false);
           handleJoinTypeNextButton();
         })
@@ -62,7 +62,7 @@ export default function HouseAddressContainer({
         .getSedeCover(params)
         .then((res) => {
           const newCover: any = [];
-          res?.map((i: any) => {
+          res?.data?.map((i: any) => {
             if (i.hhldCnt > 0) {
               const newItem = {
                 label: i.dongNm === '' ? i.bldNm : i.dongNm,
@@ -101,7 +101,7 @@ export default function HouseAddressContainer({
         .getSedeDetail(params)
         .then((res) => {
           const newDetail: any = [];
-          res?.map((item) => {
+          res?.data?.map((item) => {
             if (item.hoNm !== '' && item.hoNm !== undefined) {
               const newItem = {
                 label: String(item.hoNm),
@@ -144,7 +144,7 @@ export default function HouseAddressContainer({
       insuApis
         .getSedeInfo(data)
         .then((res) => {
-          onChangeState('selectAddress', res);
+          onChangeState('selectAddress', res.data);
           handleJoinTypeNextButton();
           onChangeState('isDetailModal', false);
           onChangeState('loading', false);
@@ -165,8 +165,8 @@ export default function HouseAddressContainer({
   };
 
   useEffect(() => {
-    if (getAddress.data?.results !== undefined) {
-      const result = getAddress.data?.results;
+    if (getAddress.data?.data?.results !== undefined) {
+      const result = getAddress.data?.data?.results;
       onChangeState('addressCommon', result.common);
       onChangeState('addressData', result.juso);
 
@@ -180,6 +180,7 @@ export default function HouseAddressContainer({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getAddress]);
+
   return (
     <HouseAddressPresenter
       state={state}

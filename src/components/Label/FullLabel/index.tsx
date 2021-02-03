@@ -14,7 +14,7 @@ const Container = styled.View`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  padding: 15px 20px;
+  padding: 30px 20px;
 `;
 const Diveder = styled.View`
   height: 8px;
@@ -25,7 +25,7 @@ function FullLabel({ title }: FullLabelTypes) {
   return (
     <>
       <Container>
-        <Typhograph type="NOTO" color="GRAY" size={11} weight="REGULAR">
+        <Typhograph type="NOTO" color="BLACK2" size={14} weight="REGULAR" style={{ textAlign: 'center' }}>
           {title}
         </Typhograph>
       </Container>

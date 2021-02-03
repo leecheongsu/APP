@@ -13,6 +13,7 @@ declare module 'styled-components' {
     | 'GRAY'
     | 'GRAY2'
     | 'GRAY3'
+    | 'INPUT_GRAY'
     | 'MENU_BACKGROUD_COLOR'
     | 'SOFTPUPLE'
     | 'SOFTPUPLE2'
@@ -23,6 +24,7 @@ declare module 'styled-components' {
     | 'ROUND_STEPPER'
     | 'BACKGROUND_GRAY'
     | 'BLUE_RGB'
+    | 'WARING_RED'
     | 'GRAY_RGB'
     | 'SOFTBLUE';
   export interface DefaultTheme {
@@ -37,6 +39,7 @@ declare module 'styled-components' {
       SOFTBLUE: string;
       GRAY: string;
       GRAY2: string;
+      INPUT_GRAY: string;
       DIVIDER_BACK: string;
       GRAY3: string;
       BLUE_RGB: string;
@@ -45,6 +48,7 @@ declare module 'styled-components' {
       BACKGROUND_GRAY: string;
       SOFTPUPLE: string;
       SOFTPUPLE2: string;
+      WARING_RED: string;
       ROUND_STEPPER: string;
       SKYBLUE: string;
       SOFTGRAY: string;

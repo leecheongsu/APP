@@ -3,7 +3,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AddressSearch, Home, HouseFire, HouseInfoDetail } from '@app/screens';
 import { BackButton, LogoTitle, MenuButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';
-import Login from '@app/screens/Login';
 import UserButton from '@app/components/Header/UserButton';
 
 function MainStack() {

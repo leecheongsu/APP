@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useRef } from 'react';
-import { screenWidth } from '@app/lib';
-import { HouseAddress, HouseEvaluation, JoinType } from '@app/screens';
+import { floorPrice, screenWidth } from '@app/lib';
+import { HouseAddress, HouseEvaluation, HouseResult, JoinType } from '@app/screens';
 import { ColorName } from 'styled-components';
 import HouseFirePresenter from './HouseFirePresenter';
 import { useInput } from '@app/hooks';
@@ -32,6 +32,7 @@ export type HouseFireStateName =
   | 'infoContents' // 안내모달 컨텐츠
   | 'isInfoModal' // 안내모달 flag
   | 'dancheJoin' //단체보험의 가입유무
+  | 'selectInsuCompany' // 선택한 보험사
   | 'lat' //로드뷰를 표시하기위한 lat
   | 'lng'; //로드뷰를 표시하기위한 lag
 
@@ -53,6 +54,7 @@ export type HouseFireStateTypes = {
     backgroundcolor: ColorName;
   }[];
   selectType: any;
+  selectInsuCompany: string;
   lat: string;
   lng: string;
   resultDongList: Array<any>;
@@ -97,6 +99,7 @@ const initialState: HouseFireStateTypes = {
   lat: '',
   lng: '',
   selectType: 0,
+  selectInsuCompany: '',
   isDetailModal: false,
   resultDongList: [],
   resultDong: '',
@@ -171,8 +174,18 @@ export default function HouseFireContainer() {
         handleJoinTypeNextButton();
         return null;
       }
+      case 5: {
+        if (state.selectInsuCompany === '') {
+          Toast.show('보험상품을 선택해주세요.');
+        } else {
+          handleJoinTypeNextButton();
+        }
+
+        return null;
+      }
       default:
-        throw new Error('wrong name');
+        handleJoinTypeNextButton();
+        return null;
     }
   };
 
@@ -185,7 +198,43 @@ export default function HouseFireContainer() {
       onChangeState('selectAddress', {});
       onChangeState('lat', '');
       onChangeState('lng', '');
+    } else if (state.stepNumber === 5) {
+      onChangeState('selectInsuCompany', '');
     }
+  };
+
+  //건물 보험료
+  const resultBuildPrice = () => {
+    let result = 0;
+    const newBuildList: any = [];
+    state?.selectAddress?.premiums?.map((item) => {
+      if (item.item_id === 'BFRE' || item.item_id === 'BDRG' || item.item_id === 'BGLS' || item.item_id === 'BCMP') {
+        newBuildList.push(item);
+      }
+    });
+    newBuildList.map((item: any) => {
+      if (item.aply_yn === 'Y' && item.already_group_ins === state?.selectAddress.already_group_ins) {
+        result = result + item.premium;
+      }
+    });
+    return floorPrice(result);
+  };
+
+  //가재도구 보험료
+  const resultGajePrice = () => {
+    let result = 0;
+    const newBuildList: any = [];
+    state?.selectAddress?.premiums?.map((item) => {
+      if (item.item_id === 'KFRE' || item.item_id === 'KLCK' || item.item_id === 'KDRG' || item.item_id === 'KSTL') {
+        newBuildList.push(item);
+      }
+    });
+    newBuildList.map((item: any) => {
+      if (item.aply_yn === 'Y' && item.already_group_ins === state?.selectAddress.already_group_ins) {
+        result = result + item.premium;
+      }
+    });
+    return floorPrice(result);
   };
 
   //houseStep 스텝별 컴퍼넌트 셋팅
@@ -222,6 +271,20 @@ export default function HouseFireContainer() {
             onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
             handleNextButton={handleNextButton}
+            resultBuildPrice={resultBuildPrice}
+            resultGajePrice={resultGajePrice}
+          />
+        );
+      case 'priceConfirm':
+        return (
+          <HouseResult
+            state={state}
+            inputState={inputState}
+            onChangeState={onChangeState}
+            handlePreviousButton={handlePreviousButton}
+            handleNextButton={handleNextButton}
+            resultBuildPrice={resultBuildPrice}
+            resultGajePrice={resultGajePrice}
           />
         );
     }

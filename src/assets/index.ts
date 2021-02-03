@@ -17,6 +17,9 @@ const ICON_INFO = require('./icon/ico-info/ico-info.png');
 
 const MAIN_S_ROBOT = require('./img/img-mainSrobot/img-mainSrobot.png');
 const MAIN_B_ROBOT = require('./img/img-mainBrobot/img-mainBrobot.png');
+const LOGO_HYUNDAI = require('./img/logo-hyundai/logo-hyundai.png');
+const LOGO_MERITZ = require('./img/logo-meritz/logo-meritz.png');
+const BG_LOGO = require('./img/bg-robo/bg-robo.png');
 
 export const insuIcon = {
   CLOSE_ICON,
@@ -40,4 +43,7 @@ export const insuIcon = {
 export const insuImg = {
   MAIN_S_ROBOT,
   MAIN_B_ROBOT,
+  LOGO_HYUNDAI,
+  LOGO_MERITZ,
+  BG_LOGO,
 };

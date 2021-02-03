@@ -1,6 +1,15 @@
 import React from 'react';
 import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
-import { AddressSearch, Home, HouseFire, HouseInfoDetail } from '@app/screens';
+import {
+  AddressSearch,
+  FindEmail,
+  Home,
+  HouseFire,
+  HouseInfoDetail,
+  Join,
+  JoinSuccess,
+  TermsModal,
+} from '@app/screens';
 import { BackButton, CloseButton, LogoTitle, MenuButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';
 import Login from '@app/screens/Login';
@@ -40,15 +49,102 @@ function RootStack() {
         }}
       />
       <Stacks.Screen
+        name="JOIN"
+        component={Join}
+        options={{
+          headerLeft: () => (
+            <BackButton
+              onPress={() => {
+                navigation.goBack();
+              }}
+            />
+          ),
+          headerLeftContainerStyle: { paddingHorizontal: 10 },
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              회원가입
+            </Typhograph>
+          ),
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomColor: theme.color.BORDER_GRAY,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+      <Stacks.Screen
         name="LOGIN"
         component={Login}
         options={{
-          headerLeft: () => <BackButton />,
+          headerLeft: () => <BackButton onPress={() => navigation.navigate('MAIN_STACK')} />,
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              로그인
+            </Typhograph>
+          ),
           title: '',
           headerShown: true,
           animationEnabled: true,
           headerStyle: {
-            backgroundColor: theme.color.BLUE,
+            backgroundColor: theme.color.WHITE,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+      <Stacks.Screen
+        name="FIND_EMAIL"
+        component={FindEmail}
+        options={{
+          headerLeft: () => <BackButton />,
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              이메일 찾기
+            </Typhograph>
+          ),
+          title: '',
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+      <Stacks.Screen
+        name="JOIN_SUCCESS"
+        component={JoinSuccess}
+        options={{
+          headerLeft: () => <BackButton onPress={() => navigation.navigate('MAIN_STACK')} />,
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              회원가입완료
+            </Typhograph>
+          ),
+          title: '',
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
             shadowRadius: 0,
             shadowOffset: {
               width: 0,

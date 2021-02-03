@@ -64,7 +64,13 @@ export default function Menu(props) {
               background="SKYBLUE"
               right={10}
             />
-            <LoginButton onPress={() => console.log(1)} title="회원가입" color="BLUE" background="WHITE" right={10} />
+            <LoginButton
+              onPress={() => navigation.navigate('JOIN')}
+              title="회원가입"
+              color="BLUE"
+              background="WHITE"
+              right={10}
+            />
           </ButtonBox>
         </ProfileBox>
       </ProfileContainer>

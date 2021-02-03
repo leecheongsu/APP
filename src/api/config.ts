@@ -12,4 +12,7 @@ export const commonApiConfig = axios.create({
 
 export const userApiConfig = axios.create({
   baseURL: __DEV__ ? `${DEV_URL}` : `${PROD_URL}`,
+  headers: {
+    'X-insr-servicekey': 'sdfsafsaf9osldfsafdosdfsfasf',
+  },
 });

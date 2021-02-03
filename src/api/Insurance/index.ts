@@ -8,7 +8,7 @@ export const insuApis = {
       url: '/house/juso',
       params,
     });
-    return res.data;
+    return res;
   },
 
   async getDancheInfo(params) {
@@ -17,7 +17,7 @@ export const insuApis = {
       url: 'house/quotes/danche',
       params,
     });
-    return res.data;
+    return res;
   },
 
   async getSedeCover(params) {
@@ -26,7 +26,7 @@ export const insuApis = {
       url: 'house/cover',
       params,
     });
-    return res.data;
+    return res;
   },
   async getSedeDetail(params) {
     const res = await commonApiConfig({
@@ -34,7 +34,7 @@ export const insuApis = {
       url: 'house/detail',
       params,
     });
-    return res.data;
+    return res;
   },
 
   async getSedeInfo(data) {
@@ -43,6 +43,6 @@ export const insuApis = {
       url: 'house/quotes/sedae',
       data,
     });
-    return res.data;
+    return res;
   },
 };

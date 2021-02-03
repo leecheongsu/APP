@@ -215,14 +215,28 @@ function HouseEvaluationPresenter({
               기본담보(보통약관)
             </Typhograph>
             <CheckButtonBox>
-              <CheckButtonCard
-                name="KFRE"
-                state={state?.selectAddress}
-                onPress={clickCheckBox}
-                title="화재/폭발/파열"
-                value={eachPrice('KFRE')?.ins_name}
-                value2={priceDot(eachPrice('KFRE')?.premium)}
-              />
+              {state.selectType === 'T' ? (
+                <CheckButtonCard
+                  state={state?.selectAddress}
+                  onPress={clickCheckBox}
+                  name="KFRE"
+                  items={evaluationState?.listKFRE}
+                  title="화재/폭발/파열"
+                  value={evaluationState.KFRE}
+                  value2={evaluationState.KFRE.premium}
+                  onValueChange={onValueChange}
+                  isSelect
+                />
+              ) : (
+                <CheckButtonCard
+                  name="KFRE"
+                  state={state?.selectAddress}
+                  onPress={clickCheckBox}
+                  title="화재/폭발/파열"
+                  value={eachPrice('KFRE')?.ins_name?.trim()}
+                  value2={priceDot(eachPrice('KFRE')?.premium)}
+                />
+              )}
             </CheckButtonBox>
             <InfoIconTextBox>
               <Typhograph type="NOTO" color="BLACK3">
@@ -305,9 +319,14 @@ function HouseEvaluationPresenter({
                 </Typhograph>
               </Typhograph>
               <Typhograph style={{ marginTop: 10 }} type="ROBOTO" color="BLACK3" weight="BOLD" size={16}>
-                {priceDot(2323)}
+                {state.selectType === 'T'
+                  ? priceDot(sliceTenThousand(state?.selectAddress?.amt_ins))
+                  : state?.selectAddress?.already_group_ins === 'Y'
+                  ? priceDot(1000)
+                  : priceDot(sliceTenThousand(state?.selectAddress?.amt_ins))}
+
                 <Typhograph type="NOTO" size={14} color="BLACK3">
-                  원
+                  만원
                 </Typhograph>
               </Typhograph>
             </ResultRowBox>

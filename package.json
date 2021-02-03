@@ -5,13 +5,14 @@
   "scripts": {
     "postinstall": "rndebugger-open",
     "android": "react-native run-android",
+    "android:distribute": "cd android && ./gradlew clean && fastlane distribute && cd ..",
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx"
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-async-storage/async-storage": "^1.13.4",
     "@react-native-community/masked-view": "^0.1.10",
     "@react-native-picker/picker": "^1.9.10",
     "@react-navigation/drawer": "^5.11.5",
@@ -26,6 +27,7 @@
     "react-native": "0.63.4",
     "react-native-easy-toast": "^2.0.0",
     "react-native-gesture-handler": "^1.9.0",
+    "react-native-keyboard-aware-scroll-view": "^0.9.3",
     "react-native-loading-spinner-overlay": "^2.0.0",
     "react-native-modal": "^11.6.1",
     "react-native-network-logger": "^1.8.1",

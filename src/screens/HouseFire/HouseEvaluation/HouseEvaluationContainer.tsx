@@ -25,6 +25,8 @@ const initialState = {
   groupKLCK: {}, // 잠금장치 단체
   listKLCK: [], // 잠금장치 리스트
   listGroupKLCK: [], // 잠금장치 단체 리스트
+  KFRE: {}, // 가재도구 화재/폭발/파열
+  listKFRE: [], // 가재도구 화재/폭발//파열
 };
 
 export default function HouseEvaluationContainer({
@@ -33,6 +35,8 @@ export default function HouseEvaluationContainer({
   onChangeState,
   handlePreviousButton,
   handleNextButton,
+  resultBuildPrice,
+  resultGajePrice,
 }) {
   const [evaluationState, evaluationDispatch] = useReducer(reducer, initialState);
   const evalutionChangeState = (name, value) => {
@@ -106,40 +110,6 @@ export default function HouseEvaluationContainer({
     onChangeState('selectAddress', newSelectAddress);
   };
 
-  //건물 보험료
-  const resultBuildPrice = () => {
-    let result = 0;
-    const newBuildList: any = [];
-    state?.selectAddress?.premiums?.map((item) => {
-      if (item.item_id === 'BFRE' || item.item_id === 'BDRG' || item.item_id === 'BGLS' || item.item_id === 'BCMP') {
-        newBuildList.push(item);
-      }
-    });
-    newBuildList.map((item: any) => {
-      if (item.aply_yn === 'Y' && item.already_group_ins === state?.selectAddress.already_group_ins) {
-        result = result + item.premium;
-      }
-    });
-    return floorPrice(result);
-  };
-
-  //가재도구 보험료
-  const resultGajePrice = () => {
-    let result = 0;
-    const newBuildList: any = [];
-    state?.selectAddress?.premiums?.map((item) => {
-      if (item.item_id === 'KLCK' || item.item_id === 'KFRE' || item.item_id === 'KDRG' || item.item_id === 'KSTL') {
-        newBuildList.push(item);
-      }
-    });
-    newBuildList.map((item: any) => {
-      if (item.aply_yn === 'Y' && item.already_group_ins === state?.selectAddress.already_group_ins) {
-        result = result + item.premium;
-      }
-    });
-    return floorPrice(result);
-  };
-
   //최종 보험료 구하기
   const resultPrice = () => {
     let result = 0;
@@ -199,7 +169,6 @@ export default function HouseEvaluationContainer({
     if (item.already_group_ins === 'Y') {
       evalutionChangeState('group' + item.item_id, item);
     } else {
-      console.log(item);
       evalutionChangeState(item.item_id, item);
     }
   };
@@ -225,7 +194,8 @@ export default function HouseEvaluationContainer({
   };
   useEffect(() => {
     if (state?.selectAddress?.premiums !== undefined && evaluationState.listBCMP?.length === 0) {
-      if (state.dancheJoin === 'Y') {
+      if (state.selectType === 'T') {
+        setSelectList('KFRE', 'listKFRE', 'N');
         setSelectList('BCMP', 'listBCMP', 'N');
         setSelectList('KSTL', 'listKSTL', 'N');
         setSelectList('KLCK', 'listKLCK', 'N');
@@ -240,6 +210,7 @@ export default function HouseEvaluationContainer({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleNextButton, handlePreviousButton]);
+
   return (
     <HouseEvaluationPresenter
       state={state}

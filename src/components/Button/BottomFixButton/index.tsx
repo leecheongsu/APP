@@ -7,7 +7,7 @@ import { nomalize, isIphoneX } from '@app/lib';
 type BottomFixButtonTypes = {
   bottomLeftPress: () => void;
   bottomRightPress: () => void;
-  leftTitle: string | number;
+  leftTitle?: string | number;
   rightTitle: string | number;
   index: number;
   isKeybordView?: boolean;
@@ -48,6 +48,7 @@ function BottomFixButton({
   rightTitle,
   isKeybordView = false,
 }: BottomFixButtonTypes) {
+  console.log(index);
   switch (index) {
     case 1:
       return (
@@ -62,7 +63,24 @@ function BottomFixButton({
         </Container>
       );
     case 2:
-      return null;
+      return (
+        <Container isKeybordView={isKeybordView}>
+          <Box>
+            <LeftButton onPress={() => bottomLeftPress()}>
+              <Typhograph type="NOTO" color="WHITE" weight="BOLD" size={15}>
+                {leftTitle}
+              </Typhograph>
+            </LeftButton>
+          </Box>
+          <Box>
+            <RightButton onPress={() => bottomRightPress()} title="22">
+              <Typhograph type="NOTO" color="WHITE" weight="BOLD" size={15}>
+                {rightTitle}
+              </Typhograph>
+            </RightButton>
+          </Box>
+        </Container>
+      );
     default:
       return (
         <Container isKeybordView={isKeybordView}>

@@ -38,16 +38,16 @@ platform :android do
 
   desc "Firebase_app_distribution"
     lane :distribute do |options|
-	updateVersion(options)
-        build_android_app(task: "assembleRelease") 
-	# build_android_app is a built-in fastlane action.
+      build_android_app(task: "assembleRelease") 
+# build_android_app is a built-in fastlane action.
 
-        firebase_app_distribution(
-            app: "1:32734331599:android:ec01c38daf496698cd6dba",
-            firebase_cli_token: "1//0e5EfTyPY-rpyCgYIARAAGA4SNwF-L9Ir7lNADseVtHp-8Q_rfZTp0XNssaOk_kEir8sX5VXB9-zeBjjq5onHvgR7o9YOHjPSSVo",
-            groups: "인슈로보내부",
-            release_notes: "자동배포 테스트"
-        )
+      firebase_app_distribution(
+          app: "1:934772389661:android:ff695659785f1c96f893f4",
+          firebase_cli_token: "1//0eHJ9p5pP4UA5CgYIARAAGA4SNwF-L9IrhJZcDO7W1t683dHjH8t2BaSZpVwT1qGBZxXI1yBHD-_D8I02K673yRiZYr3w1KHseNQ",
+          groups: "인슈로보내부",
+          release_notes: "테스트버젼 배포"
+      )
 
     end
+
 end
