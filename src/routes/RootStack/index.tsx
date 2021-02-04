@@ -1,25 +1,15 @@
 import React from 'react';
-import { CardStyleInterpolators, createStackNavigator } from '@react-navigation/stack';
-import {
-  AddressSearch,
-  FindEmail,
-  Home,
-  HouseFire,
-  HouseInfoDetail,
-  Join,
-  JoinSuccess,
-  TermsModal,
-} from '@app/screens';
-import { BackButton, CloseButton, LogoTitle, MenuButton, Typhograph } from '@app/components/index';
+import { createStackNavigator } from '@react-navigation/stack';
+import { FindEmail, Join, JoinSuccess, FindPassword, TermsModal, Profile, Secession } from '@app/screens';
+import { BackButton, CloseButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';
 import Login from '@app/screens/Login';
-import UserButton from '@app/components/Header/UserButton';
 import MainStack from '@app/routes/MainStack';
 import { useNavigation } from '@react-navigation/native';
 
 function RootStack() {
   const Stacks = createStackNavigator();
-  const navigation: any = useNavigation();
+  const navigation = useNavigation();
   return (
     <Stacks.Navigator
       initialRouteName="MAIN_STACK"
@@ -105,6 +95,85 @@ function RootStack() {
           },
         }}
       />
+
+      <Stacks.Screen
+        name="JOIN_SUCCESS"
+        component={JoinSuccess}
+        options={{
+          headerLeft: () => <BackButton onPress={() => navigation.navigate('MAIN_STACK')} />,
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              회원가입완료
+            </Typhograph>
+          ),
+          title: '',
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+
+      <Stacks.Screen
+        name="PROFILE"
+        component={Profile}
+        options={{
+          headerLeft: () => <BackButton />,
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              회원정보변경
+            </Typhograph>
+          ),
+          title: '',
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+
+      <Stacks.Screen
+        name="SECESSION"
+        component={Secession}
+        options={{
+          headerLeft: () => null,
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              회원정보변경
+            </Typhograph>
+          ),
+          headerRight: () => <CloseButton onPress={() => navigation.goBack()} />,
+          title: '',
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+
       <Stacks.Screen
         name="FIND_EMAIL"
         component={FindEmail}
@@ -131,13 +200,13 @@ function RootStack() {
         }}
       />
       <Stacks.Screen
-        name="JOIN_SUCCESS"
-        component={JoinSuccess}
+        name="FIND_PASSWORD"
+        component={FindPassword}
         options={{
           headerLeft: () => <BackButton onPress={() => navigation.navigate('MAIN_STACK')} />,
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
-              회원가입완료
+              비밀번호 찾기
             </Typhograph>
           ),
           title: '',
@@ -145,6 +214,7 @@ function RootStack() {
           animationEnabled: true,
           headerStyle: {
             backgroundColor: theme.color.WHITE,
+            borderBottomWidth: 1,
             shadowRadius: 0,
             shadowOffset: {
               width: 0,

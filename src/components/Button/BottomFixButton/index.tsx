@@ -3,6 +3,7 @@ import styled from '@app/style/typed-components';
 import Typhograph from '@app/components/Typhograph';
 import theme from '@app/style/theme';
 import { nomalize, isIphoneX } from '@app/lib';
+import { Loading } from '@app/components';
 
 type BottomFixButtonTypes = {
   bottomLeftPress: () => void;
@@ -11,6 +12,7 @@ type BottomFixButtonTypes = {
   rightTitle: string | number;
   index: number;
   isKeybordView?: boolean;
+  loading?: boolean;
 };
 
 const Container = styled.View`
@@ -47,17 +49,21 @@ function BottomFixButton({
   leftTitle,
   rightTitle,
   isKeybordView = false,
+  loading = false,
 }: BottomFixButtonTypes) {
-  console.log(index);
   switch (index) {
     case 1:
       return (
         <Container isKeybordView={isKeybordView}>
           <WideBox>
             <RightButton onPress={() => bottomRightPress()}>
-              <Typhograph type="NOTO" color="WHITE" weight="BOLD" size={15}>
-                {rightTitle}
-              </Typhograph>
+              {loading ? (
+                <Loading />
+              ) : (
+                <Typhograph type="NOTO" color="WHITE" weight="BOLD" size={15}>
+                  {rightTitle}
+                </Typhograph>
+              )}
             </RightButton>
           </WideBox>
         </Container>
@@ -75,7 +81,13 @@ function BottomFixButton({
           <Box>
             <RightButton onPress={() => bottomRightPress()} title="22">
               <Typhograph type="NOTO" color="WHITE" weight="BOLD" size={15}>
-                {rightTitle}
+                {loading ? (
+                  <Loading />
+                ) : (
+                  <Typhograph type="NOTO" color="WHITE" weight="BOLD" size={15}>
+                    {rightTitle}
+                  </Typhograph>
+                )}
               </Typhograph>
             </RightButton>
           </Box>
@@ -94,7 +106,13 @@ function BottomFixButton({
           <Box>
             <RightButton onPress={() => bottomRightPress()} title="22">
               <Typhograph type="NOTO" color="WHITE" weight="BOLD" size={15}>
-                {rightTitle}
+                {loading ? (
+                  <Loading />
+                ) : (
+                  <Typhograph type="NOTO" color="WHITE" weight="BOLD" size={15}>
+                    {rightTitle}
+                  </Typhograph>
+                )}
               </Typhograph>
             </RightButton>
           </Box>

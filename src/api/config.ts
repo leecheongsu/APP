@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const DEV_URL = 'http://192.168.0.14:8080';
-const PROD_URL = '';
+const DEV_URL = 'http://210.179.175.145:8080';
+const PROD_URL = 'http://210.179.175.145:8080';
 
 export const commonApiConfig = axios.create({
   baseURL: __DEV__ ? `${DEV_URL}` : `${PROD_URL}`,

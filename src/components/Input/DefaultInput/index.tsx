@@ -13,6 +13,7 @@ const Input = styled.TextInput<{ isFocus: boolean } & TextInputProps>`
   border-width: ${(props: any) => (props.isFocus ? '1px' : '1px')};
   border-radius: 10px;
   padding: 0px 10px 0px 10px;
+  background-color: ${(props: any) => (props.background ? theme.color[props.background] : 'white')};
 `;
 const HelperTextBox = styled.View`
   margin-top: 5px;

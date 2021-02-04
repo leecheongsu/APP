@@ -5,13 +5,15 @@ import {
   DefaultInput,
   FocusAwareStatusBar,
   FullLabel,
+  OverayLoading,
   ServiceSelect,
   Typhograph,
 } from '@app/components';
 import { ScrollView } from 'react-native-gesture-handler';
 import { screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
-import { Keyboard, TextInputProps } from 'react-native';
+import { Image, Keyboard, TextInputProps } from 'react-native';
+import { insuIcon } from '@app/assets';
 const Container = styled.View``;
 const ContentsContainer = styled.View`
   width: ${screenWidth()}px;
@@ -49,10 +51,47 @@ const Input = styled.TextInput<{ isFocus: boolean } & TextInputProps>`
   padding: 0px 10px 0px 10px;
 `;
 
-function ConfirmConatiner() {
+const ResultEmailContainer = styled.View`
+  padding: 20px;
+`;
+const ResultEmailBox = styled.View`
+  background-color: ${theme.color.GRAY2};
+  padding: 30px 0px;
+  justify-content: center;
+  align-items: center;
+`;
+
+const InfoBox = styled.View`
+  padding: 150px 0px;
+  align-items: center;
+`;
+const CheckIcon = styled.Image`
+  width: 66px;
+  height: 66px;
+`;
+const InfoTextBox = styled.View`
+  margin-top: 10px;
+`;
+
+function ConfirmConatiner({ state }) {
   return (
     <ContentsContainer>
       <FullLabel title={`인슈로보에 등록하신${'\n'} 본인의 이메일은 아래와 같습니다.`} />
+      <ResultEmailContainer>
+        <ResultEmailBox>
+          <Typhograph type="NOTO" color="BLACK3" weight="REGULAR">
+            {state?.userEmail}
+          </Typhograph>
+        </ResultEmailBox>
+        <InfoBox>
+          <CheckIcon source={insuIcon.BTN_ON} />
+          <InfoTextBox>
+            <Typhograph type="NOTO" color="BLACK3">
+              확인을 누르시면 로그인 페이지로 이동합니다.
+            </Typhograph>
+          </InfoTextBox>
+        </InfoBox>
+      </ResultEmailContainer>
     </ContentsContainer>
   );
 }
@@ -109,7 +148,7 @@ function InputConatiner({ inputState, state, onValueChange }) {
             <InputBox2>
               <InputBox style={{ width: '50%' }}>
                 <DefaultInput
-                  {...inputState.idNumber}
+                  {...inputState.jumina}
                   keyboardType="numeric"
                   maxLength={6}
                   placeholder="생년월일 6자리"
@@ -160,6 +199,7 @@ function FindEmailPresenter({
 }) {
   return (
     <>
+      <OverayLoading visible={state?.loading} />
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
       <Container>
         <ScrollView
@@ -172,13 +212,13 @@ function FindEmailPresenter({
           keyboardShouldPersistTaps="handled"
           ref={scrollRef}>
           <InputConatiner inputState={inputState} state={state} onValueChange={onValueChange} />
-          <ConfirmConatiner />
+          <ConfirmConatiner state={state} />
         </ScrollView>
       </Container>
       <BottomFixButton
         index={state.currentPage}
         leftTitle="이전"
-        rightTitle="다음"
+        rightTitle="확인"
         bottomRightPress={handleNextButton}
         bottomLeftPress={handlePreviousButton}
         isKeybordView={state.isKeybordView}

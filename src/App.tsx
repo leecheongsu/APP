@@ -10,6 +10,7 @@ import DrawerStack from '@app/routes/DrawerStack';
 declare const global: { HermesInternal: null | {} };
 
 LogBox.ignoreLogs(ignoreWarningLists);
+
 const App = () => {
   return (
     <React.Fragment>

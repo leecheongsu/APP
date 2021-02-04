@@ -5,18 +5,23 @@
 import React, { createContext, Dispatch, useReducer, useContext } from 'react';
 
 //type
-export type GlobalState = object | undefined | null;
-type Action =
-  | { type: 'CREATE'; title: string; name: any }
-  | { type: 'UPDATE'; auth: string }
-  | { type: 'REMOVE'; title: string | null };
+export type StateTypes = {
+  user: any;
+};
+type StateNames = 'user';
+type Action = { type: 'CHANGE'; name: StateNames; value: any } | { type: 'REMOVE'; name: StateNames };
+
 type GlobalDispatch = Dispatch<Action>;
 type Provider = {
   children: React.ReactNode;
 };
 
+const initialState = {
+  user: undefined,
+};
+
 //context
-const stateContext = createContext<object | undefined>(undefined);
+const stateContext = createContext<any>(undefined);
 const dispatchContext = createContext<GlobalDispatch | undefined>(undefined);
 
 /**
@@ -24,14 +29,18 @@ const dispatchContext = createContext<GlobalDispatch | undefined>(undefined);
  * @param {state}   : object
  * @param {action}  : action type
  */
-function globalReducer(state: GlobalState, action: Action): object {
+function globalReducer(state: StateTypes, action: Action): any {
   switch (action.type) {
-    case 'CREATE':
-      return action;
-    case 'UPDATE':
-      return { auth: action.auth };
+    case 'CHANGE':
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
     case 'REMOVE':
-      return {};
+      return {
+        ...state,
+        [action.name]: undefined,
+      };
     default:
       return { state };
     /**
@@ -43,10 +52,7 @@ function globalReducer(state: GlobalState, action: Action): object {
 
 // Provider
 export function GlobalContextProvider({ children }: Provider) {
-  const defaultState = {
-    auth: '',
-  };
-  const [state, dispatch] = useReducer(globalReducer, defaultState);
+  const [state, dispatch] = useReducer(globalReducer, initialState);
   return (
     <dispatchContext.Provider value={dispatch}>
       <stateContext.Provider value={state}>{children}</stateContext.Provider>

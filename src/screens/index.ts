@@ -13,3 +13,8 @@ export { default as JoinBusiness } from './Join/JoinBusiness';
 export { default as JoinSuccess } from './Join/JoinSuccess';
 export { default as TermsModal } from './TermsModal';
 export { default as FindEmail } from './FindEmail';
+export { default as FindPassword } from './FindPassword';
+export { default as Profile } from './Profile';
+export { default as PasswordInfo } from './Profile/PasswordInfo';
+export { default as BusinessInfo } from './Profile/BusinessInfo';
+export { default as Secession } from './Profile/Secession';

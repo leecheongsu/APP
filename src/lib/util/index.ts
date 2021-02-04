@@ -189,7 +189,7 @@ export const removeStoreData = async (name) => {
 };
 
 //clearAsyncStoreage
-export const clearStoreData = async (value) => {
+export const clearStoreData = async () => {
   try {
     await AsyncStorage.clear();
   } catch (e) {

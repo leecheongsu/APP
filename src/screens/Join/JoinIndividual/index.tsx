@@ -171,6 +171,7 @@ function JoinIndividualPassword({ state, inputState, onChangeState }) {
         close={() => onChangeState('termsModal', false)}
         html={state.termsHtml}
         onPress={handleClickInModal}
+        isButton
       />
     </KeyboardAwareScrollView>
   );

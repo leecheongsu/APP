@@ -5,6 +5,7 @@ import Toast from 'react-native-simple-toast';
 import { userApis } from '@app/api/User';
 import { getStoreData, removeStoreData, setStoreData } from '@app/lib';
 import { useNavigation } from '@react-navigation/native';
+import { useGlobalDispatch, useGlobalState } from '@app/context';
 
 export type LoginStateNames = 'isAutoLogin';
 export type LoginStateTypes = {
@@ -30,7 +31,8 @@ export default function LoginContainer() {
   const navigation = useNavigation();
   const [state, dispatch] = useReducer(reducer, initialState);
   const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-
+  const globalState = useGlobalState();
+  const globalDispatch = useGlobalDispatch();
   const inputState = {
     email: useInput(''),
     password: useInput(''),
@@ -75,6 +77,7 @@ export default function LoginContainer() {
             }
             setStoreData('user', res.data);
             setStoreData('isLogin', true);
+            globalDispatch({ type: 'CHANGE', name: 'user', value: res.data });
             Toast.show(`환영합니다. ${res.data.name}님`);
             navigation.navigate('MAIN_STACK');
           }

@@ -4,7 +4,6 @@ import styled from '@app/style/typed-components';
 import theme from '@app/style/theme';
 import { JoinStateName, JoinStateTypes } from '@app/screens/Join/JoinContainer';
 import { JoinBusiness, JoinIndividual } from '@app/screens';
-import { screenWidth } from '@app/lib';
 
 type JoinPresenterTypes = {
   state: JoinStateTypes;

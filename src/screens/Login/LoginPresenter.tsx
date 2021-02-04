@@ -84,7 +84,7 @@ function LoginPresenter({ inputState, state, handleAutoLoginButton, submitLogin 
           <Typhograph type="NOTO" color="BLACK2" size={12} lineheight={3}>
             |
           </Typhograph>
-          <TextButton onPress={() => console.log(1)}>
+          <TextButton onPress={() => navigation.navigate('FIND_PASSWORD')}>
             <Typhograph type="NOTO" color="BLACK2">
               비밀번호 변경
             </Typhograph>

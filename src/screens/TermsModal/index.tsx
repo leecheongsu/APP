@@ -18,7 +18,7 @@ const Header = styled.View`
 `;
 const BackButtonBox = styled.View``;
 
-export default function TermsModal({ open, close, html, onPress }) {
+export default function TermsModal({ open, close, html, onPress, isButton = true }) {
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
@@ -40,7 +40,14 @@ export default function TermsModal({ open, close, html, onPress }) {
             scalesPageToFit={true}
           />
         </ContentsBox>
-        <BottomFixButton index={1} rightTitle="동의" bottomRightPress={() => onPress()} bottomLeftPress={() => null} />
+        {isButton && (
+          <BottomFixButton
+            index={1}
+            rightTitle="동의"
+            bottomRightPress={() => onPress()}
+            bottomLeftPress={() => null}
+          />
+        )}
       </Modal>
     </>
   );

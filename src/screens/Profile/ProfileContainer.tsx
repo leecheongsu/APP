@@ -1,12 +1,13 @@
 import React, { useReducer, useRef } from 'react';
 import { userApis } from '@app/api/User';
 import { useInput } from '@app/hooks';
-import JoinPresenter from './JoinPresenter';
 import Toast from 'react-native-simple-toast';
 import { useNavigation } from '@react-navigation/native';
+import ProfilePresenter from '@app/screens/Profile/ProfilePresenter';
+import { useGlobalState } from '@app/context';
 
-export type JoinStateName =
-  | 'selectType'
+export type ProfileStateName =
+  | 'selectTab'
   | 'joinType'
   | 'serviceType'
   | 'selectService'
@@ -16,9 +17,10 @@ export type JoinStateName =
   | 'isAgreeUseTerms'
   | 'selectTermsModal'
   | 'individualStep'
+  | 'loading'
   | 'termsHtml';
-export type JoinStateTypes = {
-  selectType: string;
+export type ProfileStateTypes = {
+  selectTab: 'basic' | 'password' | 'business';
   joinType: Array<{ id: 'individual' | 'buisness' }>;
   serviceType: Array<any>;
   selectService: any;
@@ -29,10 +31,11 @@ export type JoinStateTypes = {
   isAgreeUseTerms: boolean;
   selectTermsModal: string;
   individualStep: any;
+  loading: boolean;
 };
-type ActionTypes = { type: 'CHANGE'; name: JoinStateName; value: any };
+type ActionTypes = { type: 'CHANGE'; name: ProfileStateName; value: any };
 
-function reducer(state: JoinStateTypes, action: ActionTypes) {
+function reducer(state: ProfileStateTypes, action: ActionTypes) {
   switch (action.type) {
     case 'CHANGE':
       return {
@@ -42,14 +45,15 @@ function reducer(state: JoinStateTypes, action: ActionTypes) {
   }
 }
 
-const initialState: JoinStateTypes = {
-  selectType: 'individual',
+const initialState: ProfileStateTypes = {
+  selectTab: 'basic',
   selectService: 'SKT',
   currentPage: 'info',
   termsModal: false,
   isAgreeIndividualTerms: false,
   isAgreeUseTerms: false,
   selectTermsModal: 'individual',
+  loading: false,
   termsHtml: '',
   serviceType: [
     {
@@ -88,25 +92,26 @@ const initialState: JoinStateTypes = {
   ],
 };
 
-export default function JoinContainer() {
+export default function ProfileContainer() {
   const scrollRef: any = useRef(null);
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigation: any = useNavigation();
+  const globalState = useGlobalState();
   const inputState = {
-    email: useInput(''),
-    name: useInput(''),
-    phone: useInput(''),
-    idNumber: useInput(''),
-    sexNumber: useInput(''),
+    email: useInput(globalState?.user?.email),
+    name: useInput(globalState?.user?.name),
+    phone: useInput(globalState?.user?.mobile),
+    idNumber: useInput(globalState?.user?.jumina),
+    sexNumber: useInput(globalState?.user?.sex),
     password: useInput(''),
     passwordConfirm: useInput(''),
   };
-  const onChangeState = (name: JoinStateName, value: any) => {
+  const onChangeState = (name: ProfileStateName, value: any) => {
     dispatch({ type: 'CHANGE', name, value });
   };
 
   const handleClickButton = (value) => {
-    onChangeState('selectType', value);
+    onChangeState('selectTab', value);
   };
 
   const onValueChange = (value) => {
@@ -115,7 +120,6 @@ export default function JoinContainer() {
 
   const handlePostJoin = () => {
     const params = {
-      email: inputState.email.value,
       name: inputState.name.value,
       teltype: state.selectService,
       mobile: inputState.phone.value,
@@ -143,7 +147,7 @@ export default function JoinContainer() {
   };
 
   return (
-    <JoinPresenter
+    <ProfilePresenter
       handleClickButton={handleClickButton}
       state={state}
       scrollRef={scrollRef}

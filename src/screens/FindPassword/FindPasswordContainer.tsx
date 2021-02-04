@@ -2,11 +2,11 @@ import React, { useReducer, useRef } from 'react';
 import { userApis } from '@app/api/User';
 import { useInput } from '@app/hooks';
 import { screenWidth } from '@app/lib';
-import FindeEmailPresenter from './FindEmailPresenter';
+import FindPasswordPresenter from './FindPasswordPresenter';
 import Toast from 'react-native-simple-toast';
 import { useNavigation } from '@react-navigation/native';
 
-export type FindEmailStateTypes = {
+export type FindPasswordStateTypes = {
   currentPage: number;
   serviceType: any;
   selectService: string;
@@ -14,10 +14,10 @@ export type FindEmailStateTypes = {
   loading: boolean;
 };
 
-export type FindEmailStateNames = 'currentPage' | 'serviceType' | 'selectService' | 'userEmail' | 'loading';
-type FindEmailActionTypes = { type: 'CHANGE'; name: FindEmailStateNames; value: any };
+export type FindPasswordStateNames = 'currentPage' | 'serviceType' | 'selectService' | 'userEmail' | 'loading';
+type FindEmailActionTypes = { type: 'CHANGE'; name: FindPasswordStateNames; value: any };
 
-function reducer(state: FindEmailStateTypes, action: FindEmailActionTypes) {
+function reducer(state: FindPasswordStateTypes, action: FindEmailActionTypes) {
   switch (action.type) {
     case 'CHANGE':
       return {
@@ -26,7 +26,7 @@ function reducer(state: FindEmailStateTypes, action: FindEmailActionTypes) {
       };
   }
 }
-const initialState: FindEmailStateTypes = {
+const initialState: FindPasswordStateTypes = {
   currentPage: 1,
   selectService: 'SKT',
   userEmail: '',
@@ -59,18 +59,17 @@ const initialState: FindEmailStateTypes = {
   ],
 };
 
-export default function FindeEmailContainer() {
+export default function FindPasswordContainer() {
   const scrollRef: any = useRef(null);
   const [state, dispatch] = useReducer(reducer, initialState);
   const navigation = useNavigation();
   const inputState = {
-    name: useInput(''),
+    email: useInput(''),
     phone: useInput(''),
-    jumina: useInput(''),
-    idNumber: useInput(''),
-    sex: useInput(''),
+    password: useInput(''),
+    passwordConfirm: useInput(''),
   };
-  const onChangeState = (name: FindEmailStateNames, value: any) => {
+  const onChangeState = (name: FindPasswordStateNames, value: any) => {
     dispatch({ type: 'CHANGE', name, value });
   };
 
@@ -80,25 +79,37 @@ export default function FindeEmailContainer() {
 
   const checkInput = () => {
     const phoneCheck = /^\d{3}\d{3,4}\d{4}$/;
-    const juminFront = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;
-
-    if (inputState.name.value === '') {
-      Toast.show('이름을 입력하세요.');
+    const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+    if (inputState.email.value === '') {
+      Toast.show('이메일을 입력해주세요.');
       return false;
+    } else if (!emailCheck.test(inputState.email.value)) {
+      Toast.show('올바른 이메일 주소를 입력해주세요.');
     } else if (inputState.phone.value === '') {
       Toast.show('휴대 전화번호를 입력해주세요.');
       return false;
     } else if (!phoneCheck.test(inputState.phone.value)) {
       Toast.show('올바른 휴대 전화번호를 입력해주세요.');
       return false;
-    } else if (inputState.jumina.value === '' || inputState.jumina.value.length < 6) {
-      Toast.show('주민등록번호 앞자리를 입력해주세요.');
+    } else {
+      return true;
+    }
+  };
+
+  //비밀번호 체크 로직
+  const checkPassword = () => {
+    const pattern1 = /[0-9]/;
+    const pattern2 = /[a-zA-Z]/;
+    const pattern3 = /[~!@\#$%<>^&*]/;
+    const pw = inputState.password.value;
+    if (pw === '') {
+      Toast.show('비밀번호를 입력하세요.');
       return false;
-    } else if (!juminFront.test(inputState.jumina.value) || Number(inputState.sex.value) > 2) {
-      Toast.show('올바른 주민등록번호를 입력해주세요.');
+    } else if (!pattern1.test(pw) || !pattern2.test(pw) || !pattern3.test(pw) || pw.length < 8 || pw.length > 50) {
+      Toast.show('영문+숫자+특수기호 8자리 이상으로 구성하여야 합니다.');
       return false;
-    } else if (inputState.sex.value === '') {
-      Toast.show('주민등록번호 뒤 첫번째 자리를 입력해주세요.');
+    } else if (pw !== inputState.passwordConfirm.value) {
+      Toast.show('확인된 비밀번호가 틀립니다.');
       return false;
     } else {
       return true;
@@ -108,36 +119,60 @@ export default function FindeEmailContainer() {
   // 다음버튼
   function handleNextButton() {
     if (state.currentPage === 1) {
+      const email = inputState.email.value;
       const params = {
-        name: inputState.name.value,
+        email: inputState.email.value,
         teltype: state.selectService,
         mobile: inputState.phone.value,
-        jumina: inputState.jumina.value,
-        sex: inputState.sex.value,
       };
       if (checkInput()) {
         onChangeState('loading', true);
         userApis
-          .getFindEmail(params)
+          .getUserConfirmChangePassword(email, params)
           .then((res) => {
             if (res.status === 200) {
-              onChangeState('loading', false);
               onChangeState('userEmail', res.data);
               onChangeState('currentPage', 2);
               scrollRef.current?.scrollTo({ x: screenWidth(), animated: true });
-            } else {
               onChangeState('loading', false);
+            } else {
               Toast.show('오류가 발생하였습니다.');
+              onChangeState('loading', false);
             }
           })
           .catch((e) => {
             console.log(e.response);
-            onChangeState('loading', false);
             if (e.response.data?.message === 'no user') {
               Toast.show('등록된사용자가 없습니다.');
+            } else if (e.response.status === 404) {
+              Toast.show('입력하신 정보가 등록한 정보와 다릅니다.');
             } else {
               Toast.show('오류가 발생하였습니다.');
             }
+            onChangeState('loading', false);
+          });
+      }
+    } else if (state.currentPage === 2) {
+      if (checkPassword()) {
+        onChangeState('loading', true);
+
+        const email = inputState.email.value;
+        const params = {
+          teltype: state.selectService,
+          mobile: inputState.phone.value,
+          newPwd: inputState.password.value,
+        };
+        userApis
+          .putChangeUserPassword(email, params)
+          .then((res) => {
+            onChangeState('currentPage', 3);
+            scrollRef.current?.scrollTo({ x: screenWidth() * 2, animated: true });
+            onChangeState('loading', false);
+          })
+          .catch((e) => {
+            console.log(e.response);
+            Toast.show('오류가 발생하였습니다.');
+            onChangeState('loading', false);
           });
       }
     } else {
@@ -147,15 +182,16 @@ export default function FindeEmailContainer() {
 
   //이전버튼
   function handlePreviousButton() {
-    onChangeState('currentPage', 1);
+    const number = state.currentPage === 2 ? screenWidth() * -1 : screenWidth() - 1;
+    onChangeState('currentPage', state.currentPage - 1);
     onChangeState('userEmail', '');
     scrollRef.current?.scrollTo({
-      x: screenWidth() * -1,
+      x: number,
       animated: true,
     });
   }
   return (
-    <FindeEmailPresenter
+    <FindPasswordPresenter
       state={state}
       onChangeState={onChangeState}
       handleNextButton={handleNextButton}
