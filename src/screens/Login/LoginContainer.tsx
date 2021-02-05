@@ -6,10 +6,12 @@ import { userApis } from '@app/api/User';
 import { getStoreData, removeStoreData, setStoreData } from '@app/lib';
 import { useNavigation } from '@react-navigation/native';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
+import { onChange } from 'react-native-reanimated';
 
-export type LoginStateNames = 'isAutoLogin';
+export type LoginStateNames = 'isAutoLogin' | 'loading';
 export type LoginStateTypes = {
   isAutoLogin: boolean;
+  loading: boolean;
 };
 type LoginStateActionTypes = { type: 'CHANGE'; name: LoginStateNames; value: any };
 
@@ -25,6 +27,7 @@ function reducer(state: LoginStateTypes, action: LoginStateActionTypes) {
 
 const initialState: LoginStateTypes = {
   isAutoLogin: true,
+  loading: false,
 };
 
 export default function LoginContainer() {
@@ -66,27 +69,37 @@ export default function LoginContainer() {
       pwd: inputState.password.value,
     };
     if (checkEmailAndPassword()) {
+      onChangeState('loading', true);
+
       userApis
         .postLogin(params)
         .then((res) => {
           if (res.status === 200) {
             if (state.isAutoLogin) {
-              setStoreData('password', inputState.password.value);
+              setStoreData('isAutoLogin', true);
             } else {
-              removeStoreData('password');
+              setStoreData('isAutoLogin', false);
             }
             setStoreData('user', res.data);
             setStoreData('isLogin', true);
+            setStoreData('password', inputState.password.value);
             globalDispatch({ type: 'CHANGE', name: 'user', value: res.data });
+            globalDispatch({ type: 'CHANGE', name: 'isAutoLogin', value: state.isAutoLogin });
+            globalDispatch({ type: 'CHANGE', name: 'isLogin', value: true });
+            globalDispatch({ type: 'CHANGE', name: 'password', value: inputState.password.value });
+
             Toast.show(`환영합니다. ${res.data.name}님`);
             navigation.navigate('MAIN_STACK');
+            onChangeState('loading', false);
           }
+          onChangeState('loading', false);
         })
         .catch((e) => {
           console.log(e.response);
           if (e.response.status === 401) {
             Toast.show('입력하신 아이디 또는 비밀번호가 일치하지 않습니다.');
           }
+          onChangeState('loading', false);
         });
     }
   };

@@ -7,9 +7,15 @@ import React, { createContext, Dispatch, useReducer, useContext } from 'react';
 //type
 export type StateTypes = {
   user: any;
+  isAutoLogin: boolean | undefined;
+  isLogin: boolean | undefined;
+  password: string | undefined;
 };
-type StateNames = 'user';
-type Action = { type: 'CHANGE'; name: StateNames; value: any } | { type: 'REMOVE'; name: StateNames };
+type StateNames = 'user' | 'isAutoLogin' | 'isLogin' | 'password';
+type Action =
+  | { type: 'CHANGE'; name: StateNames; value: any }
+  | { type: 'REMOVE'; name: StateNames }
+  | { type: 'LOGOUT' };
 
 type GlobalDispatch = Dispatch<Action>;
 type Provider = {
@@ -18,6 +24,9 @@ type Provider = {
 
 const initialState = {
   user: undefined,
+  isAutoLogin: undefined,
+  isLogin: undefined,
+  password: undefined,
 };
 
 //context
@@ -40,6 +49,13 @@ function globalReducer(state: StateTypes, action: Action): any {
       return {
         ...state,
         [action.name]: undefined,
+      };
+    case 'LOGOUT':
+      return {
+        user: undefined,
+        isAutoLogin: false,
+        isLogin: false,
+        password: undefined,
       };
     default:
       return { state };

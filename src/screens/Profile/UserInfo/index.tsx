@@ -12,16 +12,14 @@ import Toast from 'react-native-simple-toast';
 const styles = StyleSheet.create({
   container: {
     width: screenWidth(),
-    paddingHorizontal: 20,
+    padding: 20,
     backgroundColor: theme.color.WHITE,
     borderTopRightRadius: 20,
     borderTopLeftRadius: 20,
   },
 });
 
-const Container = styled.View`
-  padding-bottom: 100px;
-`;
+const Container = styled.View``;
 
 const TopArrow = styled.View`
   left: 70px;
@@ -41,7 +39,7 @@ const TopArrow = styled.View`
 `;
 
 const TextInputBox = styled.View`
-  margin-top: 20px;
+  margin-top: 0px;
 `;
 const InputLabel = styled.View``;
 const InputBox = styled.View`
@@ -229,7 +227,7 @@ function UserInfo({ state, inputState, onValueChange, onChangeState }) {
               <Typhograph type="NOTO" style={{ marginLeft: 10, marginRight: 10 }} lineheight={20}>
                 -
               </Typhograph>
-              <InputItem style={{ width: 30 }}>
+              <InputItem style={{ width: '8%', marginRight: 10 }}>
                 <Input
                   {...inputState.sexNumber}
                   blurOnSubmit={false}

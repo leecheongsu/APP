@@ -7,8 +7,12 @@ export default function HomeContainer() {
   const globalDispatch = useGlobalDispatch();
   const loadUser = async () => {
     const localUser = await getStoreData('user');
+    const isAutoLogin = await getStoreData('isAutoLogin');
+    const isLogin = await getStoreData('isLogin');
     if (localUser !== null) {
       globalDispatch({ type: 'CHANGE', name: 'user', value: localUser });
+      globalDispatch({ type: 'CHANGE', name: 'isAutoLogin', value: isAutoLogin });
+      globalDispatch({ type: 'CHANGE', name: 'isLogin', value: isLogin });
     }
   };
   useEffect(() => {

@@ -6,6 +6,7 @@ const BLACK = '#000000';
 const BLACK2 = '#333';
 const BLACK3 = '#666';
 const BLUE = '#013561';
+const BLUE2 = '#47a5f1';
 const GRAY = '#707070';
 const GRAY2 = '#f5f6fa';
 const GRAY3 = '#b1b6cc';
@@ -35,6 +36,7 @@ const theme: DefaultTheme = {
     BLACK3,
     WHITE,
     BLUE,
+    BLUE2,
     SKYBLUE,
     SKYBLUE2,
     SKYBLUE3,

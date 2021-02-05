@@ -3,6 +3,7 @@ import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import { ColorName } from 'styled-components';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { Loading } from '@app/components';
 
 type CustomButtonTypes = {
   onPress: () => void;
@@ -11,6 +12,7 @@ type CustomButtonTypes = {
   width?: number;
   style?: TouchableOpacityProps;
   radius?: number;
+  isLoading?: boolean;
 };
 
 const Container = styled.TouchableOpacity`
@@ -22,10 +24,24 @@ const Container = styled.TouchableOpacity`
   justify-content: center;
 `;
 
-export default function CustomButton({ onPress, children, width, background, style, radius }: CustomButtonTypes) {
+export default function CustomButton({
+  onPress,
+  children,
+  width,
+  background,
+  style,
+  radius,
+  isLoading = false,
+}: CustomButtonTypes) {
   return (
-    <Container style={style} onPress={onPress} width={width} background={background} radius={radius}>
-      {children}
+    <Container
+      style={style}
+      onPress={onPress}
+      width={width}
+      background={background}
+      radius={radius}
+      disabled={isLoading}>
+      {isLoading ? <Loading height={30} /> : children}
     </Container>
   );
 }

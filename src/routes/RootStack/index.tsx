@@ -154,7 +154,7 @@ function RootStack() {
           headerLeft: () => null,
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
-              회원정보변경
+              회원탈퇴
             </Typhograph>
           ),
           headerRight: () => <CloseButton onPress={() => navigation.goBack()} />,

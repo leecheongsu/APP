@@ -57,7 +57,7 @@ export const userApis = {
   async putSecession(email) {
     const user: any = await getStoreData('user');
     const res = await userApiConfig({
-      method: 'PUT',
+      method: 'GET',
       url: `users/${email}/quit`,
       headers: {
         Authorization: `Bearer ${user.token}`,

@@ -1,4 +1,11 @@
-import { CustomButton, DefaultInput, FocusAwareStatusBar, IconButton, Typhograph } from '@app/components';
+import {
+  CustomButton,
+  DefaultInput,
+  FocusAwareStatusBar,
+  IconButton,
+  OverayLoading,
+  Typhograph,
+} from '@app/components';
 import { MainLayout } from '@app/layout';
 import styled from '@app/style/typed-components';
 import React from 'react';
@@ -69,7 +76,7 @@ function LoginPresenter({ inputState, state, handleAutoLoginButton, submitLogin 
           </TextBox>
         </AutoLoginBox>
         <ButtonBox>
-          <CustomButton onPress={() => submitLogin()} background="SKYBLUE" radius={30}>
+          <CustomButton onPress={() => submitLogin()} background="SKYBLUE" radius={30} isLoading={state.loading}>
             <Typhograph type="NOTO" color="WHITE">
               로그인
             </Typhograph>

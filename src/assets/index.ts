@@ -14,6 +14,14 @@ const SELECT_ICON2 = require('./icon/ico-select2/ico-select2.png');
 const BT_CHECK_OFF = require('./icon/bg-check-off/bg-check-off.png');
 const BT_CHECK_ON = require('./icon/bg-check-on/bg-check-on.png');
 const ICON_INFO = require('./icon/ico-info/ico-info.png');
+const ICON_INFO2 = require('./icon/icon-info/icon-info.png');
+const ICON_MY = require('./icon/icon-my/icon-my.png');
+const CONT01 = require('./icon/img-m-cont01/img-m-cont01.png');
+const CONT02 = require('./icon/img-m-cont02/img-m-cont02.png');
+const CONT03 = require('./icon/img-m-cont03/img-m-cont03.png');
+const CONT04 = require('./icon/img-m-cont04/img-m-cont04.png');
+const PHONE = require('./icon/ico-phone/ico-phone.png');
+const KAKAO = require('./icon/ico-kakao/ico-kakao.png');
 
 const MAIN_S_ROBOT = require('./img/img-mainSrobot/img-mainSrobot.png');
 const MAIN_B_ROBOT = require('./img/img-mainBrobot/img-mainBrobot.png');
@@ -38,6 +46,14 @@ export const insuIcon = {
   BT_CHECK_OFF,
   BT_CHECK_ON,
   ICON_INFO,
+  ICON_INFO2,
+  ICON_MY,
+  CONT01,
+  CONT02,
+  CONT03,
+  CONT04,
+  PHONE,
+  KAKAO,
 };
 
 export const insuImg = {

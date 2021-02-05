@@ -19,6 +19,7 @@ export { default as MainCardLastButton } from './Button/MainCardLastButton';
 export { default as BottomFixButton } from './Button/BottomFixButton';
 export { default as CheckLabelButton } from './Button/CheckLabelButton';
 export { default as CustomButton } from './Button/CustomButton';
+export { default as TileButton } from './Button/TileButton';
 
 //modal
 export { default as MainMenuModal } from './Modal/MainMenuModal';

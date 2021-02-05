@@ -4,6 +4,7 @@ declare module 'styled-components' {
   export type ColorName =
     | 'WHITE'
     | 'BLUE'
+    | 'BLUE2'
     | 'SKYBLUE'
     | 'SKYBLUE3'
     | 'BLACK'
@@ -36,6 +37,7 @@ declare module 'styled-components' {
       SKYBLUE2: string;
       WHITE: string;
       BLUE: string;
+      BLUE2: string;
       SOFTBLUE: string;
       GRAY: string;
       GRAY2: string;

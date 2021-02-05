@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "rndebugger-open",
     "android": "react-native run-android",
+    "android:build":"cd android && ./gradlew clean && ./gradlew assembleRelease",
     "android:distribute": "cd android && ./gradlew clean && fastlane distribute && cd ..",
     "ios": "react-native run-ios",
     "start": "react-native start",

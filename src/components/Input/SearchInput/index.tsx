@@ -27,7 +27,7 @@ const Input = styled.TextInput<{ isFocus: boolean } & TextInputProps>`
 const InputIconBox = styled.View`
   position: absolute;
   right: 10px;
-  top: 15px;
+  top: 9px;
   font-size: 14px;
   flex-direction: row;
 `;

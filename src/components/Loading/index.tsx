@@ -12,7 +12,7 @@ const LoadingBox = styled.View<{ height: number }>`
 export default function Loading({ height = 100 }) {
   return (
     <LoadingBox height={height}>
-      <ActivityIndicator animating={true} color={theme.color.SKYBLUE} />
+      <ActivityIndicator animating={true} color={theme.color.GRAY} />
     </LoadingBox>
   );
 }
