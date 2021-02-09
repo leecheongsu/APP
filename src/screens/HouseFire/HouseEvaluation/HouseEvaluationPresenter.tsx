@@ -339,7 +339,7 @@ function HouseEvaluationPresenter({
                 </Typhograph>
               </Typhograph>
               <Typhograph style={{ marginTop: 10 }} type="ROBOTO" color="SKYBLUE" weight="BOLD" size={20}>
-                {resultBuildPrice() + resultGajePrice()}
+                {priceDot(resultBuildPrice() + resultGajePrice())}
                 <Typhograph type="NOTO" size={16} color="BLACK3">
                   원
                 </Typhograph>

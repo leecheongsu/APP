@@ -8,7 +8,7 @@ import { Keyboard } from 'react-native';
 import HouseAddressPresenter from './HouseAddressPresenter';
 import { insuApis } from '@app/api/Insurance';
 import { useAsync } from '@app/hooks';
-import { errorToast, sortArray } from '@app/lib';
+import { handleApiError, sortArray } from '@app/lib';
 import Toast from 'react-native-simple-toast';
 
 type HouseAddressContainerTypes = {
@@ -24,7 +24,6 @@ export default function HouseAddressContainer({
   onChangeState,
   handleJoinTypeNextButton,
 }: HouseAddressContainerTypes) {
-  const DEV = __DEV__;
   const [getAddress, getAddressDispatch] = useAsync(
     () => insuApis.getAddress({ search: inputState.searchInput.value }),
     [],
@@ -48,13 +47,16 @@ export default function HouseAddressContainer({
       insuApis
         .getDancheInfo(params)
         .then((res) => {
-          onChangeState('selectAddress', res.data);
-          onChangeState('loading', false);
-          handleJoinTypeNextButton();
+          if (res.status === 200) {
+            onChangeState('selectAddress', res.data);
+            onChangeState('loading', false);
+            handleJoinTypeNextButton();
+          } else {
+            Toast.show('오류가 발생하였습니다.');
+          }
         })
         .catch((e) => {
-          DEV && Toast.show(e.response);
-          errorToast(e, 'getDancheInfo');
+          handleApiError(e.response);
           onChangeState('loading', false);
         });
     } else {
@@ -63,23 +65,32 @@ export default function HouseAddressContainer({
       insuApis
         .getSedeCover(params)
         .then((res) => {
-          const newCover: any = [];
-          res?.data?.map((i: any) => {
-            if (i.hhldCnt > 0) {
-              const newItem = {
-                label: i.dongNm === '' ? i.bldNm : i.dongNm,
-                value: i,
-              };
-              return newCover.push(newItem);
+          if (res.status === 200) {
+            const newCover: any = [];
+            res?.data?.map((i: any) => {
+              if (i.hhldCnt > 0) {
+                const newItem = {
+                  label: i.dongNm === '' ? i.bldNm : i.dongNm,
+                  value: i,
+                };
+                return newCover.push(newItem);
+              }
+            });
+            if (newCover.length === 0) {
+              Toast.show('단체가입으로 가입가능합니다.');
+              onChangeState('loading', false);
+            } else {
+              onChangeState('resultDongList', sortArray(newCover, 'label'));
+              onChangeState('isDetailModal', true);
             }
-          });
-          onChangeState('resultDongList', sortArray(newCover, 'label'));
+          } else if (res.status === 204) {
+            console.log(res);
+            Toast.show('');
+          }
           onChangeState('loading', false);
-          onChangeState('isDetailModal', true);
         })
         .catch((e) => {
-          DEV && Toast.show(e.response);
-          errorToast(e, 'getSedeCover');
+          handleApiError(e.response);
           onChangeState('resultDongList', []);
           onChangeState('loading', false);
         });
@@ -117,8 +128,7 @@ export default function HouseAddressContainer({
           onChangeState('loading', false);
         })
         .catch((e) => {
-          DEV && Toast.show(e.response);
-          errorToast(e, 'getSedeDetail');
+          handleApiError(e.response);
           onChangeState('resultDetailList', []);
           onChangeState('loading', false);
         });
@@ -154,8 +164,7 @@ export default function HouseAddressContainer({
           onChangeState('loading', false);
         })
         .catch((e) => {
-          DEV && Toast.show(e.response);
-          errorToast(e, 'getSedeInfo');
+          handleApiError(e.response);
           onChangeState('isDetailModal', false);
           onChangeState('loading', false);
         });

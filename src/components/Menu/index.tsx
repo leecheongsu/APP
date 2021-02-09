@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { insuIcon } from '@app/assets';
 import IconButton from '@app/components/Button/IconButton';
-import { clearStoreData, screenHeight, setStoreData } from '@app/lib';
+import { clearStoreData, getStoreData, screenHeight, setStoreData } from '@app/lib';
 import styled from '@app/style/typed-components';
 import { Image, Platform } from 'react-native';
 import { Avatar, LoginButton, TileButton, Typhograph } from '@app/components';
@@ -146,6 +146,10 @@ export default function Menu(props) {
     }
   };
 
+  useEffect(() => {
+    setIsEnabled(globalState.isAutoLogin);
+  }, [globalState.isAutoLogin]);
+
   return (
     <>
       <Container>
@@ -279,7 +283,7 @@ export default function Menu(props) {
             </CardBox>
 
             <CardBox>
-              <CardItem onPress={() => console.log(1)}>
+              <CardItem onPress={() => navigation.navigate('VERIFICATION')}>
                 <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
                   배상책임
                 </Typhograph>

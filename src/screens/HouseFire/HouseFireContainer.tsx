@@ -1,6 +1,6 @@
 import React, { useEffect, useReducer, useRef } from 'react';
 import { floorPrice, screenWidth } from '@app/lib';
-import { HouseAddress, HouseEvaluation, HouseResult, JoinType } from '@app/screens';
+import { HouseAddress, HouseEvaluation, HouseResult, HouseTermsUse, JoinType } from '@app/screens';
 import { ColorName } from 'styled-components';
 import HouseFirePresenter from './HouseFirePresenter';
 import { useInput } from '@app/hooks';
@@ -9,6 +9,9 @@ import HouseInfo from '@app/screens/HouseFire/HouseInfo';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
+import HouseInputUser from '@app/screens/HouseFire/HouseInputUser';
+import { useGlobalState } from '@app/context';
+import moment from 'moment';
 
 export type HouseFireStateName =
   | 'stepperTitle' //step 타이틀 네임
@@ -34,6 +37,9 @@ export type HouseFireStateName =
   | 'dancheJoin' //단체보험의 가입유무
   | 'selectInsuCompany' // 선택한 보험사
   | 'lat' //로드뷰를 표시하기위한 lat
+  | 'owner' //보험목적물 소유구분
+  | 'contractInsuInfo' //계약정보
+  | 'insFrom' // 보험시작일
   | 'lng'; //로드뷰를 표시하기위한 lag
 
 export type HouseFireStateTypes = {
@@ -49,7 +55,7 @@ export type HouseFireStateTypes = {
   addressErrorMessage: '';
   joinType: Array<{ title: string; value: 'T' | 'S' }>;
   houseStep: {
-    id: 'joinType' | 'address' | 'info' | 'evaluation' | 'priceConfirm';
+    id: 'joinType' | 'address' | 'info' | 'evaluation' | 'priceConfirm' | 'InputUser' | 'HouseTermsUse';
     title: string;
     backgroundcolor: ColorName;
   }[];
@@ -64,6 +70,9 @@ export type HouseFireStateTypes = {
   isInfoModal: boolean;
   infoTitle: string;
   infoContents: any;
+  contractInsuInfo: any;
+  owner: 'o' | 'r';
+  insFrom: any;
   dancheJoin: 'Y' | 'N';
 };
 export type HouseFireInputStateTypes = {
@@ -109,6 +118,9 @@ const initialState: HouseFireStateTypes = {
   infoTitle: '',
   infoContents: '',
   dancheJoin: 'N',
+  owner: 'o',
+  contractInsuInfo: {},
+  insFrom: moment(new Date()).format('YYYY-MM-DD'),
   houseStep: [
     {
       id: 'joinType',
@@ -135,11 +147,22 @@ const initialState: HouseFireStateTypes = {
       title: '보험료 확인',
       backgroundcolor: 'SOFTGRAY',
     },
+    {
+      id: 'InputUser',
+      title: '보험계약자 정보',
+      backgroundcolor: 'SOFTGRAY',
+    },
+    {
+      id: 'HouseTermsUse',
+      title: '이용약관',
+      backgroundcolor: 'SOFTGRAY',
+    },
   ],
 };
 
 export default function HouseFireContainer() {
   const navigation: any = useNavigation();
+  const globalState = useGlobalState();
   const [state, dispatch] = useReducer(reducer, initialState);
   const scrollRef: any = useRef(null);
 
@@ -162,6 +185,7 @@ export default function HouseFireContainer() {
       }
     }
   };
+
   // 스텝별 bottom next button 분기
   const handleNextButton = () => {
     Keyboard.dismiss();
@@ -174,18 +198,30 @@ export default function HouseFireContainer() {
         handleJoinTypeNextButton();
         return null;
       }
+      case 4: {
+        handleJoinTypeNextButton();
+        return null;
+      }
       case 5: {
         if (state.selectInsuCompany === '') {
           Toast.show('보험상품을 선택해주세요.');
+          return null;
+        } else if (!globalState.isLogin) {
+          navigation.navigate('LOGIN', { isHome: false });
+          return null;
         } else {
           handleJoinTypeNextButton();
+          return null;
         }
-
-        return null;
       }
-      default:
+      case 6: {
         handleJoinTypeNextButton();
         return null;
+      }
+
+      // default:
+      //   handleJoinTypeNextButton();
+      //   return null;
     }
   };
 
@@ -238,7 +274,9 @@ export default function HouseFireContainer() {
   };
 
   //houseStep 스텝별 컴퍼넌트 셋팅
-  const returnComponent = (id: 'joinType' | 'address' | 'info' | 'evaluation' | 'priceConfirm') => {
+  const returnComponent = (
+    id: 'joinType' | 'address' | 'info' | 'evaluation' | 'priceConfirm' | 'InputUser' | 'HouseTermsUse'
+  ) => {
     switch (id) {
       case 'joinType':
         return <JoinType key={id} state={state} onChangeState={onChangeState} handleNextButton={handleNextButton} />;
@@ -285,6 +323,24 @@ export default function HouseFireContainer() {
             handleNextButton={handleNextButton}
             resultBuildPrice={resultBuildPrice}
             resultGajePrice={resultGajePrice}
+          />
+        );
+      case 'InputUser':
+        return (
+          <HouseInputUser
+            state={state}
+            onChangeState={onChangeState}
+            handlePreviousButton={handlePreviousButton}
+            handleNextButton={handleNextButton}
+          />
+        );
+      case 'HouseTermsUse':
+        return (
+          <HouseTermsUse
+            state={state}
+            onChangeState={onChangeState}
+            handlePreviousButton={handlePreviousButton}
+            handleNextButton={handleNextButton}
           />
         );
     }

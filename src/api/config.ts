@@ -1,7 +1,7 @@
 import axios from 'axios';
 
-const DEV_URL = 'http://210.179.175.145:8080';
-const PROD_URL = 'http://210.179.175.145:8080';
+const DEV_URL = 'http://210.179.175.145:80';
+const PROD_URL = 'http://210.179.175.145:80';
 const SERVICE_KEY = 'Q29weXJpZ2h0IOKTkiBpbnN1cm9iby5jby5rciBBbGwgcmlnaHRzIHJlc2VydmVkLg==';
 
 export const commonApiConfig = axios.create({

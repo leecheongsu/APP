@@ -5,7 +5,7 @@ import { useGlobalDispatch, useGlobalState } from '@app/context';
 import theme from '@app/style/theme';
 import Toast from 'react-native-simple-toast';
 import { userApis } from '@app/api/User';
-import { clearStoreData } from '@app/lib';
+import { clearStoreData, handleApiError } from '@app/lib';
 import { useNavigation } from '@react-navigation/native';
 
 const Container = styled.View``;
@@ -54,7 +54,7 @@ function Secession() {
           }
         })
         .catch((e) => {
-          console.log(e.response);
+          handleApiError(e.response);
         });
     } else {
       Toast.show('동의후 탈퇴 가능합니다.');

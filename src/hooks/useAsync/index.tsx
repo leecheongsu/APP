@@ -38,13 +38,7 @@ export default function useAsync(callback, deps: any = [], skip = false) {
 
     try {
       const data = await callback();
-      if (data?.data?.result === 'fail') {
-        dispatch({ type: 'ERROR', error: data?.data?.error?.message });
-        // console.log(data, 'fail');
-      } else {
-        dispatch({ type: 'SUCCESS', data });
-        // console.log(data, 'SUCCESS');
-      }
+      dispatch({ type: 'SUCCESS', data });
     } catch (e) {
       dispatch({ type: 'ERROR', error: e });
       console.log(e, 'error');

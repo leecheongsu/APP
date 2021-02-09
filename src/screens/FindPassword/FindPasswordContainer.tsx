@@ -1,7 +1,7 @@
 import React, { useReducer, useRef } from 'react';
 import { userApis } from '@app/api/User';
 import { useInput } from '@app/hooks';
-import { screenWidth } from '@app/lib';
+import { handleApiError, screenWidth } from '@app/lib';
 import FindPasswordPresenter from './FindPasswordPresenter';
 import Toast from 'react-native-simple-toast';
 import { useNavigation } from '@react-navigation/native';
@@ -141,13 +141,12 @@ export default function FindPasswordContainer() {
             }
           })
           .catch((e) => {
-            console.log(e.response);
             if (e.response.data?.message === 'no user') {
               Toast.show('등록된사용자가 없습니다.');
             } else if (e.response.status === 404) {
               Toast.show('입력하신 정보가 등록한 정보와 다릅니다.');
             } else {
-              Toast.show('오류가 발생하였습니다.');
+              handleApiError(e.response);
             }
             onChangeState('loading', false);
           });

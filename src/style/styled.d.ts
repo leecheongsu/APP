@@ -5,6 +5,7 @@ declare module 'styled-components' {
     | 'WHITE'
     | 'BLUE'
     | 'BLUE2'
+    | 'TABLE_BACK'
     | 'SKYBLUE'
     | 'SKYBLUE3'
     | 'BLACK'
@@ -35,6 +36,7 @@ declare module 'styled-components' {
       BLACK3: string;
       BORDER_GRAY: string;
       SKYBLUE2: string;
+      TABLE_BACK: string;
       WHITE: string;
       BLUE: string;
       BLUE2: string;

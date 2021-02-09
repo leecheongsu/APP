@@ -3,7 +3,7 @@ import LoginPresenter from '@app/screens/Login/LoginPresenter';
 import { useInput } from '@app/hooks';
 import Toast from 'react-native-simple-toast';
 import { userApis } from '@app/api/User';
-import { getStoreData, removeStoreData, setStoreData } from '@app/lib';
+import { getStoreData, handleApiError, removeStoreData, setStoreData } from '@app/lib';
 import { useNavigation } from '@react-navigation/native';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
 import { onChange } from 'react-native-reanimated';
@@ -30,7 +30,7 @@ const initialState: LoginStateTypes = {
   loading: false,
 };
 
-export default function LoginContainer() {
+export default function LoginContainer({ route }) {
   const navigation = useNavigation();
   const [state, dispatch] = useReducer(reducer, initialState);
   const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
@@ -68,9 +68,9 @@ export default function LoginContainer() {
       id: inputState.email.value,
       pwd: inputState.password.value,
     };
+    const isHome = route.isHome;
     if (checkEmailAndPassword()) {
       onChangeState('loading', true);
-
       userApis
         .postLogin(params)
         .then((res) => {
@@ -87,17 +87,21 @@ export default function LoginContainer() {
             globalDispatch({ type: 'CHANGE', name: 'isAutoLogin', value: state.isAutoLogin });
             globalDispatch({ type: 'CHANGE', name: 'isLogin', value: true });
             globalDispatch({ type: 'CHANGE', name: 'password', value: inputState.password.value });
-
             Toast.show(`환영합니다. ${res.data.name}님`);
-            navigation.navigate('MAIN_STACK');
+            if (isHome) {
+              navigation.navigate('MAIN_STACK');
+            } else {
+              navigation.goBack();
+            }
             onChangeState('loading', false);
           }
           onChangeState('loading', false);
         })
         .catch((e) => {
-          console.log(e.response);
           if (e.response.status === 401) {
             Toast.show('입력하신 아이디 또는 비밀번호가 일치하지 않습니다.');
+          } else {
+            handleApiError(e.response);
           }
           onChangeState('loading', false);
         });

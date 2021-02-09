@@ -7,6 +7,7 @@ export { default as Select } from './Input/Select';
 export { default as MiniSelect } from './Input/MiniSelect';
 export { default as ServiceSelect } from './Input/ServiceSelect';
 export { default as DefaultInput } from './Input/DefaultInput';
+export { default as SearchInput2 } from './Input/SearchInput2';
 
 //menu
 export { default as Menu } from './Menu';
@@ -58,6 +59,10 @@ export { default as OverayLoading } from './OverayLoading';
 
 //List
 export { default as InfoList } from './List/InfoList';
+export { default as TermsList } from './List/TermsList';
 
 //Collapse
 export { default as Collapse } from './Collapse';
+
+//alert
+export { default as DefaultAlert } from './Alert/DefaultAlert';

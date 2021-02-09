@@ -10,8 +10,9 @@ export type StateTypes = {
   isAutoLogin: boolean | undefined;
   isLogin: boolean | undefined;
   password: string | undefined;
+  recommendUser: any;
 };
-type StateNames = 'user' | 'isAutoLogin' | 'isLogin' | 'password';
+type StateNames = 'user' | 'isAutoLogin' | 'isLogin' | 'password' | 'recommendUser';
 type Action =
   | { type: 'CHANGE'; name: StateNames; value: any }
   | { type: 'REMOVE'; name: StateNames }
@@ -27,6 +28,7 @@ const initialState = {
   isAutoLogin: undefined,
   isLogin: undefined,
   password: undefined,
+  recommendUser: undefined,
 };
 
 //context

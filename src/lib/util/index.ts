@@ -196,3 +196,26 @@ export const clearStoreData = async () => {
     // saving error
   }
 };
+
+//주민등록번호
+export const juminFront = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;
+
+//api error handler
+export const handleApiError = (value) => {
+  const error = value?.data;
+  const errorCode = value?.data?.status;
+  const isDev = __DEV__;
+
+  switch (errorCode) {
+    case 401: {
+      return Toast.show('권한이 없습니다.');
+    }
+    default: {
+      if (isDev) {
+        return Toast.show(error?.message);
+      } else {
+        return Toast.show('오류가 발생하였습니다.');
+      }
+    }
+  }
+};

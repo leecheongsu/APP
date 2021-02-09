@@ -22,6 +22,8 @@ const CONT03 = require('./icon/img-m-cont03/img-m-cont03.png');
 const CONT04 = require('./icon/img-m-cont04/img-m-cont04.png');
 const PHONE = require('./icon/ico-phone/ico-phone.png');
 const KAKAO = require('./icon/ico-kakao/ico-kakao.png');
+const DATE = require('./icon/ico-date/ico-date.png');
+const ARR_RIGHT = require('./icon/arr-right/arr-right.png');
 
 const MAIN_S_ROBOT = require('./img/img-mainSrobot/img-mainSrobot.png');
 const MAIN_B_ROBOT = require('./img/img-mainBrobot/img-mainBrobot.png');
@@ -44,6 +46,7 @@ export const insuIcon = {
   SELECT_ICON,
   SELECT_ICON2,
   BT_CHECK_OFF,
+  ARR_RIGHT,
   BT_CHECK_ON,
   ICON_INFO,
   ICON_INFO2,
@@ -54,6 +57,7 @@ export const insuIcon = {
   CONT04,
   PHONE,
   KAKAO,
+  DATE,
 };
 
 export const insuImg = {

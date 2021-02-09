@@ -4,6 +4,7 @@ import RNPickerSelect from 'react-native-picker-select';
 import { Image, StyleSheet } from 'react-native';
 import { insuIcon } from '@app/assets';
 import theme from '@app/style/theme';
+import { ColorName } from 'styled-components';
 
 type SelectPropsTypes = {
   label: string;
@@ -11,29 +12,10 @@ type SelectPropsTypes = {
   items?: Array<any>;
   onValueChange: (value: any) => void;
   disabled?: boolean;
+  borderColor?: ColorName;
+  isPlaceholder?: boolean;
 };
 
-const styles = StyleSheet.create({
-  inputIOS: {
-    fontSize: 16,
-    paddingVertical: 12,
-    paddingHorizontal: 10,
-    borderWidth: 1,
-    borderColor: theme.color.BLUE,
-    borderRadius: 10,
-    color: theme.color.BLUE,
-    paddingRight: 30, // to ensure the text is never behind the icon
-  },
-  inputAndroid: {
-    fontSize: 16,
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderWidth: 0.5,
-    borderColor: theme.color.BLUE,
-    borderRadius: 10,
-    color: theme.color.BLUE,
-  },
-});
 const disabledStyles = StyleSheet.create({
   inputIOS: {
     fontSize: 16,
@@ -58,7 +40,15 @@ const disabledStyles = StyleSheet.create({
 
 const IconBox = styled.View``;
 
-export default function Select({ label, value, items = [], onValueChange, disabled = false }: SelectPropsTypes) {
+export default function Select({
+  label,
+  value,
+  items = [],
+  onValueChange,
+  isPlaceholder = true,
+  disabled = false,
+  borderColor = 'BLUE',
+}: SelectPropsTypes) {
   return (
     <RNPickerSelect
       style={
@@ -66,22 +56,47 @@ export default function Select({ label, value, items = [], onValueChange, disabl
           ? {
               ...disabledStyles,
               iconContainer: {
-                top: 18,
+                top: 14,
                 right: 15,
               },
             }
           : {
-              ...styles,
+              inputIOS: {
+                fontSize: 16,
+                paddingVertical: 12,
+                paddingHorizontal: 10,
+                borderWidth: 1,
+                borderColor: theme.color[borderColor],
+                backgroundColor: theme.color.WHITE,
+                borderRadius: 10,
+                color: theme.color.BLUE,
+                paddingRight: 30, // to ensure the text is never behind the icon
+              },
+              inputAndroid: {
+                fontSize: 16,
+                paddingHorizontal: 10,
+                paddingVertical: 8,
+                borderWidth: 1,
+                backgroundColor: theme.color.WHITE,
+                borderColor: theme.color[borderColor],
+                borderRadius: 10,
+                color: theme.color.BLUE,
+              },
+
               iconContainer: {
-                top: 18,
+                top: 15,
                 right: 15,
               },
             }
       }
-      placeholder={{
-        label,
-        value: '',
-      }}
+      placeholder={
+        isPlaceholder
+          ? {
+              label,
+              value: '',
+            }
+          : {}
+      }
       onValueChange={(value) => onValueChange(value)}
       value={value}
       items={items}
@@ -91,7 +106,7 @@ export default function Select({ label, value, items = [], onValueChange, disabl
       Icon={() => {
         return (
           <IconBox>
-            <Image source={insuIcon.SELECT_ICON} />
+            <Image source={insuIcon.SELECT_ICON2} />
           </IconBox>
         );
       }}

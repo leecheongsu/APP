@@ -1,7 +1,7 @@
 import { userApis } from '@app/api/User';
 import { BottomFixButton, DefaultInput, ServiceSelect, Typhograph } from '@app/components';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
-import { screenWidth, setStoreData } from '@app/lib';
+import { handleApiError, screenWidth, setStoreData } from '@app/lib';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import React, { useEffect, useRef, useState } from 'react';
@@ -142,12 +142,8 @@ function UserInfo({ state, inputState, onValueChange, onChangeState }) {
             }
           })
           .catch((e) => {
-            console.log(e.response);
-            if (e.response?.data?.status === 401) {
-              Toast.show('권한이 없습니다.');
-            } else {
-              Toast.show('오류가 발생하였습니다.');
-            }
+            handleApiError(e.response);
+            onChangeState('loading', false);
           });
       }
     }

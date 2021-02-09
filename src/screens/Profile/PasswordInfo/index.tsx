@@ -1,6 +1,6 @@
 import React from 'react';
 import { BottomFixButton, CheckLabelButton, DefaultInput, Typhograph } from '@app/components';
-import { screenWidth, setStoreData } from '@app/lib';
+import { handleApiError, screenWidth, setStoreData } from '@app/lib';
 import { individualTerms, useTermsHtml } from '@app/lib/html';
 import { TermsModal } from '@app/screens';
 import theme from '@app/style/theme';
@@ -133,8 +133,7 @@ function PasswordInfo({ state, inputState, onChangeState }) {
           onChangeState('loading', false);
         })
         .catch((e) => {
-          console.log(e.response);
-          Toast.show('오류가 발생하였습니다.');
+          handleApiError(e.response);
           onChangeState('loading', false);
         });
     }

@@ -5,6 +5,7 @@ import Toast from 'react-native-simple-toast';
 import { useNavigation } from '@react-navigation/native';
 import ProfilePresenter from '@app/screens/Profile/ProfilePresenter';
 import { useGlobalState } from '@app/context';
+import { handleApiError } from '@app/lib';
 
 export type ProfileStateName =
   | 'selectTab'
@@ -137,11 +138,10 @@ export default function ProfileContainer() {
         }
       })
       .catch((e) => {
-        console.log(e.response);
         if (e.response.status === 409) {
           Toast.show('가입된 이메일주소가 있습니다.');
         } else {
-          Toast.show('오류가 발생하였습니다.');
+          handleApiError(e.response);
         }
       });
   };

@@ -1,7 +1,7 @@
 import React, { useReducer, useRef } from 'react';
 import { userApis } from '@app/api/User';
 import { useInput } from '@app/hooks';
-import { screenWidth } from '@app/lib';
+import { handleApiError, screenWidth } from '@app/lib';
 import FindeEmailPresenter from './FindEmailPresenter';
 import Toast from 'react-native-simple-toast';
 import { useNavigation } from '@react-navigation/native';
@@ -131,12 +131,11 @@ export default function FindeEmailContainer() {
             }
           })
           .catch((e) => {
-            console.log(e.response);
             onChangeState('loading', false);
             if (e.response.data?.message === 'no user') {
               Toast.show('등록된사용자가 없습니다.');
             } else {
-              Toast.show('오류가 발생하였습니다.');
+              handleApiError(e.response);
             }
           });
       }
