@@ -160,7 +160,7 @@ function UserInfo({ state, inputState, onValueChange, onChangeState }) {
       <KeyboardAwareScrollView
         style={styles.container}
         enableOnAndroid={true}
-        extraScrollHeight={Platform.OS === 'ios' ? -200 : -10}>
+        extraScrollHeight={Platform.OS === 'ios' ? 10 : -10}>
         <Container>
           <TextInputBox>
             <InputLabel>

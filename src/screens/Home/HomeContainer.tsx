@@ -13,6 +13,7 @@ export default function HomeContainer() {
       globalDispatch({ type: 'CHANGE', name: 'user', value: localUser });
       globalDispatch({ type: 'CHANGE', name: 'isAutoLogin', value: isAutoLogin });
       globalDispatch({ type: 'CHANGE', name: 'isLogin', value: isLogin });
+      globalDispatch({ type: 'CHANGE', name: 'isIdentityverification', value: false });
     }
   };
   useEffect(() => {

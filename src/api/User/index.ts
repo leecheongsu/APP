@@ -76,4 +76,17 @@ export const userApis = {
     });
     return res;
   },
+
+  async getOkcert(params) {
+    const user: any = await getStoreData('user');
+    const res = await userApiConfig({
+      method: 'GET',
+      url: 'okcert/house',
+      params,
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    return res;
+  },
 };

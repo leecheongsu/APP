@@ -10,6 +10,7 @@ import { insuApis } from '@app/api/Insurance';
 import { useAsync } from '@app/hooks';
 import { handleApiError, sortArray } from '@app/lib';
 import Toast from 'react-native-simple-toast';
+import { useGlobalDispatch } from '@app/context';
 
 type HouseAddressContainerTypes = {
   state: HouseFireStateTypes;
@@ -29,6 +30,7 @@ export default function HouseAddressContainer({
     [],
     true
   );
+  const globalDispatch = useGlobalDispatch();
 
   //주소 선택시 도는 로직
   const SelectAddress = (item) => {
@@ -49,6 +51,7 @@ export default function HouseAddressContainer({
         .then((res) => {
           if (res.status === 200) {
             onChangeState('selectAddress', res.data);
+            globalDispatch({ type: 'CHANGE', name: 'selectAddress', value: res.data });
             onChangeState('loading', false);
             handleJoinTypeNextButton();
           } else {
@@ -84,7 +87,6 @@ export default function HouseAddressContainer({
               onChangeState('isDetailModal', true);
             }
           } else if (res.status === 204) {
-            console.log(res);
             Toast.show('');
           }
           onChangeState('loading', false);
@@ -159,6 +161,7 @@ export default function HouseAddressContainer({
         .getSedeInfo(data)
         .then((res) => {
           onChangeState('selectAddress', res.data);
+          globalDispatch({ type: 'CHANGE', name: 'selectAddress', value: res.data });
           handleJoinTypeNextButton();
           onChangeState('isDetailModal', false);
           onChangeState('loading', false);

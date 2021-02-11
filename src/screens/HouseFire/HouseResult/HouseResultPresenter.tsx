@@ -98,8 +98,8 @@ function HouseResultPresenter({
             </Typhograph>
           </CardTitleBox>
           <ResultCard
-            isActive={state.selectInsuCompany === '현대해상'}
-            name="현대해상"
+            isActive={state.selectInsuCompany === '메리츠화재'}
+            name="메리츠화재"
             img={insuImg.LOGO_MERITZ}
             onClick={onChangeActive}
             price={priceDot(resultBuildPrice() + resultGajePrice())}

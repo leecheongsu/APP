@@ -1,7 +1,9 @@
+import { useGlobalDispatch } from '@app/context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Dimensions, PixelRatio, Platform } from 'react-native';
+import { Alert, Dimensions, PixelRatio, Platform } from 'react-native';
 import Toast from 'react-native-simple-toast';
-
+import { showMessage, hideMessage } from 'react-native-flash-message';
+import { ErrorModal } from '@app/screens';
 //font weight 적용하는 함수
 export const setFont = (type: 'NOTO' | 'ROBOTO', weight: 'THIN' | 'LIGHT' | 'REGULAR' | 'MEDIUM' | 'BOLD') => {
   switch (type) {
@@ -205,17 +207,61 @@ export const handleApiError = (value) => {
   const error = value?.data;
   const errorCode = value?.data?.status;
   const isDev = __DEV__;
+  const alertError = `DATA${'\n'}status:${value?.data?.status}${'\n'}error:${value?.data?.error}${'\n'}message:${
+    value?.data?.message
+  }${'\n'}path:${value?.data?.path}${'\n'}statusText:${value?.statusText}${'\n'}${'\n'}HEADERS${'\n'}vary:${
+    value?.headers?.vary
+  }${'\n'}connection:${value?.headers?.connection}${'\n'}transfer-encoding:${
+    value?.headers?.['transfer-encoding']
+  }${'\n'}date:${value?.headers?.date}${'\n'}content-type:${
+    value?.headers?.['content-type']
+  }${'\n'}${'\n'}CONFIG${'\n'}url:${value?.config?.url}${'\n'}method:${
+    value?.config?.method
+  }${'\n'}headers${'\n'}${'\n'}Accept:${value?.config?.headers?.Accept}${'\n'}X-insr-servicekey:${
+    value?.config?.headers?.['X-insr-servicekey']
+  }${'\n'}baseURL:${value?.config?.baseURL}${'\n'}params:${JSON.stringify(value?.config?.params)}`;
 
+  // showMessage({
+  //   message: 'error message',
+  //   type: 'danger',
+  //   description: alertError,
+  // });
+  Alert.alert('알림', value?.data?.message);
   switch (errorCode) {
     case 401: {
       return Toast.show('권한이 없습니다.');
     }
     default: {
-      if (isDev) {
-        return Toast.show(error?.message);
-      } else {
-        return Toast.show('오류가 발생하였습니다.');
-      }
+      // if (isDev) {
+      //   return Toast.show(error?.message);
+      // } else {
+      //   return Toast.show('오류가 발생하였습니다.');
+      // }
     }
+  }
+};
+
+// 보장내용 텍스트
+
+export const getInsuText = (value) => {
+  switch (value) {
+    case 'BFRE':
+      return '(건물) 화재/폭발/파열';
+    case 'BDRG':
+      return '(건물) 급배수누출손해';
+    case 'BGLS':
+      return '(건물) 유리손해';
+    case 'BCMP':
+      return '(건물) 대물배상책임';
+    case 'KFRE':
+      return '(가재도구) 화재/폭발/파열';
+    case 'KDRG':
+      return '(가재도구) 급배수누출손해';
+    case 'KSTL':
+      return '(가재도구) 가재도난위험';
+    case 'KLCK':
+      return '(가재도구) 잠금장치';
+    default:
+      return null;
   }
 };

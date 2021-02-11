@@ -44,6 +44,7 @@ export default function DefaultInput(props) {
         underlineColorAndroid="transparent"
         helperText={helperText}
         height={props?.height}
+        placeholderTextColor={theme.color.GRAY}
       />
       {helperText !== '' && (
         <HelperTextBox>

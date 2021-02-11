@@ -99,7 +99,6 @@ export default function RecommendUsersContainer() {
       .then((res) => {
         if (res.status === 200) {
           const newSelectItem: any = [];
-          console.log(res.data);
           res.data.map((item) => {
             const newItem = {
               label: item.company,

@@ -48,15 +48,14 @@ function SearchInput2(props: SearchInputTypes & SearchInputPropsTypes) {
         blurOnSubmit={false}
         onFocus={() => setIsFocus(true)}
         onBlur={() => {
-          console.log(1);
           setIsFocus(false);
-
           Keyboard.dismiss();
         }}
         autoCompleteType="off"
         numberOfLines={1}
         autoCapitalize="none"
         underlineColorAndroid="transparent"
+        placeholderTextColor={theme.color.GRAY}
       />
       <InputIconBox>
         {props.value !== '' && (

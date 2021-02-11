@@ -57,6 +57,7 @@ function SearchInput(props: SearchInputTypes & SearchInputPropsTypes) {
         autoCompleteType="off"
         numberOfLines={1}
         autoCapitalize="none"
+        placeholderTextColor={theme.color.GRAY}
         underlineColorAndroid="transparent"
       />
       <InputIconBox>

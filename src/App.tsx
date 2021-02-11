@@ -1,7 +1,7 @@
 import React from 'react';
 import { GlobalContextProvider } from '@app/context';
 import theme, { navigationTheme } from '@app/style/theme';
-import { LogBox } from 'react-native';
+import { LogBox, Text } from 'react-native';
 import { ignoreWarningLists } from '@app/lib/util/ignoreWarningLists';
 import { ThemeProvider } from '@app/style/typed-components';
 import { NavigationContainer } from '@react-navigation/native';
@@ -10,6 +10,9 @@ import DrawerStack from '@app/routes/DrawerStack';
 declare const global: { HermesInternal: null | {} };
 
 LogBox.ignoreLogs(ignoreWarningLists);
+
+Text.defaultProps = Text.defaultProps || {};
+Text.defaultProps.allowFontScaling = false;
 
 const App = () => {
   return (

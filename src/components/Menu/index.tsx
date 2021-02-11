@@ -283,7 +283,7 @@ export default function Menu(props) {
             </CardBox>
 
             <CardBox>
-              <CardItem onPress={() => navigation.navigate('VERIFICATION')}>
+              <CardItem onPress={() => navigation.navigate('PAY')}>
                 <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
                   배상책임
                 </Typhograph>

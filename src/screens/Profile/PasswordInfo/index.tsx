@@ -145,7 +145,7 @@ function PasswordInfo({ state, inputState, onChangeState }) {
       <KeyboardAwareScrollView
         style={styles.container}
         enableOnAndroid={true}
-        extraScrollHeight={Platform.OS === 'ios' ? -200 : -10}>
+        extraScrollHeight={Platform.OS === 'ios' ? 10 : -10}>
         <Container>
           <TitleBox>
             <Typhograph type="NOTO" weight="REGULAR" color="BLACK3">

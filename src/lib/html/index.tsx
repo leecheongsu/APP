@@ -736,3 +736,1000 @@ export const useTermsHtml = () => {
       `;
   return html;
 };
+
+export const termsTermsa1 = () => {
+  const html = `
+    <html>
+    <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+    <style type="text/css">
+      ${commonCss}
+      ${defaultCss}
+    </style>
+    </head>
+    <body>
+    <div id="wrap" class="pop">
+
+	<!-- container -->
+	<div id="container">
+		<!-- content -->
+		<div id="content">
+			<div class="cont-inner">                
+                <div class="term">
+                    <h1 class="first">개인(신용)정보의 사전 수집/이용에 관한 사항(필수)</h1>
+                    <div class="in-box">당사 및 당사 업무수탁자는 「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」에 따라 귀하의 개인(신용)정보를 다음과 같이 수집&middot;이용하고자 합니다. 이에 대하여 동의하십니까?</div>
+                    
+                    <h2>보험료 산출 시,<br>개인(신용)정보의 수집&middot;이용 목적</h2>
+                    <ul class="ul-type">
+                        <li>보험계약 상담 및 보험계약 인수여부 결정을 위한 판단</li>
+                        <li>재무설계서비스</li>
+                        <li>실손의료보험계약, 기타손해보험계약 등 '실제 발생하는 손해만을 보상하는 실손형 보험'의 중복가입 확인 및 정액담보 가입사항 확인을 위한 보험가입내역 조회</li>
+                        <li>민원 및 분쟁 관련 대응 목적</li>
+                        <li>만기알림서비스 신청 고객의 보험 만기 안내 목적</li>
+                    </ul>
+
+                    <h2>수집&middot;이용할 개인(신용)정보의 내용</h2>
+                    <ul class="ul-type">
+                        <li>개인식별정보(성명, 주민등록번호, 외국인등록번호, 주소, 직업, 전화번호, 휴대전화번호, 전자우편주소, 음성정보, 외국인체류자격/코드)</li>
+                        <li>질병 및 상해에 관한 정보</li>
+                        <li>당사, 신용정보집중기관 및 보험요율산출기관에서 수집&middot;관리하는 보험계약정보, 보험금 지급 관련 정보(사고정보 포함),교통법규위반 개인정보(음주운전, 운전면허 효력에 관한 사항)</li>
+                        <li>손해보험협회에서 수집&middot;관리하는 전문보험계약자(보험설계사&middot;보험대리점&middot;보험중개사 등)의 정보</li>
+                    </ul>
+
+                    <h2>개인(신용)정보의 보유&middot;이용 기간</h2>
+                    <ul class="ul-type">
+                        <li>이용기간 : 수집&middot;이용 동의일로부터 3개월까지</li>
+                        <li>보유기간 : 수집&middot;이용 동의일로부터 1년까지</li>
+                    </ul>
+
+                </div>
+			</div>
+		</div>
+		<!-- //content -->
+	</div>
+	<!-- // container -->
+
+    </div>
+    </body>
+    </html>
+      `;
+  return html;
+};
+
+export const termsTermsa2 = () => {
+  const html = `
+      <html>
+      <head>
+      <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+      <style type="text/css">
+        ${commonCss}
+        ${defaultCss}
+      </style>
+      </head>
+      <body>
+            <!-- wrap -->
+        <div id="wrap" class="pop">
+
+            <!-- container -->
+            <div id="container">
+                <!-- content -->
+                <div id="content">
+                    <div class="cont-inner">                
+                        <div class="term">
+                            <h1 class="first">개인(신용) 정보의 조회에 관한 사항(필수)</h1>
+                            <div class="in-box">당사 및 당사 업무수탁자는 「신용정보의 이용 및 보호에 관한 법률」 및 「다중이용업소의 안전관리에 관한 특별법」에 따라 귀하의 개인(신용)정보를 다음과 같이 신용정보집중기관, 보험요율산출기관 및 국민 안전처 (소방본부, 소방서포함), 공공기관 등으로 조회하고자 합니다. 이에 동의하십니까?</div>
+                            
+                            <h2>보험료 산출 시,<br>개인(신용)정보 조회 목적</h2>
+                            <div class="ul-type">보험계약상담, 보험계약 인수여부 결정을 위한 판단</div>
+                            <h2>조회할 개인(신용)정보의 내용</h2>
+                            <ul class="ul-type">
+                                <li>신용정보집중기관 및 보험요율산출기관에서 수집&middot;관리하는 정보(피보험자의 질병 및 상해에 관한 정보, 보험계약정보, 보험금지급정보),교통법규위반 개인정보(음주운전, 운전면허 효력에 관한 사항)</li>
+                                <li>신용정보회사 및 통신사의 실명인증 및 본인인증을 위한 정보</li>
+                                <li>손해보험협회에서 수집&middot;관리하는 전문보험계약자(보험설계사&middot;보험대리점&middot;보험중개사 등)의 정보</li>
+                            </ul>
+
+                            <h2>조회동의 유효 기간 및 조회자(제공받는 자)의 개인(신용)정보의 보유&middot;이용 기간</h2>
+                            <div class="ul-type">동의일로부터 보험계약의 청약시까지(최대 3개월)</div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- //content -->
+            </div>
+            <!-- // container -->
+
+        </div>
+        <!-- //wrap -->
+      </body>
+      </html>
+        `;
+  return html;
+};
+export const termsTermsa3 = () => {
+  const html = `
+        <html>
+        <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+        <style type="text/css">
+          ${commonCss}
+          ${defaultCss}
+        </style>
+        </head>
+        <body>
+                <!-- wrap -->
+        <div id="wrap" class="pop">
+
+            <!-- container -->
+            <div id="container">
+                <!-- content -->
+                <div id="content">
+                    <div class="cont-inner">                
+                        <div class="term">
+                            <h1 class="first">개인(신용)정보의 제공에 관한 사항(필수)</h1>
+                            <div class="in-box">당사는 「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」에 따라 귀하의 개인(신용)정보를 다음과 같이 제3자에게 제공하고자 합니다. 이에 대하여 동의하십니까?</div>
+                            
+                            <h2>보험료 산출 시,<br>개인(신용)정보를 제공받는 자</h2>
+                            <div class="ul-type">병원, 의원 등 건강진단 관련 업무를 위탁받은 자, 계약적부 조사를 위탁받은 자 (진단 및 계약적부 조사가 필요한 보험계약의 경우에 한함), 신용정보회사, 재보험사, 원수보험사</div>
+                            <h2>개인(신용)정보를 제공받는 자의 이용목적</h2>
+                            <ul class="ul-type">
+                                <li>건강진단 업무(지정의 또는 파라메딕업체), 고지사항 확인(적부조사회사), 의료자문(사의), 본인 실명인증(신용정보회사), 인수 가능여부 확인(재보험사)</li>
+                                <li>본인인증 및 전자서명 서비스 업체 : 본인인증 및 전자서명 대행 업무</li>
+                            </ul>
+                            <h2>제공할 개인(신용)정보의 내용</h2>
+                            <ul class="ul-type">
+                                <li>개인식별정보(성명, 주민등록번호, 외국인등록번호, 주소, 성별, 직업, 전화번호, 휴대전화번호, 전자우편주소)</li>
+                                <li>계약 전 알릴 의무사항</li>
+                                <li>당사, 신용정보집중기관 및 보험요율산출기관에서 수집&middot;관리하는 보험계약정보 및 보험금지급 관련 정보(사고정보 포함) (단, 각 제공받는 자의 이용 목적을 위해 필요한 정보에 한함)</li>
+                            </ul>
+                            <h2>제공받는 자의 개인(신용)정보 보유&middot;이용기간</h2>
+                            <div class="ul-type">수집&middot;이용 동의일로부터 3개월까지</div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- //content -->
+            </div>
+            <!-- // container -->
+
+        </div>
+        <!-- //wrap -->
+        </body>
+        </html>
+          `;
+  return html;
+};
+
+export const termsTermsa4 = () => {
+  const html = `
+        <html>
+        <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+        <style type="text/css">
+          ${commonCss}
+          ${defaultCss}
+        </style>
+        </head>
+        <body>
+        <!-- wrap -->
+        <div id="wrap" class="pop">
+        
+            <!-- container -->
+            <div id="container">
+                <!-- content -->
+                <div id="content">
+                    <div class="cont-inner">                
+                        <div class="term">
+                            <h1 class="first">민감정보 및 고유식별정보의 처리에 관한 사항(필수)</h1>
+                            <div class="in-box">당사 및 당사 업무수탁자는 「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」 및 「다중이용업소의 안전관리에 관한 특별법」에 따라 상기의 개인(신용)정보에 대한 개별 동의사항에 대하여 다음과 같이 귀하의 민감정보(질병&middot;상해정보) 및 고유식별정보(주민등록번호 &middot; 외국인등록번호)를 처리(수집&middot;이용, 조회, 제공)하고자 합니다. 이에 동의하십니까?</div>
+                            <ul class="ul-type h-top2">
+                                <li>질병&middot;상해정보 처리</li>
+                                <li>주민등록번호, 외국인등록번호, 운전면허증번호 처리</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- //content -->
+            </div>
+            <!-- // container -->
+        
+        </div>
+        <!-- //wrap -->
+        </body>
+        </html>
+          `;
+  return html;
+};
+
+export const termsTermsa5 = () => {
+  const html = `
+                  <html>
+                  <head>
+                  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                  <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                  <style type="text/css">
+                    ${commonCss}
+                    ${defaultCss}
+                  </style>
+                  </head>
+                  <body>
+                  <!-- wrap -->
+                    <div id="wrap" class="pop">
+    
+                        <!-- container -->
+                        <div id="container">
+                            <!-- content -->
+                            <div id="content">
+                                <div class="cont-inner">                
+                                    <div class="term">
+                                        <h1 class="first">민감정보 및 고유식별정보의 처리에 관한 사항(필수)</h1>
+                                        <div class="in-box">당사 및 당사 업무수탁자는 「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」 및 「다중이용업소의 안전관리에 관한 특별법」에 따라 상기의 개인(신용)정보에 대한 개별 동의사항에 대하여 다음과 같이 귀하의 민감정보(질병&middot;상해정보) 및 고유식별정보(주민등록번호&middot;외국인등록번호)를 처리(수집&middot;이용, 조회, 제공)하고자 합니다. 이에 동의하십니까?</div>
+                                        <ul class="ul-type h-top2">
+                                            <li>질병&middot;상해정보 처리</li>
+                                            <li>주민등록번호, 외국인등록번호, 운전면허증번호 처리</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //content -->
+                        </div>
+                        <!-- // container -->
+    
+                    </div>
+                    <!-- //wrap -->
+                  </body>
+                  </html>
+                    `;
+  return html;
+};
+
+export const termsTermsb1 = () => {
+  const html = `
+          <html>
+          <head>
+          <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+          <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+          <style type="text/css">
+            ${commonCss}
+            ${defaultCss}
+          </style>
+          </head>
+          <body>
+                    <!-- wrap -->
+            <div id="wrap" class="pop">
+
+                <!-- container -->
+                <div id="container">
+                    <!-- content -->
+                    <div id="content">
+                        <div class="cont-inner">                
+                            <div class="term">
+                                <h1 class="first">개인(신용)정보의수집/이용에 관한 사항(선택)</h1>
+                                <div class="in-box">당사는「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」에 따라 보험상품 소개 및 홍보 등을 위하여 귀하의 개인(신용)정보를 다음과 같이 수집&middot;이용하고자 합니다. 이에 대하여 동의하십니까?</div>
+                                <div class="info-txt">개인(신용)정보의 수집&middot;이용 목적 &middot; 상품&middot;서비스 소개 및 판매, 사은&middot;판촉행사 안내(방문, 우편, 전화, SMS포함), 시장조사</div>
+                                <h2>수집&middot;이용할 개인(신용)정보의 내용</h2>
+                                <ul class="ul-type">
+                                    <li>개인식별정보 (성명, 생년월일, 성별, 주소, 직업, 전화번호, 휴대폰전화번호, 전자우편주소, 외국인 체류자격/코드)</li>
+                                    <li>보험계약 정보</li>
+                                </ul>
+                                <h2>개인(신용)정보의 보유&middot;이용기간</h2>
+                                <ul class="ul-type">
+                                    <li>당사와 보험계약 체결실적이 있는 고객 : 동의일로부터 5년 이내</li>
+                                    <li>당사와 보험계약 체결실적이 없는 고객 : 동의일로부터 3년</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //content -->
+                </div>
+                <!-- // container -->
+
+            </div>
+            <!-- //wrap -->
+          </body>
+          </html>
+            `;
+  return html;
+};
+
+export const termsTermsb2 = () => {
+  const html = `
+          <html>
+          <head>
+          <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+          <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+          <style type="text/css">
+            ${commonCss}
+            ${defaultCss}
+          </style>
+          </head>
+          <body>
+                    <!-- wrap -->
+            <div id="wrap" class="pop">
+
+                <!-- container -->
+                <div id="container">
+                    <!-- content -->
+                    <div id="content">
+                        <div class="cont-inner">                
+                            <div class="term">
+                                <h1 class="first">개인(신용)정보의 제공에 관한 사항(선택)</h1>
+                                <div class="in-box">당사는 「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」에 따라 귀하의 개인(신용)정보를 다음과 같이 제3자에게 상품소개 및 홍보 등 영업목적으로 제공하고자 합니다. 이에 대하여 동의하십니까?</div>
+                                <h2>개인(신용)정보를 제공받는 자</h2>
+                                <ul class="ul-type">
+                                    <li>목적 : 당사 상품&middot;서비스 소개 및 판매</li>
+                                    <li>제공받는자 : 당사와 모집위탁계약을 체결한 자 (설계사&middot;대리점) (단, 비전속대리점의 경우, 동 계약을 모집한 대리점에 한함) : 제휴업체</li>
+                                </ul>        
+                                <h2>개인(신용)정보를 제공받는 자의 이용목적</h2>
+                                <ul class="ul-type">
+                                    <li>모집수탁자 : 당사의 상품&middot;서비스소개 및 판매, 사은&middot;판촉행사 안내(방문, 우편, 전화, SMS포함), 시장조사</li>
+                                    <li>제휴사 등 : 안전운전 점수 산정</li>
+                                </ul>
+                                <h2>제공할 개인(신용)정보의 내용</h2>
+                                <ul class="ul-type">
+                                    <li>모집수탁자 : 「1. 개인(신용)정보의 수집&middot;이용에 관한 사항」의 정보내용</li>
+                                    <li>제휴사 등 : 휴대전화번호, 생년월일</li>
+                                </ul>
+
+                                <h2>제공받는 자의 개인(신용)정보 보유&middot;이용기간</h2>
+                                <ul class="ul-type">
+                                    <li>모집수탁자</li>
+                                    <li>당사와 보험계약 체결실적이 있는 고객 : 상기 개인(신용)정보 수집&middot;이용에 관한 사항 보유&middot;이용기간</li>
+                                    <li>당사와 보험계약 체결실적이 없는 고객 : 동의일로부터 3년</li>
+                                    <li>제휴사 등 : 동의일로부터 1년, 계약체결 시 체결일로부터 1년</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //content -->
+                </div>
+                <!-- // container -->
+
+            </div>
+            <!-- //wrap -->
+          </body>
+          </html>
+            `;
+  return html;
+};
+
+export const termsTermsb3 = () => {
+  const html = `
+          <html>
+          <head>
+          <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+          <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+          <style type="text/css">
+            ${commonCss}
+            ${defaultCss}
+          </style>
+          </head>
+          <body>
+                    <!-- wrap -->
+            <div id="wrap" class="pop">
+
+                <!-- container -->
+                <div id="container">
+                    <!-- content -->
+                    <div id="content">
+                        <div class="cont-inner">                
+                            <div class="term">
+                                <h1 class="first">개인(신용)정보의 조회에 관한 사항(선택)</h1>
+                                <div class="in-box">당사는「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」에 따라 보험상품 소개 및 홍보 등을 위하여 귀하의 개인(신용)정보를 다음과 같이 수집&middot;이용하고자 합니다. 이에 대하여 동의하십니까?</div>
+                                <div class="info-txt">개인(신용)정보의 수집&middot;이용 목적&middot;상품&middot;서비스 소개 및 판매, 사은&middot;판촉행사 안내(방문, 우편, 전화, SMS포함), 시장조사</div>
+                                <h2>수집&middot;이용할 개인(신용)정보의 내용</h2>
+                                <ul class="ul-type">
+                                    <li>개인식별정보 (성명, 생년월일, 성별, 주소, 직업, 전화번호, 휴대폰전화번호, 전자우편주소, 외국인 체류자격/코드)</li>
+                                    <li>보험계약 정보</li>
+                                </ul>
+
+                                <h2>개인(신용)정보의 보유&middot;이용기간</h2>
+                                <ul class="ul-type">
+                                    <li>당사와 보험계약 체결실적이 있는 고객 : 동의일로부터 5년 이내</li>
+                                    <li>당사와 보험계약 체결실적이 없는 고객 : 동의일로부터 3년</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- //content -->
+                </div>
+                <!-- // container -->
+
+            </div>
+            <!-- //wrap -->
+          </body>
+          </html>
+            `;
+  return html;
+};
+
+export const termsTermsc1 = () => {
+  const html = `
+            <html>
+            <head>
+            <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+            <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+            <style type="text/css">
+              ${commonCss}
+              ${defaultCss}
+            </style>
+            </head>
+            <body>
+            <!-- wrap -->
+                <div id="wrap" class="pop">
+
+                    <!-- container -->
+                    <div id="container">
+                        <!-- content -->
+                        <div id="content">
+                            <div class="cont-inner">                
+                                <div class="term">
+                                    <h1 class="first">개인(신용)정보의 수집/이용에 관한 사항(필수)</h1>
+                                    <div class="in-box">당사 및 당사 업무수탁자는 「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」에 따라 귀하의 개인(신용)정보를 다음과 같이 수집 이용하고자 합니다. 이에 대하여 동의하십니까?</div>
+                                    <h2>보험료 결제 시,<br>개인(신용)정보의 수집&middot;이용 목적</h2>
+                                    <ul class="ul-type">
+                                        <li>보험계약의 인수심사&middot;체결&middot;유지&middot;관리(부활 및 갱신 포함), 보험금 등 지급&middot;심사</li>
+                                        <li>순보험요율의 산출&middot;검증, 민원처리 및 분쟁 대응, 적부 및 사고조사(보험사기 조사 포함), 보험모집질서 유지</li>
+                                        <li>보험계약 및 보험금 청구에 이해관계가 있는 자에 대한 법규 및 계약상 의무 이행</li>
+                                        <li>금융거래 관련 업무(금융거래 신청, 자동이체 등)</li>
+                                        <li>기존 계약자에 대한 보험계약 상담(당사 및 당사 설계사에 한함)</li>
+                                    </ul>
+
+                                    <h2>수집&middot;이용할 개인(신용)정보의 내용</h2>
+                                    <ul class="ul-type">
+                                        <li>개인식별정보(성명, 주민등록번호, 외국인등록번호, 주소, 성별, 직업, 전화번호, 휴대전화번호, 전자우편주소, 외국인 체류자격/코드, 운전면허정보(운전면허번호 포함), 음성정보</li>
+                                        <li>당사, 신용정보집중기관 및 보험개발원에서 수집&middot;관리하는 보험계약정보, 피보험자의 질병 및 상해에 관한 정보, 보험금지급 관련 정보(사고정보, 본인의 위임을 받아 취득한 각종 조사서, 판결문, 증명서, 확인서, 진료기록 등)</li>
+                                        <li>계약전 알릴의무 사항, 소득 및 재산사항</li>
+                                        <li>법률 및 국제협약 등의 의무이행을 위한 정보</li>
+                                        <li>금융거래 업무(보험료 및 보험금 등 출&middot;수납) 관련 정보</li>
+                                    </ul>
+
+                                    <h2>개인(신용)정보의 보유&middot;이용 기간</h2>
+                                    <div class="ul-type">수집&middot;이용 동의일로부터 거래종료 후 5년까지(단, 거래종료 후 5년이 경과한 후에는 보험금 지급, 금융사고 조사, 보험사기 방지&middot;적발, 민원처리, 법령상 의무이행을 위한 경우에 한하여 보유&middot;이용하며, 별도 보관)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //content -->
+                    </div>
+                    <!-- // container -->
+
+                </div>
+                <!-- //wrap -->
+            </body>
+            </html>
+              `;
+  return html;
+};
+
+export const termsTermsc2 = () => {
+  const html = `
+            <html>
+            <head>
+            <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+            <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+            <style type="text/css">
+              ${commonCss}
+              ${defaultCss}
+            </style>
+            </head>
+            <body>
+            <!-- wrap -->
+                <div id="wrap" class="pop">
+
+                    <!-- container -->
+                    <div id="container">
+                        <!-- content -->
+                        <div id="content">
+                            <div class="cont-inner">                
+                                <div class="term">
+                                    <h1 class="first">개인(신용) 정보의 조회에 관한 사항(필수)</h1>
+                                    <div class="in-box">당사 및 당사 업무수탁자는 「신용정보의 이용 및 보호에 관한 법률」 및 「다중이용업소의 안전관리에 관한 특별법」에 따라 귀하의 개인(신용)정보를 다음과 같이 신용정보집중기관, 보험요율산출기관 및 국민 안전처 (소방본부, 소방서포함), 공공기관 등으로 조회하고자 합니다. 이에 동의하십니까?</div>
+                                    <h2>보험료 결제 시,<br>개인(신용)정보의 조회 목적</h2>
+                                    <div class="ul-type">보험계약의 인수심사&middot;체결&middot;유지&middot;관리(부활 및 갱신 포함), 보험금 등 지급&middot;심사, 보험 사고조사(보험사기조사 포함)</div>
+
+                                    <h2>조회할 개인(신용)정보</h2>
+                                    <ul class="ul-type">
+                                        <li>신용정보집중기관(한국신용정보원), 생명&middot;손해보험협회 및 보험요율산출기관에서 수집&middot;관리하는 보험계약정보, 보험금지급 관련 정보(사고정보 포함), 피보험자의 질병 및 상해 관련 정보</li>
+                                        <li>신용정보회사 및 통신사의 실명인증 및 본인인증을 위한 정보</li>
+                                    </ul>
+
+                                    <h2>조회동의 유효기간 및 개인(신용)정보의 보유&middot;이용 기간</h2>
+                                    <div class="ul-type"> 수집 &middot; 이용 동의일로부터 거래종료 후 5년까지(단, 거래종료 후 5년이 경과한 후에는 보험금 지급, 금융사고 조사, 보험사기 방지 &middot; 적발, 민원처리, 법령상 의무이행을 위한 경우에 한하여 보유&middot;이용하며, 별도 보관)
+                                        <div class="info-txt2 bk">"거래 종료일은 관계법령, 약관 또는 합의 등에 따라 계약기간의 만료, 해지권&middot;해제권&middot; 취소권의 행사, 소멸시효의 완성, 변제 등으로 인한 채권의 소멸, 그 밖의 사유로 종료된 날입니다."</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //content -->
+                    </div>
+                    <!-- // container -->
+
+                </div>
+                <!-- //wrap -->
+            </body>
+            </html>
+              `;
+  return html;
+};
+
+export const termsTermsc3 = () => {
+  const html = `
+              <html>
+              <head>
+              <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+              <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+              <style type="text/css">
+                ${commonCss}
+                ${defaultCss}
+              </style>
+              </head>
+              <body>
+              <!-- wrap -->
+                <div id="wrap" class="pop">
+
+                    <!-- container -->
+                    <div id="container">
+                        <!-- content -->
+                        <div id="content">
+                            <div class="cont-inner">                
+                                <div class="term">
+                                    <h1 class="first">개인(신용)정보의 제공에 관한 사항(필수)</h1>
+                                    <div class="in-box">당사는 「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」에 따라 귀하의 개인(신용)정보를 다음과 같이 제3자에게 제공하고자 합니다. 이에 대하여 동의하십니까?</div>
+                                    <h2>보험료 결제 시,<br>개인(신용)정보를 제공받는 자</h2>
+                                    <ul class="ul-type">
+                                        <li>신용정보집중기관 : 한국신용정보원 등 신용정보집중기관</li>
+                                        <li>공공기관 등 : 금융위원회, 국토해양부, 금융감독원, 보험요율산출기관, 경찰청 등 공공기관, 법령상 업무 수행기관(위탁사업자 포함)</li>
+                                        <li>보험회사 등 : 생명&middot;손해보험사, 국내&middot;국외 재보험사, 공제사업자, 체신관서(우체국보험), 금융거래 관련 계좌개설 금융기관, 금융결제원</li>
+                                        <li>간편결제 및 포인트 결제 서비스 업체 등</li>
+                                        <li>업무수탁자 등 : 당사와 모집위탁계약을 체결한 자(설계사, 대리점 등), 보험중개사, 계약 체결 및 이행 등에 필요한 업무를 위탁 받은 자 (보험사고조사업체, 손해사정업체, 의료기관&middot;의사, 변호사, 위탁 콜센타, 건강보험심사평가원, 건강진단업체, 계약적부조사업체, 자동차보험 진료수가분쟁심의회, 손해보험협회 등)</li>
+                                    </ul>
+
+                                    <h2>개인(신용)정보를 제공받는 자의 이용목적</h2>
+                                    <ul class="ul-type">
+                                        <li>신용정보집중기관 : 보험계약 및 보험금지급 관련 정보의 집중관리 및 활용 등 신용정보집중기관의 업무</li>
+                                        <li>공공기관 등 : 보험업법 및 자동차손해배상보장법, 도로교통법 등 법령에 따른 업무수행(위탁업무 포함)</li>
+                                        <li>보험회사 등 : 중복보험 확인 및 비례보상, 재보험 가입 및 재보험금 청구, 보험계약 공동인수, 금융거래 업무(보험료 및 보험금 등 출&middot;수납)</li>
+                                        <li>간편결제 및 포인트 결제 서비스 업체 등 : 결제 대행 업무, 포인트 결제 업무</li>
+                                        <li>본인인증 및 전자서명 서비스 업체 : 본인인증 및 전자서명 대행 업무</li>
+                                        <li>업무수탁자 등 : 본 계약의 체결&middot;이행관련 위탁업무 수행, 진료비심사, 의료심사 및 자문업무, 구상금분쟁심의업무, 제휴서비스 대상여부 확인</li>
+                                    </ul>
+
+                                    <h2>제공할 개인(신용)정보의 내용</h2>
+                                    <div class="ul-type">「1. 개인(신용)정보의 수집&middot;이용에 관한 사항」의 정보내용</div>
+
+                                    <h2>제공받는 자의 개인(신용)정보 보유&middot;이용기간</h2>
+                                    <div class="ul-type">개인(신용)정보를 제공받는 자의 이용목적을 달성할 때까지(최대 거래종료일로부터 5년)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //content -->
+                    </div>
+                    <!-- // container -->
+
+                </div>
+                <!-- //wrap -->
+              </body>
+              </html>
+                `;
+  return html;
+};
+
+export const termsTermsc4 = () => {
+  const html = `
+              <html>
+              <head>
+              <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+              <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+              <style type="text/css">
+                ${commonCss}
+                ${defaultCss}
+              </style>
+              </head>
+              <body>
+              <!-- wrap -->
+                <div id="wrap" class="pop">
+
+                    <!-- container -->
+                    <div id="container">
+                        <!-- content -->
+                        <div id="content">
+                            <div class="cont-inner">                
+                                <div class="term">
+                                    <h1 class="first">민감정보 및 고유식별정보의 처리에 관한 사항(필수)</h1>
+                                    <div class="in-box">당사 및 당사 업무수탁자는 「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」 및 「다중이용업소의 안전관리에 관한 특별법」에 따라 상기의 개인(신용)정보에 대한 개별 동의사항에 대하여 다음과 같이 귀하의 민감정보(질병&middot;상해정보) 및 고유식별정보(주민등록번호&middot;외국인등록번호)를 처리(수집&middot;이용, 조회, 제공)하고자 합니다. 이에 동의하십니까?</div>
+                                    <ul class="ul-type h-top2">
+                                        <li>질병&middot;상해정보 처리</li>
+                                        <li>주민등록번호, 외국인등록번호, 운전면허증번호 처리</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //content -->
+                    </div>
+                    <!-- // container -->
+
+                </div>
+                <!-- //wrap -->
+              </body>
+              </html>
+                `;
+  return html;
+};
+
+export const termsTermsc5 = () => {
+  const html = `
+              <html>
+              <head>
+              <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+              <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+              <style type="text/css">
+                ${commonCss}
+                ${defaultCss}
+              </style>
+              </head>
+              <body>
+              <!-- wrap -->
+                <div id="wrap" class="pop">
+
+                    <!-- container -->
+                    <div id="container">
+                        <!-- content -->
+                        <div id="content">
+                            <div class="cont-inner">                
+                                <div class="term">
+                                    <h1 class="first">전자금융거래 이용약관 동의(필수)</h1>
+                                    <h2>전자거래에 관한 기본적인 사항</h2>
+                                    <div class="in-txt">이 약관은 ㈜인슈로보와 이용자 사이의 전자거래에 관한 기본적인 사항을 정함으로써 거래를 신속하고 효율적으로 처리하며 거래당사자 상호간의 이해관계를 합리적으로 조정하는 것을 목적으로 합니다.</div>
+                                    <h2>제1조(목적)</h2>
+                                    <div class="in-txt">이 약관은 ㈜인슈로보 (이하 "회사"라 한다)와 이용자 사이의 전자거래에 관한 기본적인 사항을 정함으로써 거래를 신속하고 효율적으로 처리하며 거래당사자 상호간의 이해관계를 합리적으로 조정하는 것을 목적으로 한다.</div>
+                                    <h2>제2조(정의)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>이 약관에서 사용하는 용어의 정의는 다음 각 호와 같다.
+                                            <ul class="dep2">
+                                                <li>"전자금융거래"라 함은 회사가 전자적 장치를 통하여 금융상품 및 서비스를 제공하고 이용자가 회사와 직접 대면하거나 의사소통을 하지 아니하고 자동화된 방식으로 이를 이용하는 거래를 말한다.</li>
+                                                <li>"이용자"라 함은 전자금융거래를 위하여 회사와 체결한 계약(이하 "전자금융거래계약" 이라 한다)에 따라 전자금융거래를 이용하는 자를 말한다.</li>
+                                                <li>"전자적 장치"라 함은 전자금융거래정보를 전자적 방법으로 전송하거나 처리하는데 이용되는 장치로서 현금자동지급기, 자동입출금기, 지급용단말기, 컴퓨터, 전화기 그 밖에 전자적 방법으로 정보를 전송하거나 처리하는 장치를 말한다.</li>
+                                                <li>"접근매체"라 함은 전자금융거래에 있어서 이용자가 거래지시를 하거나 또는 이용자 및 거래내용의 진실성과 정확성을 확보하기 위하여 사용되는 다음 각목의 어느 하나에 해당하는 수단 또는 정보를 말한다.
+                                                    <ul class="dep3">
+                                                        <li>전자식 카드 및 이에 준하는 전자적정보</li>
+                                                        <li>전자서명법에 따른 공인인증서</li>
+                                                        <li>회사에 등록된 이용자 번호</li>
+                                                        <li>등록되어 있는 이용자의 생체정보</li>
+                                                        <li>가목 또는 나목의 수단이나 정보를 사용하는데 필요한 비밀번호</li>
+                                                    </ul>
+                                                </li>
+                                                <li>“전자문서”라 함은 전자거래기본법 제 2 조 제 1 호의 규정에 따라 작성, 송신ㆍ수신 또는 저장된 정보를 말한다.</li>
+                                                <li>“거래지시”라 함은 이용자가 전자금융거래계약에 따라 회사에게 전자금융거래의 처리를 지시하는 것을 말한다.</li>
+                                                <li>“오류”라 함은 이용자의 고의 또는 과실 없이 전자금융거래가 약관(개별약관을 포함한다), 전자금융거래계약 또는 이용자의 거래지시에 따라 이행되지 아니한 경우를 말한다.</li>
+                                                <li>“전자지급거래”라 함은 자금을 주는 자(이하 “지급인”이라 한다)가 회사로 하여금 전자지급수단을 이용하여 자금을 받는 자(이하 “수취인”이라 한다)에게 자금을 이동하게 하는 전자금융거래를 말한다.</li>
+                                                <li>“전자지급수단”이라 함은 전자자금이체, 직불전자지급수 단, 선불전자지급수단, 전자화폐, 신용카드, 전자채권 그 밖의 전자적 방법에 따른 지급수단을 말한다.</li>
+                                                <li>“전자자금이체”라 함은 지급인과 수취인 사이에 자금을 지급할 목적으로 회사에 개설된 계좌에서 다른 계좌로 전자적 장치에 의하여 다음 각 목의 어느 하나에 해당하는 방법으로 자금을 이체하는 것을 말한다.
+                                                    <ul class="dep3">
+                                                        <li>회사에 대한 지급인의 지급지시</li>
+                                                        <li>회사에 대한 수취인의 추심지시(이하 “추심이체”라 한다)</li>
+                                                    </ul>
+                                                </li>
+                                                <li>“정보시스템”이라 함은 전자금융업무를 포함하여 정보기술부문에 사용되는 하드웨어(hardware)와 소프트웨어(software)를 말하며 관련장비를 포함한다.</li>
+                                                <li>“영업일”이라 함은 회사가 영업점에서 정상적인 영업을 하는 날을 말한다.</li>
+                                                <li>“개별약관”이라 함은 이 약관과 함께 전자금융거래에 적용되는 약관으로서 회사가 별도로 작성한 약관을 말한다.</li>
+                                            </ul>
+                                        </li>
+                                        <li>이 약관에서 별도로 정하지 아니한 용어의 정의는 전자금융거래법 및 전자금융거래법 시행령, 전자금융감독규정 및 전자금융감독규정 시행세칙에서 정하는 바에 따른다.</li>
+                                    </ol>
+                                    <h2>제 3 조(적용범위)</h2>
+                                    <div class="in-txt">이 약관은 다른 법률에 특별한 규정이 있는 경우를 제외하고 모든 전자금융거래에 적용한다.</div>
+                                    <h2>제 4 조(전자금융거래계약의 체결 및 해지)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>전자금융거래를 이용하고자 하는 이용자는 개별약관에서 정하는 방법에 따라 회사와 전자금융거래계약을 체결하여야 한다. 다만, 다음 각 호의 1 에 해당하는 경우에는 그러하지 아니할 수 있다.
+                                            <ul class="dep2">
+                                                <li>단순조회(보험계약사항, 간접투자상품계좌 조회 등)</li>
+                                                <li>단순히 이용수수료를 납부하고 처리하는 거래</li>
+                                                <li>현금자동지급기, 현금자동입/ 출금기에 의한 거래</li>
+                                                <li>기타 회사가 정하는 거래</li>
+                                            </ul>
+                                        </li>
+                                        <li>회사는 제 1 항의 규정에 의한 전자금융거래계약을 체결함에 있어 이용자에게 약관을 명시하여야 하며, 이용자의 요청이 있는 경우 다음 각 호의 어느 하나에 해당하는 방법으로 이용자에게 약관을 교부하여야 한다.
+                                            <ul class="dep2">
+                                                <li>직접교부</li>
+                                                <li>전자문서의 전송(전자우편을 이용한 전송을 포함한다)</li>
+                                                <li>모사전송</li>
+                                                <li>우편</li>
+                                            </ul>
+                                        </li>
+                                        <li>회사는 제 1 항의 규정에 의한 전자금융거래계약을 체결함에 있어 이용자가 약관의 내용에 대한 설명을 요청하는 경우 다음 각 호의 어느 하나에 해당하는 방법으로 이용자에게 약관의 중요내용을 설명하여야 한다.
+                                            <ul class="dep2">
+                                                <li>약관의 중요내용을 이용자에게 직접 설명</li>
+                                                <li>약관의 중요내용에 대한 설명을 전자적 장치를 통하여 이용자가 알기 쉽게 표시하고 이용자로부터 해당 내용을 충분히 인지하였다는 의사표시를 전자적 장치를 통하여 수령</li>
+                                            </ul>
+                                        </li>
+                                        <li>전자금융거래에 관한 계약을 해지하고자 할 때에는 이용자 본인이 전자금융거래에 관한 개별약관에 정한 바에 따라 서면 또는 해당 전자적 장치에 의하여 회사에 해지신청을 하여야 한다.</li>
+                                    </ol>
+                                    <h2>제 5 조(전자금융거래의 성립)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>회사가 이용자의 전자금융거래요청을 접수하고 그 내용이 회사가 정하는 정보시스템에 의해 처리되어 저장되는 때에 성립한다.</li>
+                                        <li>회사는 제 1 항의 전자금융거래요청에 대한 접수사실과 그 처리결과를 이용자에게 즉시 알려야 한다.</li>
+                                    </ol>
+                                    <h2>제 6 조(전자지급거래의 효력발생시기 등)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>전자지급수단을 이용하여 자금을 지급하는 경우 그 지급의 효력은 다음 각 호에서 정한 때에 발생한다.
+                                            <ul class="dep2">
+                                                <li>전자자금이체의 경우 : 거래지시된 금액의 정보에 대하여 수취인의 계좌가 개설되어 있는 금융기관 계좌의 원장에 입금기록이 끝난 때</li>
+                                                <li>전자적 장치로부터 직접 현금을 출금하는 경우 : 수취인이 현금을 수령한 때</li>
+                                                <li>선불전자지급수단 및 전자화폐로 지급하는 경우 : 거래지시된 금액의 정보가 수취인이 지정한 전자적 장치에 도달한 때</li>
+                                                <li>그 밖의 전자지급수단으로 지급하는 경우 : 거래지시된 금액의 정보가 수취인의 계좌가 개설되어 있는 금융기관의 전자적 장치에 입력이 끝난 때</li>
+                                            </ul>
+                                        <li>이용자는 제 1 항 각 호의 규정에 따라 지급의 효력이 발생하기 전까지 거래지시를 철회할 수 있다.</li>
+                                        <li>제 2 항의 규정에도 불구하고 회사는 대량으로 처리하는 거래 또는 예약에 따른 거래 등의 경우에는 개별약관에서 정한 바에 따라 거래지시의 철회시기를 달리 정할 수 있다.</li>
+                                        <li>제 2 항 및 제 3 항의 규정에 의한 거래지시의 철회방법과 절차는 개별약관에서 정하는 바에 따른다.</li>
+                                    </ol>
+
+                                    <h2>제 7 조(접근매체의 발급 및 등록)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>회사가 접근매체를 발급할 때에는 이용자의 신청이 있는 경우에 한하여 본인임을 확인한 후에 발급하여야 한다. 다만, 다음 각 호의 어느 하나에 해당하는 경우에는 이용자의 신청이나 본인의 확인이 없는 때에도 발급할 수 있다.
+                                            <ul class="dep2">
+                                                <li>갱신 또는 대체발급 예정일전 6 월 이내에 사용된 적이 없는 접근매체의 경우에는 그 이용자로부터 갱신 또는 대체발급에 대하여 서면(「전자서명법」 제 2 조제 3 호의 규정에 따른 공인전자서명(이하 ‘공인전자서명’이라 한다)이 있는 전자문서를 포함한다)으로 동의를 얻은 경우</li>
+                                                <li>갱신 또는 대체발급 예정일전 6 월 이내에 사용된 적이 있는 접근매체의 경우에는 그 예정일부터 1 월 이전에 이용자에게 발급 예정사실을 알린 후 20 일 이내에 이용자로부터 이의제기가 없는 경우</li>
+                                            </ul>
+                                        <li>이용자는 전자금융거래계약을 체결하고 거래비밀번호 등을 전자적 장치를 통하여 직접 등록할 경우에는 회사가 정한 기한내에 등록하여야 한다.</li>
+                                    </ol>
+
+                                    <h2>제 8 조(접근매체의 관리)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>이용자는 전자금융거래에 필요한 접근매체를 제 3 자에게 대여, 위탁 또는 양도하지 못한다.</li>
+                                        <li>이용자는 접근매체를 본인 이외의 제 3 자에게 누설해서는 안되며, 접근매체의 도용이나 위조 또는 변조를 방지하기 위하여 충분한 주의를 기울여야 한다.</li>
+                                    </ol>
+
+                                    <h2>제 9 조(공인인증서 사용)</h2>
+                                    <div class="in-txt">이용자는 이 약관의 적용대상인 전자금융거래를 이용하는 경우 전자서명법에 의한 공인인증서를 사용하여야 한다. 다만, 회사가 지정한 거래중 다음 각 호의 경우에는 그러하지 아니할 수 있다.</div>
+                                    <ul class="ul-type h-top">
+                                        <li>본인 계약사항 및 거래내역에 대한 조회업무</li>
+                                        <li>ARS(자동응답서비스) 등과 같이 공인인증서의 설치운용이 불가능한 전자적 장치를 이용한 전자금융거래의 경우</li>
+                                        <li>전자상거래의 지급결제로서 30 만원 미만의 신용카드 결제 또는 온라인 계좌이체</li>
+                                    </ul>
+
+                                    <h2>제 10 조(이용시간)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>이용자는 회사가 정한 시간 이내에서 전자금융거래를 이용할 수 있다.</li>
+                                        <li>이용시간은 회사의 사정에 따라 달라질 수 있으며, 이용시간을 변경하고자 할 경우에는 3 영업일전 본점, 영업점 또는 게시 가능하거나 기타 이용자가 접근하기 용이한 전자적 장치를 통하여 게시한다. 다만, 시스템 장애복구, 긴급한 프로그램 보수, 외부요인 등 불가피한 경우에는 예외로 한다.</li>
+                                    </ol>
+
+                                    <h2>제 11 조(수수료)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>회사는 전자금융거래와 관련된 각종 수수료를 이용자로부터 징수할 수 있다.</li>
+                                        <li>회사는 제 1 항의 규정에 의한 수수료의 징수기준을 영업점 또는 전자적 장치에 비치 또는 게시하며, 이를 변경하고자 하는 경우 영업점 또는 전자적 장치에 변경 예정일 1 개월 전부터 1 개월 이상 비치 또는 게시한다.</li>
+                                    </ol>
+
+                                    <h2>제 12 조(이체 한도)</h2>
+                                    <div class="in-txt">이용자는 회사가 정한 방법과 기준에 따라 계좌이체 및 계좌송금에 대한 이체 최고한도를 설정할 수 있다.</div>
+
+                                    <h2>제 13 조(거래지시의 처리기준)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>회사는 이용자의 거래지시에 포함된 증권번호, 비밀번호, 이용자번호 등의 접근매체 정보를 신고된 것과 대조하여 그 일치 여부를 확인한 후에 거래지시를 처리한다.</li>
+                                        <li>이용자의 거래지시와 관련하여 회사가 수신한 전자문서는 각 문서마다 독립된 것으로 본다.</li>
+                                        <li>제 2 항의 규정에도 불구하고 거래지시 전자문서가 회사가 정한 시간내에 동일한 내용으로 반복 수신된 경우 회사는 전화 기타 이용자에게 즉시 통지할 수 있는 전자적 장치 등을 통하여 이용자의 진정한 거래지시 의사를 확인하는 절차를 거친 후 나머지 전자문서를 임의로 폐기할 수 있다.</li>
+                                    </ol>
+
+                                    <h2>제 14 조(전자금융거래의 제한)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>회사는 다음 각 호의 어느 하나에 해당하는 경우에는 해당 전자금융거래 전부를 제한할 수 있다.
+                                            <ul class="dep2">
+                                                <li>공인인증서 등의 접근매체 유효기간이 만료되었거나 공인인증서가 취소되었을 경우</li>
+                                                <li>접근매체 분실, 도난 통지를 접수한 경우</li>
+                                                <li>이용자가 지정한 은행계좌가 거래정지되거나 이용자가 회사에 알리지 않고 은행계좌를 임의변경하는 등의 사유로 보험료 수납이나 대출금, 보험금 등의 지급이 불가능한 경우</li>
+                                            </ul>
+                                        <li>회사는 제 1 항에 의해 전자금융거래를 제한한 경우에는 이용자의 거래지시가 있을 때 해당 전자적 장치을 통하여 그 사유를 알려야 한다.</li>
+                                        <li>이용자는 제 2 항의 경우에 제 7 조에 의한 공인인증서 및 보안카드 재발급, 유효기간 연장 등의 절차를 거쳐 전자금융거래를 이용할 수 있다.</li>
+                                    </ol>
+
+                                    <h2>제 15 조(거래내용의 확인)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>회사는 전자금융거래의 처리결과를 이용자가 전자적 장치를 통하여 즉시 확인할 수 있도록 하여야 한다.</li>
+                                        <li>회사는 이용자가 거래내용을 서면(전자문서를 제외한다. 이하 같다)으로 제공할 것을 요청하는 경우에는, 그 요청을 받은 날부터 2 주 이내에 거래내용에 관한 서면을 교부하여야 한다.</li>
+                                        <li>제 1 항의 규정에도 불구하고 이용자가 요청하는 거래내용을 해당 전자적 장치로도 즉시 확인을 해주는 것이 사실상 곤란할 경우 회사는 해당 거래내용을 서면(전자문서를 제외한다) 형태로 출력하여 이용자에게 교부하여야 한다.</li>
+                                        <li>이용자는 거래지시와 제 1 항에 의한 처리결과가 일치하는지 여부를 확인하여야 한다.</li>
+                                    </ol>
+
+                                    <h2>제 16 조(오류의 정정)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>이용자는 전자금융거래에 오류가 있음을 안 때에는 즉시 회사에 정정을 요구할 수 있다.</li>
+                                        <li>회사는 제 1 항의 규정에 따른 오류의 정정 요구를 받은 때에는 이를 즉시 조사하여 처리한 후 정정요구를 받은 날부터 2 주 이내에 그 처리결과를 이용자에게 알려야한다.</li>
+                                        <li>회사는 스스로 전자금융거래에 오류가 있음을 안 때에는 이를 즉시 조사하여 처리한 후 오류가 있음을 안 날부터 2 주 이내에 이용자에게 그 결과를 알려야 한다.</li>
+                                    </ol>
+
+                                    <h2>제 17 조(사고 및 장애시의 처리)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>이용자는 전자금융거래에 관한 접근매체가 도난, 분실, 도용, 위조 또는 변조된 사실을 알았거나 기타 거래절차상 비밀을 요하는 사항이 누설되었음을 알았을 때에는 지체없이 이를 회사에 알려야 한다.</li>
+                                        <li>제 1 항의 통지는 회사가 이를 접수한 즉시 그 효력이 발생한다.</li>
+                                        <li>이용자가 제 1 항의 통지를 철회할 경우에는 이용자 본인이 회사에 서면으로 신청하여야 한다.</li>
+                                        <li>회사는 천재지변, 정전, 화재, 건물훼손, 전산장애 등의 사유로 이용자의 거래지시를 처리할 수 없거나 처리가 지연될 경우 동 사실과 사유 등을 이용자에게 지체없이 통보하며, 정상적인 전자금융거래가 이루어질 수 있도록 신속하게 조치한다.</li>
+                                        <li>회사는 이용자의 요청이 있을 때에는 사고 또는 장애의 사유를 지체 없이 조사하여 그 결과를 이용자에게 알려야 한다.</li>
+                                    </ol>
+
+                                    <h2>제 18 조(계약내용 변경)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>이용자는 전자적 장치를 이용하여 회사가 정한 방법과 기준에 따라 개별금융상품의 계약내용(이하 “금융계약내용” 이라 한다) 변경을 신청할 수 있다.</li>
+                                        <li>회사는 제 1 항에 의한 금융계약내용 변경신청을 접수한 경우에는 이용자가 변경내용을 다시 확인할 수 있도록 하여야 한다.</li>
+                                        <li>회사는 금융계약내용이 변경된 경우 이용자에게 그 사실을 전자적 장치를 통해 즉시 알려야 한다.</li>
+                                    </ol>
+
+                                    <h2>제 19 조(신고사항의 변경)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>이용자는 주소ㆍ전화번호ㆍ비밀번호ㆍ전자우편주소ㆍ은행계좌 등 회사에 신고한 사항을 변경하고자 할 경우에는 전자적 장치나 회사가 정하는 기타의 방법에 의하여 변경신청을 하여야 한다.</li>
+                                        <li>제 1 항에 의한 신고사항의 변경은 회사가 신청을 접수한 즉시 효력이 발생한다.</li>
+                                    </ol>
+
+                                    <h2>제 20 조(통지의 방법)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>회사는 제 16 조, 제 17 조 제 4 항 및 제 5 항에 의한 통지를 하는 경우에는 이용자가 신고한 연락처로 전화, 서면 또는 기타 전자적 장치로 알려야 한다.</li>
+                                        <li>회사가 서면으로 통지하였을 경우에는 천재지변 등 불가항력적인 경우 이외에는 보통의 우송기간이 지났을 때 도달한 것으로 추정한다.</li>
+                                        <li>이용자가 제 19 조에 의한 통지를 하지 아니하여 회사가 발송한 서면통지가 이용자에게 연착하거나 도달하지 아니한 때에는 보통의 우송기간이 경과한 때에 도달한 것으로 본다.</li>
+                                    </ol>
+
+                                    <h2>제 21 조(통화내용의 녹음)</h2>
+                                    <div class="in-txt">회사는 거래의 정확성을 기하기 위하여 전화통화 내용을 녹음할 수 있다. 다만 녹음된 내용은 해당 거래의 분쟁이 발생할 경우의 증거자료로만 사용할 수 있으며, 이 경우 이용자는 회사에 녹음된 내용의 확인을 요구할 수 있다</div>
+
+                                    <h2>제 22 조(거래기록의 보존 및 자료 제공 등)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>회사는 전자금융거래의 내용을 추적검색하거나 그 내용에 오류가 발생할 경우에 이를 확인하거나 정정할 수 있는 기록을 생성하여 전자금융거래의 성립 시점으로부터 5 년의 범위 안에서 보존하여야 한다.</li>
+                                        <li>제 1 항의 규정에 따라 회사가 보존하여야 하는 기록의 종류, 보존방법 및 보존기간은 전자금융거래법시행령 제 12 조를 준용한다.</li>
+                                        <li>회사는 이용자의 요청이 있을 경우 「금융실명거래 및 비밀보장에 관한 법률」 등 관계 법률에 저촉되지 않는 범위 내에서 회사가 보존관리하고 있는 전자금융거래와 관련된 기록 및 자료를 당해 이용자에게 제공하여야 한다.</li>
+                                    </ol>
+
+                                    <h2>제 23 조(손실부담 및 면책)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>회사는 접근매체의 위조나 변조로 발생한 사고, 계약체결 또는 거래지시의 전자적 전송이나 처리과정에서 발생한 사고, 전자금융거래를 위한 전자적 장치 또는 「정보통신망 이용촉진 및 정보보호 등에 관한 법률」 제 2 조 제 1 항 제 1 호에 따른 정보통신망에 침입하여 거짓이나 그 밖의 부정한 방법으로 획득한 접근매체의 이용으로 발생한 사고로 인하여 이용자에게 손해가 발생한 경우에는 그 손해를 배상할 책임을 진다.</li>
+                                        <li>제 1 항의 규정에도 불구하고 회사는 다음 각호에 해당하는 경우에는 이용자에게 손해가 생기더라도 책임의 전부 또는 일부를 지지 아니한다.
+                                            <ul class="dep2">
+                                                <li>이용자가 접근매체를 제 3 자에게 대여하거나 사용을 위임하거나 양도 또는 담보 목적으로 제공한 경우</li>
+                                                <li>제 3 자가 권한 없이 이용자의 접근매체를 이용하여 전자금융거래를 할 수 있음을 알았거나 쉽게 알 수 있었음에도 불구하고 이용자가 자신의 접근매체를 누설 또는 노출하거나 방치한 경우</li>
+                                                <li>법인(「중소기업기본법」제 2 조제 2 항에 의한 소기업을 제외한다)인 이용자에게 손해가 발생한 경우로 회사가 사고를 방지하기 위하여 보안절차를 수립하고 이를 철저히 준수하는 등 합리적으로 요구되는 충분한 주의의무를 다한 경우</li>
+                                            </ul>
+                                        </li>
+                                        <li>이용자로부터 접근매체의 분실이나 도난의 통지를 받은 경우에는 회사는 그 때부터 제 3 자가 그 접근매체를 사용함으로 인하여 이용자에게 발생한 손해를 보상한다.</li>
+                                    </ol>
+
+                                    <h2>제 24 조(이용자정보에 대한 비밀보장)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>회사는 관계법령에서 정한 경우를 제외하고 전자금융거래를 수행함에 있어서 알게 된 정보를 이용자 본인의 동의 없이는 타인에게 제공할 수 없다.</li>
+                                        <li>회사는 이용자의 개인정보가 도난, 분실, 변조 및 유출되지 않도록 전자적 장치에 대한 보안관리에 주의를 기울여야 하며, 회사의 관리소홀로 인한 이용자 정보의 도난, 분실, 변조 및 유출시에는 회사가 책임을 진다.</li>
+                                    </ol>
+
+                                    <h2>제 25 조(약관의 명시 및 변경 등)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>회사가 이 약관을 변경하고자 할 때에는 변경사유, 변경내용 및 적용일자 등을 명시하여 변경일 기준 1 개월전에 게시 가능한 전자적 장치에 게시하고 이용자에게 통지하여야 한다. 다만, 법령의 개정이나 제도의 개선 등으로 인하여 긴급히 이 약관을 변경할 경우에는 즉시 이를 게시하고 통지한다.</li>
+                                        <li>약관변경의 내용이 이용자에게 불리할 경우에는 변경일 기준 1 개월 전에 제 1 항에 의한 게시와 통지 외에 2 개 이상의 일간 신문에 공고하여야 한다.</li>
+                                        <li>회사는 법령의 개정으로 인하여 긴급하게 약관을 변경한 때에는 변경된 약관을 전자적 장치에 최소 1 월 이상 게시하고 이용자에게 통지하는 외에 2 개 이상의 일간신문에 공고하여야 한다.</li>
+                                        <li>이용자는 제 1 항 및 제 2 항의 고지 후 변경약관 시행일 전영업일까지 전자적 장치나 기타 방법에 의한 통지로 전자금융거래 계약을 해지할 수 있으며, 이 기간내에 이용자의 서면에 의한 이의가 회사에 도달하지 않으면 이용자가 이를 승인한 것으로 본다.</li>
+                                    </ol>
+
+                                    <h2>제 26 조(약관적용의 우선순위)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>회사와 이용자 사이에 개별적으로 합의한 사항이 이 약관에서 정한 사항과 다를 때에는 그 합의사항을 이 약관에 우선하여 적용한다.</li>
+                                        <li>전자금융거래에 관하여 이 약관에서 정하지 않은 사항에 대하여는 당해 개별약관 등을 적용한다.</li>
+                                    </ol>
+
+                                    <h2>제 27 조(약관의 명시 및 변경 등)</h2>
+                                    <ol class="ol-type numb">
+                                        <li>이용자는 전자금융거래의 처리에 관하여 이의가 있을 때에는 회사의 분쟁처리기구에 그 해결을 요구하거나 금융감독원 금융분쟁조정위원회, 한국소비자보호원 소비자분쟁조정위원회 등을 통하여 분쟁조정을 신청할 수 있다.</li>
+                                        <li>이용자가 회사의 본점이나 영업점 또는 회사의 분쟁처리기구에 이의를 제기한 경우 회사는 15 일 이내에 이에 대한 조사 또는 처리결과를 이용자에게 알려야 한다.</li>
+                                        <li>회사는 손해배상 등 분쟁처리를 위한 분쟁처리책임자 및 담당자를 지정하고, 그 연락처를 관련 인터넷 홈페이지 등을 통하여 이용자가 쉽게 알 수 있도록 하여야 한다.</li>
+                                    </ol>
+
+                                    <h2>제 28 조(준거법)</h2>
+                                    <div class="in-txt">이 약관에서 정하지 아니한 사항은 대한민국법령을 적용합니다.</div>
+
+                                    <h2>부칙</h2>
+                                    <ul class="ul-type">
+                                        <li>제1조(시행일) 이 약관은 2007년 7월 1일부터 시행한다.</li>
+                                        <li>제2조(경과조항) 이 약관은 약관시행일 이후의 전자금융거래에 적용된다.</li>
+                                    </ul>
+                                    <h2>[전자금융거래 분쟁처리 책임자]</h2>
+                                    <ul class="ul-type">
+                                        <li>성명 : 서 민</li>
+                                        <li>직책 : 대표</li>
+                                        <li>이메일 : info@insurobo.co.kr</li>
+                                        <li>전화번호 : 070-4126-3333</li>
+                                    </ul>
+                                    <h2>[전자금융거래 분쟁처리 담당자]</h2>
+                                    <ul class="ul-type">
+                                        <li>성명 : 이청수</li>
+                                        <li>직책 : 사원</li>
+                                        <li>이메일 : info@insurobo.co.kr</li>
+                                        <li>전화번호 : 070-4126-3333</li>
+                                    </ul>
+                                    <ul class="dep3 h-top2">
+                                        <li>전자금융거래이용약관 시행일자 : 2007.07.01.</li>
+                                        <li>전자금융거래이용약관 최종변경일자 : 2017.01.17.</li>
+                                    </ul>
+                                    <ul class="ul-type h-top2">
+                                        <li>소비자 권익보호에 관한 사항
+                                            <div class="type-in">본 동의를 거부하시는 경우에는 보험계약 체결·이행등이 불가능하며, 본 동의서에 의한 개인(신용)정보조회는 귀하의 신용등급에 영향을 주지 않습니다.</div>
+                                        </li>
+                                        <li>예금자보호안내
+                                            <div class="type-in">이 보험계약은 예금자보호법에 따라 예금보험공사가 보호하되, 보호 한도는 해당 보험회사에 있는 귀하의 모든 예금보호대상 금융상품의 해약환급금(또는 만기시 보험금이나 사고보험금에 기타지급금을 합하여 1인당 “최고 5천만원”이며, 초과하는 나머지 금액은 보호되지 않습니다.</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- //content -->
+                    </div>
+                    <!-- // container -->
+
+                </div>
+                <!-- //wrap -->
+              </body>
+              </html>
+                `;
+  return html;
+};
+
+export const termsTermsf1 = () => {
+  const html = `
+                  <html>
+                  <head>
+                  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                  <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                  <style type="text/css">
+                    ${commonCss}
+                    ${defaultCss}
+                  </style>
+                  </head>
+                  <body>
+                  <!-- wrap -->
+                  <div id="wrap" class="pop">
+                  
+                      <!-- container -->
+                      <div id="container">
+                          <!-- content -->
+                          <div id="content">
+                              <div class="cont-inner">                
+                                  <div class="term">
+                                      <h1 class="first">단체보험 가입 동의내용</h1>
+                                      <h2>제1조 (목적)</h2>
+                                      <div class="in-txt">이 규약은 ㈜밸류어블인 및 ㈜인슈로보(이하 “회사”라 합니다)가 메리츠손해보험회사(이하 "보험사"라 합니다)와 함께 회원들을 위하여 제공하는 서비스 이용에 관하여 회원들간 협약사항을 규정함을 그 목적으로 합니다.</div>
+                                      
+                                      <h2>제2조 (회원자격)</h2>
+                                      <ol class="ol-type numb">
+                                          <li>회사가 운영하는 서비스의 이용약관에 동의한 회원은 이 협약의 당사자가 됩니다.</li>
+                                          <li>회원의 자격득실 등에 관하여는 각 이용약관에서 정하는 바에 따릅니다.</li>
+                                      </ol>
+                                      
+                                      <h2>제3조 (단체보험가입 청약 등)</h2>
+                                      <ol class="ol-type numb">
+                                          <li>회사는 회원을 위하여 ㈜밸류어블인이 계약자로서 보험사와 단체보험계약을 체결할 수 있습니다.</li>
+                                          <li>㈜밸류어블인을 계약자로 하는 단체보험계약에 피보험자로 가입하기를 희망하는 회원은 소정의 절차에 따라 보험가입신청(보험청약)을 합니다.</li>
+                                          <li>회원 본인은 회사의 회원을 대상으로 가입하는 단체주택화재보험을 체결함에 있어 회원을 대신하여 ㈜밸류어블인이 일괄적으로 가입하는 것에 동의합니다.</li>
+                                          <li>보험청약을 하고자 하는 회원은 보험약관, 알아두실 사항 등을 충분히 읽고 이해한 후 청약을 하며, 보험사와 회사가 고지를 요구하는 사항에 대하여 성실히 답합니다.</li>
+                                          <li>회원이 가입하는 보험의 수익자는 사망시 – 법적상속인, 그외 –보험가입자(피보험자) 본인이 됩니다.</li>
+                                          <li>회사가 계약한 단체주택화재보험에 관하여 기타 이 규약에서 정하지 않은 사항은 회사가 보험사와 약정한 바에 따릅니다.</li>
+                                      </ol>
+                                      
+                                      <h2>제4조 (소비자 권익보호에 관한 사항)</h2>
+                                      <div class="in-txt">본 동의를 거부하시는 경우에는 보험계약 등 정상적인 서비스 제공이 불가능하며 본 동의서에 의한 개인(신용)정보 조회는 귀하의 신용 등급에 영향을 주지 않습니다. 또한, 동의하시더라도 당사 홈페이지 및 고객센터(070-4126-3333)로 보험계약 상담 목적의 연락에 대한 중단을 요청하실 수 있습니다.</div>
+                                      
+                                      <h2>제5조 (기타사항)</h2>
+                                      <ol class="ol-type numb">
+                                          <li>회사의 기존 서비스 변경, 새로운 서비스 출시, 법령의 개폐, 회원 요구 등의 사정이 있어 이 규약을 변경할 필요가 있는 경우, 회사의 회원들을 위하여 규약을 즉시 변경합니다. 그리고 변경된 규약은 그 즉시 효력을 발합니다.</li>
+                                          <li>회사는 규약변경을 위해 필요한 경우 회원들에게 의견을 구할 수 있으며, 회원들은 이에 성실히 응합니다.</li>
+                                          <li>규약변경을 희망하는 회원은 회사의 그 구체적 변경안과 이유를 제시하여 규약변경을 제안할 수 있습니다. 이에 대하여는 회사는 전항에 따라 처리합니다.</li>
+                                          <li>회사는 단체보험가입 등 규약에 직접적으로 영향을 받는 서비스를 이용하는 회원에게는 개별적으로 규약적용에 부동의 하는지 의견을 구합니다. 이때 규약에 부동의 하는 회원은 해당서비스를 이용하지 않거나, 회원 탈퇴를 할 수 있습니다.</li>
+                                      </ol>
+                                      
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- //content -->
+                      </div>
+                      <!-- // container -->
+                  
+                  </div>
+                  <!-- //wrap -->
+                  </body>
+                  </html>
+                    `;
+  return html;
+};

@@ -8,6 +8,11 @@ export { default as HouseInfoDetail } from './HouseFire/HouseInfoDetail';
 export { default as HouseEvaluation } from './HouseFire/HouseEvaluation';
 export { default as HouseResult } from './HouseFire/HouseResult';
 export { default as HouseTermsUse } from './HouseFire/HouseTermsUse';
+export { default as HouseConfirm } from './HouseFire/HouseConfirm';
+export { default as HouseContractTerms } from './HouseFire/HouseContractTerms';
+export { default as HousePay } from './HouseFire/HousePay';
+export { default as HouseFinal } from './HouseFire/HouseFinal';
+
 export { default as Join } from './Join';
 export { default as JoinIndividual } from './Join/JoinIndividual';
 export { default as JoinBusiness } from './Join/JoinBusiness';
@@ -20,3 +25,4 @@ export { default as PasswordInfo } from './Profile/PasswordInfo';
 export { default as BusinessInfo } from './Profile/BusinessInfo';
 export { default as Secession } from './Profile/Secession';
 export { default as Verification } from './Verification';
+export { default as Pay } from './Pay';

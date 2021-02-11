@@ -1,5 +1,6 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 import { ActionType, ReducerType } from '@app/hooks/useAsync/useAsyncTypes';
+import { handleApiError } from '@app/lib';
 import { useReducer, useEffect } from 'react';
 
 function reducer(state, action: ActionType): ReducerType {
@@ -40,6 +41,7 @@ export default function useAsync(callback, deps: any = [], skip = false) {
       const data = await callback();
       dispatch({ type: 'SUCCESS', data });
     } catch (e) {
+      handleApiError(e.response);
       dispatch({ type: 'ERROR', error: e });
       console.log(e, 'error');
     }

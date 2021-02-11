@@ -1,6 +1,16 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { FindEmail, Join, JoinSuccess, FindPassword, TermsModal, Profile, Secession, Verification } from '@app/screens';
+import {
+  FindEmail,
+  Join,
+  JoinSuccess,
+  FindPassword,
+  TermsModal,
+  Profile,
+  Secession,
+  Verification,
+  Pay,
+} from '@app/screens';
 import { BackButton, CloseButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';
 import Login from '@app/screens/Login';
@@ -177,6 +187,33 @@ function RootStack() {
       <Stacks.Screen
         name="VERIFICATION"
         component={Verification}
+        options={{
+          headerLeft: () => null,
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              본인인증
+            </Typhograph>
+          ),
+          headerRight: () => <CloseButton onPress={() => navigation.goBack()} />,
+          title: '',
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+
+      <Stacks.Screen
+        name="PAY"
+        component={Pay}
         options={{
           headerLeft: () => null,
           headerTitle: () => (

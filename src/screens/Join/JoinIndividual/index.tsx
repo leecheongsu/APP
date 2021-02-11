@@ -245,13 +245,13 @@ function JoinIndividualInfo({ state, inputState, onValueChange }) {
             </Typhograph>
           </InputLabel>
           <InputBox2>
-            <InputItem style={{ width: '50%' }}>
+            <InputItem style={{ width: '49%' }}>
               <DefaultInput {...inputState.idNumber} keyboardType="numeric" maxLength={6} />
             </InputItem>
             <Typhograph type="NOTO" style={{ marginLeft: 10, marginRight: 10 }} lineheight={20}>
               -
             </Typhograph>
-            <InputItem style={{ width: 30 }}>
+            <InputItem style={{ width: 30, marginRight: 2 }}>
               <Input
                 {...inputState.sexNumber}
                 blurOnSubmit={false}
@@ -272,7 +272,7 @@ function JoinIndividualInfo({ state, inputState, onValueChange }) {
               />
             </InputItem>
             <Typhograph type="NOTO" color="GRAY3">
-              ● ● ● ● ● ●
+              ●●●●●●
             </Typhograph>
           </InputBox2>
         </TextInputBox>

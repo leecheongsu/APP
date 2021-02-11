@@ -1,6 +1,17 @@
 import React, { useEffect, useReducer, useRef } from 'react';
 import { floorPrice, screenWidth } from '@app/lib';
-import { HouseAddress, HouseEvaluation, HouseResult, HouseTermsUse, JoinType } from '@app/screens';
+import {
+  HouseAddress,
+  HouseConfirm,
+  HouseContractTerms,
+  HouseEvaluation,
+  HouseFinal,
+  HousePay,
+  HousePayWay,
+  HouseResult,
+  HouseTermsUse,
+  JoinType,
+} from '@app/screens';
 import { ColorName } from 'styled-components';
 import HouseFirePresenter from './HouseFirePresenter';
 import { useInput } from '@app/hooks';
@@ -12,6 +23,75 @@ import Toast from 'react-native-simple-toast';
 import HouseInputUser from '@app/screens/HouseFire/HouseInputUser';
 import { useGlobalState } from '@app/context';
 import moment from 'moment';
+import {
+  termsTermsa1,
+  termsTermsa2,
+  termsTermsa3,
+  termsTermsa4,
+  termsTermsa5,
+  termsTermsb1,
+  termsTermsb2,
+  termsTermsb3,
+  termsTermsc1,
+  termsTermsc2,
+  termsTermsc3,
+  termsTermsc4,
+  termsTermsc5,
+  termsTermsf1,
+} from '@app/lib/html';
+
+export type TermsNames =
+  | string
+  | 'TERMSA_1' // 개인(신용)정보 사전/수집이용에 관한 사항(필수)
+  | 'TERMSA_2' // 개인(신용)정보의 조회에 관한사항(필수)
+  | 'TERMSA_3' // 개인 (신용)정보의 제공에 관한 사항(필수)
+  | 'TERMSA_4' // 민감정보 및 고유 식별정보의 처리에 관한 사항(필수)
+  | 'TERMSA_5' // 보험가입동의(필수)
+  | 'TERMSB_1' // 개인(신용)정보의 수집/이용에 관한 사항
+  | 'TERMSB_2' // 개인(신용)정보의제공에 관한 사항
+  | 'TERMSB_3' // 개인(신용)정보 조회에 대한 사항(선택)
+  | 'TERMSC_1' // 전자 금융거래 이용약관 동의(필수)
+  | 'TERMSC_2' // 개인(신용)정보의 수집이용조회및 제공동의(필수)
+  | 'TERMSC_3' // 개인(신용)정보제공에 대한 사항(필수)
+  | 'TERMSC_4' // 민감정보(필수)
+  | 'TERMSC_5' // 전자금융 거래약관(필수)
+  | 'TERMSD_1' //보험상품 가입시 확인사항
+  | 'TERMSD_2' // 상품보장 내용 설명
+  | 'TERMSD_3' // 보험약관 확인
+  | 'TERMSE_1' // 기타 설명 (필수)
+  | 'TERMSE_2' // 해지사고접수안내 (필수)
+  | 'TERMSE_3' // 통신수단 해지 동의 (필수)
+  | 'TERMSF_1' // 단체 보험 가입시 동의 사항 - 단체 보험규약서(필수)
+  | 'TERMSG_1'; // 전자서명에 대한동의
+export type TermsChildTypes = {
+  title: string;
+  name: TermsNames | string;
+  isChecked: number;
+  html: any;
+};
+export type TermsTypes = {
+  TERMSA_1: TermsChildTypes;
+  TERMSA_2: TermsChildTypes;
+  TERMSA_3: TermsChildTypes;
+  TERMSA_4: TermsChildTypes;
+  TERMSA_5: TermsChildTypes;
+  TERMSB_1: TermsChildTypes;
+  TERMSB_2: TermsChildTypes;
+  TERMSB_3: TermsChildTypes;
+  TERMSC_1: TermsChildTypes;
+  TERMSC_2: TermsChildTypes;
+  TERMSC_3: TermsChildTypes;
+  TERMSC_4: TermsChildTypes;
+  TERMSC_5: TermsChildTypes;
+  TERMSD_1: TermsChildTypes;
+  TERMSD_2: TermsChildTypes;
+  TERMSD_3: TermsChildTypes;
+  TERMSE_1: TermsChildTypes;
+  TERMSE_2: TermsChildTypes;
+  TERMSE_3: TermsChildTypes;
+  TERMSF_1: TermsChildTypes;
+  TERMSG_1: TermsChildTypes;
+};
 
 export type HouseFireStateName =
   | 'stepperTitle' //step 타이틀 네임
@@ -40,6 +120,10 @@ export type HouseFireStateName =
   | 'owner' //보험목적물 소유구분
   | 'contractInsuInfo' //계약정보
   | 'insFrom' // 보험시작일
+  | 'termsModal'
+  | 'terms' // 이용약관
+  | 'termsName' //선택한 이용약관
+  | 'termsHtml' // 이용약관 html
   | 'lng'; //로드뷰를 표시하기위한 lag
 
 export type HouseFireStateTypes = {
@@ -55,7 +139,19 @@ export type HouseFireStateTypes = {
   addressErrorMessage: '';
   joinType: Array<{ title: string; value: 'T' | 'S' }>;
   houseStep: {
-    id: 'joinType' | 'address' | 'info' | 'evaluation' | 'priceConfirm' | 'InputUser' | 'HouseTermsUse';
+    id:
+      | 'joinType'
+      | 'address'
+      | 'info'
+      | 'evaluation'
+      | 'priceConfirm'
+      | 'InputUser'
+      | 'HouseTermsUse'
+      | 'HouseConfirm'
+      | 'HouseContractTerms'
+      | 'HousePayWay'
+      | 'HousePay'
+      | 'HouseFinal';
     title: string;
     backgroundcolor: ColorName;
   }[];
@@ -74,12 +170,18 @@ export type HouseFireStateTypes = {
   owner: 'o' | 'r';
   insFrom: any;
   dancheJoin: 'Y' | 'N';
+  termsModal: boolean;
+  terms: TermsTypes;
+  termsName: TermsNames | string;
+  termsHtml: any;
 };
 export type HouseFireInputStateTypes = {
   searchInput: any;
 };
 
-type ActionTypes = { type: 'CHANGE'; name: HouseFireStateName; value: any };
+type ActionTypes =
+  | { type: 'CHANGE'; name: HouseFireStateName; value: any }
+  | { type: 'TERMS_CHANGE'; name: TermsNames; value: any };
 
 function reducer(state: HouseFireStateTypes, action: ActionTypes) {
   switch (action.type) {
@@ -88,8 +190,148 @@ function reducer(state: HouseFireStateTypes, action: ActionTypes) {
         ...state,
         [action.name]: action.value,
       };
+    case 'TERMS_CHANGE':
+      return {
+        ...state,
+        terms: {
+          ...state.terms,
+          [action.name]: {
+            ...state.terms[action.name],
+            isChecked: action.value,
+          },
+        },
+      };
   }
 }
+
+const terms = {
+  TERMSA_1: {
+    name: 'TERMSA_1',
+    title: '개인 (신용)정보의 사전 수집/이용에 관한 사항',
+    isChecked: 0,
+    html: termsTermsa1(),
+  },
+  TERMSA_2: {
+    name: 'TERMSA_2',
+    title: '개인 (신용)정보의 조회에 관한사항',
+    isChecked: 0,
+    html: termsTermsa2(),
+  },
+  TERMSA_3: {
+    name: 'TERMSA_3',
+    title: '개인 (신용)정보의 제공에 관한사항',
+    isChecked: 0,
+    html: termsTermsa3(),
+  },
+  TERMSA_4: {
+    name: 'TERMSA_4',
+    title: '민감정보 및 고유식별정보의 처리에 관한 사항',
+    isChecked: 0,
+    html: termsTermsa4(),
+  },
+  TERMSA_5: {
+    name: 'TERMSA_5',
+    title: '보험가입동의',
+    isChecked: 0,
+    html: termsTermsa5(),
+  },
+  TERMSB_1: {
+    name: 'TERMSB_1',
+    title: '개인 (신용)정보의 수집/이용에 관한 사항',
+    isChecked: 0,
+    html: termsTermsb1(),
+  },
+  TERMSB_2: {
+    name: 'TERMSB_2',
+    title: '개인 (신용)정보의 제공에 관한 사항',
+    isChecked: 0,
+    html: termsTermsb2(),
+  },
+  TERMSB_3: {
+    name: 'TERMSB_3',
+    title: '개인 (신용)정보 조회에 대한 사항',
+    isChecked: 0,
+    html: termsTermsb3(),
+  },
+  TERMSC_1: {
+    name: 'TERMSC_1',
+    title: '개인(신용)정보의 수집/이용에 관한 사항',
+    isChecked: 0,
+    html: termsTermsc1(),
+  },
+  TERMSC_2: {
+    name: 'TERMSC_2',
+    title: '개인(신용)정보의 조회에 관한 사항',
+    isChecked: 0,
+    html: termsTermsc2(),
+  },
+  TERMSC_3: {
+    name: 'TERMSC_3',
+    title: '개인(신용)정보 제공에 대한 사항',
+    isChecked: 0,
+    html: termsTermsc3(),
+  },
+  TERMSC_4: {
+    name: 'TERMSC_4',
+    title: '민감정보 및 고유식별정보의 처리에 관한 사항',
+    isChecked: 0,
+    html: termsTermsc4(),
+  },
+  TERMSC_5: {
+    name: 'TERMSC_5',
+    title: '전자금융거래 이용약관 동의',
+    isChecked: 0,
+    html: termsTermsc5(),
+  },
+  TERMSD_1: {
+    name: 'TERMSD_1',
+    title: '보험상품 가입시 확인사항',
+    isChecked: 0,
+    html: termsTermsa1(),
+  },
+  TERMSD_2: {
+    name: 'TERMSD_2',
+    title: '상품보장 내용 설명',
+    isChecked: 0,
+    html: termsTermsa1(),
+  },
+  TERMSD_3: {
+    name: 'TERMSD_3',
+    title: '보험약관 확인',
+    isChecked: 0,
+    html: termsTermsa1(),
+  },
+  TERMSE_1: {
+    name: 'TERMSE_1',
+    title: '기타설명',
+    isChecked: 0,
+    html: termsTermsa1(),
+  },
+  TERMSE_2: {
+    name: 'TERMSE_2',
+    title: '해지 사고 접수 안내',
+    isChecked: 0,
+    html: termsTermsa1(),
+  },
+  TERMSE_3: {
+    name: 'TERMSE_3',
+    title: '통지수단 해지 동의',
+    isChecked: 0,
+    html: termsTermsa1(),
+  },
+  TERMSF_1: {
+    name: 'TERMSF_1',
+    title: '단체보험규약서',
+    isChecked: 0,
+    html: termsTermsf1(),
+  },
+  TERMSG_1: {
+    name: 'TERMSG_1',
+    title: '자필서명을 전자서명 [휴대본본인인증]으로 대체함에 동의하십니까?',
+    isChecked: 0,
+    html: termsTermsa1(),
+  },
+};
 
 const initialState: HouseFireStateTypes = {
   stepperTitle: '가입유형',
@@ -120,6 +362,10 @@ const initialState: HouseFireStateTypes = {
   dancheJoin: 'N',
   owner: 'o',
   contractInsuInfo: {},
+  terms,
+  termsModal: false,
+  termsName: '',
+  termsHtml: '',
   insFrom: moment(new Date()).format('YYYY-MM-DD'),
   houseStep: [
     {
@@ -157,6 +403,26 @@ const initialState: HouseFireStateTypes = {
       title: '이용약관',
       backgroundcolor: 'SOFTGRAY',
     },
+    {
+      id: 'HouseConfirm',
+      title: '이용약관',
+      backgroundcolor: 'SOFTGRAY',
+    },
+    {
+      id: 'HouseContractTerms',
+      title: '청약 확인약관 동의',
+      backgroundcolor: 'SOFTGRAY',
+    },
+    {
+      id: 'HousePay',
+      title: '결제',
+      backgroundcolor: 'SOFTGRAY',
+    },
+    {
+      id: 'HouseFinal',
+      title: '결제완료',
+      backgroundcolor: 'SOFTGRAY',
+    },
   ],
 };
 
@@ -174,15 +440,15 @@ export default function HouseFireContainer() {
     dispatch({ type: 'CHANGE', name, value });
   };
 
+  const onChangeTermsState = (name: TermsNames, value: any) => {
+    dispatch({ type: 'TERMS_CHANGE', name, value });
+  };
+
   //가입유형 다음 버튼
   const handleJoinTypeNextButton = () => {
-    if (state.selectType === 0) {
-      Toast.show('가입유형을 선택해 주세요.');
-    } else {
-      if (state.stepNumber !== state.houseStep.length) {
-        scrollRef.current?.scrollTo({ x: screenWidth() * state.stepNumber, animated: true });
-        onChangeState('stepNumber', state.stepNumber + 1);
-      }
+    if (state.stepNumber !== state.houseStep.length) {
+      scrollRef.current?.scrollTo({ x: screenWidth() * state.stepNumber, animated: true });
+      onChangeState('stepNumber', state.stepNumber + 1);
     }
   };
 
@@ -191,7 +457,11 @@ export default function HouseFireContainer() {
     Keyboard.dismiss();
     switch (state.stepNumber) {
       case 1: {
-        handleJoinTypeNextButton();
+        if (state.selectType === 0) {
+          Toast.show('가입유형을 선택해 주세요.');
+        } else {
+          handleJoinTypeNextButton();
+        }
         return null;
       }
       case 3: {
@@ -218,7 +488,22 @@ export default function HouseFireContainer() {
         handleJoinTypeNextButton();
         return null;
       }
-
+      case 7: {
+        handleJoinTypeNextButton();
+        return null;
+      }
+      case 8: {
+        handleJoinTypeNextButton();
+        return null;
+      }
+      case 9: {
+        handleJoinTypeNextButton();
+        return null;
+      }
+      case 10: {
+        handleJoinTypeNextButton();
+        return null;
+      }
       // default:
       //   handleJoinTypeNextButton();
       //   return null;
@@ -273,9 +558,41 @@ export default function HouseFireContainer() {
     return floorPrice(result);
   };
 
+  //terms모달 승인
+  const onClickTermsModalAgree = () => {
+    onChangeTermsState(state.termsName, 1);
+    onChangeState('termsModal', false);
+    onChangeState('termsName', '');
+  };
+
+  //terms모달 오픈
+  const onClickTermsModalOpen = (name, html) => {
+    onChangeState('termsName', name);
+    onChangeState('termsModal', true);
+    onChangeState('termsHtml', html);
+  };
+
+  //terms 모두동의
+  const onClickAllCheck = (list) => {
+    list?.map((item) => {
+      onChangeTermsState(item, 1);
+    });
+  };
+
   //houseStep 스텝별 컴퍼넌트 셋팅
   const returnComponent = (
-    id: 'joinType' | 'address' | 'info' | 'evaluation' | 'priceConfirm' | 'InputUser' | 'HouseTermsUse'
+    id:
+      | 'joinType'
+      | 'address'
+      | 'info'
+      | 'evaluation'
+      | 'priceConfirm'
+      | 'InputUser'
+      | 'HouseTermsUse'
+      | 'HouseConfirm'
+      | 'HouseContractTerms'
+      | 'HousePay'
+      | 'HouseFinal'
   ) => {
     switch (id) {
       case 'joinType':
@@ -341,6 +658,70 @@ export default function HouseFireContainer() {
             onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
             handleNextButton={handleNextButton}
+            onChangeTermsState={onChangeTermsState}
+            onClickTermsModalAgree={onClickTermsModalAgree}
+            onClickTermsModalOpen={onClickTermsModalOpen}
+            onClickAllCheck={onClickAllCheck}
+          />
+        );
+      case 'HouseConfirm':
+        return (
+          <HouseConfirm
+            state={state}
+            onChangeState={onChangeState}
+            handlePreviousButton={handlePreviousButton}
+            handleNextButton={handleNextButton}
+            onChangeTermsState={onChangeTermsState}
+            onClickTermsModalAgree={onClickTermsModalAgree}
+            onClickTermsModalOpen={onClickTermsModalOpen}
+            onClickAllCheck={onClickAllCheck}
+            resultBuildPrice={resultBuildPrice}
+            resultGajePrice={resultGajePrice}
+          />
+        );
+      case 'HouseContractTerms':
+        return (
+          <HouseContractTerms
+            state={state}
+            onChangeState={onChangeState}
+            handlePreviousButton={handlePreviousButton}
+            handleNextButton={handleNextButton}
+            onChangeTermsState={onChangeTermsState}
+            onClickTermsModalAgree={onClickTermsModalAgree}
+            onClickTermsModalOpen={onClickTermsModalOpen}
+            onClickAllCheck={onClickAllCheck}
+            resultBuildPrice={resultBuildPrice}
+            resultGajePrice={resultGajePrice}
+          />
+        );
+      case 'HousePay':
+        return (
+          <HousePay
+            state={state}
+            onChangeState={onChangeState}
+            handlePreviousButton={handlePreviousButton}
+            handleNextButton={handleNextButton}
+            onChangeTermsState={onChangeTermsState}
+            onClickTermsModalAgree={onClickTermsModalAgree}
+            onClickTermsModalOpen={onClickTermsModalOpen}
+            onClickAllCheck={onClickAllCheck}
+            resultBuildPrice={resultBuildPrice}
+            resultGajePrice={resultGajePrice}
+          />
+        );
+      case 'HouseFinal':
+        return (
+          <HouseFinal
+            state={state}
+            onChangeState={onChangeState}
+            handlePreviousButton={handlePreviousButton}
+            handleNextButton={handleNextButton}
+            onChangeTermsState={onChangeTermsState}
+            onClickTermsModalAgree={onClickTermsModalAgree}
+            onClickTermsModalOpen={onClickTermsModalOpen}
+            onClickAllCheck={onClickAllCheck}
+            resultBuildPrice={resultBuildPrice}
+            resultGajePrice={resultGajePrice}
           />
         );
     }

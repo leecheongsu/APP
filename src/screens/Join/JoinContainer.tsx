@@ -4,6 +4,7 @@ import { useInput } from '@app/hooks';
 import JoinPresenter from './JoinPresenter';
 import Toast from 'react-native-simple-toast';
 import { useNavigation } from '@react-navigation/native';
+import { handleApiError } from '@app/lib';
 
 export type JoinStateName =
   | 'selectType'
@@ -133,7 +134,7 @@ export default function JoinContainer() {
         }
       })
       .catch((e) => {
-        console.log(e.response);
+        handleApiError(e.response);
         if (e.response.status === 409) {
           Toast.show('가입된 이메일주소가 있습니다.');
         } else {
