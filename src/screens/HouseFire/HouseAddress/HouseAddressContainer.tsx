@@ -11,6 +11,7 @@ import { useAsync } from '@app/hooks';
 import { handleApiError, sortArray } from '@app/lib';
 import Toast from 'react-native-simple-toast';
 import { useGlobalDispatch } from '@app/context';
+import { EmptyLayout } from '@app/layout';
 
 type HouseAddressContainerTypes = {
   state: HouseFireStateTypes;
@@ -197,18 +198,21 @@ export default function HouseAddressContainer({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getAddress]);
-
-  return (
-    <HouseAddressPresenter
-      state={state}
-      inputState={inputState}
-      submitSearchAddress={submitSearchAddress}
-      loading={getAddress.loading || state.loading}
-      onChangeState={onChangeState}
-      SelectAddress={SelectAddress}
-      handleSelectDong={handleSelectDong}
-      handleSelectDetail={handleSelectDetail}
-      submitAddressDetail={submitAddressDetail}
-    />
-  );
+  if (state.stepNumber === 2) {
+    return (
+      <HouseAddressPresenter
+        state={state}
+        inputState={inputState}
+        submitSearchAddress={submitSearchAddress}
+        loading={getAddress.loading || state.loading}
+        onChangeState={onChangeState}
+        SelectAddress={SelectAddress}
+        handleSelectDong={handleSelectDong}
+        handleSelectDetail={handleSelectDetail}
+        submitAddressDetail={submitAddressDetail}
+      />
+    );
+  } else {
+    return <EmptyLayout />;
+  }
 }

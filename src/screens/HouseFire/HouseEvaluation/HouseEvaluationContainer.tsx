@@ -1,3 +1,4 @@
+import { EmptyLayout } from '@app/layout';
 import { floorPrice, sortArray2 } from '@app/lib';
 import React, { useEffect, useReducer } from 'react';
 import HouseEvaluationPresenter from './HouseEvaluationPresenter';
@@ -210,22 +211,25 @@ export default function HouseEvaluationContainer({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleNextButton, handlePreviousButton]);
-
-  return (
-    <HouseEvaluationPresenter
-      state={state}
-      handlePreviousButton={handlePreviousButton}
-      handleNextButton={handleNextButton}
-      openInfoModal={openInfoModal}
-      onChangeState={onChangeState}
-      clickCheckBox={clickCheckBox}
-      resultPrice={resultPrice}
-      eachPrice={eachPrice}
-      clickDancheButton={clickDancheButton}
-      resultBuildPrice={resultBuildPrice}
-      evaluationState={evaluationState}
-      onValueChange={onValueChange}
-      resultGajePrice={resultGajePrice}
-    />
-  );
+  if (state.stepNumber === 4) {
+    return (
+      <HouseEvaluationPresenter
+        state={state}
+        handlePreviousButton={handlePreviousButton}
+        handleNextButton={handleNextButton}
+        openInfoModal={openInfoModal}
+        onChangeState={onChangeState}
+        clickCheckBox={clickCheckBox}
+        resultPrice={resultPrice}
+        eachPrice={eachPrice}
+        clickDancheButton={clickDancheButton}
+        resultBuildPrice={resultBuildPrice}
+        evaluationState={evaluationState}
+        onValueChange={onValueChange}
+        resultGajePrice={resultGajePrice}
+      />
+    );
+  } else {
+    return <EmptyLayout />;
+  }
 }

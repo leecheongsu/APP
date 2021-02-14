@@ -43,7 +43,7 @@ function HomePresenter() {
       { title: '화재사망자', value: 50.1 },
     ],
     cardList: [
-      { title: '풍수해 Ⅵ', onPress: () => console.log(1) },
+      { title: '풍수해 Ⅵ', onPress: () => navigation.navigate('STORM_FLOOD') },
       { title: '주택화재', onPress: () => navigation.navigate('HOUSE_FIRE') },
       { title: '배상책임', onPress: () => console.log(1) },
     ],

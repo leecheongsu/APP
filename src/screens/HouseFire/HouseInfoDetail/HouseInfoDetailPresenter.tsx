@@ -6,7 +6,6 @@ import {
   FocusAwareStatusBar,
   FullLabel,
   IconButton,
-  OverayLoading,
   Select,
   Typhograph,
 } from '@app/components';
@@ -67,12 +66,12 @@ function HouseInfoDetailPresenter({
       : state?.resultDetail !== '' && state.resultDong !== ''
       ? `${state?.addressData[0]?.roadAddr} ${state?.resultDong.dongNm} ${state?.resultDetail.hoNm}`
       : '호를 선택 해주세요.';
+  console.log(state.loading);
   return (
     <>
       <Container>
         <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
         <Modal style={styles.container} isVisible={state.isDetailModal}>
-          <OverayLoading visible={state.loading} />
           <SafeAreaView style={{ flex: 1 }}>
             <Header>
               <HeaderTitle>
@@ -114,7 +113,7 @@ function HouseInfoDetailPresenter({
             </SelectBox>
             <SelectBox>
               <Select
-                label="호를 선택하세요."
+                label={state.loading ? 'Loading...' : '호를 선택해주세요.'}
                 value={state.resultDetail}
                 items={state?.resultDetailList}
                 onValueChange={handleSelectDetail}

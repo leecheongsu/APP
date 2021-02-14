@@ -1,6 +1,7 @@
 import React from 'react';
 import HouseInfoPresenter from './HouseInfoPresenter';
 import moment from 'moment';
+import { EmptyLayout } from '@app/layout';
 
 export type InfoListTypes = {
   address: string;
@@ -39,12 +40,16 @@ export default function HouseInfoContainer({
     use_apr_date: moment(state.selectAddress?.use_apr_date).format('YYYY.MM.DD'),
     roof_name: state.selectAddress?.roof_name,
   };
-  return (
-    <HouseInfoPresenter
-      state={state}
-      handleNextButton={handleNextButton}
-      handlePreviousButton={handlePreviousButton}
-      infoList={infoList}
-    />
-  );
+  if (state.stepNumber === 3) {
+    return (
+      <HouseInfoPresenter
+        state={state}
+        handleNextButton={handleNextButton}
+        handlePreviousButton={handlePreviousButton}
+        infoList={infoList}
+      />
+    );
+  } else {
+    return <EmptyLayout />;
+  }
 }

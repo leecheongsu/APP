@@ -4,6 +4,7 @@ import Toast from 'react-native-simple-toast';
 import { priceDot } from '@app/lib';
 import { useNavigation } from '@react-navigation/native';
 import { useGlobalState } from '@app/context';
+import { EmptyLayout } from '@app/layout';
 
 export default function HouseContractTermsContainer({
   state,
@@ -57,18 +58,22 @@ export default function HouseContractTermsContainer({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalState?.isIdentityverification]);
 
-  return (
-    <HouseContractTermsPresenter
-      state={state}
-      submitNextButton={submitNextButton}
-      handlePreviousButton={handlePreviousButton}
-      onChangeTermsState={onChangeTermsState}
-      onChangeState={onChangeState}
-      onClickTermsModalAgree={onClickTermsModalAgree}
-      onClickTermsModalOpen={onClickTermsModalOpen}
-      onClickAllCheck={onClickAllCheck}
-      insuPrice={insuPrice}
-      selectInsu={selectInsu}
-    />
-  );
+  if (state.stepNumber === 9) {
+    return (
+      <HouseContractTermsPresenter
+        state={state}
+        submitNextButton={submitNextButton}
+        handlePreviousButton={handlePreviousButton}
+        onChangeTermsState={onChangeTermsState}
+        onChangeState={onChangeState}
+        onClickTermsModalAgree={onClickTermsModalAgree}
+        onClickTermsModalOpen={onClickTermsModalOpen}
+        onClickAllCheck={onClickAllCheck}
+        insuPrice={insuPrice}
+        selectInsu={selectInsu}
+      />
+    );
+  } else {
+    return <EmptyLayout />;
+  }
 }

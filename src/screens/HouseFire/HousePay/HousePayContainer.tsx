@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import HousePayPresenter from './HousePayPresenter';
 import { priceDot } from '@app/lib';
 import { BootpayWebView } from 'react-native-bootpay';
+import { EmptyLayout } from '@app/layout';
+import { useNavigation } from '@react-navigation/native';
 export default function HousePayContainer({
   state,
   onChangeState,
@@ -14,6 +16,7 @@ export default function HousePayContainer({
   resultBuildPrice,
   resultGajePrice,
 }) {
+  const naviagation = useNavigation();
   const bootpay = useRef<BootpayWebView>(null);
   const insuPrice = priceDot(resultBuildPrice() + resultGajePrice());
   const selectInsu = state?.selectAddress?.premiums?.filter((item) => {
@@ -110,8 +113,9 @@ export default function HousePayContainer({
   };
 
   const submitNextButton = () => {
+    // naviagation.navigate('PAY');
     onPress();
-    handleNextButton();
+    // handleNextButton();
     // const isChecked =
     //   state.terms.TERMSA_1.isChecked === 1 &&
     //   state.terms.TERMSA_2.isChecked === 1 &&
@@ -123,26 +127,30 @@ export default function HousePayContainer({
     // }
   };
 
-  return (
-    <HousePayPresenter
-      state={state}
-      submitNextButton={submitNextButton}
-      handlePreviousButton={handlePreviousButton}
-      onChangeTermsState={onChangeTermsState}
-      onChangeState={onChangeState}
-      onClickTermsModalAgree={onClickTermsModalAgree}
-      onClickTermsModalOpen={onClickTermsModalOpen}
-      onClickAllCheck={onClickAllCheck}
-      insuPrice={insuPrice}
-      selectInsu={selectInsu}
-      onPress={onPress}
-      onCancel={onCancel}
-      onError={onError}
-      onReady={onReady}
-      onConfirm={onConfirm}
-      onDone={onDone}
-      onClose={onClose}
-      bootpay={bootpay}
-    />
-  );
+  if (state.stepNumber === 10) {
+    return (
+      <HousePayPresenter
+        state={state}
+        submitNextButton={submitNextButton}
+        handlePreviousButton={handlePreviousButton}
+        onChangeTermsState={onChangeTermsState}
+        onChangeState={onChangeState}
+        onClickTermsModalAgree={onClickTermsModalAgree}
+        onClickTermsModalOpen={onClickTermsModalOpen}
+        onClickAllCheck={onClickAllCheck}
+        insuPrice={insuPrice}
+        selectInsu={selectInsu}
+        onPress={onPress}
+        onCancel={onCancel}
+        onError={onError}
+        onReady={onReady}
+        onConfirm={onConfirm}
+        onDone={onDone}
+        onClose={onClose}
+        bootpay={bootpay}
+      />
+    );
+  } else {
+    return <EmptyLayout />;
+  }
 }

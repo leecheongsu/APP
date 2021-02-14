@@ -2,6 +2,7 @@ import React from 'react';
 import HouseConfirmPresenter from './HouseConfirmPresenter';
 import Toast from 'react-native-simple-toast';
 import { priceDot } from '@app/lib';
+import { EmptyLayout } from '@app/layout';
 
 export default function HouseTermsUseContainer({
   state,
@@ -32,18 +33,22 @@ export default function HouseTermsUseContainer({
     }
   };
 
-  return (
-    <HouseConfirmPresenter
-      state={state}
-      submitNextButton={submitNextButton}
-      handlePreviousButton={handlePreviousButton}
-      onChangeTermsState={onChangeTermsState}
-      onChangeState={onChangeState}
-      onClickTermsModalAgree={onClickTermsModalAgree}
-      onClickTermsModalOpen={onClickTermsModalOpen}
-      onClickAllCheck={onClickAllCheck}
-      insuPrice={insuPrice}
-      selectInsu={selectInsu}
-    />
-  );
+  if (state.stepNumber === 8) {
+    return (
+      <HouseConfirmPresenter
+        state={state}
+        submitNextButton={submitNextButton}
+        handlePreviousButton={handlePreviousButton}
+        onChangeTermsState={onChangeTermsState}
+        onChangeState={onChangeState}
+        onClickTermsModalAgree={onClickTermsModalAgree}
+        onClickTermsModalOpen={onClickTermsModalOpen}
+        onClickAllCheck={onClickAllCheck}
+        insuPrice={insuPrice}
+        selectInsu={selectInsu}
+      />
+    );
+  } else {
+    return <EmptyLayout />;
+  }
 }

@@ -7,7 +7,7 @@ import { HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
 type JoinTypeTypes = {
   state: HouseFireStateTypes;
   selectJoinType: (value: 'T' | 'S') => void;
-  handleNextButton: () => void;
+  onClickNextButton: () => void;
 };
 
 const Container = styled.View`
@@ -28,7 +28,7 @@ const ButtonItemBox = styled.View`
   margin-top: 10px;
 `;
 
-function JoinTypePresenter({ state, selectJoinType, handleNextButton }: JoinTypeTypes) {
+function JoinTypePresenter({ state, selectJoinType, onClickNextButton }: JoinTypeTypes) {
   const dot = '\u2022';
   const INFO_TEXT = [
     '공동주택(아파트 등)의 단지나 동을 대표하여 가입하는 것을 말합니다.',
@@ -70,11 +70,12 @@ function JoinTypePresenter({ state, selectJoinType, handleNextButton }: JoinType
             );
           })}
         </ButtonBox>
+
         <BottomFixButton
           index={state.stepNumber}
           leftTitle="이전"
           rightTitle="다음"
-          bottomRightPress={handleNextButton}
+          bottomRightPress={() => onClickNextButton()}
           bottomLeftPress={() => null}
           isKeybordView={state.isKeybordView}
         />

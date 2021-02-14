@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { AddressSearch, Home, HouseFire, HouseInfoDetail } from '@app/screens';
+import { Home, HouseFire, HouseInfoDetail, StormFlood } from '@app/screens';
 import { BackButton, LogoTitle, MenuButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';
 import UserButton from '@app/components/Header/UserButton';
@@ -64,15 +64,16 @@ function MainStack() {
           },
         }}
       />
+
       <Stacks.Screen
-        name="ADDRESS_SEARCH"
-        component={AddressSearch}
+        name="STORM_FLOOD"
+        component={StormFlood}
         options={{
           headerLeft: () => <BackButton />,
           headerLeftContainerStyle: { paddingHorizontal: 10 },
           headerTitle: () => (
-            <Typhograph type="ROBOTO" weight="BOLD" size={16} color="BLACK2">
-              주택화재
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              풍수해
             </Typhograph>
           ),
           headerShown: true,

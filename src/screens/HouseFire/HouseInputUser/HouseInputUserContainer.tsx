@@ -5,6 +5,7 @@ import moment from 'moment';
 import Toast from 'react-native-simple-toast';
 import { useInput } from '@app/hooks';
 import { DefaultAlert } from '@app/components';
+import { EmptyLayout } from '@app/layout';
 
 export default function HouseInputUserContainer({ state, onChangeState, handlePreviousButton, handleNextButton }) {
   const globalState = useGlobalState();
@@ -112,24 +113,28 @@ export default function HouseInputUserContainer({ state, onChangeState, handlePr
     }
   };
 
-  return (
-    <HouseInputUserPresenter
-      state={state}
-      inputState={inputState}
-      handleNextButton={handleNextButton}
-      handlePreviousButton={handlePreviousButton}
-      onChangeState={onChangeState}
-      handleClickEqualButton={handleClickEqualButton}
-      user={user}
-      isCheck={isCheck}
-      showDatePicker={showDatePicker}
-      hideDatePicker={hideDatePicker}
-      handleConfirm={handleConfirm}
-      onValueChange={onValueChange}
-      selectItem={selectItem}
-      isDatePickerVisible={isDatePickerVisible}
-      onDeleteRecommedUserButton={onDeleteRecommedUserButton}
-      buttomNextButton={buttomNextButton}
-    />
-  );
+  if (state.stepNumber === 6) {
+    return (
+      <HouseInputUserPresenter
+        state={state}
+        inputState={inputState}
+        handleNextButton={handleNextButton}
+        handlePreviousButton={handlePreviousButton}
+        onChangeState={onChangeState}
+        handleClickEqualButton={handleClickEqualButton}
+        user={user}
+        isCheck={isCheck}
+        showDatePicker={showDatePicker}
+        hideDatePicker={hideDatePicker}
+        handleConfirm={handleConfirm}
+        onValueChange={onValueChange}
+        selectItem={selectItem}
+        isDatePickerVisible={isDatePickerVisible}
+        onDeleteRecommedUserButton={onDeleteRecommedUserButton}
+        buttomNextButton={buttomNextButton}
+      />
+    );
+  } else {
+    return <EmptyLayout />;
+  }
 }

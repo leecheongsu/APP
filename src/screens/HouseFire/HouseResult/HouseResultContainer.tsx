@@ -1,3 +1,4 @@
+import { EmptyLayout } from '@app/layout';
 import { floorPrice } from '@app/lib';
 import React, { useState } from 'react';
 import HouseResultPresenter from './HouseResultPresenter';
@@ -17,17 +18,21 @@ export default function HouseResultContainer({
     onChangeState('selectInsuCompany', company);
   };
 
-  return (
-    <HouseResultPresenter
-      state={state}
-      inputState={inputState}
-      onChangeState={onChangeState}
-      handlePreviousButton={handlePreviousButton}
-      handleNextButton={handleNextButton}
-      resultBuildPrice={resultBuildPrice}
-      resultGajePrice={resultGajePrice}
-      isActive={isActive}
-      onChangeActive={onChangeActive}
-    />
-  );
+  if (state.stepNumber === 5) {
+    return (
+      <HouseResultPresenter
+        state={state}
+        inputState={inputState}
+        onChangeState={onChangeState}
+        handlePreviousButton={handlePreviousButton}
+        handleNextButton={handleNextButton}
+        resultBuildPrice={resultBuildPrice}
+        resultGajePrice={resultGajePrice}
+        isActive={isActive}
+        onChangeActive={onChangeActive}
+      />
+    );
+  } else {
+    return <EmptyLayout />;
+  }
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import HouseTermsUsePresenter from './HouseTermsUsePresenter';
 import Toast from 'react-native-simple-toast';
+import { EmptyLayout } from '@app/layout';
 
 export default function HouseTermsUseContainer({
   state,
@@ -25,16 +26,20 @@ export default function HouseTermsUseContainer({
     }
   };
 
-  return (
-    <HouseTermsUsePresenter
-      state={state}
-      submitNextButton={submitNextButton}
-      handlePreviousButton={handlePreviousButton}
-      onChangeTermsState={onChangeTermsState}
-      onChangeState={onChangeState}
-      onClickTermsModalAgree={onClickTermsModalAgree}
-      onClickTermsModalOpen={onClickTermsModalOpen}
-      onClickAllCheck={onClickAllCheck}
-    />
-  );
+  if (state.stepNumber === 7) {
+    return (
+      <HouseTermsUsePresenter
+        state={state}
+        submitNextButton={submitNextButton}
+        handlePreviousButton={handlePreviousButton}
+        onChangeTermsState={onChangeTermsState}
+        onChangeState={onChangeState}
+        onClickTermsModalAgree={onClickTermsModalAgree}
+        onClickTermsModalOpen={onClickTermsModalOpen}
+        onClickAllCheck={onClickAllCheck}
+      />
+    );
+  } else {
+    return <EmptyLayout />;
+  }
 }

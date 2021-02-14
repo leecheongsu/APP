@@ -4,6 +4,7 @@ import { Alert, Dimensions, PixelRatio, Platform } from 'react-native';
 import Toast from 'react-native-simple-toast';
 import { showMessage, hideMessage } from 'react-native-flash-message';
 import { ErrorModal } from '@app/screens';
+import { userApis } from '@app/api/User';
 //font weight 적용하는 함수
 export const setFont = (type: 'NOTO' | 'ROBOTO', weight: 'THIN' | 'LIGHT' | 'REGULAR' | 'MEDIUM' | 'BOLD') => {
   switch (type) {
@@ -203,7 +204,7 @@ export const clearStoreData = async () => {
 export const juminFront = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;
 
 //api error handler
-export const handleApiError = (value) => {
+export const handleApiError = async (value) => {
   const error = value?.data;
   const errorCode = value?.data?.status;
   const isDev = __DEV__;
@@ -220,16 +221,31 @@ export const handleApiError = (value) => {
   }${'\n'}headers${'\n'}${'\n'}Accept:${value?.config?.headers?.Accept}${'\n'}X-insr-servicekey:${
     value?.config?.headers?.['X-insr-servicekey']
   }${'\n'}baseURL:${value?.config?.baseURL}${'\n'}params:${JSON.stringify(value?.config?.params)}`;
-
+  console.log(value);
   // showMessage({
   //   message: 'error message',
   //   type: 'danger',
   //   description: alertError,
   // });
+  const user = await AsyncStorage.getItem('user');
+  const isAutoLogin = await AsyncStorage.getItem('isAutoLogin');
+  const password = await AsyncStorage.getItem('password');
   Alert.alert('알림', value?.data?.message);
   switch (errorCode) {
     case 401: {
       return Toast.show('권한이 없습니다.');
+    }
+    case 426: {
+      const params = {
+        id: JSON.parse(user).email,
+        pwd: JSON.parse(password),
+      };
+      if (JSON.parse(isAutoLogin)) {
+        userApis.postLogin(params).then((res) => {
+          setStoreData('user', res.data);
+        });
+      }
+      alert('토큰이 만료되었습니다. 다시로그인 해주세요.');
     }
     default: {
       // if (isDev) {

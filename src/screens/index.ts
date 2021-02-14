@@ -1,7 +1,6 @@
 export { default as Home } from './Home';
 export { default as HouseFire } from './HouseFire';
 export { default as Login } from './Login';
-export { default as AddressSearch } from './AddressSearch';
 export { default as JoinType } from './HouseFire/JoinType';
 export { default as HouseAddress } from './HouseFire/HouseAddress';
 export { default as HouseInfoDetail } from './HouseFire/HouseInfoDetail';
@@ -12,6 +11,10 @@ export { default as HouseConfirm } from './HouseFire/HouseConfirm';
 export { default as HouseContractTerms } from './HouseFire/HouseContractTerms';
 export { default as HousePay } from './HouseFire/HousePay';
 export { default as HouseFinal } from './HouseFire/HouseFinal';
+
+export { default as StormFlood } from './StormFlood';
+export { default as ProductInfomation } from './StormFlood/ProductInfomation';
+export { default as CheckList } from './StormFlood/CheckList';
 
 export { default as Join } from './Join';
 export { default as JoinIndividual } from './Join/JoinIndividual';

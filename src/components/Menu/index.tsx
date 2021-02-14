@@ -269,7 +269,7 @@ export default function Menu(props) {
                 </IconBox>
               </CardItem>
 
-              <CardItem onPress={() => console.log(1)}>
+              <CardItem onPress={() => navigation.navigate('STORM_FLOOD')}>
                 <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
                   풍수해Ⅵ
                 </Typhograph>

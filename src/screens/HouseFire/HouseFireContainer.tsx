@@ -7,7 +7,6 @@ import {
   HouseEvaluation,
   HouseFinal,
   HousePay,
-  HousePayWay,
   HouseResult,
   HouseTermsUse,
   JoinType,
@@ -336,7 +335,7 @@ const terms = {
 const initialState: HouseFireStateTypes = {
   stepperTitle: '가입유형',
   isKeybordView: false,
-  stepNumber: 1,
+  stepNumber: 0,
   loading: false,
   addressCommon: {},
   addressData: [],
@@ -457,11 +456,11 @@ export default function HouseFireContainer() {
     Keyboard.dismiss();
     switch (state.stepNumber) {
       case 1: {
-        if (state.selectType === 0) {
-          Toast.show('가입유형을 선택해 주세요.');
-        } else {
-          handleJoinTypeNextButton();
-        }
+        handleJoinTypeNextButton();
+        return null;
+      }
+      case 2: {
+        handleJoinTypeNextButton();
         return null;
       }
       case 3: {
@@ -762,6 +761,7 @@ export default function HouseFireContainer() {
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+    state.stepNumber === 0 && onChangeState('stepNumber', 1);
 
     // cleanup function
     return () => {

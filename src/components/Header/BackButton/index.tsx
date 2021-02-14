@@ -4,7 +4,11 @@ import { Image } from 'react-native';
 import IconButton from '@app/components/Button/IconButton';
 import { useNavigation } from '@react-navigation/native';
 
-function BackButton({ onPress }) {
+type BackButtonTypes = {
+  onPress?: () => void;
+};
+
+function BackButton({ onPress }: BackButtonTypes) {
   const navigation: any = useNavigation();
   return (
     <IconButton onPress={() => (onPress ? onPress() : navigation.goBack())}>
