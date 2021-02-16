@@ -22,11 +22,15 @@ export default function HouseContractTermsContainer({
   const insuPrice = priceDot(resultBuildPrice() + resultGajePrice());
   const globalState = useGlobalState();
   const selectInsu = state?.selectAddress?.premiums?.filter((item) => {
-    return item.aply_yn === 'Y';
+    return item.aply_yn === 'Y' && item.already_group_ins === state?.selectAddress.already_group_ins;
   });
 
   const submitNextButton = () => {
+    handleNextButton();
     const isChecked =
+      state.terms.TERMSD_1.isChecked === 1 &&
+      state.terms.TERMSD_2.isChecked === 1 &&
+      state.terms.TERMSD_3.isChecked === 1 &&
       state.terms.TERMSC_1.isChecked === 1 &&
       state.terms.TERMSC_2.isChecked === 1 &&
       state.terms.TERMSC_3.isChecked === 1 &&
@@ -35,10 +39,9 @@ export default function HouseContractTermsContainer({
       state.terms.TERMSA_5.isChecked === 1 &&
       state.terms.TERMSE_1.isChecked === 1 &&
       state.terms.TERMSE_2.isChecked === 1 &&
-      state.terms.TERMSE_3.isChecked === 1;
+      state.terms.TERMSE_3.isChecked === 1 &&
+      state.terms.TERMSF_1.isChecked === 1;
     if (!isChecked) {
-      Toast.show('필수동의사항에 동의해주세요.');
-    } else if (state?.selectType === 'T' && state.terms.TERMSF_1.isChecked === 0) {
       Toast.show('필수동의사항에 동의해주세요.');
     } else if (state.terms.TERMSG_1.isChecked === 0) {
       Toast.show('전자서명에 대체에 동의해주세요');
@@ -48,6 +51,15 @@ export default function HouseContractTermsContainer({
       } else {
         navigation.navigate('VERIFICATION');
       }
+    }
+  };
+
+  const buttonTermsPdf = (name) => {
+    if (state?.terms?.[name]?.isChecked === 1) {
+      onChangeTermsState(name, 0);
+    } else {
+      onChangeState('termsName', name);
+      onChangeState('termsPdf', true);
     }
   };
 
@@ -71,6 +83,7 @@ export default function HouseContractTermsContainer({
         onClickAllCheck={onClickAllCheck}
         insuPrice={insuPrice}
         selectInsu={selectInsu}
+        buttonTermsPdf={buttonTermsPdf}
       />
     );
   } else {

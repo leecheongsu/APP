@@ -38,6 +38,15 @@ function HouseTermsUsePresenter({
   onClickTermsModalOpen,
   onClickAllCheck,
 }) {
+  const isActive1 =
+    state?.terms?.TERMSA_1.isChecked === 1 &&
+    state?.terms?.TERMSA_2.isChecked === 1 &&
+    state?.terms?.TERMSA_3.isChecked === 1 &&
+    state?.terms?.TERMSA_4.isChecked === 1;
+  const isActive2 =
+    state?.terms?.TERMSB_1.isChecked === 1 &&
+    state?.terms?.TERMSB_2.isChecked === 1 &&
+    state?.terms?.TERMSB_3.isChecked === 1;
   return (
     <Container>
       <ContentsContainer>
@@ -49,9 +58,10 @@ function HouseTermsUsePresenter({
           </TermsTitleBox>
           <TermsButtonBox>
             <CheckLabelButton
-              onPress={() => onClickAllCheck(['TERMSA_1', 'TERMSA_2', 'TERMSA_3', 'TERMSA_4'])}
+              onPress={() => onClickAllCheck(['TERMSA_1', 'TERMSA_2', 'TERMSA_3', 'TERMSA_4'], isActive1)}
               title="모두 동의하기"
               iscenter
+              active={isActive1}
             />
             <Typhograph type="NOTO" color="GRAY" weight="REGULAR" size={10}>
               * 항목을 클릭하시면 해당 내용을 확인하실 수 있습니다.
@@ -103,9 +113,10 @@ function HouseTermsUsePresenter({
           </TermsTitleBox>
           <TermsButtonBox>
             <CheckLabelButton
-              onPress={() => onClickAllCheck(['TERMSB_1', 'TERMSB_2', 'TERMSB_3'])}
+              onPress={() => onClickAllCheck(['TERMSB_1', 'TERMSB_2', 'TERMSB_3'], isActive2)}
               title="모두 동의하기"
               iscenter
+              active={isActive2}
             />
             <Typhograph type="NOTO" color="GRAY" weight="REGULAR" size={10}>
               * 항목을 클릭하시면 해당 내용을 확인하실 수 있습니다.

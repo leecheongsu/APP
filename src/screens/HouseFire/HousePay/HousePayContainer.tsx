@@ -1,9 +1,14 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import HousePayPresenter from './HousePayPresenter';
 import { priceDot } from '@app/lib';
-import { BootpayWebView } from 'react-native-bootpay';
 import { EmptyLayout } from '@app/layout';
 import { useNavigation } from '@react-navigation/native';
+import { useGlobalState } from '@app/context';
+import moment from 'moment';
+import Toast from 'react-native-simple-toast';
+import axios from 'axios';
+import { useInput } from '@app/hooks';
+
 export default function HousePayContainer({
   state,
   onChangeState,
@@ -16,105 +21,118 @@ export default function HousePayContainer({
   resultBuildPrice,
   resultGajePrice,
 }) {
-  const naviagation = useNavigation();
-  const bootpay = useRef<BootpayWebView>(null);
+  const navigation = useNavigation();
+  const globalState = useGlobalState();
   const insuPrice = priceDot(resultBuildPrice() + resultGajePrice());
   const selectInsu = state?.selectAddress?.premiums?.filter((item) => {
-    return item.aply_yn === 'Y';
+    return item.aply_yn === 'Y' && item.already_group_ins === state?.selectAddress.already_group_ins;
   });
-
-  const onPress = () => {
-    const payload = {
-      pg: 'welcome', //['kcp', 'danal', 'inicis', 'nicepay', 'lgup', 'toss', 'payapp', 'easypay', 'jtnet', 'tpay', 'mobilians', 'payletter', 'onestore', 'welcome'] 중 택 1
-      name: '마스카라', //결제창에 보여질 상품명
-      order_id: '1234_1234', //개발사에 관리하는 주문번호
-      method: '',
-      price: 1000, //결제금액
-    };
-
-    //결제되는 상품정보들로 통계에 사용되며, price의 합은 결제금액과 동일해야함
-    const items = [
-      {
-        item_name: '키보드', //통계에 반영될 상품명
-        qty: 1, //수량
-        unique: 'ITEM_CODE_KEYBOARD', //개발사에서 관리하는 상품고유번호
-        price: 1000, //상품단가
-        cat1: '패션', //카테고리 상 , 자유롭게 기술
-        cat2: '여성상의', //카테고리 중, 자유롭게 기술
-        cat3: '블라우스', //카테고리 하, 자유롭게 기술
+  const insuEndDateYear = Number(state?.contractInsuInfo?.insDate?.slice(0, 4)) + 1;
+  const insuEndDateMonth = state?.contractInsuInfo?.insDate?.slice(5, 7);
+  const insuEndDateDay = Number(state?.contractInsuInfo?.insDate?.slice(8)) - 1;
+  const filnalInsuEndDateDay =
+    String(insuEndDateDay)?.length === 1 ? '0' + String(insuEndDateDay) : String(insuEndDateDay);
+  const insuEndDate = insuEndDateYear + '-' + insuEndDateMonth + '-' + filnalInsuEndDateDay;
+  const inputState = {
+    card1: useInput(''),
+    card2: useInput(''),
+    card3: useInput(''),
+    card4: useInput(''),
+    cardYear: useInput(''),
+    cardMonth: useInput(''),
+    birthDay: useInput(''),
+    pw: useInput(''),
+  };
+  console.log(state?.selectAddress);
+  const handleCardPay = () => {
+    const card_number =
+      inputState.card1.value + inputState.card2.value + inputState.card3.value + inputState.card4.value;
+    const card_expire = inputState.cardYear.value + inputState.cardMonth.value;
+    const reg_no = inputState.birthDay.value;
+    const card_pw = inputState.pw.value;
+    const data = {
+      user_id: globalState?.user?.email,
+      data: {
+        quote_no: state?.selectAddress?.quote_no,
+        prod_code: state?.selectAddress?.product?.p_code,
+        prod_name: state?.selectAddress?.product?.p_name,
+        opayment: resultBuildPrice() + resultGajePrice(),
+        polholder: globalState?.user?.name,
+        insurant_a: state?.contractInsuInfo?.name,
+        insurant_b: state?.contractInsuInfo?.name,
+        premium: resultBuildPrice() + resultGajePrice(),
+        insdate: moment(new Date()).format('YYYYMMDD'),
+        ins_from: moment(state?.contractInsuInfo?.insDate).format('YYYYMMDD'),
+        ins_to: moment(insuEndDate).format('YYYYMMDD'),
+        ptype: '0',
+        insloc: state?.selectAddress?.address,
+        mobile: globalState?.user?.mobile,
+        email: globalState?.user?.email,
+        poption: '4',
+        pbohumja_mobile: state?.contractInsuInfo?.mobile,
+        jumin: state?.contractInsuInfo?.juminb,
+        owner: state?.contractInsuInfo?.owner,
+        pbohumja_birth: state?.contractInsuInfo?.pbohumjaBirth,
+        advisor_no: String(state?.contractInsuInfo?.advisor_no),
+        card: {
+          card_number,
+          card_expire,
+          reg_no,
+          card_pw,
+        },
+        terms: {
+          termsa_1: state.terms.TERMSA_1.isChecked,
+          termsa_2: state.terms.TERMSA_2.isChecked,
+          termsa_3: state.terms.TERMSA_3.isChecked,
+          termsa_4: state.terms.TERMSA_4.isChecked,
+          termsa_5: state.terms.TERMSA_5.isChecked,
+          termsb_1: state.terms.TERMSB_1.isChecked,
+          termsb_2: state.terms.TERMSB_2.isChecked,
+          termsb_3: state.terms.TERMSB_3.isChecked,
+          termsc_1: state.terms.TERMSC_1.isChecked,
+          termsc_2: state.terms.TERMSC_2.isChecked,
+          termsc_3: state.terms.TERMSC_3.isChecked,
+          termsc_4: state.terms.TERMSC_4.isChecked,
+          termsc_5: state.terms.TERMSC_5.isChecked,
+          termsd_1: state.terms.TERMSC_1.isChecked,
+          termsd_2: state.terms.TERMSC_2.isChecked,
+          termsd_3: state.terms.TERMSC_3.isChecked,
+          termse_1: state.terms.TERMSE_1.isChecked,
+          termse_2: state.terms.TERMSE_2.isChecked,
+          termse_3: state.terms.TERMSE_3.isChecked,
+          termsf_1: state.terms.TERMSF_1.isChecked,
+          termsg_1: state.terms.TERMSG_1.isChecked,
+        },
+        already_group_ins: state?.selectAddress?.already_group_ins,
+        premiums: selectInsu,
       },
-    ];
-
-    //구매자 정보로 결제창이 미리 적용될 수 있으며, 통계에도 사용되는 정보
-    const user = {
-      id: 'user_id_1234', //개발사에서 관리하는 회원고유번호
-      username: '홍길동', //구매자명
-      email: 'user1234@gmail.com', //구매자 이메일
-      gender: 0, //성별, 1:남자 , 0:여자
-      birth: '1986-10-14', //생년월일 yyyy-MM-dd
-      phone: '01012345678', //전화번호, 페이앱 필수
-      area: '서울', // [서울,인천,대구,광주,부산,울산,경기,강원,충청북도,충북,충청남도,충남,전라북도,전북,전라남도,전남,경상북도,경북,경상남도,경남,제주,세종,대전] 중 택 1
-      addr: '서울시 동작구 상도로', //주소
     };
-
-    //기타 설정
-    const extra = {
-      app_scheme: 'bootpaysample', //ios의 경우 카드사 앱 호출 후 되돌아오기 위한 앱 스키마명
-      expire_month: '0', //정기결제가 적용되는 개월 수 (정기결제 사용시), 미지정일시 PG사 기본값에 따름
-      vbank_result: true, //가상계좌 결과창을 볼지(true), 말지(false)
-      start_at: '', //정기 결제 시작일 - 지정하지 않을 경우 - 그 날 당일로부터 결제가 가능한 Billing key 지급, "2020-10-14"
-      end_at: '', // 정기결제 만료일 - 기간 없음 - 무제한, "2020-10-14"
-      quota: '0,2,3', //결제금액이 5만원 이상시 할부개월 허용범위를 설정할 수 있음, [0(일시불), 2개월, 3개월] 허용, 미설정시 12개월까지 허용
-      offer_period: '', //결제창 제공기간에 해당하는 string 값, 지원하는 PG만 적용됨
-      popup: 1, //1이면 popup, 아니면 iframe 연동
-      quick_popup: 0, //1: popup 호출시 버튼을 띄우지 않는다. 아닐 경우 버튼을 호출한다
-      locale: 'ko',
-      disp_cash_result: 'Y', // 현금영수증 보일지 말지.. 가상계좌 KCP 옵션
-      escrow: '0', // 에스크로 쓸지 안쓸지
-      theme: 'purple',
-      custom_background: '',
-      custom_font_color: '',
-      iosCloseButton: true,
-    };
-
-    if (bootpay != null && bootpay.current != null) {
-      bootpay.current.request(payload, items, user, extra);
-    }
+    console.log(data);
+    // console.log(data);
+    // axios({
+    //   url: 'http://192.168.0.14:8080/house/orders',
+    //   method: 'POST',
+    //   data,
+    //   headers: {
+    //     'X-insr-servicekey': 'Q29weXJpZ2h0IOKTkiBpbnN1cm9iby5jby5rciBBbGwgcmlnaHRzIHJlc2VydmVkLg==',
+    //     Authorization: globalState?.user?.token,
+    //   },
+    // })
+    //   .then((res) => {
+    //     console.log(res);
+    //   })
+    //   .catch((e) => {
+    //     console.log(e.response, 12321);
+    //   });
   };
 
-  const onCancel = (data) => {
-    console.log('cancel', data);
-    handleNextButton();
-    var json = JSON.stringify(data);
-    console.log('cancel json', json);
-  };
-
-  const onError = (data) => {
-    console.log('error', data);
-  };
-
-  const onReady = (data) => {
-    console.log('ready', data);
-  };
-
-  const onConfirm = (data) => {
-    console.log('confirm', data);
-    if (bootpay != null && bootpay.current != null) {
-      bootpay.current.transactionConfirm(data);
-    }
-  };
-
-  const onDone = (data) => {
-    console.log('done', data);
-  };
-
-  const onClose = () => {
-    console.log('closed');
+  const selectCard = (name) => {
+    onChangeState('selectCard', name);
   };
 
   const submitNextButton = () => {
+    handleCardPay();
     // naviagation.navigate('PAY');
-    onPress();
     // handleNextButton();
     // const isChecked =
     //   state.terms.TERMSA_1.isChecked === 1 &&
@@ -127,7 +145,7 @@ export default function HousePayContainer({
     // }
   };
 
-  if (state.stepNumber === 10) {
+  if (state.stepNumber === 11) {
     return (
       <HousePayPresenter
         state={state}
@@ -140,14 +158,8 @@ export default function HousePayContainer({
         onClickAllCheck={onClickAllCheck}
         insuPrice={insuPrice}
         selectInsu={selectInsu}
-        onPress={onPress}
-        onCancel={onCancel}
-        onError={onError}
-        onReady={onReady}
-        onConfirm={onConfirm}
-        onDone={onDone}
-        onClose={onClose}
-        bootpay={bootpay}
+        selectCard={selectCard}
+        inputState={inputState}
       />
     );
   } else {

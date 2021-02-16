@@ -11,7 +11,6 @@ import { useNavigation } from '@react-navigation/native';
 import { useGlobalState } from '@app/context';
 const Container = styled.View`
   width: ${screenWidth()}px;
-  padding-bottom: 65px;
 `;
 
 const InfoContainer = styled.View``;
@@ -56,6 +55,10 @@ const RecommendListBox = styled.View`
   padding: 0px 10px;
   border-top-width: 1px;
   border-top-color: ${theme.color.BORDER_GRAY};
+`;
+
+const PaddingBox = styled.View`
+  height: 100px;
 `;
 
 function HouseInputUserPresenter({
@@ -320,6 +323,7 @@ function HouseInputUserPresenter({
                 </RowBox>
               </RecommendListBox>
             )}
+            <PaddingBox />
           </ContentsContainer>
         </KeyboardAwareScrollView>
         <DateTimePickerModal

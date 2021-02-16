@@ -22,9 +22,7 @@ const ContentsContainer = styled.View`
   padding: 20px 15px;
 `;
 
-const TextBox = styled.View`
-  margin-top: 20px;
-`;
+const TextBox = styled.View``;
 
 const RowBox = styled.View`
   flex-direction: row;

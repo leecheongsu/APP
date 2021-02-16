@@ -66,7 +66,6 @@ function HouseInfoDetailPresenter({
       : state?.resultDetail !== '' && state.resultDong !== ''
       ? `${state?.addressData[0]?.roadAddr} ${state?.resultDong.dongNm} ${state?.resultDetail.hoNm}`
       : '호를 선택 해주세요.';
-  console.log(state.loading);
   return (
     <>
       <Container>

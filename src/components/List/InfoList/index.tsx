@@ -7,6 +7,7 @@ import { View } from 'react-native';
 
 type InfoListPropsTypes = {
   list: InfoListTypes;
+  isHouse?: boolean;
 };
 
 const Container = styled.View``;
@@ -45,7 +46,7 @@ const ListItem2Rigth = styled.View`
   align-items: flex-start;
 `;
 
-export default function InfoList({ list }: InfoListPropsTypes) {
+export default function InfoList({ list, isHouse = true }: InfoListPropsTypes) {
   return (
     <Container>
       <ListBox>
@@ -109,7 +110,7 @@ export default function InfoList({ list }: InfoListPropsTypes) {
           </Typhograph>
         </ListItem>
       </ListBox>
-      {list?.dong_info?.length > 0 && (
+      {list?.dong_info?.length > 0 && isHouse && (
         <ListBox2>
           <ListLabel>
             <Typhograph type="NOTO" color="GRAY" weight="REGULAR" size={13}>
@@ -182,18 +183,20 @@ export default function InfoList({ list }: InfoListPropsTypes) {
           </Typhograph>
         </ListItem>
       </ListBox>
-      <ListBox>
-        <ListLabel>
-          <Typhograph type="NOTO" color="GRAY" weight="REGULAR" size={13}>
-            사용승인일
-          </Typhograph>
-        </ListLabel>
-        <ListItem>
-          <Typhograph type="NOTO" color="BLACK2" weight="REGULAR" size={13}>
-            {list?.use_apr_date}
-          </Typhograph>
-        </ListItem>
-      </ListBox>
+      {isHouse && (
+        <ListBox>
+          <ListLabel>
+            <Typhograph type="NOTO" color="GRAY" weight="REGULAR" size={13}>
+              사용승인일
+            </Typhograph>
+          </ListLabel>
+          <ListItem>
+            <Typhograph type="NOTO" color="BLACK2" weight="REGULAR" size={13}>
+              {list?.use_apr_date}
+            </Typhograph>
+          </ListItem>
+        </ListBox>
+      )}
     </Container>
   );
 }

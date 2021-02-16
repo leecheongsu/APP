@@ -25,7 +25,7 @@ function FullLabel({ title }: FullLabelTypes) {
   return (
     <>
       <Container>
-        <Typhograph type="NOTO" color="BLACK2" size={14} weight="REGULAR" style={{ textAlign: 'center' }}>
+        <Typhograph type="NOTO" color="BLACK2" size={14} weight="MEDIUM" style={{ textAlign: 'center' }}>
           {title}
         </Typhograph>
       </Container>

@@ -1,13 +1,13 @@
+import React from 'react';
 import { BottomFixButton, CheckLabelButton, TermsList, Typhograph } from '@app/components';
 import { screenWidth } from '@app/lib';
-import { TermsModal } from '@app/screens';
+import { termsTermsSd1, termsTermsSd2 } from '@app/lib/html';
+import { TermsModal, TermsPdf } from '@app/screens';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
-import React from 'react';
 
 const Container = styled.View`
   width: ${screenWidth()}px;
-  padding-bottom: 65px;
 `;
 const ContentsContainer = styled.ScrollView`
   padding: 20px;
@@ -57,14 +57,24 @@ function HouseContractTermsPresenter({
   onClickTermsModalAgree,
   onClickTermsModalOpen,
   onClickAllCheck,
+  buttonTerms,
+  buttonTermsPdf,
   insuPrice,
   selectInsu,
 }) {
-  console.log(state);
-  const allCheckList1 =
-    state?.selectType === 'T'
-      ? ['TERMSC_1', 'TERMSC_2', 'TERMSC_3', 'TERMSC_4', 'TERMSC_5', 'TERMSA_5', 'TERMSF_1']
-      : ['TERMSC_1', 'TERMSC_2', 'TERMSC_3', 'TERMSC_4', 'TERMSC_5', 'TERMSA_5'];
+  const allCheckList1 = ['TERMSC_1', 'TERMSC_2', 'TERMSC_3', 'TERMSC_4', 'TERMSC_5', 'TERMSA_5', 'TERMSF_1'];
+  const isActive1 =
+    state?.terms?.TERMSC_1.isChecked === 1 &&
+    state?.terms?.TERMSC_2.isChecked === 1 &&
+    state?.terms?.TERMSC_3.isChecked === 1 &&
+    state?.terms?.TERMSC_4.isChecked === 1 &&
+    state?.terms?.TERMSC_5.isChecked === 1 &&
+    state?.terms?.TERMSA_5.isChecked === 1 &&
+    state?.terms?.TERMSF_1.isChecked === 1;
+  const isActive2 =
+    state?.terms?.TERMSE_1.isChecked === 1 &&
+    state?.terms?.TERMSE_2.isChecked === 1 &&
+    state?.terms?.TERMSE_3.isChecked === 1;
   return (
     <Container>
       <ContentsContainer>
@@ -78,7 +88,7 @@ function HouseContractTermsPresenter({
           <ButtonItemBox>
             <CheckLabelButton
               active={state.terms?.TERMSD_1?.isChecked === 0 ? false : true}
-              onPress={() => console.log('파일다운로드')}
+              onPress={() => onClickTermsModalOpen('TERMSD_1', termsTermsSd1())}
               iscenter
               title={state.terms?.TERMSD_1?.title}
             />
@@ -86,7 +96,7 @@ function HouseContractTermsPresenter({
           <ButtonItemBox>
             <CheckLabelButton
               active={state.terms?.TERMSD_2?.isChecked === 0 ? false : true}
-              onPress={() => console.log('파일다운로드')}
+              onPress={() => onClickTermsModalOpen('TERMSD_2', termsTermsSd2())}
               iscenter
               title={state.terms?.TERMSD_2?.title}
             />
@@ -94,7 +104,7 @@ function HouseContractTermsPresenter({
           <ButtonItemBox>
             <CheckLabelButton
               active={state.terms?.TERMSD_3?.isChecked === 0 ? false : true}
-              onPress={() => console.log('파일다운로드')}
+              onPress={() => buttonTermsPdf('TERMSD_3')}
               iscenter
               title={state.terms?.TERMSD_3?.title}
             />
@@ -114,7 +124,12 @@ function HouseContractTermsPresenter({
             </Typhograph>
           </TitleBox>
           <TermsButtonBox>
-            <CheckLabelButton onPress={() => onClickAllCheck(allCheckList1)} title="모두 동의하기" iscenter />
+            <CheckLabelButton
+              onPress={() => onClickAllCheck(allCheckList1, isActive1)}
+              active={isActive1}
+              title="모두 동의하기"
+              iscenter
+            />
             <Typhograph type="NOTO" color="GRAY" weight="REGULAR" size={10}>
               * 항목을 클릭하시면 해당 내용을 확인하실 수 있습니다.
             </Typhograph>
@@ -178,30 +193,29 @@ function HouseContractTermsPresenter({
               />
             </TermsListItemBox>
           </TermsListBox>
-          {state?.selectType === 'T' && (
-            <TermsListBox>
-              <TermsListItemBox>
-                <TermsList
-                  onClickTermsModalOpen={onClickTermsModalOpen}
-                  item={state.terms.TERMSF_1}
-                  onChangeTermsState={onChangeTermsState}
-                />
-              </TermsListItemBox>
-            </TermsListBox>
-          )}
+          <TermsListBox>
+            <TermsListItemBox>
+              <TermsList
+                onClickTermsModalOpen={onClickTermsModalOpen}
+                item={state.terms.TERMSF_1}
+                onChangeTermsState={onChangeTermsState}
+              />
+            </TermsListItemBox>
+          </TermsListBox>
         </SectionContainer>
 
         <SectionContainer>
           <TitleBox>
             <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
-              (필수) 보험계약 체결, 이행을 위한 동의
+              (필수) 결제 약관 동의
             </Typhograph>
           </TitleBox>
           <TermsButtonBox>
             <CheckLabelButton
-              onPress={() => onClickAllCheck(['TERMSE_1', 'TERMSE_2', 'TERMSE_3'])}
+              onPress={() => onClickAllCheck(['TERMSE_1', 'TERMSE_2', 'TERMSE_3'], isActive2)}
               title="모두 동의하기"
               iscenter
+              active={isActive2}
             />
           </TermsButtonBox>
           <TermsListBox>
@@ -244,6 +258,7 @@ function HouseContractTermsPresenter({
                 onClickTermsModalOpen={onClickTermsModalOpen}
                 item={state.terms.TERMSG_1}
                 onChangeTermsState={onChangeTermsState}
+                isButton={false}
               />
             </TermsListItemBox>
           </TermsListBox>
@@ -252,8 +267,20 @@ function HouseContractTermsPresenter({
       </ContentsContainer>
       <TermsModal
         open={state?.termsModal}
-        close={() => onChangeState('termsModal', false)}
+        close={() => {
+          onChangeState('termsModal', false);
+          onChangeState('termsImg', false);
+        }}
         html={state?.termsHtml}
+        onPress={onClickTermsModalAgree}
+        isButton
+      />
+
+      <TermsPdf
+        open={state.termsPdf}
+        close={() => {
+          onChangeState('termsPdf', false);
+        }}
         onPress={onClickTermsModalAgree}
         isButton
       />

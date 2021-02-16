@@ -957,29 +957,49 @@ export const termsTermsa5 = () => {
                   </head>
                   <body>
                   <!-- wrap -->
-                    <div id="wrap" class="pop">
-    
-                        <!-- container -->
-                        <div id="container">
-                            <!-- content -->
-                            <div id="content">
-                                <div class="cont-inner">                
-                                    <div class="term">
-                                        <h1 class="first">민감정보 및 고유식별정보의 처리에 관한 사항(필수)</h1>
-                                        <div class="in-box">당사 및 당사 업무수탁자는 「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」 및 「다중이용업소의 안전관리에 관한 특별법」에 따라 상기의 개인(신용)정보에 대한 개별 동의사항에 대하여 다음과 같이 귀하의 민감정보(질병&middot;상해정보) 및 고유식별정보(주민등록번호&middot;외국인등록번호)를 처리(수집&middot;이용, 조회, 제공)하고자 합니다. 이에 동의하십니까?</div>
-                                        <ul class="ul-type h-top2">
-                                            <li>질병&middot;상해정보 처리</li>
-                                            <li>주민등록번호, 외국인등록번호, 운전면허증번호 처리</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- //content -->
-                        </div>
-                        <!-- // container -->
-    
-                    </div>
-                    <!-- //wrap -->
+                  <div id="wrap" class="pop">
+                  
+                      <!-- container -->
+                      <div id="container">
+                          <!-- content -->
+                          <div id="content">
+                              <div class="cont-inner">                
+                                  <div class="term">
+                                      <h1 class="first">보험가입동의(필수)</h1>
+                                      <h2>제 1조(목적)</h2>
+                                      <div class="in-txt">이 보험가입동의는 인슈로보(이하‘회사‘)의 회원들을 위하여 제공하는 서비스 이용에 관하여 회원들간 협약사항을 규정함을 그 목적으로 합니다.</div>
+                  
+                                      <h2>제 2조(회원자격)</h2>
+                                      <ol class="ol-type numb">
+                                          <li>회사가 운영하는 서비스의 이용약관에 동의한 회원 중 해당 보험가입동의에 동의한 회원은 이 협약의 당사자가 됩니다.</li>
+                                          <li>회원 자격득실 증에 관하여는 각 이용약관에서 정하는 바에 따릅니다.</li>
+                                      </ol>
+                  
+                                      <h2>제 3조(단체보험가입 청약 등)</h2>
+                                      <ol class="ol-type numb">
+                                          <li>회사는 회원을 위하여 계약자로서 보험사와 단쳬보험계약을 체결할 수 있습니다.</li>
+                                          <li>회사가 계약자인 단쳬보험계약에 피보험자로 가입하기를 희망하는 회원은 소정의 절차에 따라 보험가입신청(보험청약)을 합니다.</li>
+                                          <li>보험계약을 하고자 하는 회원은 보험약관, 자주하는 질문 등을 충분히 읽고 이해한 후 청약을 하며, 보험사와 회사가 고지를 요구하는 사항에 대하여 성실히 답합니다.</li>
+                                          <li>회원이 가입하는 보험의 수익자는 보험가입자(피보험자) 본인과 그 법정 상속인이 됩니다.</li>
+                                          <li>회사가 계약한 단체보험에 관하여 기타 이 보험가입동의에서 정하지 않은 사항은 회사가 보험사와 약정한 바에 따릅니다.</li>
+                                      </ol>
+                  
+                                      <h2>제 4조(기타사항)</h2>
+                                      <ol class="ol-type numb">
+                                          <li>회사의 기존 서비스 변경, 새로운 서비스 출시, 법령의 개폐회원 요구 등의 사정이 있어 이 규약을 변경할 필요가 있는 경우, 회사는 회원들을 위하여 이 보험가입동의 내용을 즉시 변경합니다. 그리고 변경된 내용은 그 즉시 효력을 발합니다.</li>
+                                          <li>회사는 보험가입동의 내용을 변경하기 위해 필요한 경우 회원들에게 의견을 구할 수 있으며, 회원들은 이에 성실히 응합니다.</li>
+                                          <li>보험가입동의 내용을 변경하기 희망하는 회원은 인슈로보에 그 구체적 변경안과 이유를 제시하여 변경 제안할 수 있습니다. 이에 대하여는 회사는 전항에 따라 처리합니다.</li>
+                                          <li>회사는 단체보험가입 등 해당 보험가입동의에 직접적으로 영향을 받는 서비스를 이용하는 회원에게는 개별적으로 해당 보험가입동의에 부동의 하는지 의견을 구합니다. 이때 보험가입동의에 부동의하는 회원은 해당서비스를 이용하지 않을 수 있습니다.</li>
+                                      </ol>
+                                  </div>
+                              </div>
+                          </div>
+                          <!-- //content -->
+                      </div>
+                      <!-- // container -->
+                  
+                  </div>
+                  <!-- //wrap -->
                   </body>
                   </html>
                     `;
@@ -1734,6 +1754,395 @@ export const termsTermsf1 = () => {
   return html;
 };
 
+export const termsTermsSd = () => {
+  const html = `
+                    <html>
+                    <head>
+                    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                    <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                    <style type="text/css">
+                      ${commonCss}
+                      ${defaultCss}
+                    </style>
+                    </head>
+                    <body>
+                    <!-- wrap -->
+                    <div id="wrap" class="pop">
+
+                        <!-- container -->
+                        <div id="container">
+                            <!-- content -->
+                            <div id="content">
+                                <div class="cont-inner">                
+                                    <div class="term">
+                                        <h2>(필수) 기타 설명</h2>
+                                        <div class="in-txt">고객은 본 주택종합보험 상품의 자주하는 질문 및 이용에 관한 기타 부가 설명을 숙지하였으며 이에 동의합니다.</div>
+                                        
+                                        <h2>(필수) 해지 사고 접수 안내</h2>
+                                        <div class="in-txt">고객은 본 주택종합보험 상품의 사고 접수 및 보험금 청구에 관한 사항을 숙지하였고 확인하였으며 이에 동의합니다.</div>
+                                        
+                                        <h2>(필수) 통신수단 해지 동의</h2>
+                                        <div class="in-txt">향후 해지 요청 및 업무처리를 전화 등의 통신 매체로 처리하시는 것을 확인하였으며 이에 동의합니다.</div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- //content -->
+                        </div>
+                        <!-- // container -->
+
+                    </div>
+                    <!-- //wrap -->
+
+                    </body>
+                    </html>
+                      `;
+  return html;
+};
+
+export const termsTermsSd1 = () => {
+  const html = `
+                      <html>
+                      <head>
+                      <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                      <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                      <style type="text/css">
+                        ${commonCss}
+                        ${defaultCss}
+                      </style>
+                      </head>
+                      <body>
+                      <!-- wrap -->
+                        <div id="wrap" class="pop">
+
+
+                            <!-- container -->
+                            <div id="container">
+                                <!-- content -->
+                                <div id="content">
+                                    <div class="cont-inner">                
+                                        <div class="term">
+                                            <h1 class="first">보험상품 가입시 확인사항</h1>
+                                            <div class="in-box">본 주택종합보험은 단체보험으로 계약자 밸루어블인, 피보험자는 인슈로보 회원 중 가입 고객이 되며, 연말정산 소득공제 대상 상품이 아닙니다.</div>
+                                            <h2>1. 보험계약 체결 전 유의사항</h2>
+                                            <ul class="ul-type">
+                                                <li>보험계약을 청약할 때는 보험상품명, 보험기간, 보험료 납입기간, 피보험자 등을 반드시 확인하시고, 인터넷 등을 통해 상품설명서와 보험약관을 확인해 보거나 설계사, 상담원에게 수령 후 설명을 받으시기 바랍니다.</li>
+                                                <li>기존 보험계약을 해지하고 새로운 보험계약을 체결하는 경우에 보험인수가 거절되거나 보험료가 인상될 수 있으며, 보장내용이 달라질 수 있으니 유의하시기 바랍니다.</li>
+                                            </ul>
+                                            <h2>2. 보험계약의 무효</h2>
+                                            <div class="in-txt">다음 중 한 가지에 해당하면 계약을 무효로 하며 이미 납입한 보험료는 돌려드립니다.</div>
+                                            <ul class="ul-type h-top">
+                                                <li>타인의 사망을 보험금 지급사유로 하는 계약에서 계약을 체결할 때까지 피보험자(보험대상자)의 서면에 의한 동의를 얻지 않은 경우</li>
+                                                <li>만 15세 미만자, 심신상실자 또는 심신박약자의 사망을 보험금 지급사유로 한 경우</li>
+                                                <li>계약 체결 시 계약에서 정한 피보험자(보험대상자)의 나이에미달되었거나 초과되었을 경우</li>
+                                            </ul>
+                                            <h2>3. 보험계약자의 자필 서명 의무</h2>
+                                            <ul class="ul-type">
+                                                <li>청약서는 보험계약자 본인이 작성하고 서명란에도 보험계약자 본인 및 피보험자가 자필 서명을 하셔야 합니다.자필서명을 하지 않으신 경우 보험계약의 효력 등과 관련 하며 불이익이 있을 수 있습니다.</li>
+                                                <li>인터넷을 통해 직접 보험에 가입하시는 경우에는 공인인증서를 통한 전자서명으로 자필서명을 대신할 수 있습 니다.</li>
+                                                <li>전화로 가입할 때는 계약자와 피보험자가 동일하고 수익자가 본인이거나 상속인인 경우에 한해 녹취로 자필서명을 대신할 수 있습니다.</li>
+                                            </ul>
+                                            <h2>4. 가입자의 계약 전후 알릴 의무</h2>
+                                            <ul class="ul-type">
+                                                <li>가입자의 계약 전 알릴 의무
+                                                    <div class="dep3">계약자 또는 피보험자 등은 보험계약 청약 시 기재사항 및 질문사항에 대하여 사실대로 알려주셔야 하며 그렇지 않은 경우 보험금 지급이 거절되거나 계약이 해지될 수 있습니다.</div>
+                                                </li>
+                                                <li>가입자의 계약 후 알릴 의무
+                                                    <div class="dep3">계약자 또는 피보험자 등은 보험계약을 맺은 후 보험약관에 정한 계약 후 알릴의무사항이 발생하였을 경우(청약서 기재사항 변경 시, 동일한 위험을 보장하는 계약을 체결할 경우, 위험이 뚜렷이 변경되었을 경우, 주소 또는 연락처가 변경된 경우)지체 없이 회사에 알라고 보험증권(보험가입증서)에 확인을 받아야 합니다. 그렇지 않을 경우 보험금지급이 거절될 수 있습니다.</div>
+                                                </li>
+                                            </ul>
+
+                                            <h2>5. 청약의 철회와 품질보증제도</h2>
+                                            <ul class="ul-type">
+                                                <li>청약의 철회<br>
+                                                    보험계약자는 보험증권을 받은 날부터 15일 이내 보험계약의 청약을 철회할 수 있습니다. 이 경우 보험회사는 보험계약자의 청약철회를 접수한 날부터 3일 이내에 받은 보험료를 보험계약자에게 돌려 드립니다. 다만, 다음 중 어느 하나에 해당하는 경우에는 보험계약의 청약을 철회할 수 없습니다.
+                                                    <ol class="ol-type numb dep">
+                                                        <li>청약한 날부터 30일이 초과된 계약</li>
+                                                        <li>진단계약</li>
+                                                        <li>보험기간이 1년 미만인 계약</li>
+                                                        <li>전문보험계약자가 체결한 계약</li>
+                                                    </ol>
+                                                </li>
+                                                <li>품질보증제도
+                                                    <div class="dep3">회사는 계약자가 청약할 때에 계약자에게 약관의 중요한 내용을 설명하며, 청약 후에 지체 없이 약관 및 가입확인서를 드립니다.<br>
+                                                        다만, 계약자가 동의하는 경우 광기록 매체, 전자우편 등 전자적 방법으로 송부할 수 있으며, 계약자 또는 그 대리인이 약관 및 계약자 보관용 청약서 등을 수신했을 때에는 해당 문서를 드린 것으로 봅니다. 계약자 또는 그 대리인이 약관 및 계약자 보관용 청약서 등을 수신했을 대에는 해당문서를 드린 것으로 봅니다. 계약자가 청약한 경우 약관과 계약자 보관용 청약서를 청약 시 전달받지 못하거나 약관의 중요한 내용을 설명 받지 못한 때 또는 청약서에 자필서명을 하지 않은 때에는 계약자는 게ㅑㅇㄱ이 성립한 날부터 3개월 이내에 계약을 취소할 수 있습니다. 이 경우 이미 납입한 보험료에 보험료를 받은 기간에 대해 이계약의 보험계약대출이율을 연단위 복리로 계산한 금액을 더하여 지급합니다.
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                            <h2>6. 무배당 보험의 특징</h2>
+                                            <div class="in-txt">무배당 보험은 배당이 발생하지 않는 대신 배당 상품과 비교하여 일반적으로 보험료가 저렴합니다.</div>
+
+
+                                            <h2>7.해지 환급금이 납입보험료 보다 적은 이유</h2>
+                                            <ul class="ul-type">
+                                                <li>해지환급금은 보험계약이 중도에 해지될 경우에 지급되는 금액을 말합니다.</li>
+                                                <li>보험은 은행의 저축과 달리 위험보장과 저축을 겸비한 제도로서 보험계약자가 납입한 보험료 중 일부는 불의의 사고를 당한 다른 가입자에게 지급되는 보험금으로, 또 다른 일부는 보험회사 운영에 필요한 경비로 사용되므로 중도 해지 시 지급되는 해지환급금은 납입한 보험료보다 적거나 없을 수도 있습니다.
+                                                    <div class="info-txt2 bk">이 상품은 만기환급금이 없는 상품입니다.</div>
+                                                </li>
+                                            </ul>
+                                            <h2>8.비용보험의 비례보상에 관한 사항</h2>
+                                            <div class="in-txt">이 계약에서 보장하는 위험과 같은 위험을 보장하는 다른 계약(공제계약 포함)이 있을 경우에는 각 계약에 대하며 다른 계약이 없는 것으로 하며 각각 산출한 보상 책임액의 합계액이 손해액을 초과할 때에는 이 계약에 의한 보상 책임액의 상기 합계액에 대한 비율에 따라 보상하여 드립니다.</div>
+
+                                            <h2>9.보험료 납입 연체에 대한 납입최고(독)과 계약의 해지</h2>
+                                            <div class="in-txt">보험료 납입이 연체 중인 경우에 회사는 14일(보험기간이 1년 미만인 경우에는 7일 이상의 기간을 납입최고(독촉) 기간으로 정하며 보험계약자(타인을 위한 보험계약의 경우 특정된 보험수익자(보험금을 받는 자포함)에게 납입최고 (독촉기간 내에 연체 보험료를 납입하여야 한다는 내용과 납입최고 (독촉기간이 끝나는 날까지 보험료 를 납입하지 아니할 경우 납입최고(독촉 기간이 끝나는 날의 다음날에 계약이 해지된다는 내용을 서면 (등기부 편 등), 전화(음성녹음) 또는 전자문서 등으로 알려드립니다.</div>
+                                            <ol class="ol-type numb dep">
+                                                <li>보험계약자가 약정한 납입일자까지 제2회 이후의 분할보험료를 납입하지 않는 때에는 약정한 납입일이 속하는 달의 다음 달 말일까지 납입최고기간을 둡니다. 회사는 이 납입최고기간 안에 생긴 사고에 대하여는 보상합니다.</li>
+                                                <li>위 '1'의 납입최고기간 안에 분할보험료를 납입하지 않는 때에는 납입최고기간이 끝나는 날의 24시부터 보험 계약은 해지됩니다.</li>
+                                                <li>보험계약자가 약정한 납입일자까지 분할보험료를 납입하지 않는 경우, 회사는 보험계약자 및 기명피보험자에 게 납입최고기간이 끝나는 날 이전에 위 '1'및'2'의 의 내용을 서면으로 최고 합니다. 이때 보험계약자 또는 피보험 자가 보통약관 제45조(계약 후 알릴 의무)에 따라 주소변경을 통보하지 않는 한 보험증권에 기재된 보험계약자 또는 기명피보험자의 주소를 회사의 의사표시를 수령할 지정장소로 합니다.</li>
+                                            </ol>
+
+                                            <h2>10.예금자보호 안내</h2>
+                                            <div class="in-txt">이 보험계약은 예금자보호법에 따라, 예금보험공사가 보호하되, 보호 한도는 본 보험회사에 있는 귀하의 모든 예 금보호 대상 금융상품의 해약환급금(또는 만기 시 보험금이나 사고보험금)에 기타 지급금을 합하여 1인당 최고 5천만원 "이며, 5천만원을 초과하는 나머지 금액은 보호하지 않습니다. (단, 보험계약자 또는 보험료납부자가 법인 인 경우 예금자보호법에 따라 예금보험공사가 보호하지 않습니다.</div>
+
+                                            <h2>11.모집질서 확립 및 신고센터 안내</h2>
+                                            <ul class="ul-type">
+                                                <li>보험계약과 관련한 특별이익제공 행위 및 보험모집질서 문란행위는 보험업 법에 의해 처벌받을 수 있습니다</li>
+                                                <li>금융감독원 보험모집질서 위반행위 신고센터
+                                                    <ul class="dep3">
+                                                        <li>전화 : 1332</li>
+                                                        <li>인터넷 : www.fss.or.kr</li>
+                                                    </ul>
+                                                </li>    
+                                            </ul>
+
+                                            <h2>12.상담 및 보험분쟁조정 안내</h2>
+                                            <ul class="ul-type">
+                                                <li>가입한 보험에 관하며 상담이 필요하거나 불만 사랑이 있을 때에는 먼저 저희 회사로 연락주시면 신속히 해결 하겠습니다.
+                                                    <ul class="dep3">
+                                                        <li>전화 : 1566-7711, (02)6464-3535, 3522번</li>
+                                                        <li>인터넷 : www.meritzfire.com -&gt; 고객센터 -&gt; 전자민원 접수</li>
+                                                    </ul>
+                                                </li>    
+                                                <li>저희 회사의 처리결과에 이의가 있으시면 금융감독원 금융소비자보호센터에 민원 또는 분쟁조정 등을 신청사 실 수 있습니다.
+                                                    <ul class="dep3">
+                                                        <li>전화 : 국번없이 1332, (02)3145-5114</li>
+                                                        <li>인터넷 : www.fss.or.kr</li>
+                                                    </ul>
+                                                </li>    
+                                            </ul>
+
+                                            <h2>13.금융감독원 보험범죄 신고센터 안내</h2>
+                                            <ul class="ul-type">
+                                                <li>가입한 보험에 관하며 상담이 필요하거나 불만 사랑이 있을 때에는 먼저 저희 회사로 연락주시면 신속히 해결 하겠습니다.
+                                                    <ul class="dep3">
+                                                        <li>전화 : 1566-7711, (02)6464-3535, 3522번</li>
+                                                        <li>인터넷 : www.meritzfire.com -> 고객센터 -> 전자민원 접수</li>
+                                                    </ul>
+                                                </li>                        
+                                                <li>보험범죄는 형법 제347조 (사기)에 의거 10년 이하의 징역이나 2천만원 이하의 벌금에 처해지며, 보험범죄를 교사한 경우에도 동일한 처벌을 받을 수 있습니다.
+                                                    <ul class="dep3">
+                                                        <li>전화 : 1588-3311</li>
+                                                        <li>인터넷 : www.fss.or.kr 인터넷보험범죄신고</li>
+                                                    </ul>
+                                                </li>                        
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //content -->
+                            </div>
+                            <!-- // container -->
+
+                        </div>
+                        <!-- //wrap -->
+  
+                      </body>
+                      </html>
+                        `;
+  return html;
+};
+
+export const termsTermsSd2 = () => {
+  const html = `
+                      <html>
+                      <head>
+                      <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                      <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                      <style type="text/css">
+                        ${commonCss}
+                        ${defaultCss}
+                      </style>
+                      </head>
+                      <body>
+                      <!-- wrap -->
+                        <div id="wrap" class="pop">
+
+
+                            <!-- container -->
+                            <div id="container">
+                                <!-- content -->
+                                <div id="content">
+                                    <div class="cont-inner">                
+                                        <div class="term">
+                                            <h1 class="first">상품 보장 내용 설명</h1>
+                                            <div class="in-box">아파트,연립,다세대 단독,다가구 주택 및 그 건물에 수용된 가재도구를 무연하고 급격한 외래 의 물리적 사고로 생긴 손해를 보장하는 상품입니다.</div>
+                                            <h2>기본정보</h2>
+                                            <div class="tbl">
+                                                <table>
+                                                    <colgroup>
+                                                        <col style="width:25%">
+                                                        <col style="width:75%">
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>가입자격</th>
+                                                            <td>주택건물 소유자/점유자(임차인)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>보장형태</th>
+                                                            <td>실손보장형</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>보험기간</th>
+                                                            <td>1년</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>납입방법</th>
+                                                            <td>일시납</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>상품형태</th>
+                                                            <td>순수보장형(만기시 환급금 없음)</td>
+                                                        </tr>   
+                                                        <tr>
+                                                            <th>보험목적물</th>
+                                                            <td>
+                                                                주택 건물, 가재도구<br>
+                                                                <div class="info-txt">금, 보석, 귀금속 귀중품 등 명기가재 는 가입불가</div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <h2>기본계약</h2>
+                                            <div class="tbl">
+                                                <table>
+                                                    <colgroup>
+                                                        <col style="width:25%">
+                                                        <col style="width:75%">
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th>보장명</th>
+                                                            <td>재물위험 손해 (건물 및 가재)</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>보장내용<br>(지급사유)</th>
+                                                            <td>우연한 사고(화재.폭발,파열 붕괴)등으로 인한 손해 발생 시 가입 금액 한도 내 보상</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>보장금액<br>(보험금액)</th>
+                                                            <td>가입금액 한도</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <h2>선택 계약</h2>
+                                            <div class="tbl">
+                                                <table>
+                                                    <colgroup>
+                                                        <col style="width:25%">
+                                                        <col style="width:75%">
+                                                    </colgroup>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th rowspan="3">보장명</th>
+                                                            <td>가재 도난 위험</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="bl">잠금장치 교체비용</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="bl">실화(대물) 배상책임</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th rowspan="3">보장내용<br>(지급사유)</th>
+                                                            <td>주택 구내의 가재(보험목적) 보관되어 있는 동안에 강도 또는 절 도 (그 미수를 포함합니다)로 생긴 도난, 훼손 또는 망가진 손해 를 입었을 경우 
+                                                                <div class="info-txt">자기부담금 3만원 공제</div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="bl">가재도난 위험담보에 따라 보험금이 지급된 경우 보험가입금액을 잠금장치 교체비용으로 지급</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="bl">피보험자의 주택 구내에서 발생한 화재사고로 인하여 타인의 재 물을 손괴하며 배상책임이 발생한 경우 보상한도액 내에서 보상. 단, 피보험자가 소유,점유,임차,보험,관리,통제하는 재물의 경우는 보상불가</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th rowspan="3">보장금액<br>(보험금액)</th>
+                                                            <td>가입금액 한도</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="bl">가입금액</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="bl">가입금액 한도</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                            <h2>지급보험금 산정방식</h2>
+                                            <div class="in-txt">추정 예상보험가액 평가는 간접평가법에 의하여 예상재조달가액을 산출하는 것이므로 실제 사고 발생시 적용하는 직접평가법에 의하여 산출할 보험가액과는 차이가 발생할 수 있습니다. 사고 시점에서 보험가입금애기 보험가액보다 적을 경우 부보비율에 따라서 비례보상이 될수 있습니다.</div>
+                                            <ul class="ul-type h-top">
+                                                <li>재조달가액은 현재와 동일한 용도 및 구조로 신축하는데 소요되는 비용이며, 시가액은 재조달가액에서 사용 년수만큼 감가공제한 금액입니다.</li>                            
+                                                <li>예상 재조달가액 산출을 위해 사용되는 표준단가에는 전기설비,소방설비,위생,난방설비 등의 부대설비 가액 이(1.1~1.3%)보정되어 있습니다.</li>
+                                                <li>비례보상에 관한 사항
+                                                    <div class="dep3">재물위험 손해, 가재도난위험, 실화배 상위험 담보의 경우는 다수 계약시 중복보험으로 인해 비례보상이 되며 잠금장치 교체비용에 대해서는 다수 계약시 비례보상되지 않습니다.</div>
+                                                </li>                            
+                                                <li>추정 보험가액 예시
+                                                    <div class="dep3">예상재 조달가액 : 연면적(m2) * 표준단가</div>
+                                                </li>
+                                                <li>건물 재조달가액 산출방법
+                                                    <div class="dep3">[ 건물의 용도 / 구조별 적정 건축물신축단가 * 면적 ] * 보정계수(1.1.~1.3)</div>
+                                                </li>
+                                                <li>예상시가액 
+                                                    <div class="dep3">예상재 조달가액 - 감가공제액 예상재 조달가액 * 경년감가율 * 경과년수)</div>
+                                                </li>
+                                                <li>보험료 예시
+                                                    <ul class="dep3">
+                                                        <li>평가한 보험가액 (건물연면적 재조달가액) * 보험요율 = 보험료</li>
+                                                        <li>건물 : 벽돌조슬라브 84m2* 1,100,000 * 0.0236% = 21,806</li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                            <h2>보상하지 않는 손해</h2>
+                                            <div class="in-txt">회사는 그 원인의 직접, 간접을 묻지 아니하고 아래의 사유로 생긴 손해는 보상하여 드리지 아니합니다.</div>
+                                            <ul class="ul-type h-top">
+                                                <li>책임개시전 사고
+                                                    <div class="dep3">회사는 계약의 청약을 승낙하고 제1회 보험료 등을 받는 때부터 약관이 정한 바에 따라 보장을 합니다. 따라서, 다른 약정이 없는 한 보험료를 받기 전에 생긴 손해에 대해서는 회사의 책임이 없습니다.</div>
+                                                <li>계약자나 피보험자 또는 이들의 대리인의 고의
+                                                    <div class="dep3">보험계약자나 피보험자 또는 이들의 대리인의 고의 중대한 과실로 생긴 손해, 기타 약관에서 정한 보상하지 마니하는 손해에 해당되는 경우 회사는 책임을 지지 아니합니다. (약관 참조)</div>
+                                                </li>
+                                            </ul>
+                                            <div class="tbl">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th>승인번호</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td class="ac">손해보험협회 심의필 제24857호(2019.12.02)</td>
+                                                        </tr>                                
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //content -->
+                            </div>
+                            <!-- // container -->
+
+                        </div>
+                        <!-- //wrap -->                         
+  
+                      </body>
+                      </html>
+                        `;
+  return html;
+};
+
 export const productInfoHtml = () => {
   const html = `
                     <html>
@@ -1747,6 +2156,11 @@ export const productInfoHtml = () => {
                     </head>
                     <body>
                     <!-- wrap -->
+                    <!-- header -->
+                    <header id="header">
+                        <h1>상품안내 및 보장내용 자세히 보기</h1>
+                        <div class="btn-close"><button type="button"><span class="ir">닫기</span></button></div>
+                    </header>
                     <div id="wrap" class="pop">
                         <!-- container -->
                         <div id="container">
@@ -2043,5 +2457,251 @@ export const productInfoHtml = () => {
                     </body>
                     </html>
                       `;
+  return html;
+};
+
+export const productInfoHtml2 = () => {
+  const html = `
+                      <html>
+                      <head>
+                      <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                      <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                      <style type="text/css">
+                        ${commonCss}
+                        ${defaultCss}
+                      </style>
+                      </head>
+                      <body>
+                      <!-- wrap -->
+                        <div id="wrap" class="pop">
+
+                            <!-- header -->
+                            <header id="header">
+                                <h1>주요 업종별 연평균 매출액</h1>
+                            </header>
+                            <!-- //header -->
+
+                            <!-- container -->
+                            <div id="container">
+
+                                <!-- content -->
+                                <div id="content">			
+                                    <div class="cont-inner">
+                                        <div class="tbl">
+                                            <table>
+                                                <colgroup>
+                                                    <col style="width:80%">
+                                                    <col style="width:20%">
+                                                </colgroup>
+                                                <thead>
+                                                    <tr>
+                                                        <th>주요업종</th>
+                                                        <th>규모<br>기준</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr>
+                                                        <td>식료품제조업</td>
+                                                        <td rowspan="17" class="ac">평균매출액 등 120억원 이하</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>음료 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>의복, 의복액세서리 및 모피제품 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>가죽, 가방 및 신발 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>코크스, 연탄 및 석유 정제품 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>화학물질 및 화학제품 제조업(의약품 제조업은 제외)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>의료용 물질 및 의약품 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>비금속 광물 제품 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1차 금속 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>금속가공제품 제조업(기계 및 가구제조업은 제외)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>전자부품, 컴퓨터, 영상, 음향 및 통신장비 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>전기장비 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>그 밖의 기계 및 장비 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>자동차 및 트레일러 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>가구 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>전기, 가스, 증기 및 공기조절 공급업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>수도업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>농업, 임업 및 어업</td>
+                                                        <td rowspan="14" class="ac">80억원 이하</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>광업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>담배 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>석유제품 제조업(의복 제조업은 제외)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>목재 및 나무제품 제조업(가구 제조업은 제외)</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>펄프, 종이 및 종이제품 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>인쇄 및 기록 매체 복제업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>고무제품 및 플라스틱제품 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>의료, 정밀, 광학기기 및 시계 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>그 밖의 운송장비 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>그 밖의 제품 제조업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>건설업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>운수 및 창고업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>금융 및 보험업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>도매 및 소매업</td>
+                                                        <td rowspan="2" class="ac">50억원 이하</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>정보통신업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>수도, 하수 및 폐기물 처리, 원료 재생업</td>
+                                                        <td rowspan="5" class="ac">30억원 이하</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>부동산업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>전문·과학 및 기술 서비스업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>사업시설관리, 사업지원 및 임대 서비스업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>예술, 스포츠 및 여가 관련 서비스업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>산업용 기계 및 장비 수리업</td>
+                                                        <td rowspan="5" class="ac">10억원 이하</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>숙박 및 음식점업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>교육 서비스업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>보험업 및 사회복지 서비스업</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>수리(修理) 및 기타 개인 서비스업</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                          
+                            </div>
+                            <!-- // container -->
+
+                         
+                        </div>
+                        <!-- //wrap -->
+                      </body>
+                      </html>
+                        `;
+  return html;
+};
+
+export const productInfoHtml3 = () => {
+  const html = `
+                        <html>
+                        <head>
+                        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                        <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                        <style type="text/css">
+                          ${commonCss}
+                          ${defaultCss}
+                        </style>
+                        </head>
+                        <body>
+                        <!-- wrap -->
+                        <div id="wrap" class="pop">
+
+                            <!-- header -->
+                            <header id="header">
+                                <h1>보험 가입 증명원</h1>
+                                <div class="btn-close"><button type="button"><span class="ir">닫기</span></button></div>
+                            </header>
+                            <!-- //header -->
+
+                            <!-- container -->
+                            <div id="container">
+
+                                <!-- content -->
+                                <div id="content">
+                                    <div class="cont-inner">                
+                                        <ul class="ul-type">
+                                            <li>가입자는 법률상 소상공인으로 일반 물건인 경우 건물 또는 시설(비품 포함)을 총 1억원 한도로 가입 가능하며,</li>
+                                            <li>공장 물건인 경우 건물 또는 기계를 총 1.5억원 한도까지 가입 가능합니다.</li>                
+                                            <li>재고자산은 최대5천만원으로 가입 가능합니다.<br>
+                                                <div class="info-txt">
+                                                재고자산 : 원/부재료, 재공품, 반제품, 제품, 부산물, 상품과 저장품 및 이와 비슷한 것
+                                                </div>
+                                            </li>
+                                            <li>소재지와 건물 구조에 따라 보험료가 달라집니다.</li>                    
+                                            <li class="primary">보험 개시는 가입일로부터 7일 후 부터 개시됩니다.</li>                    
+                                            <li>지하소재물건 및 옥외 간판(건물 벽체와 분리된 입간판)의 경우 가입이 제외됩니다.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <!-- //content -->
+                            </div>
+                            <!-- // container -->
+
+                        </div>
+                        <!-- //wrap -->
+                        </body>
+                        </html>
+                          `;
   return html;
 };

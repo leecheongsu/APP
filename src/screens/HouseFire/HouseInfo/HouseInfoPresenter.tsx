@@ -3,12 +3,12 @@ import { BottomFixButton, InfoList, Loading } from '@app/components';
 import { screenWidth } from '@app/lib';
 import styled from '@app/style/typed-components';
 import { WebView } from 'react-native-webview';
-import { Text } from 'react-native';
 const Container = styled.View`
   width: ${screenWidth()}px;
-  padding-bottom: 65px;
 `;
-const InfoListBox = styled.View``;
+const InfoListBox = styled.View`
+  padding-bottom: 100px;
+`;
 
 const ContentsContainer = styled.ScrollView``;
 function HouseInfoPresenter({ state, handleNextButton, handlePreviousButton, infoList }) {

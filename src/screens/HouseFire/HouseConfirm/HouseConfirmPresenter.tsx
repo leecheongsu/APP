@@ -7,7 +7,6 @@ import React from 'react';
 
 const Container = styled.View`
   width: ${screenWidth()}px;
-  padding-bottom: 65px;
 `;
 const ContentsContainer = styled.ScrollView`
   padding: 20px;
@@ -74,7 +73,7 @@ const RecommendUserBox = styled.View`
 `;
 
 const SpacingBox = styled.View`
-  height: 50px;
+  height: 150px;
 `;
 
 function HouseConfirmPresenter({
@@ -114,7 +113,7 @@ function HouseConfirmPresenter({
             </RowItem>
             <RowItem>
               <Typhograph type="NOTO" color="BLACK2">
-                인슈로보 주택화재보험
+                {state?.selectAddress?.product?.p_name}
               </Typhograph>
             </RowItem>
           </RowBox>
@@ -127,7 +126,7 @@ function HouseConfirmPresenter({
             </RowItem>
             <RowItem>
               <Typhograph type="NOTO" color="BLACK2">
-                {state.selectInsuCompany}
+                {state?.selectAddress?.product?.inscompany}
               </Typhograph>
             </RowItem>
           </RowBox>
@@ -140,7 +139,7 @@ function HouseConfirmPresenter({
             </RowItem>
             <RowItem>
               <Typhograph type="NOTO" color="BLACK2">
-                F20200631203
+                {state?.selectAddress?.quote_no}
               </Typhograph>
             </RowItem>
           </RowBox>

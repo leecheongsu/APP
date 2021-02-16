@@ -1,10 +1,9 @@
 import React from 'react';
-import { BackButton, BottomFixButton, CustomButton, FocusAwareStatusBar, Typhograph } from '@app/components';
+import { BackButton, BottomFixButton, FocusAwareStatusBar } from '@app/components';
 import styled from '@app/style/typed-components';
 import WebView from 'react-native-webview';
 import Modal from 'react-native-modal';
-import { screenHeight, screenWidth } from '@app/lib';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
 import { Platform } from 'react-native';
 const ContentsBox = styled.View`

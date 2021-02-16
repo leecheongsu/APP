@@ -95,6 +95,8 @@ export default function HouseInputUserContainer({ state, onChangeState, handlePr
         email: user?.email,
         mobile: user?.mobile,
         jumin: user?.jumina + '-' + user?.sex + inputState.juminb.value,
+        juminb: inputState.juminb.value,
+        pbohumjaBirth: inputState.issuJumina.value,
         insDate: state?.insFrom,
         owner: state?.owner,
         insloc: state?.selectAddress?.address,

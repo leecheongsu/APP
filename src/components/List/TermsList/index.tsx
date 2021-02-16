@@ -9,6 +9,7 @@ type TermsListTypes = {
   item: TermsChildTypes;
   onChangeTermsState: (name: TermsNames, value) => void;
   onClickTermsModalOpen: (name, html) => void;
+  isButton?: boolean;
 };
 
 const Container = styled.View`
@@ -25,14 +26,19 @@ const RowButton = styled.TouchableOpacity`
   align-items: center;
 `;
 const Item = styled.View``;
-export default function TermsList({ item, onChangeTermsState, onClickTermsModalOpen }: TermsListTypes) {
+export default function TermsList({
+  item,
+  onChangeTermsState,
+  onClickTermsModalOpen,
+  isButton = true,
+}: TermsListTypes) {
   const onClickIsChecked = () => {
     onChangeTermsState(item.name, item.isChecked === 0 ? 1 : 0);
   };
   return (
     <Container>
       <Item style={{ width: '80%' }}>
-        <RowButton onPress={() => onClickTermsModalOpen(item.name, item.html)}>
+        <RowButton onPress={() => (isButton ? onClickTermsModalOpen(item.name, item.html) : null)}>
           <Typhograph lineheight={3} type="NOTO" color="BLUE" size={11} style={{ marginRight: 5 }}>
             {item.title}
           </Typhograph>

@@ -37,7 +37,9 @@ import {
   termsTermsc4,
   termsTermsc5,
   termsTermsf1,
+  termsTermsSd,
 } from '@app/lib/html';
+import HousePayWay from '@app/screens/HouseFire/HousePayWay';
 
 export type TermsNames =
   | string
@@ -123,7 +125,10 @@ export type HouseFireStateName =
   | 'terms' // 이용약관
   | 'termsName' //선택한 이용약관
   | 'termsHtml' // 이용약관 html
-  | 'lng'; //로드뷰를 표시하기위한 lag
+  | 'lng' //로드뷰를 표시하기위한 lag
+  | 'payway'
+  | 'termsPdf'
+  | 'selectCard';
 
 export type HouseFireStateTypes = {
   stepperTitle: string;
@@ -135,7 +140,7 @@ export type HouseFireStateTypes = {
   sedeAddress: any;
   loading: boolean;
   isDetailModal: boolean;
-  addressErrorMessage: '';
+  addressErrorMessage: any;
   joinType: Array<{ title: string; value: 'T' | 'S' }>;
   houseStep: {
     id:
@@ -169,10 +174,16 @@ export type HouseFireStateTypes = {
   owner: 'o' | 'r';
   insFrom: any;
   dancheJoin: 'Y' | 'N';
+  payway: 'card' | 'bank' | '';
   termsModal: boolean;
+  termsImg: boolean;
   terms: TermsTypes;
+  termsImgUrl: any;
+  termsImgHeight: any;
   termsName: TermsNames | string;
   termsHtml: any;
+  termsPdf: boolean;
+  selectCard: any;
 };
 export type HouseFireInputStateTypes = {
   searchInput: any;
@@ -304,19 +315,19 @@ const terms = {
     name: 'TERMSE_1',
     title: '기타설명',
     isChecked: 0,
-    html: termsTermsa1(),
+    html: termsTermsSd(),
   },
   TERMSE_2: {
     name: 'TERMSE_2',
     title: '해지 사고 접수 안내',
     isChecked: 0,
-    html: termsTermsa1(),
+    html: termsTermsSd(),
   },
   TERMSE_3: {
     name: 'TERMSE_3',
     title: '통지수단 해지 동의',
     isChecked: 0,
-    html: termsTermsa1(),
+    html: termsTermsSd(),
   },
   TERMSF_1: {
     name: 'TERMSF_1',
@@ -365,6 +376,9 @@ const initialState: HouseFireStateTypes = {
   termsModal: false,
   termsName: '',
   termsHtml: '',
+  termsPdf: false,
+  payway: '',
+  selectCard: '',
   insFrom: moment(new Date()).format('YYYY-MM-DD'),
   houseStep: [
     {
@@ -410,6 +424,11 @@ const initialState: HouseFireStateTypes = {
     {
       id: 'HouseContractTerms',
       title: '청약 확인약관 동의',
+      backgroundcolor: 'SOFTGRAY',
+    },
+    {
+      id: 'HousePayWay',
+      title: '결제방법 선택',
       backgroundcolor: 'SOFTGRAY',
     },
     {
@@ -503,6 +522,14 @@ export default function HouseFireContainer() {
         handleJoinTypeNextButton();
         return null;
       }
+      case 11: {
+        handleJoinTypeNextButton();
+        return null;
+      }
+      case 12: {
+        handleJoinTypeNextButton();
+        return null;
+      }
       // default:
       //   handleJoinTypeNextButton();
       //   return null;
@@ -562,6 +589,7 @@ export default function HouseFireContainer() {
     onChangeTermsState(state.termsName, 1);
     onChangeState('termsModal', false);
     onChangeState('termsName', '');
+    onChangeState('termsPdf', false);
   };
 
   //terms모달 오픈
@@ -572,10 +600,16 @@ export default function HouseFireContainer() {
   };
 
   //terms 모두동의
-  const onClickAllCheck = (list) => {
-    list?.map((item) => {
-      onChangeTermsState(item, 1);
-    });
+  const onClickAllCheck = (list, isActive) => {
+    if (isActive) {
+      list?.map((item) => {
+        onChangeTermsState(item, 0);
+      });
+    } else {
+      list?.map((item) => {
+        onChangeTermsState(item, 1);
+      });
+    }
   };
 
   //houseStep 스텝별 컴퍼넌트 셋팅
@@ -592,6 +626,7 @@ export default function HouseFireContainer() {
       | 'HouseContractTerms'
       | 'HousePay'
       | 'HouseFinal'
+      | 'HousePayWay'
   ) => {
     switch (id) {
       case 'joinType':
@@ -689,6 +724,18 @@ export default function HouseFireContainer() {
             onClickTermsModalAgree={onClickTermsModalAgree}
             onClickTermsModalOpen={onClickTermsModalOpen}
             onClickAllCheck={onClickAllCheck}
+            resultBuildPrice={resultBuildPrice}
+            resultGajePrice={resultGajePrice}
+          />
+        );
+      case 'HousePayWay':
+        return (
+          <HousePayWay
+            state={state}
+            onChangeState={onChangeState}
+            handlePreviousButton={handlePreviousButton}
+            handleNextButton={handleNextButton}
+            onClickTermsModalOpen={onClickTermsModalOpen}
             resultBuildPrice={resultBuildPrice}
             resultGajePrice={resultGajePrice}
           />

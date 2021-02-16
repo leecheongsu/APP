@@ -18,7 +18,7 @@ export default function HouseTermsUseContainer({
 }) {
   const insuPrice = priceDot(resultBuildPrice() + resultGajePrice());
   const selectInsu = state?.selectAddress?.premiums?.filter((item) => {
-    return item.aply_yn === 'Y';
+    return item.aply_yn === 'Y' && item.already_group_ins === state?.selectAddress.already_group_ins;
   });
   const submitNextButton = () => {
     const isChecked =

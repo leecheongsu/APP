@@ -17,7 +17,6 @@ import { danchInfoText, selectDamboText, gajeDamboText } from '@app/lib/html';
 
 const Container = styled.View`
   width: ${screenWidth()}px;
-  padding-bottom: 65px;
 `;
 const ContentsContainer = styled.ScrollView``;
 const CardBox = styled.View`
@@ -66,6 +65,7 @@ const IconButtonBox = styled.View`
 
 const ResultBox = styled.View`
   padding: 20px;
+  padding-bottom: 100px;
 `;
 
 const ResultRowBox = styled.View`

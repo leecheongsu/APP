@@ -2,12 +2,10 @@ export const commonCssHtml = () => {
   return `@charset "utf-8";
 
   header{
-	  height: 55px;
 	  border-bottom: 1px solid #e0e0e0;
 	  position: relative;
   }
   .pop header{
-	  position:fixed;
 	  width:100%;
 	  left:0;
 	  top:0;
