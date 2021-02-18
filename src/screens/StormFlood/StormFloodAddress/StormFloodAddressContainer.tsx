@@ -22,7 +22,7 @@ export default function Container({
   };
 
   const [getAddress, getAddressDispatch] = useAsync(
-    () => insuApis.getAddress({ search: inputState.searchInput.value }),
+    () => insuApis.getWwAddress({ search: inputState.searchInput.value }),
     [],
     true
   );
@@ -33,19 +33,16 @@ export default function Container({
 
   //주소 선택시 도는 로직
   const SelectAddress = (item) => {
-    onChangeState('resultDong', '');
-    onChangeState('resultDetail', '');
-    onChangeState('resultDongList', []);
-    onChangeState('resultDetailList', []);
     const params = {
       sigungucd: item.admCd?.slice(0, 5),
       bjdongcd: item.admCd?.slice(5),
       bun: Number(item?.lnbrMnnm),
       ji: Number(item?.lnbrSlno),
+      zip: item?.zipNo,
     };
     onChangeState('loading', true);
     insuApis
-      .getDancheInfo(params)
+      .getWwCover(params)
       .then((res) => {
         if (res.status === 200) {
           onChangeState('selectAddress', res.data);

@@ -7,7 +7,7 @@ import { Image } from 'react-native';
 
 type TermsListTypes = {
   item: TermsChildTypes;
-  onChangeTermsState: (name: TermsNames, value) => void;
+  onChangeTermsState: (name, value) => void;
   onClickTermsModalOpen: (name, html) => void;
   isButton?: boolean;
 };

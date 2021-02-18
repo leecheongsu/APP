@@ -26,7 +26,6 @@ export default function HouseContractTermsContainer({
   });
 
   const submitNextButton = () => {
-    handleNextButton();
     const isChecked =
       state.terms.TERMSD_1.isChecked === 1 &&
       state.terms.TERMSD_2.isChecked === 1 &&

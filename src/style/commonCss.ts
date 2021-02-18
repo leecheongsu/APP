@@ -4,13 +4,15 @@ export const commonCssHtml = () => {
   header{
 	  border-bottom: 1px solid #e0e0e0;
 	  position: relative;
+	  margin-bottom: 20px;
   }
   .pop header{
 	  width:100%;
 	  left:0;
-	  top:0;
+	  top:-20;
 	  z-index: 10;
 	  background:#fff
+
   }
   header .go-back{
 	  width:37px;

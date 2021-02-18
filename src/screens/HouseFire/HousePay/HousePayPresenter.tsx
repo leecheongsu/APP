@@ -1,11 +1,14 @@
 import React from 'react';
-import { BottomFixButton, DefaultInput, Select, Typhograph } from '@app/components';
+import { BottomFixButton, DefaultInput, Loading, OverayLoading, Select, Typhograph } from '@app/components';
 import { screenWidth } from '@app/lib';
 import { HouseFireStateName, HouseFireStateTypes, TermsNames } from '@app/screens/HouseFire/HouseFireContainer';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Platform } from 'react-native';
+import WebView from 'react-native-webview';
+import { ScrollView } from 'react-native-gesture-handler';
+import { useGlobalState } from '@app/context';
 
 type HousePayPresenterTypes = {
   state: HouseFireStateTypes;
@@ -20,6 +23,7 @@ type HousePayPresenterTypes = {
   selectInsu: any;
   selectCard: (name) => any;
   inputState: any;
+  onMessage: any;
 };
 const Container = styled.View`
   width: ${screenWidth()}px;
@@ -63,6 +67,9 @@ const InputContainer = styled.View`
 const InputItem = styled.View`
   width: 24%;
 `;
+const PaddingBox = styled.View`
+  height: 20px;
+`;
 
 function HousePayPresenter({
   state,
@@ -77,7 +84,9 @@ function HousePayPresenter({
   selectInsu,
   selectCard,
   inputState,
+  onMessage,
 }: HousePayPresenterTypes) {
+  const globalState = useGlobalState();
   const selectItem = [
     { label: '삼성', value: '삼성' },
     { label: 'KB국민', value: 'KB국민' },
@@ -87,11 +96,85 @@ function HousePayPresenter({
     { label: 'NH농협', value: 'NH농협' },
     { label: '롯데', value: '롯데' },
   ];
+  const vbankInfo = state?.vbankInfo;
+  const name = globalState?.user?.name;
+  const email = globalState?.user?.email;
+  const mobile = globalState?.user?.mobile;
+  const product = state?.selectAddress?.product;
+  console.log(vbankInfo);
+  const html = `
+  <html> 
+  <head> 
+  <title>INIpay Mobile WEB example</title> 
+  <meta http-equiv="Content-Type" content="text/html; charset=euc-kr"/> 
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+  <script language="javascript"> 
+    window.onload = function on_pay() { 
+      form = document.mobileweb; 
+      form.action = "https://mobile.inicis.com/smart/payment/";
+      form.target = "_self";
+      form.submit(); 
+    }  
+  </script> 
+
+  </head> 
+
+  <body>
+  <!-- 인코딩 euc-kr 필수 -->
+  <form name="mobileweb" method="post" accept-charset="euc-kr"> 
+
+
+  <!--*************************필수 세팅 부분************************************-->
+
+  <!-- 리턴받는 가맹점 URL 세팅 -->
+  <input h type="hidden" name="P_NEXT_URL" value="${vbankInfo?.P_NEXT_URL}"> 
+  
+  
+  <!-- 지불수단 선택 (신용카드,계좌이체,가상계좌,휴대폰) -->
+  <input type="hidden" name="P_INI_PAYMENT" value=${vbankInfo?.P_INI_PAYMENT}>
+   
+
+
+  <!-- 복합/옵션 파라미터 -->
+  <input type="hidden" name="P_RESERVED" value="twotrs_isp=Y&block_isp=Y&twotrs_isp_noti=N"> 
+
+    
+  <input type="hidden" name="P_MID" value="${vbankInfo?.P_MID}"> 
+  <input type="hidden" name="P_OID" value="${state?.selectAddress?.quote_no}">  
+  <input type="hidden" name="P_UNAME" value="${name}"> 
+
+
+  <!--*************************선택 필수 세팅 부분************************************--> 
+
+  <!-- 가상계좌 입금 노티 사용시 필수 -->
+  <input type="hidden" name="P_NOTI_URL" value="${vbankInfo?.P_NOTI_URL}">  
+
+
+  <!-- 휴대폰결제 필수 [1:컨텐츠, 2:실물] -->
+  <input type="hidden" name="P_HPP_METHOD" value="${vbankInfo?.P_HPP_METHOD}">  
+
+  <!--*************************선택 필수 세팅 부분************************************--> 
+
+  <input type="hidden" name="P_EMAIL" value="${email}"> 
+  <input type="hidden" name="P_MOBILE" value="${mobile}"> 
+  <input type="hidden" name="P_MNAME" value="인슈로보">
+  <input type="hidden" name="P_GOODS" value="${product?.p_name}"> 
+  <input type="hidden" name="P_AMT" value="${insuPrice}"> 
+  <input type="hidden" name="P_CHARSET" value="${vbankInfo?.P_CHARSET}"> 
+  <input type="hidden" name="P_VBANK_TM" value="${vbankInfo?.P_VBANK_TM}"> 
+  <input type="hidden" name="P_VBANK_DT" value="${vbankInfo?.P_VBANK_DT}"> 
+
+
+  </form> 
+
+  </body>
+  </html> 
+  `;
   return (
     <Container>
-      <KeyboardAwareScrollView enableOnAndroid={true} extraScrollHeight={Platform.OS === 'ios' ? 30 : -10}>
-        {state?.payway === 'card' ? (
-          <>
+      {state?.payway === 'card' ? (
+        <>
+          <KeyboardAwareScrollView enableOnAndroid={true} extraScrollHeight={Platform.OS === 'ios' ? 30 : -10}>
             <TitleBox>
               <RowBox style={{ padding: 15 }}>
                 <RowItem>
@@ -201,21 +284,43 @@ function HousePayPresenter({
                 </InputContainer>
               </InputBox>
             </ContentsContainer>
-          </>
-        ) : (
-          <ContentsContainer>
-            <Typhograph type="NOTO">가상계좌</Typhograph>
-          </ContentsContainer>
-        )}
-      </KeyboardAwareScrollView>
-      <BottomFixButton
-        index={state.stepNumber}
-        leftTitle="이전"
-        rightTitle="결제"
-        bottomRightPress={submitNextButton}
-        bottomLeftPress={handlePreviousButton}
-        isKeybordView={state.isKeybordView}
-      />
+          </KeyboardAwareScrollView>
+          <BottomFixButton
+            index={state.stepNumber}
+            leftTitle="이전"
+            rightTitle="결제"
+            bottomRightPress={submitNextButton}
+            bottomLeftPress={handlePreviousButton}
+            isKeybordView={state.isKeybordView}
+          />
+        </>
+      ) : (
+        <>
+          <ScrollView style={{ height: 800 }}>
+            <WebView
+              style={{
+                minHeight: 1000,
+              }}
+              source={{
+                html,
+              }}
+              onMessage={onMessage}
+              originWhitelist={'["*"]'}
+              startInLoadingState={true}
+              onLoadStart={(syntheticEvent) => {
+                // update component to be aware of loading status
+                const { nativeEvent } = syntheticEvent;
+                onChangeState('loading', nativeEvent.loading);
+              }}
+              renderLoading={() => <OverayLoading visible={true} />}
+              javaScriptEnabled={true}
+              domStorageEnabled={true}
+              scalesPageToFit={true}
+              scrollEnabled={false}
+            />
+          </ScrollView>
+        </>
+      )}
     </Container>
   );
 }

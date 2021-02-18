@@ -18,6 +18,11 @@ export { default as CheckList } from './StormFlood/CheckList';
 export { default as StormFloodAddress } from './StormFlood/StormFloodAddress';
 export { default as StormFloodInfo } from './StormFlood/StormFloodInfo';
 export { default as GuaranteeSelect } from './StormFlood/GuaranteeSelect';
+export { default as StormFloodResult } from './StormFlood/StormFloodResult';
+export { default as StormFloodInput } from './StormFlood/StormFloodInput';
+export { default as StormFloodTerms } from './StormFlood/StormFloodTerms';
+export { default as StormFloodPay } from './StormFlood/StormFloodPay';
+export { default as StormFloodFinal } from './StormFlood/StormFloodFinal';
 
 export { default as Join } from './Join';
 export { default as JoinIndividual } from './Join/JoinIndividual';
@@ -34,3 +39,4 @@ export { default as BusinessInfo } from './Profile/BusinessInfo';
 export { default as Secession } from './Profile/Secession';
 export { default as Verification } from './Verification';
 export { default as Pay } from './Pay';
+export { default as InsuCertificate } from './InsuCertificate';

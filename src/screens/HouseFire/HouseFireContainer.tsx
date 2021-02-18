@@ -128,7 +128,10 @@ export type HouseFireStateName =
   | 'lng' //로드뷰를 표시하기위한 lag
   | 'payway'
   | 'termsPdf'
-  | 'selectCard';
+  | 'selectCard'
+  | 'vbankInfo'
+  | 'insuCertificateModal'
+  | 'vbankResult';
 
 export type HouseFireStateTypes = {
   stepperTitle: string;
@@ -176,14 +179,14 @@ export type HouseFireStateTypes = {
   dancheJoin: 'Y' | 'N';
   payway: 'card' | 'bank' | '';
   termsModal: boolean;
-  termsImg: boolean;
+  insuCertificateModal: boolean;
   terms: TermsTypes;
-  termsImgUrl: any;
-  termsImgHeight: any;
   termsName: TermsNames | string;
   termsHtml: any;
   termsPdf: boolean;
   selectCard: any;
+  vbankInfo: any;
+  vbankResult: any;
 };
 export type HouseFireInputStateTypes = {
   searchInput: any;
@@ -379,7 +382,10 @@ const initialState: HouseFireStateTypes = {
   termsPdf: false,
   payway: '',
   selectCard: '',
+  vbankInfo: undefined,
+  insuCertificateModal: false,
   insFrom: moment(new Date()).format('YYYY-MM-DD'),
+  vbankResult: undefined,
   houseStep: [
     {
       id: 'joinType',
@@ -449,7 +455,9 @@ export default function HouseFireContainer() {
   const globalState = useGlobalState();
   const [state, dispatch] = useReducer(reducer, initialState);
   const scrollRef: any = useRef(null);
-
+  const GEO_CORDING_URL = `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${state.selectAddress.address}`;
+  const GEO_CORDING_ID = 'inselh2wtl';
+  const GEO_CORDING_KEY = 'OPjA2JmsSCweRxKFpHX1qyfzDGrxgSSI9yL6Duta';
   const inputState = {
     searchInput: useInput(''),
   };
@@ -527,7 +535,7 @@ export default function HouseFireContainer() {
         return null;
       }
       case 12: {
-        handleJoinTypeNextButton();
+        navigation.navigate('MAIN_STACK');
         return null;
       }
       // default:
@@ -566,7 +574,6 @@ export default function HouseFireContainer() {
     });
     return floorPrice(result);
   };
-
   //가재도구 보험료
   const resultGajePrice = () => {
     let result = 0;
@@ -778,11 +785,11 @@ export default function HouseFireContainer() {
     if (state.selectAddress.address !== undefined && state.selectAddress.address !== '') {
       onChangeState('loading', true);
       axios({
-        url: `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${state.selectAddress.address}`,
+        url: GEO_CORDING_URL,
         method: 'GET',
         headers: {
-          'X-NCP-APIGW-API-KEY-ID': 'inselh2wtl',
-          'X-NCP-APIGW-API-KEY': 'OPjA2JmsSCweRxKFpHX1qyfzDGrxgSSI9yL6Duta',
+          'X-NCP-APIGW-API-KEY-ID': GEO_CORDING_ID,
+          'X-NCP-APIGW-API-KEY': GEO_CORDING_KEY,
         },
       })
         .then((res) => {
@@ -795,6 +802,7 @@ export default function HouseFireContainer() {
           onChangeState('loading', false);
         });
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.selectAddress]);
 
   const _keyboardDidShow = () => {

@@ -4,7 +4,9 @@ import styled from '@app/style/typed-components';
 import React, { useState } from 'react';
 import { Keyboard, TextInputProps } from 'react-native';
 
-const Container = styled.View``;
+const Container = styled.View`
+  width: 100%;
+`;
 const Input = styled.TextInput<{ isFocus: boolean } & TextInputProps>`
   height: ${(props: any) => (props.height ? props.height : '50')}px ;
   min-width: 0px;
@@ -31,6 +33,7 @@ export default function DefaultInput(props) {
         onBlur={() => {
           setIsFocus(false);
         }}
+        editable={props.editable}
         style={{ alignSelf: 'stretch', fontSize: 13 }}
         secureTextEntry={props.secureTextEntry}
         maxLength={props.maxLength}

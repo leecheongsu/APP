@@ -1,28 +1,20 @@
 import React from 'react';
-import HouseFinalPresenter from './HouseFinalPresenter';
-import { handleApiError, priceDot } from '@app/lib';
-import { useNavigation } from '@react-navigation/native';
 import { EmptyLayout } from '@app/layout';
+import StormFloodFinalPresenter from './StormFloodFinalPresenter';
 import { Alert, PermissionsAndroid, Platform } from 'react-native';
+import { handleApiError } from '@app/lib';
 import RNFetchBlob from 'rn-fetch-blob';
 
-export default function HouseFinalContainer({
+export default function StormFloodFinalContainer({
   state,
   onChangeState,
-  handlePreviousButton,
   handleNextButton,
-  onChangeTermsState,
-  onClickTermsModalAgree,
   onClickTermsModalOpen,
-  onClickAllCheck,
-  resultBuildPrice,
-  resultGajePrice,
+  handlePreviousButton,
 }) {
-  const navigation = useNavigation();
-  const insuPrice = priceDot(resultBuildPrice() + resultGajePrice());
-  const selectInsu = state?.selectAddress?.premiums?.filter((item) => {
-    return item.aply_yn === 'Y';
-  });
+  const nextButton = () => {
+    handleNextButton();
+  };
 
   const downloadFile1 = () => {
     onChangeState('loading', true);
@@ -135,23 +127,14 @@ export default function HouseFinalContainer({
     }
   };
 
-  const submitNextButton = () => {
-    navigation.goBack();
-  };
-
-  if (state.stepNumber === 12) {
+  if (state.stepNumber === 10) {
     return (
-      <HouseFinalPresenter
+      <StormFloodFinalPresenter
         state={state}
-        submitNextButton={submitNextButton}
-        handlePreviousButton={handlePreviousButton}
-        onChangeTermsState={onChangeTermsState}
+        nextButton={nextButton}
         onChangeState={onChangeState}
-        onClickTermsModalAgree={onClickTermsModalAgree}
+        handlePreviousButton={handlePreviousButton}
         onClickTermsModalOpen={onClickTermsModalOpen}
-        onClickAllCheck={onClickAllCheck}
-        insuPrice={insuPrice}
-        selectInsu={selectInsu}
         downloadfileButton={downloadfileButton}
       />
     );

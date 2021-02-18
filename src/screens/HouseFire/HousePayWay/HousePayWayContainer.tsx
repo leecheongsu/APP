@@ -1,6 +1,7 @@
+import { insuApis } from '@app/api/Insurance';
 import { EmptyLayout } from '@app/layout';
 import { priceDot } from '@app/lib';
-import React from 'react';
+import React, { useEffect } from 'react';
 import HousePayWayPresenter from './HousePayWayPresenter';
 export default function HousePayWayContainer({
   state,
@@ -15,6 +16,26 @@ export default function HousePayWayContainer({
     handleNextButton();
   };
   const price = priceDot(resultBuildPrice() + resultGajePrice());
+  const getVbankInfo = () => {
+    insuApis
+      .getVbankParams()
+      .then((res) => {
+        if (res.status === 200) {
+          onChangeState('vbankInfo', res.data);
+        }
+      })
+      .catch((e) => {
+        console.log(e.response);
+      });
+  };
+
+  useEffect(() => {
+    if (state?.payway === 'bank' && state?.vbankInfo === undefined) {
+      getVbankInfo();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state?.payway]);
+
   if (state.stepNumber === 10) {
     return (
       <HousePayWayPresenter

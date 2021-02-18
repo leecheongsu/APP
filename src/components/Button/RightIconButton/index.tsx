@@ -25,9 +25,14 @@ const Icon = styled.Image`
 const TextBox = styled.View`
   padding-right: 10px;
 `;
-function RightIconButton({ title, active = false, onPress }) {
+function RightIconButton({ title, active = false, onPress, disabled = false }) {
   return (
-    <Container activeOpacity={0.6} onPress={onPress} backgroundcolor={active ? 'SKYBLUE' : 'WHITE'} active={active}>
+    <Container
+      disabled={disabled}
+      activeOpacity={0.6}
+      onPress={onPress}
+      backgroundcolor={active ? 'SKYBLUE' : 'WHITE'}
+      active={active}>
       <Box active>
         <TextBox>
           <Typhograph type="NOTO" size={12} color={active ? 'WHITE' : 'BLUE'} weight="BOLD">

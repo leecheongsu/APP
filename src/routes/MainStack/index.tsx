@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { Home, HouseFire, HouseInfoDetail, StormFlood } from '@app/screens';
-import { BackButton, LogoTitle, MenuButton, Typhograph } from '@app/components/index';
+import { BackButton, DefaultAlert, LogoTitle, MenuButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';
 import UserButton from '@app/components/Header/UserButton';
 
@@ -42,7 +42,7 @@ function MainStack() {
         name="HOUSE_FIRE"
         component={HouseFire}
         options={{
-          headerLeft: () => <BackButton />,
+          headerLeft: () => <BackButton isAlert />,
           headerLeftContainerStyle: { paddingHorizontal: 10 },
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
@@ -69,7 +69,7 @@ function MainStack() {
         name="STORM_FLOOD"
         component={StormFlood}
         options={{
-          headerLeft: () => <BackButton />,
+          headerLeft: () => <BackButton isAlert />,
           headerLeftContainerStyle: { paddingHorizontal: 10 },
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">

@@ -105,6 +105,111 @@ export const gajeDamboText = () => {
   return html;
 };
 
+export const gunmulText = () => {
+  const html = `
+    <html>
+    <head>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+    <style type="text/css">
+      ${commonCss}
+      ${defaultCss}
+    </style>
+    </head>
+    <body>
+    <div class="modal-content">
+        <div class="content">
+            토지에 정착하는 공작물 중 지붕과 기둥 또는 지붕과 벽이 있는 것으로 주거, 작업, 저장 등의 용도를 위하여 인공적으로 축조된 건조물 아래의 물건은 다른 약정이 없으면 보험의 목적에 포함됩니다.
+            <div class="info-txt2 bk">가. 건물의 부속물 : 피보험자 소유인 칸막이, 대문, 담, 곳간 및 이와 비슷한 것</div>
+            <div class="info-txt2 bk">나. 건물의 부착물 : 피보험자 소유인 간판, 네온싸인, 안테나, 선전탑 및 이와 비슷한 것</div>
+            <div class="info-txt2 bk">다. 건물의 부속설비 : 피보험자 소유인 전기, 가스, 난방, 냉방설비 및 이와 비슷한 것</div>
+        </div>
+    </div>
+    </div>
+    </body>
+    </html>
+      `;
+  return html;
+};
+
+export const jipgiText = () => {
+  const html = `
+      <html>
+      <head>
+      <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+      <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+      <style type="text/css">
+        ${commonCss}
+        ${defaultCss}
+      </style>
+      </head>
+      <body>
+      <div class="modal-content">
+        <div class="content">
+            <ul class="ul-type">
+                <li>시설(일반물건) – 사용용도 및 각종 영업행위에 적합하도록 건물 골조의 벽, 천정, 바닥 등에 치장설치하고 내외부 마감제나 조명시설 및 부대시설로서 건물의 구조체에 영향을 미치지 않고 재설치가 가능한 것</li>
+                <li>기계(공장물건) – 물리량을 변경하거나 전달하는 유용한 장치 또는 연소장치, 냉동장치, 전해장치 등 기계의 효용을 이용하여 전기적 또는 화학적 효과를 발생시키는 구조물</li>                    
+                <li>집기비품 – 일반적으로 건물에 고정되어 있지 않고 쉽게 움직임이 가능한 냉장고, 세탁기, 책상, 컴퓨터 등</li>
+            </ul>
+            <div class="h-top2">
+                <div class="info-txt2 bk">집기비품은 시설(일반물건) 또는 기계(공장물건) 가입금액에 포함됩니다.</div>
+            </div>
+        </div>
+        </div>
+      </div>
+      </body>
+      </html>
+        `;
+  return html;
+};
+
+export const jegoJasanText = () => {
+  const html = `
+        <html>
+        <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+        <style type="text/css">
+          ${commonCss}
+          ${defaultCss}
+        </style>
+        </head>
+        <body>
+        <div class="modal-content">
+        <div class="content">
+            원부재료, 재공품, 반제품, 제품, 부산물, 상품과 저장품 및 이와 비슷한 것
+        </div>
+        </div>
+        </body>
+        </html>
+          `;
+  return html;
+};
+
+export const jagibudamText = () => {
+  const html = `
+          <html>
+          <head>
+          <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+          <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+          <style type="text/css">
+            ${commonCss}
+            ${defaultCss}
+          </style>
+          </head>
+          <body>
+          <div class="modal-content">
+        <div class="content">
+            보험사고 발생 시, 보상받는 보험금에서 공제되는 금액입니다.
+        </div>
+    
+        </div>
+          </body>
+          </html>
+            `;
+  return html;
+};
+
 export const individualTerms = () => {
   const html = `
   <html>
@@ -2703,5 +2808,1364 @@ export const productInfoHtml3 = () => {
                         </body>
                         </html>
                           `;
+  return html;
+};
+
+export const wwTermsSb1 = () => {
+  const html = `
+                        <html>
+                        <head>
+                        <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                        <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                        <style type="text/css">
+                          ${commonCss}
+                          ${defaultCss}
+                        </style>
+                        </head>
+                        <body>
+                        <!-- wrap -->
+                        <div id="wrap" class="pop">
+
+                            <!-- container -->
+                            <div id="container">
+                                <!-- content -->
+                                <div id="content">
+                                    <div class="cont-inner">                
+                                        <div class="term">
+                                            <h1 class="first">소비자 권익에 관한 사항</h1>
+                                            <div class="in-box">본 동의를 거부하시는 경우에는 보험계약 상담 등 정상적인 서비스제공이 불가능하며 본 동의서에 의한 개인(신용) 정보 조회는 귀하의 신용등급에 영향을 주지 않습니다. 또한, 동의하시더라도 인슈로보 고객센터(070-4126-3333) 또는 현대해상 홈페이지 및 고객콜센터(1577-1001)를 통해 철회하거나 보험계약상담 목적의 연락에 대한 중단을 요청하실 수 있습니다.
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- //content -->
+                            </div>
+                            <!-- // container -->
+
+                        </div>
+                        <!-- //wrap -->
+    
+                        </body>
+                        </html>
+                          `;
+  return html;
+};
+
+export const wwTermsSb2 = () => {
+  const html = `
+                          <html>
+                          <head>
+                          <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                          <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                          <style type="text/css">
+                            ${commonCss}
+                            ${defaultCss}
+                          </style>
+                          </head>
+                          <body>
+                          <!-- wrap -->
+                            <div id="wrap" class="pop">
+
+                                <!-- container -->
+                                <div id="container">
+                                    <!-- content -->
+                                    <div id="content">
+                                        <div class="cont-inner">                
+                                            <div class="term">
+                                                <h1 class="first">개인(신용)정보의 수집/이용에 관한 사항</h1>
+                                                <div class="in-box">현대해상 및 현대해상 업무수탁자는 「개인정보 보호법」 및 「신용정보의 이용 및 보호에 관한 법률」에 따라 본 계약과 관련하여 귀하의 개인(신용)정보를 다음과 같이 수집&middot;이용하고자 합니다. 이에 대하여 동의하십니까?</div>
+                                                <h2>개인(신용)정보의 수집&middot;이용 목적</h2>
+                                                <ul class="ul-type">
+                                                    <li>보험계약상담, 보험계약 인수여부 결정을 위한 판단, 다중이용업소화재배상책임보험 가입대상 확인, 재무설계서비스, 실손의료보험계약&middot;기타손해보험계약 등 ‘실제 발생하는 손해만을 보상하는 실손형 보험’의 중복가입 확인을 위한 보험가입내역 조회</li>
+                                                    <li>민원 및 분쟁관련 대응, 만기알람서비스 신청 고객의 보험만기 안내</li>
+                                                </ul>
+                                                <h2>수집&middot;이용할 개인(신용) 정보의 내용</h2>
+                                                <ul class="ul-type">
+                                                    <li>개인식별정보 (성명, 생년월일, 주민등록번호, 외국인등록번호, 주소, 직업, 전화번호, 전자우편주소)</li>
+                                                    <li>질병 및 상해에 관한 정보(자동차보험은 해당없음)</li>
+                                                    <li>현대해상, 신용정보집중기관 및 보험요율산출기관에서 수집&middot;관리하는 보험계약정보 및 보험금지급 관련 정보(사고정보 포함)</li>
+                                                    <li>다중이용업소정보(상호, 업종, 영업장 면적, 주소, 소방방재청 발급 일련번호)</li>
+                                                    <li>소득에 관한 정보(보험료 또는 담보별 누적 가입금액이 과도한 경우)</li>
+                                                </ul>
+                                                <h2>개인(신용)정보 보유&middot;이용기간</h2>
+                                                <div class="ul-type">수집&middot;동의일로부터 1년까지</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- //content -->
+                                </div>
+                                <!-- // container -->
+
+                            </div>
+                            <!-- //wrap -->
+      
+                          </body>
+                          </html>
+                            `;
+  return html;
+};
+
+export const wwTermsSb3 = () => {
+  const html = `
+                          <html>
+                          <head>
+                          <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                          <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                          <style type="text/css">
+                            ${commonCss}
+                            ${defaultCss}
+                          </style>
+                          </head>
+                          <body>
+                          <!-- wrap -->
+                          <div id="wrap" class="pop">
+                          
+                              <!-- container -->
+                              <div id="container">
+                                  <!-- content -->
+                                  <div id="content">
+                                      <div class="cont-inner">                
+                                          <div class="term">
+                                              <h1 class="first">개인(신용) 정보의 조회에 관한 사항(필수)</h1>
+                                              <div class="in-box">현대해상 및 현대해상 업무수탁자는 「신용정보의 이용 및 보호에 관한 법률」 및 「다중이용업소의 안전관리에 관한 특별법」에 따라 귀하의 개인(신용)정보를 다음과 같이 신용정보집중기관, 보험요율산출기관, 공공기관 등으로부터 조회하고자 합니다. 이에 대하여 동의하십니까?</div>
+                                              <h2>개인(신용)정보의 조회목적</h2>
+                                              <div class="ul-type">보험계약상담, 보험계약 인수여부 결정을 위한 판단, 다중이용업소화재배상책임보험, 실손의료보험계약&middot;기타손해보험계약 등 ‘실제 발생하는 손해만을 보상하는 실손형 보험'의 중복가입 확인</div>
+                                              <h2>조회할 개인(신용)정보의 내용</h2>
+                                              <ul class="ul-type">
+                                                  <li>신용정보집중기관 및 보험요율산출기관에서 수집&middot;관리하는 정보(피보험자의 질병 및 상해에 관한 정보(자동차보험은 해당없음), 보험계약정보, 보험금지급정보)</li>
+                                                  <li>개인식별정보 (성명, 생년월일, 주민등록번호, 외국인등록번호, 주소, 직업, 전화번호, 전자우편주소)</li>
+                                                  <li>다중이용업소정보</li>
+                                                  <li>신용정보회사 및 통신사 등의 실명인증 및 본인인증을 위한 정보</li>
+                                              </ul>
+                                              <h2>조회동의 유효 기간 및 조회자(개인(신용)정보를 제공 받은 자)의 보유&middot;이용 기간</h2>
+                                              <div class="ul-type">동의일로부터 보험계약의 청약시까지(최대 1년)</div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <!-- //content -->
+                              </div>
+                              <!-- // container -->
+                          
+                          </div>
+                          <!-- //wrap -->
+      
+                          </body>
+                          </html>
+                            `;
+  return html;
+};
+
+export const wwTermsSb4 = () => {
+  const html = `
+                          <html>
+                          <head>
+                          <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                          <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                          <style type="text/css">
+                            ${commonCss}
+                            ${defaultCss}
+                          </style>
+                          </head>
+                          <body>
+                          <!-- wrap -->
+                            <div id="wrap" class="pop">
+
+                                <!-- container -->
+                                <div id="container">
+                                    <!-- content -->
+                                    <div id="content">
+                                        <div class="cont-inner">                
+                                            <div class="term">
+                                                <h1 class="first">개인(신용)정보의 제공에 관한 사항(필수)</h1>
+                                                <div class="in-box">당사 및 현대해상은 「개인정보 보호법」 및 「신용정보의 이용 및 보호에 관한 법률」 및 「다중이용업소의 안전관리에 관한 특별법」에 따라 귀하의 개인(신용)정보를 다음과 같이 제3자에게 제공하고자 합니다. 이에 대하여 동의하십니까?</div>
+                                                <h2>개인(신용)정보를 제공받는자</h2>
+                                                <ul class="ul-type">
+                                                    <li>병원, 의원 등 건강진단 관련 업무를 위탁받은 자, 계약적부 조사를 위탁받은 자(진단 및 계약적부 조사가 필요한 보험계약의 경우에 한함)</li>
+                                                    <li>재보험사</li>
+                                                    <li>업무수탁자(모집자) 등</li>
+                                                </ul>
+
+                                                <h2>개인(신용)정보를 제공받는 자의 이용목적</h2>
+                                                <ul class="ul-type">
+                                                    <li>건강진단 업무(지정의 또는 파라메딕업체), 고지사항 확인(적부조사회사), 의료자문(사의), 계약적부조사, 할증심사, 인수 가능여부 확인(재보험사)</li>
+                                                    <li>본인 실명인증(신용정보회사)</li>
+                                                    <li>보험계약상담, 보험계약 인수여부 결정을 위한 판단 등</li>
+                                                </ul>
+
+                                                <h2>제공할 개인(신용)정보의 내용</h2>
+                                                <ul class="ul-type">
+                                                    <li>개인식별정보(성명, 생년월일, 주민등록번호, 외국인등록번호, 주소, 성별, 직업, 전화번호, 휴대전화번호, 전자우편주소)</li>
+                                                    <li>계약전 알릴의무사항</li>
+                                                    <li>현대해상, 신용정보집중기관 및 보험요율산출기관에서 수집&middot;관리하는 보험계약정보 및 보험금지급 관련 정보(사고정보 포함) (단, 제공받는 자의 이용 목적을 위해 필요한 정보에 한함)</li>
+                                                </ul>
+
+                                                <h2>제공받는 자의 개인(신용)정보 보유&middot;이용기간</h2>
+                                                <div class="ul-type">수집&middot;동의일로부터 1년까지</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- //content -->
+                                </div>
+                                <!-- // container -->
+
+                            </div>
+                            <!-- //wrap -->
+      
+                          </body>
+                          </html>
+                            `;
+  return html;
+};
+
+export const wwTermsSb5 = () => {
+  const html = `
+                          <html>
+                          <head>
+                          <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                          <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                          <style type="text/css">
+                            ${commonCss}
+                            ${defaultCss}
+                          </style>
+                          </head>
+                          <body>
+                          <!-- wrap -->
+                            <div id="wrap" class="pop">
+
+                                <!-- container -->
+                                <div id="container">
+                                    <!-- content -->
+                                    <div id="content">
+                                        <div class="cont-inner">                
+                                            <div class="term">
+                                                <h1 class="first">민감정보 및 고유식별정보의 처리에 관한 사항(필수)</h1>
+                                                <div class="in-box">현대해상 및 현대해상 업무수탁자는 「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」에 따라 상기의 개인(신용)정보에 대한 개별 동의사항에 대하여 다음과 같이 귀하의 민감정보(질병&middot;상해정보) 및 고유식별정보(주민등록번호&middot;외국인등록번호&middot;운전면허번호)를 처리<span class="primary">(수집&middot;이용, 조회, 제공)</span>하고자 합니다. 이에 동의하십니까?</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- //content -->
+                                </div>
+                                <!-- // container -->
+
+                            </div>
+                            <!-- //wrap -->
+      
+                          </body>
+                          </html>
+                            `;
+  return html;
+};
+
+export const wwTermsSd1 = () => {
+  const html = `
+                            <html>
+                            <head>
+                            <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                            <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                            <style type="text/css">
+                              ${commonCss}
+                              ${defaultCss}
+                            </style>
+                            </head>
+                            <body>
+                            <!-- wrap -->
+                            <div id="wrap" class="pop">
+
+
+                                <!-- container -->
+                                <div id="container">
+                                    <!-- content -->
+                                    <div id="content">
+                                        <div class="cont-inner">                
+                                            <div class="term">
+                                                <h1 class="first">보험상품 가입시 확인사항</h1>
+                                                <div class="in-box">본 주택종합보험은 단체보험으로 계약자 밸루어블인, 피보험자는 인슈로보 회원 중 가입 고객이 되며, 연말정산 소득공제 대상 상품이 아닙니다.</div>
+                                                <h2>1. 보험계약 체결 전 유의사항</h2>
+                                                <ul class="ul-type">
+                                                    <li>보험계약을 청약할 때는 보험상품명, 보험기간, 보험료 납입기간, 피보험자 등을 반드시 확인하시고, 인터넷 등을 통해 상품설명서와 보험약관을 확인해 보거나 설계사, 상담원에게 수령 후 설명을 받으시기 바랍니다.</li>
+                                                    <li>기존 보험계약을 해지하고 새로운 보험계약을 체결하는 경우에 보험인수가 거절되거나 보험료가 인상될 수 있으며, 보장내용이 달라질 수 있으니 유의하시기 바랍니다.</li>
+                                                </ul>
+                                                <h2>2. 보험계약의 무효</h2>
+                                                <div class="in-txt">다음 중 한 가지에 해당하면 계약을 무효로 하며 이미 납입한 보험료는 돌려드립니다.</div>
+                                                <ul class="ul-type h-top">
+                                                    <li>타인의 사망을 보험금 지급사유로 하는 계약에서 계약을 체결할 때까지 피보험자(보험대상자)의 서면에 의한 동의를 얻지 않은 경우</li>
+                                                    <li>만 15세 미만자, 심신상실자 또는 심신박약자의 사망을 보험금 지급사유로 한 경우</li>
+                                                    <li>계약 체결 시 계약에서 정한 피보험자(보험대상자)의 나이에미달되었거나 초과되었을 경우</li>
+                                                </ul>
+                                                <h2>3. 보험계약자의 자필 서명 의무</h2>
+                                                <ul class="ul-type">
+                                                    <li>청약서는 보험계약자 본인이 작성하고 서명란에도 보험계약자 본인 및 피보험자가 자필 서명을 하셔야 합니다.자필서명을 하지 않으신 경우 보험계약의 효력 등과 관련 하며 불이익이 있을 수 있습니다.</li>
+                                                    <li>인터넷을 통해 직접 보험에 가입하시는 경우에는 공인인증서를 통한 전자서명으로 자필서명을 대신할 수 있습 니다.</li>
+                                                    <li>전화로 가입할 때는 계약자와 피보험자가 동일하고 수익자가 본인이거나 상속인인 경우에 한해 녹취로 자필서명을 대신할 수 있습니다.</li>
+                                                </ul>
+                                                <h2>4. 가입자의 계약 전후 알릴 의무</h2>
+                                                <ul class="ul-type">
+                                                    <li>가입자의 계약 전 알릴 의무
+                                                        <div class="dep3">계약자 또는 피보험자 등은 보험계약 청약 시 기재사항 및 질문사항에 대하여 사실대로 알려주셔야 하며 그렇지 않은 경우 보험금 지급이 거절되거나 계약이 해지될 수 있습니다.</div>
+                                                    </li>
+                                                    <li>가입자의 계약 후 알릴 의무
+                                                        <div class="dep3">계약자 또는 피보험자 등은 보험계약을 맺은 후 보험약관에 정한 계약 후 알릴의무사항이 발생하였을 경우(청약서 기재사항 변경 시, 동일한 위험을 보장하는 계약을 체결할 경우, 위험이 뚜렷이 변경되었을 경우, 주소 또는 연락처가 변경된 경우)지체 없이 회사에 알라고 보험증권(보험가입증서)에 확인을 받아야 합니다. 그렇지 않을 경우 보험금지급이 거절될 수 있습니다.</div>
+                                                    </li>
+                                                </ul>
+
+                                                <h2>5. 청약의 철회와 품질보증제도</h2>
+                                                <ul class="ul-type">
+                                                    <li>청약의 철회<br>
+                                                        보험계약자는 보험증권을 받은 날부터 15일 이내 보험계약의 청약을 철회할 수 있습니다. 이 경우 보험회사는 보험계약자의 청약철회를 접수한 날부터 3일 이내에 받은 보험료를 보험계약자에게 돌려 드립니다. 다만, 다음 중 어느 하나에 해당하는 경우에는 보험계약의 청약을 철회할 수 없습니다.
+                                                        <ol class="ol-type numb dep">
+                                                            <li>청약한 날부터 30일이 초과된 계약</li>
+                                                            <li>진단계약</li>
+                                                            <li>보험기간이 1년 미만인 계약</li>
+                                                            <li>전문보험계약자가 체결한 계약</li>
+                                                        </ol>
+                                                    </li>
+                                                    <li>품질보증제도
+                                                        <div class="dep3">회사는 계약자가 청약할 때에 계약자에게 약관의 중요한 내용을 설명하며, 청약 후에 지체 없이 약관 및 가입확인서를 드립니다.<br>
+                                                            다만, 계약자가 동의하는 경우 광기록 매체, 전자우편 등 전자적 방법으로 송부할 수 있으며, 계약자 또는 그 대리인이 약관 및 계약자 보관용 청약서 등을 수신했을 때에는 해당 문서를 드린 것으로 봅니다. 계약자 또는 그 대리인이 약관 및 계약자 보관용 청약서 등을 수신했을 대에는 해당문서를 드린 것으로 봅니다. 계약자가 청약한 경우 약관과 계약자 보관용 청약서를 청약 시 전달받지 못하거나 약관의 중요한 내용을 설명 받지 못한 때 또는 청약서에 자필서명을 하지 않은 때에는 계약자는 게ㅑㅇㄱ이 성립한 날부터 3개월 이내에 계약을 취소할 수 있습니다. 이 경우 이미 납입한 보험료에 보험료를 받은 기간에 대해 이계약의 보험계약대출이율을 연단위 복리로 계산한 금액을 더하여 지급합니다.
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                                <h2>6. 무배당 보험의 특징</h2>
+                                                <div class="in-txt">무배당 보험은 배당이 발생하지 않는 대신 배당 상품과 비교하여 일반적으로 보험료가 저렴합니다.</div>
+
+
+                                                <h2>7.해지 환급금이 납입보험료 보다 적은 이유</h2>
+                                                <ul class="ul-type">
+                                                    <li>해지환급금은 보험계약이 중도에 해지될 경우에 지급되는 금액을 말합니다.</li>
+                                                    <li>보험은 은행의 저축과 달리 위험보장과 저축을 겸비한 제도로서 보험계약자가 납입한 보험료 중 일부는 불의의 사고를 당한 다른 가입자에게 지급되는 보험금으로, 또 다른 일부는 보험회사 운영에 필요한 경비로 사용되므로 중도 해지 시 지급되는 해지환급금은 납입한 보험료보다 적거나 없을 수도 있습니다.
+                                                        <div class="info-txt2 bk">이 상품은 만기환급금이 없는 상품입니다.</div>
+                                                    </li>
+                                                </ul>
+                                                <h2>8.비용보험의 비례보상에 관한 사항</h2>
+                                                <div class="in-txt">이 계약에서 보장하는 위험과 같은 위험을 보장하는 다른 계약(공제계약 포함)이 있을 경우에는 각 계약에 대하며 다른 계약이 없는 것으로 하며 각각 산출한 보상 책임액의 합계액이 손해액을 초과할 때에는 이 계약에 의한 보상 책임액의 상기 합계액에 대한 비율에 따라 보상하여 드립니다.</div>
+
+                                                <h2>9.보험료 납입 연체에 대한 납입최고(독)과 계약의 해지</h2>
+                                                <div class="in-txt">보험료 납입이 연체 중인 경우에 회사는 14일(보험기간이 1년 미만인 경우에는 7일 이상의 기간을 납입최고(독촉) 기간으로 정하며 보험계약자(타인을 위한 보험계약의 경우 특정된 보험수익자(보험금을 받는 자포함)에게 납입최고 (독촉기간 내에 연체 보험료를 납입하여야 한다는 내용과 납입최고 (독촉기간이 끝나는 날까지 보험료 를 납입하지 아니할 경우 납입최고(독촉 기간이 끝나는 날의 다음날에 계약이 해지된다는 내용을 서면 (등기부 편 등), 전화(음성녹음) 또는 전자문서 등으로 알려드립니다.</div>
+                                                <ol class="ol-type numb dep">
+                                                    <li>보험계약자가 약정한 납입일자까지 제2회 이후의 분할보험료를 납입하지 않는 때에는 약정한 납입일이 속하는 달의 다음 달 말일까지 납입최고기간을 둡니다. 회사는 이 납입최고기간 안에 생긴 사고에 대하여는 보상합니다.</li>
+                                                    <li>위 '1'의 납입최고기간 안에 분할보험료를 납입하지 않는 때에는 납입최고기간이 끝나는 날의 24시부터 보험 계약은 해지됩니다.</li>
+                                                    <li>보험계약자가 약정한 납입일자까지 분할보험료를 납입하지 않는 경우, 회사는 보험계약자 및 기명피보험자에 게 납입최고기간이 끝나는 날 이전에 위 '1'및'2'의 의 내용을 서면으로 최고 합니다. 이때 보험계약자 또는 피보험 자가 보통약관 제45조(계약 후 알릴 의무)에 따라 주소변경을 통보하지 않는 한 보험증권에 기재된 보험계약자 또는 기명피보험자의 주소를 회사의 의사표시를 수령할 지정장소로 합니다.</li>
+                                                </ol>
+
+                                                <h2>10.예금자보호 안내</h2>
+                                                <div class="in-txt">이 보험계약은 예금자보호법에 따라, 예금보험공사가 보호하되, 보호 한도는 본 보험회사에 있는 귀하의 모든 예 금보호 대상 금융상품의 해약환급금(또는 만기 시 보험금이나 사고보험금)에 기타 지급금을 합하여 1인당 최고 5천만원 "이며, 5천만원을 초과하는 나머지 금액은 보호하지 않습니다. (단, 보험계약자 또는 보험료납부자가 법인 인 경우 예금자보호법에 따라 예금보험공사가 보호하지 않습니다.</div>
+
+                                                <h2>11.모집질서 확립 및 신고센터 안내</h2>
+                                                <ul class="ul-type">
+                                                    <li>보험계약과 관련한 특별이익제공 행위 및 보험모집질서 문란행위는 보험업 법에 의해 처벌받을 수 있습니다</li>
+                                                    <li>금융감독원 보험모집질서 위반행위 신고센터
+                                                        <ul class="dep3">
+                                                            <li>전화 : 1332</li>
+                                                            <li>인터넷 : www.fss.or.kr</li>
+                                                        </ul>
+                                                    </li>    
+                                                </ul>
+
+                                                <h2>12.상담 및 보험분쟁조정 안내</h2>
+                                                <ul class="ul-type">
+                                                    <li>가입한 보험에 관하며 상담이 필요하거나 불만 사랑이 있을 때에는 먼저 저희 회사로 연락주시면 신속히 해결 하겠습니다.
+                                                        <ul class="dep3">
+                                                            <li>전화 : 1566-7711, (02)6464-3535, 3522번</li>
+                                                            <li>인터넷 : www.meritzfire.com -&gt; 고객센터 -&gt; 전자민원 접수</li>
+                                                        </ul>
+                                                    </li>    
+                                                    <li>저희 회사의 처리결과에 이의가 있으시면 금융감독원 금융소비자보호센터에 민원 또는 분쟁조정 등을 신청사 실 수 있습니다.
+                                                        <ul class="dep3">
+                                                            <li>전화 : 국번없이 1332, (02)3145-5114</li>
+                                                            <li>인터넷 : www.fss.or.kr</li>
+                                                        </ul>
+                                                    </li>    
+                                                </ul>
+
+                                                <h2>13.금융감독원 보험범죄 신고센터 안내</h2>
+                                                <ul class="ul-type">
+                                                    <li>가입한 보험에 관하며 상담이 필요하거나 불만 사랑이 있을 때에는 먼저 저희 회사로 연락주시면 신속히 해결 하겠습니다.
+                                                        <ul class="dep3">
+                                                            <li>전화 : 1566-7711, (02)6464-3535, 3522번</li>
+                                                            <li>인터넷 : www.meritzfire.com -> 고객센터 -> 전자민원 접수</li>
+                                                        </ul>
+                                                    </li>                        
+                                                    <li>보험범죄는 형법 제347조 (사기)에 의거 10년 이하의 징역이나 2천만원 이하의 벌금에 처해지며, 보험범죄를 교사한 경우에도 동일한 처벌을 받을 수 있습니다.
+                                                        <ul class="dep3">
+                                                            <li>전화 : 1588-3311</li>
+                                                            <li>인터넷 : www.fss.or.kr 인터넷보험범죄신고</li>
+                                                        </ul>
+                                                    </li>                        
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- //content -->
+                                </div>
+                                <!-- // container -->
+
+                            </div>
+                            <!-- //wrap -->
+        
+                            </body>
+                            </html>
+                              `;
+  return html;
+};
+
+export const wwTermsSd2 = () => {
+  const html = `
+                            <html>
+                            <head>
+                            <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                            <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                            <style type="text/css">
+                              ${commonCss}
+                              ${defaultCss}
+                            </style>
+                            </head>
+                            <body>
+                            <!-- wrap -->
+                            <div id="wrap" class="pop">
+
+
+                                <!-- container -->
+                                <div id="container">
+                                    <!-- content -->
+                                    <div id="content">
+                                        <div class="cont-inner">                
+                                            <div class="term">
+                                                <h1 class="first">상품 보장 내용 설명</h1>
+                                                <div class="in-box">아파트,연립,다세대 단독,다가구 주택 및 그 건물에 수용된 가재도구를 무연하고 급격한 외래 의 물리적 사고로 생긴 손해를 보장하는 상품입니다.</div>
+                                                <h2>기본정보</h2>
+                                                <div class="tbl">
+                                                    <table>
+                                                        <colgroup>
+                                                            <col style="width:25%">
+                                                            <col style="width:75%">
+                                                        </colgroup>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>가입자격</th>
+                                                                <td>주택건물 소유자/점유자(임차인)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>보장형태</th>
+                                                                <td>실손보장형</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>보험기간</th>
+                                                                <td>1년</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>납입방법</th>
+                                                                <td>일시납</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>상품형태</th>
+                                                                <td>순수보장형(만기시 환급금 없음)</td>
+                                                            </tr>   
+                                                            <tr>
+                                                                <th>보험목적물</th>
+                                                                <td>
+                                                                    주택 건물, 가재도구<br>
+                                                                    <div class="info-txt">금, 보석, 귀금속 귀중품 등 명기가재 는 가입불가</div>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <h2>기본계약</h2>
+                                                <div class="tbl">
+                                                    <table>
+                                                        <colgroup>
+                                                            <col style="width:25%">
+                                                            <col style="width:75%">
+                                                        </colgroup>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th>보장명</th>
+                                                                <td>재물위험 손해 (건물 및 가재)</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>보장내용<br>(지급사유)</th>
+                                                                <td>우연한 사고(화재.폭발,파열 붕괴)등으로 인한 손해 발생 시 가입 금액 한도 내 보상</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th>보장금액<br>(보험금액)</th>
+                                                                <td>가입금액 한도</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <h2>선택 계약</h2>
+                                                <div class="tbl">
+                                                    <table>
+                                                        <colgroup>
+                                                            <col style="width:25%">
+                                                            <col style="width:75%">
+                                                        </colgroup>
+                                                        <tbody>
+                                                            <tr>
+                                                                <th rowspan="3">보장명</th>
+                                                                <td>가재 도난 위험</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="bl">잠금장치 교체비용</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="bl">실화(대물) 배상책임</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th rowspan="3">보장내용<br>(지급사유)</th>
+                                                                <td>주택 구내의 가재(보험목적) 보관되어 있는 동안에 강도 또는 절 도 (그 미수를 포함합니다)로 생긴 도난, 훼손 또는 망가진 손해 를 입었을 경우 
+                                                                    <div class="info-txt">자기부담금 3만원 공제</div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="bl">가재도난 위험담보에 따라 보험금이 지급된 경우 보험가입금액을 잠금장치 교체비용으로 지급</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="bl">피보험자의 주택 구내에서 발생한 화재사고로 인하여 타인의 재 물을 손괴하며 배상책임이 발생한 경우 보상한도액 내에서 보상. 단, 피보험자가 소유,점유,임차,보험,관리,통제하는 재물의 경우는 보상불가</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <th rowspan="3">보장금액<br>(보험금액)</th>
+                                                                <td>가입금액 한도</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="bl">가입금액</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td class="bl">가입금액 한도</td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                                <h2>지급보험금 산정방식</h2>
+                                                <div class="in-txt">추정 예상보험가액 평가는 간접평가법에 의하여 예상재조달가액을 산출하는 것이므로 실제 사고 발생시 적용하는 직접평가법에 의하여 산출할 보험가액과는 차이가 발생할 수 있습니다. 사고 시점에서 보험가입금애기 보험가액보다 적을 경우 부보비율에 따라서 비례보상이 될수 있습니다.</div>
+                                                <ul class="ul-type h-top">
+                                                    <li>재조달가액은 현재와 동일한 용도 및 구조로 신축하는데 소요되는 비용이며, 시가액은 재조달가액에서 사용 년수만큼 감가공제한 금액입니다.</li>                            
+                                                    <li>예상 재조달가액 산출을 위해 사용되는 표준단가에는 전기설비,소방설비,위생,난방설비 등의 부대설비 가액 이(1.1~1.3%)보정되어 있습니다.</li>
+                                                    <li>비례보상에 관한 사항
+                                                        <div class="dep3">재물위험 손해, 가재도난위험, 실화배 상위험 담보의 경우는 다수 계약시 중복보험으로 인해 비례보상이 되며 잠금장치 교체비용에 대해서는 다수 계약시 비례보상되지 않습니다.</div>
+                                                    </li>                            
+                                                    <li>추정 보험가액 예시
+                                                        <div class="dep3">예상재 조달가액 : 연면적(m2) * 표준단가</div>
+                                                    </li>
+                                                    <li>건물 재조달가액 산출방법
+                                                        <div class="dep3">[ 건물의 용도 / 구조별 적정 건축물신축단가 * 면적 ] * 보정계수(1.1.~1.3)</div>
+                                                    </li>
+                                                    <li>예상시가액 
+                                                        <div class="dep3">예상재 조달가액 - 감가공제액 예상재 조달가액 * 경년감가율 * 경과년수)</div>
+                                                    </li>
+                                                    <li>보험료 예시
+                                                        <ul class="dep3">
+                                                            <li>평가한 보험가액 (건물연면적 재조달가액) * 보험요율 = 보험료</li>
+                                                            <li>건물 : 벽돌조슬라브 84m2* 1,100,000 * 0.0236% = 21,806</li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                                <h2>보상하지 않는 손해</h2>
+                                                <div class="in-txt">회사는 그 원인의 직접, 간접을 묻지 아니하고 아래의 사유로 생긴 손해는 보상하여 드리지 아니합니다.</div>
+                                                <ul class="ul-type h-top">
+                                                    <li>책임개시전 사고
+                                                        <div class="dep3">회사는 계약의 청약을 승낙하고 제1회 보험료 등을 받는 때부터 약관이 정한 바에 따라 보장을 합니다. 따라서, 다른 약정이 없는 한 보험료를 받기 전에 생긴 손해에 대해서는 회사의 책임이 없습니다.</div>
+                                                    <li>계약자나 피보험자 또는 이들의 대리인의 고의
+                                                        <div class="dep3">보험계약자나 피보험자 또는 이들의 대리인의 고의 중대한 과실로 생긴 손해, 기타 약관에서 정한 보상하지 마니하는 손해에 해당되는 경우 회사는 책임을 지지 아니합니다. (약관 참조)</div>
+                                                    </li>
+                                                </ul>
+                                                <div class="tbl">
+                                                    <table>
+                                                        <thead>
+                                                            <tr>
+                                                                <th>승인번호</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            <tr>
+                                                                <td class="ac">손해보험협회 심의필 제24857호(2019.12.02)</td>
+                                                            </tr>                                
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- //content -->
+                                </div>
+                                <!-- // container -->
+
+                            </div>
+                            <!-- //wrap -->
+        
+                            </body>
+                            </html>
+                              `;
+  return html;
+};
+
+export const wwTermsSe1 = () => {
+  const html = `
+                            <html>
+                            <head>
+                            <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                            <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                            <style type="text/css">
+                              ${commonCss}
+                              ${defaultCss}
+                            </style>
+                            </head>
+                            <body>
+                            <!-- wrap -->
+                            <div id="wrap" class="pop">
+
+                                <!-- container -->
+                                <div id="container">
+                                    <!-- content -->
+                                    <div id="content">
+                                        <div class="cont-inner">                
+                                            <div class="term">
+                                                <h1 class="first">소비자 권익에 관한 사항</h1>
+                                                <div class="in-box">본 동의를 거부하시는 경우에는 보험계약 상담 등 정상적인 서비스제공이 불가능하며 본 동의서에 의한 개인(신용) 정보 조회는 귀하의 신용등급에 영향을 주지 않습니다. 또한, 동의하시더라도 인슈로보 고객센터(070-4126-3333) 또는 현대해상 홈페이지 및 고객콜센터(1577-1001)를 통해 철회하거나 보험계약상담 목적의 연락에 대한 중단을 요청하실 수 있습니다.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- //content -->
+                                </div>
+                                <!-- // container -->
+
+                            </div>
+                            <!-- //wrap -->
+        
+                            </body>
+                            </html>
+                              `;
+  return html;
+};
+export const wwTermsSe2 = () => {
+  const html = `
+                              <html>
+                              <head>
+                              <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                              <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                              <style type="text/css">
+                                ${commonCss}
+                                ${defaultCss}
+                              </style>
+                              </head>
+                              <body>
+                              <!-- wrap -->
+                                <div id="wrap" class="pop">
+
+                                    <!-- container -->
+                                    <div id="container">
+                                        <!-- content -->
+                                        <div id="content">
+                                            <div class="cont-inner">                
+                                                <div class="term">
+                                                    <h1 class="first">개인(신용)정보의 수집/이용에 관한 사항</h1>
+                                                    <div class="in-box">현대해상 및 현대해상 업무수탁자는 「개인정보 보호법」 및 「신용정보의 이용 및 보호에 관한 법률」에 따라 본 계약과 관련하여 귀하의 개인(신용)정보를 다음과 같이 수집&middot;이용하고자 합니다. 이에 대하여 동의하십니까?</div>
+                                                    <h2>개인(신용)정보의 수집&middot;이용 목적</h2>
+                                                    <ul class="ul-type">
+                                                        <li>보험계약상담, 보험계약 인수여부 결정을 위한 판단, 다중이용업소화재배상책임보험 가입대상 확인, 재무설계서비스, 실손의료보험계약&middot;기타손해보험계약 등 ‘실제 발생하는 손해만을 보상하는 실손형 보험’의 중복가입 확인을 위한 보험가입내역 조회</li>
+                                                        <li>민원 및 분쟁관련 대응, 만기알람서비스 신청 고객의 보험만기 안내</li>
+                                                    </ul>
+                                                    <h2>수집&middot;이용할 개인(신용) 정보의 내용</h2>
+                                                    <ul class="ul-type">
+                                                        <li>개인식별정보 (성명, 생년월일, 주민등록번호, 외국인등록번호, 주소, 직업, 전화번호, 전자우편주소)</li>
+                                                        <li>질병 및 상해에 관한 정보(자동차보험은 해당없음)</li>
+                                                        <li>현대해상, 신용정보집중기관 및 보험요율산출기관에서 수집&middot;관리하는 보험계약정보 및 보험금지급 관련 정보(사고정보 포함)</li>
+                                                        <li>다중이용업소정보(상호, 업종, 영업장 면적, 주소, 소방방재청 발급 일련번호)</li>
+                                                        <li>소득에 관한 정보(보험료 또는 담보별 누적 가입금액이 과도한 경우)</li>
+                                                    </ul>
+                                                    <h2>개인(신용)정보 보유&middot;이용기간</h2>
+                                                    <div class="ul-type">수집&middot;동의일로부터 1년까지</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- //content -->
+                                    </div>
+                                    <!-- // container -->
+
+                                </div>
+                                <!-- //wrap -->
+          
+                              </body>
+                              </html>
+                                `;
+  return html;
+};
+export const wwTermsSe3 = () => {
+  const html = `
+                              <html>
+                              <head>
+                              <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                              <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                              <style type="text/css">
+                                ${commonCss}
+                                ${defaultCss}
+                              </style>
+                              </head>
+                              <body>
+                              <!-- wrap -->
+                                <div id="wrap" class="pop">
+
+                                    <!-- container -->
+                                    <div id="container">
+                                        <!-- content -->
+                                        <div id="content">
+                                            <div class="cont-inner">                
+                                                <div class="term">
+                                                    <h1 class="first">개인(신용) 정보의 조회에 관한 사항(필수)</h1>
+                                                    <div class="in-box">현대해상 및 현대해상 업무수탁자는 「신용정보의 이용 및 보호에 관한 법률」 및 「다중이용업소의 안전관리에 관한 특별법」에 따라 귀하의 개인(신용)정보를 다음과 같이 신용정보집중기관, 보험요율산출기관, 공공기관 등으로부터 조회하고자 합니다. 이에 대하여 동의하십니까?</div>
+                                                    <h2>개인(신용)정보의 조회목적</h2>
+                                                    <div class="ul-type">보험계약상담, 보험계약 인수여부 결정을 위한 판단, 다중이용업소화재배상책임보험, 실손의료보험계약&middot;기타손해보험계약 등 ‘실제 발생하는 손해만을 보상하는 실손형 보험'의 중복가입 확인</div>
+                                                    <h2>조회할 개인(신용)정보의 내용</h2>
+                                                    <ul class="ul-type">
+                                                        <li>신용정보집중기관 및 보험요율산출기관에서 수집&middot;관리하는 정보(피보험자의 질병 및 상해에 관한 정보(자동차보험은 해당없음), 보험계약정보, 보험금지급정보)</li>
+                                                        <li>개인식별정보 (성명, 생년월일, 주민등록번호, 외국인등록번호, 주소, 직업, 전화번호, 전자우편주소)</li>
+                                                        <li>다중이용업소정보</li>
+                                                        <li>신용정보회사 및 통신사 등의 실명인증 및 본인인증을 위한 정보</li>
+                                                    </ul>
+                                                    <h2>조회동의 유효 기간 및 조회자(개인(신용)정보를 제공 받은 자)의 보유&middot;이용 기간</h2>
+                                                    <div class="ul-type">동의일로부터 보험계약의 청약시까지(최대 1년)</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- //content -->
+                                    </div>
+                                    <!-- // container -->
+
+                                </div>
+                                <!-- //wrap -->
+                              </body>
+                              </html>
+                                `;
+  return html;
+};
+export const wwTermsSe4 = () => {
+  const html = `
+                              <html>
+                              <head>
+                              <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                              <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                              <style type="text/css">
+                                ${commonCss}
+                                ${defaultCss}
+                              </style>
+                              </head>
+                              <body>
+                              <!-- wrap -->
+                                <div id="wrap" class="pop">
+
+                                    <!-- container -->
+                                    <div id="container">
+                                        <!-- content -->
+                                        <div id="content">
+                                            <div class="cont-inner">                
+                                                <div class="term">
+                                                    <h1 class="first">개인(신용)정보의 제공에 관한 사항(필수)</h1>
+                                                    <div class="in-box">당사 및 현대해상은 「개인정보 보호법」 및 「신용정보의 이용 및 보호에 관한 법률」 및 「다중이용업소의 안전관리에 관한 특별법」에 따라 귀하의 개인(신용)정보를 다음과 같이 제3자에게 제공하고자 합니다. 이에 대하여 동의하십니까?</div>
+                                                    <h2>개인(신용)정보를 제공받는자</h2>
+                                                    <ul class="ul-type">
+                                                        <li>병원, 의원 등 건강진단 관련 업무를 위탁받은 자, 계약적부 조사를 위탁받은 자(진단 및 계약적부 조사가 필요한 보험계약의 경우에 한함)</li>
+                                                        <li>재보험사</li>
+                                                        <li>업무수탁자(모집자) 등</li>
+                                                    </ul>
+
+                                                    <h2>개인(신용)정보를 제공받는 자의 이용목적</h2>
+                                                    <ul class="ul-type">
+                                                        <li>건강진단 업무(지정의 또는 파라메딕업체), 고지사항 확인(적부조사회사), 의료자문(사의), 계약적부조사, 할증심사, 인수 가능여부 확인(재보험사)</li>
+                                                        <li>본인 실명인증(신용정보회사)</li>
+                                                        <li>보험계약상담, 보험계약 인수여부 결정을 위한 판단 등</li>
+                                                    </ul>
+
+                                                    <h2>제공할 개인(신용)정보의 내용</h2>
+                                                    <ul class="ul-type">
+                                                        <li>개인식별정보(성명, 생년월일, 주민등록번호, 외국인등록번호, 주소, 성별, 직업, 전화번호, 휴대전화번호, 전자우편주소)</li>
+                                                        <li>계약전 알릴의무사항</li>
+                                                        <li>현대해상, 신용정보집중기관 및 보험요율산출기관에서 수집&middot;관리하는 보험계약정보 및 보험금지급 관련 정보(사고정보 포함) (단, 제공받는 자의 이용 목적을 위해 필요한 정보에 한함)</li>
+                                                    </ul>
+
+                                                    <h2>제공받는 자의 개인(신용)정보 보유&middot;이용기간</h2>
+                                                    <div class="ul-type">수집&middot;동의일로부터 1년까지</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- //content -->
+                                    </div>
+                                    <!-- // container -->
+
+                                </div>
+                                <!-- //wrap -->
+          
+                              </body>
+                              </html>
+                                `;
+  return html;
+};
+export const wwTermsSe5 = () => {
+  const html = `
+                              <html>
+                              <head>
+                              <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                              <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                              <style type="text/css">
+                                ${commonCss}
+                                ${defaultCss}
+                              </style>
+                              </head>
+                              <body>
+                              <!-- wrap -->
+                                <div id="wrap" class="pop">
+
+                                    <!-- container -->
+                                    <div id="container">
+                                        <!-- content -->
+                                        <div id="content">
+                                            <div class="cont-inner">                
+                                                <div class="term">
+                                                    <h1 class="first">민감정보 및 고유식별정보의 처리에 관한 사항(필수)</h1>
+                                                    <div class="in-box">현대해상 및 현대해상 업무수탁자는 「개인정보보호법」 및 「신용정보의 이용 및 보호에 관한 법률」에 따라 상기의 개인(신용)정보에 대한 개별 동의사항에 대하여 다음과 같이 귀하의 민감정보(질병&middot;상해정보) 및 고유식별정보(주민등록번호&middot;외국인등록번호&middot;운전면허번호)를 처리<span class="primary">(수집&middot;이용, 조회, 제공)</span>하고자 합니다. 이에 동의하십니까?</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- //content -->
+                                    </div>
+                                    <!-- // container -->
+
+                                </div>
+                                <!-- //wrap -->
+          
+                              </body>
+                              </html>
+                                `;
+  return html;
+};
+
+export const wwTermsSf1 = () => {
+  const html = `
+                                <html>
+                                <head>
+                                <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                                <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                                <style type="text/css">
+                                  ${commonCss}
+                                  ${defaultCss}
+                                </style>
+                                </head>
+                                <body>
+                                <!-- wrap -->
+                                <div id="wrap" class="pop">
+
+                                    <!-- container -->
+                                    <div id="container">
+
+                                        <!-- content -->
+                                        <div id="content">
+                                            <div class="cont-inner">                
+                                                <div class="term">
+                                                    <h1 class="first">전자금융거래 이용약관</h1>
+                                                    <h2>제1조 (목적)</h2>
+                                                    <div class="in-txt">
+                                                        이 약관은 ㈜인슈로보와 현대해상화재보험회사(이하 "회사"라 한다)와 이용자 사이의 전자금융거래에 관한 기본적인 사항을 정함으로써 거래를 신속하고 효율적으로 처리하며 거래당사자 상호간의 이해관계를 합리적으로 조정하는 것을 목적으로 한다.
+                                                    </div>
+                                                    <h2>제2조 (용어의 정의)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>이 약관에서 사용하는 용어의 정의는 다음 각 호와 같다.
+                                                            <ul class="dep2">
+                                                                <li>"전자금융거래"라 함은 회사가 전자적 장치를 통하여 금융상품 및 서비스를 제공하고 이용자가 회사와 직접 대면하거나 의사소통을 하지 아니하고 자동화된 방식으로 이를 이용하는 거래를 말한다.</li>
+                                                                <li>"이용자"라 함은 전자금융거래를 위하여 회사와 체결한 계약(이하 "전자금융거래계약" 이라 한다)에 따라 전자금융거래를 이용하는 자를 말한다.</li>
+                                                                <li>"전자적 장치"라 함은 전자금융거래정보를 전자적 방법으로 전송하거나 처리하는데 이용되는 장치로서 현금자동지급기, 자동입출금기, 지급용단말기, 컴퓨터, 전화기 그 밖에 전자적 방법으로 정보를 전송하거나 처리하는 장치를 말한다.</li>
+                                                                <li>"접근매체"라 함은 전자금융거래에 있어서 이용자가 거래지시를 하거나 또는 이용자 및 거래내용의 진실성과 정확성을 확보하기 위하여 사용되는 다음 각목의 어느 하나에 해당하는 수단 또는 정보를 말한다.
+                                                                    <ul class="dep3">
+                                                                        <li>전자식 카드 및 이에 준하는 전자적 정보</li>
+                                                                        <li>전자서명법에 따른 공인인증서</li>
+                                                                        <li>회사에 등록된 이용자 번호</li>
+                                                                        <li>등록되어 있는 이용자의 생체정보</li>
+                                                                        <li>가목 또는 나목의 수단이나 정보를 사용하는데 필요한 비밀번호</li>
+                                                                    </ul>
+                                                                </li>
+                                                                <li>"전자문서"라 함은 전자거래기본법 제2조제1호의 규정에 따라 작성, 송신 &middot; 수신 또는 저장된 정보를 말한다.</li>
+                                                                <li>"거래지시"라 함은 이용자가 전자금융거래계약에 따라 회사에게 전자금융거래의 처리를 지시하는 것을 말한다.</li>
+                                                                <li>"오류"라 함은 이용자의 고의 또는 과실 없이 전자금융거래가 약관(개별약관을 포함한다), 전자금융거래계약 또는 이용자의 거래지시에 따라 이행되지 아니한 경우를 말한다.</li>
+                                                                <li>"전자지급거래"라 함은 자금을 주는 자(이하 "지급인"이라 한다)가 회사로 하여금 전자지급수단을 이용하여 자금을 받는 자(이하 "수취인"이라 한다)에게 자금을 이동하게 하는 전자금융거래를 말한다.</li>
+                                                                <li>"전자지급수단"이라 함은 전자자금이체, 직불전자지급수단, 선불전자지급수단, 전자화폐, 신용카드, 전자채권 그 밖의 전자적 방법에 따른 지급수단을 말한다.</li>
+                                                                <li>"전자자금이체"라 함은 지급인과 수취인 사이에 자금을 지급할 목적으로 회사에 개설된 계좌에서 다른 계좌로 전자적 장치에 의하여 다음 각 목의 어느 하나에 해당하는 방법으로 자금을 이체하는 것을 말한다.
+                                                                    <ul class="dep3">
+                                                                        <li>회사에 대한 지급인의 지급지시</li>
+                                                                        <li>회사에 대한 수취인의 추심지시(이하 "추심이체"라 한다)</li>
+                                                                    </ul>
+                                                                </li>
+                                                                <li>"정보시스템"이라 함은 전자금융업무를 포함하여 정보기술부문에 사용되는 하드웨어(hardware)와 소프트웨어(software)를 말하며 관련장비를 포함한다.</li>
+                                                                <li>"영업일"이라 함은 회사가 영업점에서 정상적인 영업을 하는 날을 말한다.</li>
+                                                                <li>"개별약관"이라 함은 이 약관과 함께 전자금융거래에 적용되는 약관으로서 회사가 별도로 작성한 약관을 말한다.</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>이 약관에서 별도로 정하지 아니한 용어의 정의는 전자금융거래법 및 전자금융 거래법 시행령, 전자금융감독규정 및 전자금융감독규정 시행세칙에서 정하는 바에 따른다.</li>
+                                                    </ol>
+                                                    <h2>제3조 (적용범위)</h2>
+                                                    <div class="in-txt">이 약관은 다른 법률에 특별한 규정이 있는 경우를 제외하고 모든 전자금융거래에 적용한다.</div>
+                                                    <h2>제4조 (전자금융거래계약의 체결 및 해지)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>전자금융거래를 이용하고자 하는 이용자는 개별약관에서 정하는 방법에 따라 회사와 전자금융거래계약을 체결하여야 한다. 다만, 다음 각 호의 1에 해당하는 경우에는 그러하지 아니할 수 있다.
+                                                            <ul class="dep2">
+                                                                <li>단순조회(보험계약사항, 간접투자상품계좌 조회 등)</li>
+                                                                <li>기타 회사가 정하는 거래</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>회사는 제1항의 규정에 의한 전자금융거래계약을 체결함에 있어 이용자에게 약관을 명시하여야 하며, 이용자의 요청이 있는 경우 다음 각 호의 어느 하나에 해당하는 방법으로 이용자에게 약관을 교부하여야 한다.
+                                                            <ul class="dep2">
+                                                                <li>직접교부</li>
+                                                                <li>전자문서의 전송(전자우편을 이용한 전송을 포함한다)</li>
+                                                                <li>모사전송</li>
+                                                                <li>우편</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>회사는 제1항의 규정에 의한 전자금융거래계약을 체결함에 있어 이용자가 약관의 내용에 대한 설명을 요청하는 경우 다음 각 호의 어느 하나에 해당하는 방법으로 이용자에게 약관의 중요내용을 설명하여야 한다.
+                                                            <ul class="dep2">
+                                                                <li>약관의 중요내용을 이용자에게 직접 설명</li>
+                                                                <li>약관의 중요내용에 대한 설명을 전자적 장치를 통하여 이용자가 알기 쉽게 표시하고 이용자로부터 해당 내용을 충분히 인지하였다는 의사표시를 전자적 장치를 통하여 수령</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>전자금융거래에 관한 계약을 해지하고자 할 때에는 이용자 본인이 전자금융거래에 관한 개별약관에 정한 바에 따라 서면 또는 해당 전자적 장치에 의하여 회사에 해지신청을 하여야 한다.</li>
+                                                    </ol>
+                                                    <h2>제5조 (전자금융거래의 성립)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>회사가 이용자의 전자금융거래요청을 접수하고 그 내용이 회사가 정하는 정보시스템에 의해 처리되어 저장되는 때에 성립한다.</li>
+                                                        <li>회사는 제1항의 전자금융거래요청에 대한 접수사실과 그 처리결과를 이용자에게 즉시 알려야 한다.</li>
+                                                    </ol>
+                                                    <h2>제6조 (전자지급거래의 효력발생시기 등)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>전자지급수단을 이용하여 자금을 지급하는 경우 그 지급의 효력은 다음 각 호에서 정한 때에 발생한다.
+                                                            <ul class="dep2">
+                                                                <li>전자자금이체의 경우 : 거래지시된 금액의 정보에 대하여 수취인의 계좌가 개설되어 있는 금융기관 계좌의 원장에 입금기록이 끝난 때</li>
+                                                                <li>전자적 장치로부터 직접 현금을 출금하는 경우 : 수취인이 현금을 수령한 때</li>
+                                                                <li>선불전자지급수단 및 전자화폐로 지급하는 경우 : 거래지시된 금액의 정보가 수취인이 지정한 전자적 장치에 도달한 때</li>
+                                                                <li>그 밖의 전자지급수단으로 지급하는 경우 : 거래지시된 금액의 정보가 수취인의 계좌가 개설되어 있는 금융기관의 전자적 장치에 입력이 끝난때</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>이용자는 제1항 각 호의 규정에 따라 지급의 효력이 발생하기 전까지 거래지시를 철회할 수 있다.</li>
+                                                        <li>제2항의 규정에도 불구하고 회사는 대량으로 처리하는 거래 또는 예약에 따른 거래 등의 경우에는 개별약관에서 정한 바에 따라 거래지시의 철회시기를 달리 정할 수 있다.</li>
+                                                        <li>제2항 및 제3항의 규정에 의한 거래지시의 철회방법과 절차는 개별약관에서 정하는 바에 따른다.</li>
+                                                    </ol>
+                                                    <h2>제7조 (접근매체의 발급 및 등록)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>회사가 접근매체를 발급할 때에는 이용자의 신청이 있는 경우에 한하여 본인임을 확인한 후에 발급하여야 한다. 다만, 다음 각 호의 어느 하나에 해당하는 경우에는 이용자의 신청이나 본인의 확인이 없는 때에도 발급할 수 있다.
+                                                            <ul class="dep2">
+                                                                <li>갱신 또는 대체발급 예정일전 6월 이내에 사용된 적이 없는 접근매체의 경우에는 그 이용자로부터 갱신 또는 대체발급에 대하여 서면(「전자서명법」 제2조제3호의 규정에 따른 공인전자서명(이하 '공인전자서명'이라 한다)이 있는 전자문서를 포함한다)으로 동의를 얻은 경우</li>
+                                                                <li>갱신 또는 대체발급 예정일전 6월 이내에 사용된 적이 있는 접근매체의 경우에는 그 예정일부터 1월 이전에 이용자에게 발급 예정사실을 알린 후 20일 이내에 이용자로부터 이의제기가 없는 경우</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>이용자는 전자금융거래계약을 체결하고 거래비밀번호 등을 전자적 장치를 통하여 직접 등록할 경우에는 회사가 정한 기한 내에 등록하여야 한다.</li>
+                                                    </ol>
+                                                    <h2>제8조 (접근매체의 관리)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>이용자는 전자금융거래에 필요한 접근매체를 제3자에게 대여, 위탁 또는 양도하지 못한다.</li>
+                                                        <li>이용자는 접근매체를 본인 이외의 제3자에게 누설해서는 안되며, 접근매체의 도용이나 위조 또는 변조를 방지하기 위하여 충분한 주의를 기울여야 한다.</li>
+                                                    </ol>
+                                                    <h2>제9조 (공인인증서 사용)</h2>
+                                                    <div class="in-txt">이용자는 이 약관의 적용대상인 전자금융거래를 이용하는 경우 반드시 전자서명법에 의한 공인인증서를 사용하여야 한다. 다만, 회사가 지정한 거래 중 다음 각 호의 경우에는 그러하지 아니할 수 있다.
+                                                        <ul class="ul-type h-top">
+                                                            <li>본인 계약사항 및 거래내역에 대한 조회업무</li>
+                                                            <li>ARS(자동응답서비스) 등과 같이 공인인증서의 설치운용이 불가능한 전자적 장치를 이용한 전자금융거래의 경우</li>
+                                                            <li>회사가 범위를 정하여 공인인증서 적용을 제외한 경우</li>
+                                                        </ul>
+                                                    </div>
+                                                    <h2>제10조 (이용시간)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>이용자는 회사가 정한 시간 이내에서 전자금융거래를 이용할 수 있다.</li>
+                                                        <li>이용시간은 회사의 사정에 따라 달라질 수 있으며, 이용시간을 변경하고자 할 경우에는 3 영업일전 본점 &middot; 영업점 또는 게시 가능하거나 기타 이용자가 접근하기 용이한 전자적 장치를 통하여 게시한다. 다만, 시스템 장애복구, 긴급한 프로그램 보수, 외부요인 등 불가피한 경우에는 예외로 한다.</li>
+                                                    </ol>
+                                                    <h2>제11조 (수수료)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>회사는 전자금융거래와 관련된 각종 수수료를 이용자로부터 징수할 수 있다.</li>
+                                                        <li>회사는 제1항의 규정에 의한 수수료의 징수기준을 영업점 또는 전자적 장치에 비치 또는 게시하며, 이를 변경하고자 하는 경우 영업점 또는 전자적 장치에 변경 예정일 14일전부터 1개월 이상 비치 또는 게시한다.</li>
+                                                    </ol>
+                                                    <h2>제12조 (이체 한도)</h2>
+                                                    <div class="in-txt">이용자는 회사가 정한 방법과 기준에 따라 계좌이체 및 계좌송금에 대한 이체 최고한도를 설정할 수 있다.</div>
+                                                    <h2>제13조 (거래지시의 처리기준)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>회사는 이용자의 거래지시에 포함된 증권번호, 비밀번호, 이용자번호 등의 접근매체 정보를 신고된 것과 대조하여 그 일치 여부를 확인한 후에 거래지시를 처리한다.</li>
+                                                        <li>이용자의 거래지시와 관련하여 회사가 수신한 전자문서는 각 문서마다 독립된 것으로 본다.</li>
+                                                        <li>제2항의 규정에도 불구하고 거래지시 전자문서가 회사가 정한 시간 내에 동일한 내용으로 반복 수신된 경우 회사는 전화 기타 이용자에게 즉시 통지할 수 있는 전자적 장치 등을 통하여 이용자의 진정한 거래지시 의사를 확인하는 절차를 거친 후 나머지 전자문서를 임의로 폐기할 수 있다.</li>
+                                                    </ol>
+                                                    <h2>제14조 (전자금융거래의 제한)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>회사는 다음 각 호의 어느 하나에 해당하는 경우에는 해당 전자금융거래 전부를 제한할 수 있다.
+                                                            <ul class="dep2">
+                                                                <li>공인인증서 유효기간이 만료되었거나 공인인증서가 취소되었을 경우</li>
+                                                                <li>일회용비밀번호(보안카드를 포함한다)를 분실신고 하였을 경우</li>
+                                                                <li>이용자가 지정한 은행계좌가 거래 정지되거나 이용자가 회사에 알리지 않고 은행계좌를 임의 변경하는 등의 사유로 보험료 수납이나 대출금보험금 등의 지급이 불가능한 경우</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>회사는 제1항에 의해 전자금융거래를 제한한 경우에는 이용자의 거래지시가 있을 때 해당 전자적 장치를 통하여 그 사유를 알려야 한다.</li>
+                                                        <li>이용자는 제2항의 경우에 제7조에 의한 공인인증서 및 보안카드 재발급, 유효기간 연장 등의 절차를 거쳐 전자금융거래를 이용할 수 있다.</li>
+                                                    </ol>
+                                                    <h2>제15조 (거래내용의 확인)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>회사는 전자금융거래의 처리결과를 이용자가 전자적 장치를 통하여 즉시 확인할 수 있도록 하여야 한다.</li>
+                                                        <li>회사는 이용자가 거래내용을 서면(전자문서를 제외한다. 이하 같다)으로 제공할 것을 요청하는 경우에는, 그 요청을 받은 날부터 2주 이내에 거래내용에 관한 서면을 교부하여야 한다.</li>
+                                                        <li>제1항의 규정에도 불구하고 이용자가 요청하는 거래내용을 해당 전자적 장치로도 즉시 확인을 해주는 것이 사실상 곤란할 경우 회사는 해당 거래내용을 서면(전자문서를 제외한다) 형태로 출력하여 이용자에게 교부하여야 한다.</li>
+                                                        <li>이용자는 거래지시와 제1항에 의한 처리결과가 일치하는지 여부를 확인하여야 한다.</li>
+                                                    </ol>
+                                                    <h2>제16조 (오류의 정정)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>이용자는 전자금융거래에 오류가 있음을 안 때에는 즉시 회사에 정정을 요구할 수 있다.</li>
+                                                        <li>회사는 제1항의 규정에 따른 오류의 정정 요구를 받은 때에는 이를 즉시 조사하여 처리한 후 정정요구를 받은 날부터 2주 이내에 그 처리결과를 이용자에게 알려야 한다.</li>
+                                                        <li>회사는 스스로 전자금융거래에 오류가 있음을 안 때에는 이를 즉시 조사하여 처리한 후 오류가 있음을 안 날부터 2주 이내에 이용자에게 그 결과를 알려야 한다.</li>
+                                                    </ol>
+                                                    <h2>제17조 (사고 및 장애시의 처리)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>이용자는 다음의 어느 하나에 해당 하는 사고 알았을 때에는 지체없이 이를 회사에 알려야 한다.
+                                                            <ul class="dep2">
+                                                                <li>접근매체의 위조나 변조로 발생한 사고</li>
+                                                                <li>계약체결 또는 거래지시의 전자적 전송이나 처리 과정에 발생한 사고</li>
+                                                                <li>전자금융거래를 위한 전자적 장치 또는 정보통신망에 침입하여 거짓이나 그 밖의 부정한 방법으로 획득한 접근매체의 이용으로 발생한 사고</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>제1항의 통지는 회사가 이를 접수한 즉시 그 효력이 발생한다.</li>
+                                                        <li>이용자가 제1항의 통지를 철회할 경우에는 이용자 본인이 회사에 서면으로 신청하여야 한다.</li>
+                                                        <li>회사는 천재지변, 정전, 화재, 건물훼손, 전산장애 등의 사유로 이용자의 거래지시를 처리할 수 없거나 처리가 지연될 경우 동 사실과 사유 등을 이용자에게 지체없이 통보하며, 정상적인 전자금융거래가 이루어질 수 있도록 신속하게 조치한다.</li>
+                                                        <li>회사는 이용자의 요청이 있을 때에는 사고 또는 장애의 사유를 지체 없이 조사하여 그 결과를 이용자에게 알려야 한다.</li>
+                                                    </ol>
+                                                    <h2>제18조 (계약내용 변경)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>이용자는 전자적 장치를 이용하여 회사가 정한 방법과 기준에 따라 개별금융상품의 계약내용(이하 "금융계약내용" 이라 한다) 변경을 신청할 수 있다.</li>
+                                                        <li>회사는 제1항에 의한 금융계약내용 변경신청을 접수한 경우에는 이용자가 변경내용을 다시 확인할 수 있도록 하여야 한다.</li>
+                                                        <li>회사는 금융계약내용이 변경된 경우 이용자에게 그 사실을 전자적 장치를 통해 즉시 알려야 한다.</li>
+                                                    </ol>
+                                                    <h2>제19조 (신고사항의 변경)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>이용자는 주소 &middot; 전화번호 &middot; 비밀번호 &middot; 전자우편 주소 &middot; 은행계좌 등 회사에 신고한 사항을 변경하고자 할 경우에는 전자적 장치나 회사가 정하는 기타의 방법에 의하여 변경신청을 하여야 한다.</li>
+                                                        <li>제1항에 의한 신고사항의 변경은 회사가 신청을 접수한 즉시 효력이 발생한다.</li>
+                                                    </ol>
+                                                    <h2>제20조 (통지의 방법)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>회사는 제16조, 제17조 제4항 및 제5항에 의한 통지를 하는 경우에는 이용자가 신고한 연락처로 전화, 서면 또는 기타 전자적 장치로 알려야 한다.</li>
+                                                        <li>회사가 서면으로 통지하였을 경우에는 천재지변 등 불가항력적인 경우 이외에는 보통의 우송기간이 지났을 때 도달한 것으로 추정한다.</li>
+                                                        <li>이용자가 제19조에 의한 통지를 하지 아니하여 회사가 발송한 서면통지가 이용자에게 연착하거나 도달하지 아니한 때에는 보통의 우송기간이 경과한 때에 도달한 것으로 본다.</li>
+                                                    </ol>
+                                                    <h2>제21조 (통화내용의 녹음)</h2>
+                                                    <div class="in-txt">회사는 거래의 정확성을 기하기 위하여 전화통화 내용을 녹음할 수 있다. 다만 녹음된 내용은 해당 거래의 분쟁이 발생할 경우의 증거자료로만 사용할 수 있으며, 이 경우 이용자는 회사에 녹음된 내용의 확인을 요구할 수 있다.</div>
+                                                    <h2>제22조 (거래기록의 보존 및 자료 제공 등)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>회사는 전자금융거래의 내용을 추적 검색하거나 그 내용에 오류가 발생할 경우에 이를 확인하거나 정정할 수 있는 기록을 생성하여 전자금융거래의 성립 시점으로부터 5년의 범위 안에서 보존하여야 한다.</li>
+                                                        <li>제1항의 규정에 따라 회사가 보존하여야 하는 기록의 종류, 보존방법 및 보존기간은 전자금융거래법시행령 제12조를 준용한다.</li>
+                                                        <li>회사는 이용자의 요청이 있을 경우 「금융실명거래 및 비밀보장에 관한 법률」 등 관계 법률에 저촉되지 않는 범위 내에서 회사가 보존관리하고 있는 전자금융거래와 관련된 기록 및 자료를 당해 이용자에게 제공하여야 한다.</li>
+                                                    </ol>
+                                                    <h2>제23조 (손실부담 및 면책)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>회사는 다음의 어느 하나에 해당하는 사고로 인해 이용자에게 손해가 발생한 경우에는 그 손해를 배상할 책임을 진다.
+                                                            <ul class="dep2">
+                                                                <li>접근매체의 위조나 변조로 발생한 사고</li>
+                                                                <li>계약체결 또는 거래지시의 전자적 전송이나 처리 과정에 발생한 사고</li>
+                                                                <li>전자금융거래를 위한 전자적 장치 또는 정보통신망에 침입하여 거짓이나 그 밖의 부정한 방법으로 획득한 접근매체의 이용으로 발생한 사고</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>제1항의 규정에도 불구하고 회사는 다음 각 호에 어느 하나에 해당하는 경우에는 이용자에게 손해가 생기더라도 책임의 전부 또는 일부를 지지 아니한다.
+                                                            <ul class="dep2">
+                                                                <li>이용자가 접근매체를 제3자에게 대여하거나 사용을 위임하거나 양도 또는 담보 목적으로 제공한 경우</li>
+                                                                <li>제3자가 권한 없이 이용자의 접근매체를 이용하여 전자금융거래를 할 수 있음을 알았거나 쉽게 알 수 있었음에도 불구하고 이용자가 자신의 접근매체를 누설 또는 노출하거나 방치한 경우</li>
+                                                                <li>법인(「중소기업기본법」제2조제2항에 의한 소기업을 제외한다)인 이용자에게 손해가 발생한 경우로 회사가 사고를 방지하기 위하여 보안절차를 수립하고 이를 철저히 준수하는 등 합리적으로 요구되는 충분한 주의의무를 다한 경우</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>이용자로부터 접근매체의 분실이나 도난의 통지를 받은 경우에는 회사는 그 때부터 제3자가 그 접근매체를 사용함으로 인하여 이용자에게 발생한 손해를 보상한다.</li>
+                                                    </ol>
+                                                    <h2>제24조 (이용자정보에 대한 비밀보장)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>회사는 관계법령에서 정한 경우를 제외하고 전자금융거래를 수행함에 있어서 알게 된 정보를 이용자 본인의 동의 없이는 타인에게 제공할 수 없다.</li>
+                                                        <li>회사는 이용자의 개인정보가 도난, 분실, 변조 및 유출되지 않도록 전자적 장치에 대한 보안관리에 주의를 기울여야 하며, 회사의 관리소홀로 인한 이용자 정보의 도난, 분실, 변조 및 유출 시에는 회사가 책임을 진다.</li>
+                                                    </ol>
+                                                    <h2>제25조 (약관의 명시 및 변경 등)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>회사가 이 약관을 변경하고자 할 때에는 변경사유, 변경내용 및 적용일자 등을 명시하여 변경일 기준 1개월전에 게시 가능한 전자적 장치에 게시하고 이용자에게 통지하여야 한다. 다만, 법령의 개정이나 제도의 개선 등으로 인하여 긴급히 이 약관을 변경할 경우에는 즉시 이를 게시하고 통지한다.</li>
+                                                        <li>이용자가 이의를 제기할 경우 회사는 이용자에게 적절한 방법으로 약관 변경내용을 통지하였음을 확인해 주어야 한다.</li>
+                                                        <li>회사는 법령의 개정으로 인하여 긴급하게 약관을 변경한 때에는 변경된 약관을 전자적 장치에 최소 1월 이상 게시하고 이용자에게 통지하여야 한다.</li>
+                                                        <li>이용자는 제1항 및 제2항의 고지 후 변경약관 시행일 전 영업일까지 전자적 장치나 기타 방법에 의한 통지로 전자금융거래계약을 해지할 수 있으며, 이 기간 내에 이용자의 서면에 의한 이의가 회사에 도달하지 않으면 이용자가 이를 승인한 것으로 본다.</li>
+                                                    </ol>
+                                                    <h2>제26조 (약관적용의 우선순위)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>회사와 이용자 사이에 개별적으로 합의한 사항이 이 약관에서 정한 사항과 다를 때에는 그 합의사항을 이 약관에 우선하여 적용한다.</li>
+                                                        <li>전자금융거래에 관하여 이 약관에서 정하지 않은 사항에 대하여는 당해 개별약관 등을 적용한다.</li>
+                                                    </ol>
+                                                    <h2>제27조 (분쟁조정)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>이용자는 전자금융거래의 처리에 관하여 이의가 있을 때에는 회사의 분쟁처리기구에 그 해결을 요구하거나 금융감독원 금융분쟁조정위원회, 한국소비자원 소비자분쟁조정위원회 등을 통하여 분쟁조정을 신청할 수 있다.</li>
+                                                        <li>이용자가 회사의 본점이나 영업점 또는 회사의 분쟁처리기구에 이의를 제기한 경우 회사는 15일 이내에 이에 대한 조사 또는 처리결과를 이용자에게 알려야 한다.</li>
+                                                        <li>회사는 손해배상 등 분쟁처리를 위한 분쟁처리책임자 및 담당자를 지정하고, 그 연락처를 관련 인터넷 홈페이지 등을 통하여 이용자가 쉽게 알 수 있도록 하여야 한다.</li>
+                                                    </ol>
+                                                    <h2>제28조 (준거법)</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>이 약관에 따른 거래에 관하여 회사와 이용자 간에 분쟁이 발생한 경우, 회사의 본점 소재지 또는 이용자의 주소지를 관할 법원으로 한다.</li>
+                                                        <li>이 약관에서 정하지 아니한 사항은 대한민국법령을 적용한다.</li>
+                                                    </ol>
+                                                    <h3>부칙</h3>
+                                                    <ul class="ul-type">
+                                                        <li>제1조(시행일) 이 약관은 2008년 2월 5일부터 시행한다.</li>
+                                                        <li>제2조(경과조항) 이 약관은 약관시행일 이후의 전자금융거래에 적용된다.
+                                                            <ul class="dep3 h-top">
+                                                                <li>전자금융거래이용약관 시행일자 : 2008. 2. 5</li>
+                                                                <li>전자금융거래이용약관 최종변경일자 : 2017. 4.28</li>
+                                                                <li>전자금융거래이용약관 버전번호 : V1.1</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                    <h3>[전자금융거래 분쟁처리 책임자]</h3>
+                                                    <ul class="ul-type">
+                                                        <li>성명 : 서 민</li>
+                                                        <li>직책 : 대표</li>
+                                                        <li>이메일 : info@insurobo.co.kr</li>
+                                                        <li>전화번호 : 070-4126-3333</li>
+                                                    </ul>
+                                                    <h3>[전자금융거래 분쟁처리 담당자]</h3>
+                                                    <ul class="ul-type">
+                                                        <li>성명 : 이청수</li>
+                                                        <li>직책 : 사원</li>
+                                                        <li>이메일 : info@insurobo.co.kr</li>
+                                                        <li>전화번호 : 070-4126-3333</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- //content -->
+                                    </div>
+                                    <!-- // container -->
+
+                                </div>
+                                <!-- //wrap -->
+            
+                                </body>
+                                </html>
+                                  `;
+  return html;
+};
+export const wwTermsSf2 = () => {
+  const html = `
+                                <html>
+                                <head>
+                                <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                                <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                                <style type="text/css">
+                                  ${commonCss}
+                                  ${defaultCss}
+                                </style>
+                                </head>
+                                <body>
+                                <!-- wrap -->
+                                <div id="wrap" class="pop">
+
+                                    <!-- container -->
+                                    <div id="container">
+                                        <!-- content -->
+                                        <div id="content">
+                                            <div class="cont-inner">                
+                                                <div class="term">
+                                                    <h1 class="first">웹사이트(현대해상) 이용약관</h1>
+                                                    <h2>제1조 목적</h2>
+                                                    <div class="in-txt">이 약관은 현대해상화재보험주식회사(이하 "현대해상"이라 합니다)가 운영하는 현대해상 다이렉트홈페이지에서 제공하는 인터넷 관련 서비스(이하 "서비스"라 합니다)를 이용함에 있어 홈페이지와 이용자의 권리ㆍ의무 및 책임사항을 규정함을 목적으로 합니다. 다만, 전자금융거래 이용에 관한 사항은 '전자금융거래 이용약관'의 내용을 따릅니다.</div>
+
+                                                    <h2>제2조 정의</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>'현대해상 다이렉트 홈페이지'란 현대해상이 재화 또는 용역(보험상품)을 이용자에게 제공 및 안내하기 위하여 컴퓨터 등 정보통신 설비를 이용하여 재화 또는 용역(보험상품 및 대출상품 등)을 거래할 수 있도록 설정한 가상의 영업장을 말하며, 아울러 홈페이지를 운영하는 사업자의 의미로도 사용합니다.</li>
+                                                        <li>'이용자'란 현대해상 다이렉트 홈페이지에 접속하여 이 약관에 따라 현대해상 다이렉트 홈페이지가 제공하는 서비스를 받는 이용자를 말합니다.</li>
+                                                    </ol>
+
+                                                    <h2>제3조 약관의 명시와 개정</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>현대해상은 이 약관의 내용과 상호, 영업소 소재지, 대표자의 성명, 사업자 등록번호, 연락처(전화 등) 등을 이용자가 알 수 있도록 현대해상 다이렉트 홈페이지의 초기 화면에 게시합니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지는 약관의 규제등에 관한 법률, 전자금융거래법, 전자거래기본법, 전자서명법, 정보통신망이용촉진 및 정보보호등에 관한 법률, 전자상거래 등에서의 소비자보호에 관한 법률, 방문판매 등에 관한 법률, 소비자보호법 등 관련법을 위배하지 않는 범위에서 이 약관을 개정할 수 있습니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지의 약관을 개정할 경우에는 적용일 및 개정사유를 명시하여 현행 약관과 함께 홈페이지의 초기화면에 그 적용일 7일 이전부터 적용일 전일까지(약관의 내용이 이용자에게 불리할 경우에는 변경일 기준 1개월 전에) 공지합니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지의 약관을 개정할 경우에는 그 개정약관은 그 적용일 이후에 체결되는 계약에만 적용되고 그 이전에 이미 체결된 계약에 대해서는 개정 전의 약관조항이 그대로 적용됩니다. 다만 현대해상 다이렉트 홈페이지가 '이용자가 개정약관 공지 기간 내에 변경 약관에 대한 적용거절 여부를 표명하지 아니하는 때에는 변경약관의 적용을 받는 것으로 본다 '는 취지의 통지를 하였음에도 이용고객이 동의 여부를 표명하지 아니한 경우 또는 부득이하게 그러한 통지를 할 수 없는 경우에는 개정 전에 체결된 계약에도 개정약관이 적용됩니다.</li>
+                                                        <li>이 약관에서 정하지 아니한 사항과 이 약관의 해석에 관하여는 정부가 제정한 전자거래소비자보호지침 및 관계법령 또는 상관례에 따릅니다.</li>
+                                                    </ol>
+
+                                                    <h2>제4조 서비스의 제공 및 변경</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>현대해상 다이렉트 홈페이지는 다음과 같은 업무를 수행합니다. 보험 상품의 설명 및 안내(E-mail 발송 등), 가입설계, 보험가입, 가입 신청 이용자(보험계약자 또는 피보험자에 한함)의 각종 보험계약 및 계약 변경을 포함한 현대해상 다이렉트 홈페이지가 정하는 업무</li>
+                                                        <li>보험상품의 설명 및 안내(E-mail 발송 등), 가입설계, 가입신청</li>
+                                                        <li>이용자(보험계약자 또는 피보험자에 한함)의 각종 보험계약 및 계약 변경 정보</li>
+                                                        <li>기타 현대해상 다이렉트 홈페이지가 정하는 업무</li>
+                                                        <li>현대해상 다이렉트 홈페이지는 불가피할 경우에 제1항에 정한 상품 및 서비스의 내용을 변경할 수 있으며, 이로 인하여 발생되는 문제에 대해서는 어떠한 책임도 부담하지 않습니다.</li>
+                                                        <li>이 경우 변경된 내용 및 제공일을 명시하여 현재의 내용이 게시된 곳에 그 제공일 7일 이전부터 공지합니다. 단, 불가피한 여건이나 사정이 있는 경우, 위 공지를 하지 않을 수 있습니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지가 제공하기로 이용자와 계약을 체결한 서비스의 내용을 기술적 사양의 변경 등의 사유로 변경할 경우에는 현대해상 다이렉트 홈페이지는 이로 인하여 이용자가 입은 손해를 배상합니다. 단, 현대해상 다이렉트 홈페이지에 고의 또는 과실이 없는 경우에는 그러하지 아니합니다.</li>
+                                                    </ol>
+                                                    <h2>제5조 서비스의 중단</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>현대해상 다이렉트 홈페이지는 컴퓨터 등 정보통신설비의 보수점검ㆍ교체 및 고장, 통신의 두절 등의 사유가 발생한 경우에는 서비스의 제공을 일시적으로 중단할 수 있습니다.</li>
+                                                        <li>제1항에 의한 서비스 중단의 경우에는 현대해상 다이렉트 홈페이지는 제8조에 정한 방법으로 이용자에게 통지합니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지는 제1항의 사유로 홈페이지 서비스의 제공이 일시적으로 중단됨으로 인하여 이용자 또는 제3자가 입은 손해에 대하여 배상합니다. 단, 현대해상 다이렉트 홈페이지에 고의 또는 과실이 없는 경우에는 그러하지 아니합니다.</li>
+                                                    </ol>
+
+                                                    <h2>제6조 본인 확인</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>현대해상 다이렉트 홈페이지는 안전한 금융 거래 서비스의 제공을 위하여 본인 인증을 적용하며 최소한의 정보를 수집합니다. 수집 정보는 본인인증을 위한 인증용도로 사용하며 저장하지 않습니다.</li>
+                                                        <li>공인인증서를 통한 본인확인 시: 주민등록번호, 공인인증서 비밀번호</li>
+                                                        <li>휴대폰을 통한 본인 확인 시: 휴대폰번호, 생년월일, 성별, 이름</li>
+                                                    </ol>
+
+                                                    <h2>제7조 개인정보보호</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>현대해상 다이렉트 홈페이지는 이용자의 정보 수집 시 서비스 제공에 필요한 최소한의 정보를 수집합니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지는 이용자의 개인식별이 가능한 개인정보를 수집하는 때에는 반드시 당해 이용자의 동의를 받습니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지는 이용자의 정보를 이 약관에 명시한 범위를 넘어 이용하거나 제3자에게 제공하지 않습니다. 다만, 당해 이용자의 별도의 동의가 있거나 다음 각 호에 1에 해당하는 경우에는 예외로 합니다.</li>
+                                                        <li>보험계약 체결, 유지 ,보험금지급 ,손해사정 등 계약관리에 필요한 최소한의 이용자의 정보(성명, 주민번호, 주소, 전화번호, E-mail 등)를 알려주는 경우</li>
+                                                        <li>통계작성, 학술연구 또는 시장조사를 위하여 필요한 경우로서 특정 개인을 식별할 수 없는 형태로 제공하는 경우</li>
+                                                        <li>배송업무상 배송업체에게 배송에 필요한 최소한의 이용자의 정보(성명, 주소, 전화번호, E-mail)를 알려주는 경우</li>
+                                                        <li>법률에 특별한 규정이 있는 경우</li>
+                                                        <li>현대해상 다이렉트 홈페이지는 제2항과 제3항에 의해 이용자의 동의를 받아야 하는 경우에는 개인정보관리 책임자의 신원(소속, 성명, 전화번호 및 기타 연락처), 정보의 수집목적 및 이용목적, 제3자에 대한 정보제공 관련사항(제공받는 자, 제공목적 및 제공할 정보의 내용)등 정보통신망이용촉진 및 정보보호 등에 관한 법률 제22조제2항이 규정한 사항을 미리 명시하거나 고지해야 하며 이용자는 언제든지 이 동의를 철회할 수 있습니다. 동의 철회 시에는 이용자의 당해 개인정보를 삭제하며 삭제된 이용자의 개인정보는 이용 또는 제 3자에 대한 제공을 금지합니다.</li>
+                                                        <li>이용자는 언제든지 현대해상 다이렉트 홈페이지가 가지고 있는 자신의 개인정보에 대해 열람 및 오류정정을 요구할 수 있으며 현대해상 다이렉트 홈페이지는 이에 대해 지체 없이 필요한 조치를 취할 의무를 집니다. 이용자가 오류의 정정을 요구한 경우에는 현대해상 다이렉트 홈페이지는 그 오류를 정정할 때까지 당해 개인정보를 이용하지 않습니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지는 개인정보 보호를 위하여 관리자를 한정하여 그 수를 최소화하며 신용카드 정보, 은행계좌 등을 포함한 이용자의 개인정보의 분실, 도난, 유출, 변조 등으로 인한 이용자의 손해에 대하여 모든 책임을 집니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지 또는 그로부터 개인정보를 제공 받은 제3자는 개인정보의 수집목적 또는 제공받은 목적을 달성한 때에는 당해 개인정보를 지체 없이 파기합니다.</li>
+                                                        <li>기타 홈페이지 이용시의 개인정보 보호 관련사항은 현대해상 개인정보 보호정책에 준하여 적용됩니다.</li>
+                                                    </ol>
+
+                                                    <h2>제8조 개인정보의 수집목적 및 이용목적</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>수집된 정보는 홈페이지 서비스의 제공, 보험상품의 소개 등 현대해상 다이렉트 홈페이지를 이용하는 사용자에게 보다 적합하고 유용한 정보와 서비스를 적시에 제공하기 위해 개인정보를 수집하고, 수집 목적의 범위 내에서 이용합니다.</li>
+                                                        <li>고객명, 주민등록번호: 보험료 계산 및 보험 계약, 보험 계약 관리를 위한 본인 확인 용도</li>
+                                                        <li>E-Mail주소, 주소, 연락처: 계약관련 고지사항 전달, 본인 의사확인, 불만처리 등 원활한 의사소통 경로의 확보 및 서비스(각종 안내, 정보전달 등의 서비스 포함), 상품 안내(보험 상품 안내는 동의 고객에 한함.)</li>
+                                                    </ol>
+
+                                                    <h2>제9조 개인정보의 보유기간 및 이용기간</h2>
+                                                    <div class="in-txt">
+                                                        개인정보 수집이용 목적에 따라 동의서에 보유 기간을 명시하며 준수합니다.
+                                                    </div>
+
+                                                    <h2>제10조 개인정보의 수집목적 및 이용목적</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>현대해상 다이렉트 홈페이지는 법령과 이 약관이 금지하거나 공서양속에 반하는 행위를 하지 않으며 이 약관이 정하는 바에 따라 지속적이고, 안정적으로 서비스를 제공하는 데 최선을 다하여야 합니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지는 이용자가 안전하게 인터넷 서비스를 이용할 수 있도록 이용자의 개인정보(신용정보 포함)보호를 위한 보안 시스템을 갖추어야 합니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지에 보험상품이나 서비스에 대하여 표시ㆍ광고의 공정화에 관한 법률 제3조 소정의 부당한 표시ㆍ광고행위를 함으로써 이용자가 손해를 입은 때에는 이를 배상할 책임을 집니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지는 이용자가 원하지 않는 영리목적의 광고성 전자우편을 발송하지 않습니다.</li>
+                                                    </ol>
+
+                                                    <h2>제11조 이용자의 의무</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>이용자는 다음 행위를 하여서는 안됩니다.
+                                                            <ul class="dep2">
+                                                                <li>신청 또는 변경 시 허위내용의 등록</li>
+                                                                <li>현대해상 다이렉트 홈페이지에 게시된 정보의 변경</li>
+                                                                <li>현대해상 다이렉트 홈페이지에 정한 정보 이외의 정보(컴퓨터 프로그램 등)의 송신 또는 게시</li>
+                                                                <li>현대해상 다이렉트 홈페이지, 기타 제3자의 저작권 등 지적재산권에 대한 침해</li>
+                                                                <li>현대해상 다이렉트 홈페이지, 기타 제3자의 명예를 손상시키거나 업무를 방해하는 행위</li>
+                                                                <li>외설 또는 폭력적인 메시지ㆍ화상ㆍ음성 기타 공서양속에 반하는 정보를 홈페이지에 공개 또는 게시하는 행위</li>
+                                                                <li>사실관계를 왜곡하는 정보제공 행위 등 기타 현대해상 다이렉트 홈페이지가 운영상 부적절하다고 판단하는 행위</li>
+                                                                <li>다른 이용자의 개인정보를 수집 또는 저장하는 행위</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>각 호의 정보가 홈페이지에 게시되거나 홈페이지와 링크된 곳에 게시된 경우, 현대해상 다이렉트 홈페이지는 이용자 및 기타 정보의 게시를 행한 자의 승낙 없이 당해 정보를 삭제하거나 홈페이지에 확장된 링크를 절단할 수 있습니다. 단, 현대해상 다이렉트 홈페이지는 이러한 정보의 삭제, 링크의 절단 등을 할 의무를 지지 않습니다.</li>
+                                                    </ol>
+
+                                                    <h2>제12조 현대해상 다이렉트 홈페이지와 피연결 현대해상 다이렉트 홈페이지 간의 관계</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>상위 홈페이지와 하위 홈페이지가 하이퍼링크(예 : 하이퍼링크 대상에는 문자, 그림 및 동화상 등이 포함됨)방식 등으로 연결된 경우, 전자를 연결 현대해상 다이렉트 홈페이지(웹 사이트)라고 하고 후자를 피연결 현대해상 다이렉트 홈페이지(웹 사이트)라고 합니다.</li>
+                                                        <li>연결 현대해상 다이렉트 홈페이지는 피연결 현대해상 다이렉트 홈페이지가 독자적으로 제공하는 재화ㆍ용역에 의하여 이용자와 행하는 거래에 대해서 보증책임을 지지 않는다는 뜻을 연결 현대해상 다이렉트 홈페이지의 사이트에서 명시한 경우에는 그 거래에 대한 보증책임을 지지 않습니다.</li>
+                                                    </ol>
+
+                                                    <h2>제13조 저작권의 귀속 및 이용제한</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>현대해상 다이렉트 홈페이지에 작성된 저작물에 대한 저작권 기타 지적재산권은 현대해상에 귀속합니다.</li>
+                                                        <li>이용자는 현대해상 다이렉트 홈페이지를 이용함으로써 얻은 정보를 현대해상의 사전 승낙 없이 복제, 송신, 출판, 배포, 방송 기타 방법에 의하여 영리목적으로 이용하거나 제3자에게 이용하게 하여서는 안됩니다.</li>
+                                                    </ol>
+
+                                                    <h2>제14조 분쟁조정</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>현대해상은 현대해상다이렉트 홈페이지 이용자가 제기하는 정당한 의견이나 불만을 반영하고 그 피해를 보상처리하기 위하여 피해보상 처리기구를 설치ㆍ운영 합니다.</li>
+                                                        <li>현대해상은 현대해상 다이렉트 홈페이지 이용자로부터 제출되는 불만사항 및 의견을 처리합니다. 다만, 신속한 처리가 곤란한 경우에는 이용자에게 그 사유와 처리일정을 즉시 통보해 드립니다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지와 이용자 간에 발생한 분쟁은 전자금융거래법 제27조 및 동법 시행령 제14조에 의하여 회사의 분쟁처리기구에 그 해결을 요구하거나 금융감독원의 금융분쟁조정위원회, 한국소비자원의 소비자분쟁조정위원회 등을 통하여 분쟁조정을 신청할 수 있습니다.</li>
+                                                    </ol>
+
+                                                    <h2>제15조 재판권 및 준거법</h2>
+                                                    <ol class="ol-type numb">
+                                                        <li>현대해상 다이렉트 홈페이지와 이용자 간에 발생한 전자거래 분쟁에 관한 소송은 민사소송법상의 관할법원에 제기한다.</li>
+                                                        <li>현대해상 다이렉트 홈페이지와 이용자 간에 제기된 전자거래 소송에는 대한민국법령을 적용합니다.</li>
+                                                    </ol>
+                                                    <div class="in-txt">(시행일: 2015년 7월 1일)</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- //content -->
+                                    </div>
+                                    <!-- // container -->
+
+                                </div>
+                                <!-- //wrap -->
+            
+                                </body>
+                                </html>
+                                  `;
+  return html;
+};
+export const wwTermsSf3 = () => {
+  const html = `
+                                <html>
+                                <head>
+                                <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                                <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                                <style type="text/css">
+                                  ${commonCss}
+                                  ${defaultCss}
+                                </style>
+                                </head>
+                                <body>
+                                <!-- wrap -->
+                                <div id="wrap" class="pop">
+
+                                    <!-- container -->
+                                    <div id="container">
+                                        <!-- content -->
+                                        <div id="content">
+                                            <div class="cont-inner">                
+                                                <div class="term">
+                                                    <h1 class="first">예금자 보호안내</h1>
+                                                    <div class="in-box">이 보험계약은 예금자보호법에 따라 예금보험공사가 보호하되, 보호한도는 본 보험회사에 있는 귀하의 모든 예금보호 대상 금융상품의 해지환급금(또는 만기 시 보험금이나 사고보험금)에 기타 지급금을 합하여 1인당 "최고 5천만원"이며, 5천만원을 초과하는 나머지 금액은 보호하지 않습니다.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- //content -->
+                                    </div>
+                                    <!-- // container -->
+
+                                </div>
+                                <!-- //wrap -->
+            
+                                </body>
+                                </html>
+                                  `;
+  return html;
+};
+export const wwTermsSf4 = () => {
+  const html = `
+                                <html>
+                                <head>
+                                <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                                <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                                <style type="text/css">
+                                  ${commonCss}
+                                  ${defaultCss}
+                                </style>
+                                </head>
+                                <body>
+                                <!-- wrap -->
+                                    <div id="wrap" class="pop">
+
+                                        <!-- container -->
+                                        <div id="container">
+                                            <!-- content -->
+                                            <div id="content">
+                                                <div class="cont-inner">                
+                                                    <div class="term">
+                                                        <h1 class="first">온라인 보험계약 고객센터 이용동의</h1>
+                                                        <div class="in-box">온라인 보험계약은 가입만 가능하며, 계약해지시 현대해상 고객센터(1899-6782) 및 인슈로보 고객센터(070-4126-3333) 이용에 동의합니다.</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- //content -->
+                                        </div>
+                                        <!-- // container -->
+
+                                    </div>
+                                    <!-- //wrap -->
+            
+                                </body>
+                                </html>
+                                  `;
   return html;
 };

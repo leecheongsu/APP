@@ -10,6 +10,7 @@ import {
   Secession,
   Verification,
   Pay,
+  InsuCertificate,
 } from '@app/screens';
 import { BackButton, CloseButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';

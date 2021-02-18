@@ -52,6 +52,7 @@ function HousePayWayPresenter({
   nextButton,
   onChangeState,
   onClickTermsModalOpen,
+  handlePreviousButton,
   price,
 }: HousePayWayPresenterTypes) {
   return (
@@ -124,7 +125,7 @@ function HousePayWayPresenter({
           leftTitle="이전"
           rightTitle="다음"
           bottomRightPress={() => nextButton()}
-          bottomLeftPress={() => null}
+          bottomLeftPress={() => handlePreviousButton()}
           isKeybordView={state.isKeybordView}
         />
       </Container>

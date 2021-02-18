@@ -10,6 +10,7 @@ const Container = styled.TouchableOpacity`
   border-radius: 10px;
   border-width: ${(props) => (props.active ? '1px' : '1px')};
   border-color: ${(props) => (props.active ? theme.color[props.backgroundcolor] : 'rgb(224, 224, 224)')};
+  width: 100%;
 `;
 
 const Box = styled.View`
