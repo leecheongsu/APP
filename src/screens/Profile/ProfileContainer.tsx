@@ -1,4 +1,4 @@
-import React, { useReducer, useRef } from 'react';
+import React, { useEffect, useReducer, useRef } from 'react';
 import { userApis } from '@app/api/User';
 import { useInput } from '@app/hooks';
 import Toast from 'react-native-simple-toast';
@@ -6,6 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 import ProfilePresenter from '@app/screens/Profile/ProfilePresenter';
 import { useGlobalState } from '@app/context';
 import { handleApiError } from '@app/lib';
+import { BackHandler } from 'react-native';
 
 export type ProfileStateName =
   | 'selectTab'
@@ -96,7 +97,7 @@ const initialState: ProfileStateTypes = {
 export default function ProfileContainer() {
   const scrollRef: any = useRef(null);
   const [state, dispatch] = useReducer(reducer, initialState);
-  const navigation: any = useNavigation();
+  const navigation = useNavigation();
   const globalState = useGlobalState();
   const inputState = {
     email: useInput(globalState?.user?.email),
@@ -145,6 +146,18 @@ export default function ProfileContainer() {
         }
       });
   };
+
+  //안드로이드 백버튼 핸들러
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
+  }, []);
 
   return (
     <ProfilePresenter

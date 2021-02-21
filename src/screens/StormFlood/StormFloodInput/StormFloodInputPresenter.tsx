@@ -2,7 +2,7 @@ import React from 'react';
 import { BottomFixButton, CheckLabelButton, DefaultInput, IconButton, TermsList, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import { screenWidth } from '@app/lib';
-import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
+import { InputStateTypes, StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import { TermsModal } from '@app/screens';
 import theme from '@app/style/theme';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -10,6 +10,7 @@ import { Platform, Image } from 'react-native';
 import { useGlobalState } from '@app/context';
 import { useNavigation } from '@react-navigation/native';
 import { insuIcon } from '@app/assets';
+import moment from 'moment';
 
 type StormFloodInputPresenterTypes = {
   state: StormFloodStateTypes;
@@ -22,6 +23,7 @@ type StormFloodInputPresenterTypes = {
   termsChange: (name: 'terms1' | 'terms2' | 'terms3' | 'terms4' | 'terms5' | 'termsb1', value: any) => void;
   onClickAllCheck: any;
   onClickTermsModalAgree: any;
+  inputState: InputStateTypes;
 };
 
 const Container = styled.View`
@@ -79,6 +81,7 @@ function StormFloodInputPresenter({
   termsChange,
   onClickAllCheck,
   onClickTermsModalAgree,
+  inputState,
 }: StormFloodInputPresenterTypes) {
   const globalState = useGlobalState();
   const navigation = useNavigation();
@@ -172,7 +175,7 @@ function StormFloodInputPresenter({
               </RowItem>
               <RowItem>
                 <Typhograph type="NOTO" color="BLACK2">
-                  2020년 00월 00일
+                  {moment(new Date()).format('YYYY년 MM월 DD일')}
                 </Typhograph>
               </RowItem>
             </RowBox>

@@ -65,6 +65,41 @@ export const insuApis = {
     return res;
   },
 
+  async postWwPrePremium(data) {
+    const res = await commonApiConfig({
+      method: 'POST',
+      url: 'ww/pre-premium',
+      data,
+    });
+    return res;
+  },
+
+  async postWwPremium(data) {
+    const user: any = await getStoreData('user');
+    const res = await commonApiConfig({
+      method: 'POST',
+      url: 'ww/premium',
+      data,
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    return res;
+  },
+
+  async postDenial(data) {
+    const user: any = await getStoreData('user');
+    const res = await commonApiConfig({
+      method: 'POST',
+      url: 'ww/prevent_denial',
+      data,
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    return res;
+  },
+
   async postPay(data) {
     const user: any = await getStoreData('user');
     const res = await commonApiConfig({

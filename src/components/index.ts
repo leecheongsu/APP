@@ -47,6 +47,7 @@ export { default as EmptyCard } from './Card/EmptyCard';
 export { default as InsuCard } from './Card/InsuCard';
 export { default as CheckButtonCard } from './Card/CheckButtonCard';
 export { default as ResultCard } from './Card/ResultCard';
+export { default as MyInsuCard } from './Card/MyInsuCard';
 
 //stepper
 export { default as RoundStepper } from './Stepper/RoundStepper';

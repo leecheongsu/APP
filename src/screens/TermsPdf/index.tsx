@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BackButton, BottomFixButton, FocusAwareStatusBar } from '@app/components';
 import styled from '@app/style/typed-components';
 import Modal from 'react-native-modal';
 import { screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
-import { Platform, View } from 'react-native';
+import { BackHandler, Platform, View } from 'react-native';
 import PDFView from 'react-native-view-pdf';
 const ContentsBox = styled.View`
   width: ${screenWidth()}px;
@@ -23,6 +23,16 @@ export default function TermsPdf({ open, close, onPress, isButton = true }) {
     url: 'https://insrb.com/download/MRHI1810_terms.pdf',
   };
   const resourceType = 'url';
+  useEffect(() => {
+    const backAction = () => {
+      close();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
+  }, []);
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />

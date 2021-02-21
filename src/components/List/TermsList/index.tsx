@@ -35,6 +35,7 @@ export default function TermsList({
   const onClickIsChecked = () => {
     onChangeTermsState(item.name, item.isChecked === 0 ? 1 : 0);
   };
+
   return (
     <Container>
       <Item style={{ width: '80%' }}>

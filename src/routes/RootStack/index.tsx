@@ -11,6 +11,7 @@ import {
   Verification,
   Pay,
   InsuCertificate,
+  MyInsu,
 } from '@app/screens';
 import { BackButton, CloseButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';
@@ -300,6 +301,32 @@ function RootStack() {
             </Typhograph>
           ),
           headerRight: () => <CloseButton onPress={() => navigation.goBack()} />,
+          title: '',
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+      <Stacks.Screen
+        name="MY_INSU"
+        component={MyInsu}
+        options={{
+          headerLeft: () => <BackButton onPress={() => navigation.navigate('MAIN_STACK')} />,
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              내보험
+            </Typhograph>
+          ),
+          headerRight: () => null,
           title: '',
           headerShown: true,
           animationEnabled: true,

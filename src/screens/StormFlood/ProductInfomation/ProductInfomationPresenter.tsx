@@ -12,6 +12,7 @@ type ProductInfomationTypes = {
   nextButton: () => void;
   onClickTermsModalOpen: (name: any, html: any) => void;
   onChangeState: (name: StormFloodName, value: any) => void;
+  onClickTermsModalOpen2: (name: any, html: any) => void;
 };
 
 const Container = styled.View`
@@ -42,6 +43,7 @@ function ProductInfomationPresenter({
   state,
   nextButton,
   onClickTermsModalOpen,
+  onClickTermsModalOpen2,
   onChangeState,
 }: ProductInfomationTypes) {
   return (
@@ -127,7 +129,7 @@ function ProductInfomationPresenter({
 
           <ButtonBox>
             <RightIconButton
-              onPress={() => onClickTermsModalOpen('productionInfo', productInfoHtml())}
+              onPress={() => onClickTermsModalOpen2('productionInfo', productInfoHtml())}
               title="상품안내 및 보장내용 자세히보기"
             />
           </ButtonBox>
@@ -136,8 +138,9 @@ function ProductInfomationPresenter({
           open={state?.termsModal}
           close={() => onChangeState('termsModal', false)}
           html={state?.termsHtml}
-          onPress={() => null}
-          isButton={false}
+          onPress={() => onChangeState('termsModal', false)}
+          buttonTitle="확인"
+          isButton
         />
         <BottomFixButton
           index={state.stepNumber}

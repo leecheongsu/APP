@@ -5,6 +5,7 @@ const WHITE = '#FFFFFF';
 const BLACK = '#000000';
 const BLACK2 = '#333';
 const BLACK3 = '#666';
+const BLACK4 = '#4a4a4a';
 const BLUE = '#013561';
 const BLUE2 = '#47a5f1';
 const TABLE_BACK = '#f2fafc';
@@ -27,7 +28,8 @@ const SOFTPUPLE2 = '#4e85ff';
 const BLUE_RGB = 'rgba(1, 52, 97, 0.950)';
 const GRAY_RGB = 'rgba(203, 203, 203,0.950)';
 const WARING_RED = '#fd4173';
-
+const MSG_BACK = '#dedede';
+const CIRCLE_BACK = '#e8eaef';
 const SOFTBLUE = '#40a1ef';
 
 const theme: DefaultTheme = {
@@ -59,6 +61,9 @@ const theme: DefaultTheme = {
     BLUE_RGB,
     GRAY_RGB,
     WARING_RED,
+    MSG_BACK,
+    BLACK4,
+    CIRCLE_BACK,
   },
 };
 

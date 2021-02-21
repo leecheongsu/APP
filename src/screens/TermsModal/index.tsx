@@ -1,23 +1,35 @@
-import React from 'react';
-import { BackButton, BottomFixButton, FocusAwareStatusBar } from '@app/components';
+import React, { useEffect } from 'react';
+import { BackButton, BottomFixButton, CloseButton, FocusAwareStatusBar } from '@app/components';
 import styled from '@app/style/typed-components';
 import WebView from 'react-native-webview';
 import Modal from 'react-native-modal';
 import { screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
-import { Platform } from 'react-native';
+import { BackHandler, Platform } from 'react-native';
 const ContentsBox = styled.View`
   width: ${screenWidth()}px;
   height: 100%;
 `;
 const Header = styled.View`
-  padding: ${Platform.OS === 'ios' ? '50px 10px 0px 10px' : '10px 10px 10px 10px'};
+  padding: ${Platform.OS === 'ios' ? '50px 0px 0px 0px' : '10px 0px 10px 10px'};
   background-color: ${theme.color.WHITE};
   border-bottom-width: 0px;
+  align-items: flex-end;
 `;
 const BackButtonBox = styled.View``;
 
-export default function TermsModal({ open, close, html, onPress, isButton = true }) {
+export default function TermsModal({ open, close, html, onPress, isButton = true, buttonTitle = '동의' }) {
+  //안드로이드 백버튼 핸들러
+  useEffect(() => {
+    const backAction = () => {
+      close();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
+  }, []);
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
@@ -25,7 +37,7 @@ export default function TermsModal({ open, close, html, onPress, isButton = true
         <ContentsBox>
           <Header>
             <BackButtonBox>
-              <BackButton onPress={() => close()} />
+              <CloseButton onPress={() => close()} />
             </BackButtonBox>
           </Header>
           <WebView
@@ -42,7 +54,7 @@ export default function TermsModal({ open, close, html, onPress, isButton = true
         {isButton && (
           <BottomFixButton
             index={1}
-            rightTitle="동의"
+            rightTitle={buttonTitle}
             bottomRightPress={() => onPress()}
             bottomLeftPress={() => null}
           />

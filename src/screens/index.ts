@@ -24,6 +24,10 @@ export { default as StormFloodTerms } from './StormFlood/StormFloodTerms';
 export { default as StormFloodPay } from './StormFlood/StormFloodPay';
 export { default as StormFloodFinal } from './StormFlood/StormFloodFinal';
 
+export { default as StormFlood2 } from './StromFlood2';
+export { default as Calamity } from './Calamity';
+export { default as CustomerCenter } from './CustomerCenter';
+
 export { default as Join } from './Join';
 export { default as JoinIndividual } from './Join/JoinIndividual';
 export { default as JoinBusiness } from './Join/JoinBusiness';
@@ -39,4 +43,5 @@ export { default as BusinessInfo } from './Profile/BusinessInfo';
 export { default as Secession } from './Profile/Secession';
 export { default as Verification } from './Verification';
 export { default as Pay } from './Pay';
+export { default as MyInsu } from './MyInsu';
 export { default as InsuCertificate } from './InsuCertificate';

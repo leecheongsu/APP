@@ -89,4 +89,27 @@ export const userApis = {
     });
     return res;
   },
+  async getwwOkcert(params) {
+    const user: any = await getStoreData('user');
+    const res = await userApiConfig({
+      method: 'GET',
+      url: 'okcert/ww',
+      params,
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    return res;
+  },
+  async getMyInsu() {
+    const user: any = await getStoreData('user');
+    const res = await userApiConfig({
+      method: 'GET',
+      url: `users/${user.email}/certificates`,
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    return res;
+  },
 };

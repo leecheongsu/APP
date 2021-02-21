@@ -1,5 +1,7 @@
+import { useGlobalDispatch, useGlobalState } from '@app/context';
 import { EmptyLayout } from '@app/layout';
-import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useEffect } from 'react';
 import SimpleToast from 'react-native-simple-toast';
 import StormFloodTermsPresenter from './StormFloodTermsPresenter';
 export default function StormFloodTermsContainer({
@@ -12,6 +14,9 @@ export default function StormFloodTermsContainer({
   onClickAllCheck,
   onClickTermsModalAgree,
 }) {
+  const navigation = useNavigation();
+  const globalState = useGlobalState();
+  const globalDispatch = useGlobalDispatch();
   const checked =
     state?.terms?.termsd1?.isChecked === 1 &&
     state?.terms?.termsd2?.isChecked === 1 &&
@@ -30,7 +35,8 @@ export default function StormFloodTermsContainer({
     if (!checked) {
       SimpleToast.show('모든 약관에 동의해주세요.');
     } else {
-      handleNextButton();
+      globalDispatch({ type: 'CHANGE', name: 'insuType', value: 'ww' });
+      navigation.navigate('VERIFICATION');
     }
   };
 
@@ -42,6 +48,12 @@ export default function StormFloodTermsContainer({
       onChangeState('termsPdf', true);
     }
   };
+  useEffect(() => {
+    if (globalState?.isIdentityverification) {
+      handleNextButton();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [globalState?.isIdentityverification]);
   if (state.stepNumber === 8) {
     return (
       <StormFloodTermsPresenter

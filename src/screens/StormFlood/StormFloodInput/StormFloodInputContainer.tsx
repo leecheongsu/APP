@@ -15,6 +15,7 @@ export default function StormFloodInputContainer({
   termsChange,
   onClickTermsModalAgree,
   onClickAllCheck,
+  inputState,
 }) {
   const juminb = useInput('');
   const globalState = useGlobalState();
@@ -48,6 +49,8 @@ export default function StormFloodInputContainer({
 
   const nextButton = () => {
     if (checkInput()) {
+      globalDispatch({ type: 'CHANGE', name: 'jumina', value: globalState?.user?.jumina });
+      globalDispatch({ type: 'CHANGE', name: 'juminb', value: globalState?.user?.sex + juminb.value });
       if (globalState?.recommendUser === undefined) {
         DefaultAlert({
           title: '추천인을 선택하지않으셨습니다.',
@@ -102,6 +105,7 @@ export default function StormFloodInputContainer({
         termsChange={termsChange}
         onClickAllCheck={onClickAllCheck}
         onClickTermsModalAgree={onClickTermsModalAgree}
+        inputState={inputState}
       />
     );
   } else {

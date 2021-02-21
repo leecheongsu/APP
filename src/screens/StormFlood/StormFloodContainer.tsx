@@ -12,7 +12,7 @@ import {
   StormFloodTerms,
 } from '@app/screens';
 import axios from 'axios';
-import { Keyboard } from 'react-native';
+import { BackHandler, Keyboard } from 'react-native';
 import StormFloodPresenter from './StormFloodPresenter';
 import StormFloodFinal from '@app/screens/StormFlood/StormFloodFinal';
 import {
@@ -33,6 +33,9 @@ import {
   wwTermsSf3,
   wwTermsSf4,
 } from '@app/lib/html';
+import { useInput } from '@app/hooks';
+import { DefaultAlert } from '@app/components';
+import { useNavigation } from '@react-navigation/native';
 export type StormFloodName =
   | 'isInfoModal'
   | 'infoTitle'
@@ -65,7 +68,20 @@ export type StormFloodName =
   | 'termsPdf'
   | 'selectCard'
   | 'selectTerm'
-  | 'insuCertificateModal';
+  | 'insuCertificateModal'
+  | 'sectorItems'
+  | 'basicBuildingPriceItems'
+  | 'factoryBuildingPriceItems'
+  | 'basicFacilityPriceItems'
+  | 'factoryFacilityPriceItems'
+  | 'inventoryPriceItems'
+  | 'selfPriceItems'
+  | 'resultPrice'
+  | 'electronicSignModal'
+  | 'signConfirmModal'
+  | 'signData'
+  | 'isSign'
+  | 'isSignConfirm';
 
 export type StormFloodStateTypes = {
   stepperTitle: string;
@@ -91,13 +107,26 @@ export type StormFloodStateTypes = {
   stuffDivision: string;
   possessionDivision: string;
   selectSector: string;
-  selectBuildingPrice: string;
-  selectFacilityprice: string;
-  selectSelfPrice: string;
-  selectInventoryPrice: string;
+  selectBuildingPrice: any;
+  selectFacilityprice: any;
+  selectSelfPrice: any;
+  selectInventoryPrice: any;
   selectInsuCompany: string;
   selectCard: string;
   selectTerm: string;
+  sectorItems: Array<any>;
+  basicBuildingPriceItems: Array<any>;
+  factoryBuildingPriceItems: Array<any>;
+  basicFacilityPriceItems: Array<any>;
+  factoryFacilityPriceItems: Array<any>;
+  inventoryPriceItems: Array<any>;
+  selfPriceItems: Array<any>;
+  resultPrice: any;
+  electronicSignModal: boolean;
+  signConfirmModal: boolean;
+  signData: any;
+  isSign: boolean;
+  isSignConfirm: boolean;
   terms: {
     terms1: boolean;
     terms2: boolean;
@@ -144,6 +173,12 @@ function reducer(state: StormFloodStateTypes, action: ActionTypes) {
       };
   }
 }
+export type InputStateTypes = {
+  buildName: any;
+  bldFloor1: any;
+  bldFloor2: any;
+  hsArea: any;
+};
 
 type ActionTypes =
   | { type: 'CHANGE'; name: StormFloodName; value: any }
@@ -179,6 +214,19 @@ const initialState = {
   selectCard: '',
   selectTerm: '',
   insuCertificateModal: false,
+  sectorItems: [],
+  basicBuildingPriceItems: [],
+  factoryBuildingPriceItems: [],
+  basicFacilityPriceItems: [],
+  factoryFacilityPriceItems: [],
+  inventoryPriceItems: [],
+  selfPriceItems: [],
+  resultPrice: undefined,
+  electronicSignModal: false,
+  signConfirmModal: false,
+  signData: undefined,
+  isSign: false,
+  isSignConfirm: false,
   stormFloodStep: [
     {
       id: 'productInfomation',
@@ -367,12 +415,18 @@ const initialState = {
 };
 
 export default function StormFloodContainer() {
+  const navigation = useNavigation();
   const [state, dispatch] = useReducer(reducer, initialState);
   const scrollRef: any = useRef(null);
   const GEO_CORDING_URL = `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${state.selectAddress.address}`;
   const GEO_CORDING_ID = 'inselh2wtl';
   const GEO_CORDING_KEY = 'OPjA2JmsSCweRxKFpHX1qyfzDGrxgSSI9yL6Duta';
-  const inputState = {};
+  const inputState = {
+    buildName: useInput(''),
+    bldFloor1: useInput(''),
+    bldFloor2: useInput(''),
+    hsArea: useInput(''),
+  };
 
   const onChangeState = (name: StormFloodName, value: any) => {
     dispatch({ type: 'CHANGE', name, value });
@@ -460,8 +514,6 @@ export default function StormFloodContainer() {
       onChangeState('termsHtml', html);
     } else {
       termsChange(name, 0);
-      onChangeState('termsModal', true);
-      onChangeState('termsHtml', html);
     }
   };
 
@@ -554,6 +606,7 @@ export default function StormFloodContainer() {
             handlePreviousButton={handlePreviousButton}
             handleNextButton={handleNextButton}
             openInfoModal={openInfoModal}
+            inputState={inputState}
           />
         );
       case 'stormFloodResult':
@@ -579,6 +632,7 @@ export default function StormFloodContainer() {
             termsChange={termsChange}
             onClickAllCheck={onClickAllCheck}
             onClickTermsModalAgree={onClickTermsModalAgree}
+            inputState={inputState}
           />
         );
       case 'stormFloodTerms':
@@ -652,6 +706,18 @@ export default function StormFloodContainer() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.selectAddress]);
+
+  //안드로이드 백버튼 핸들러
+  useEffect(() => {
+    const backAction = () => {
+      DefaultAlert({ title: '알림', msg: '메인페이지로 돌아 가시겠습니까?', okPress: () => navigation.goBack() });
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
+  }, []);
 
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);

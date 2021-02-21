@@ -14,7 +14,7 @@ import {
 import { ColorName } from 'styled-components';
 import HouseFirePresenter from './HouseFirePresenter';
 import { useInput } from '@app/hooks';
-import { Keyboard } from 'react-native';
+import { Alert, BackHandler, Keyboard } from 'react-native';
 import HouseInfo from '@app/screens/HouseFire/HouseInfo';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
@@ -40,6 +40,7 @@ import {
   termsTermsSd,
 } from '@app/lib/html';
 import HousePayWay from '@app/screens/HouseFire/HousePayWay';
+import { DefaultAlert } from '@app/components';
 
 export type TermsNames =
   | string
@@ -601,9 +602,13 @@ export default function HouseFireContainer() {
 
   //terms모달 오픈
   const onClickTermsModalOpen = (name, html) => {
-    onChangeState('termsName', name);
-    onChangeState('termsModal', true);
-    onChangeState('termsHtml', html);
+    if (state.terms[name]?.isChecked !== undefined && state.terms[name]?.isChecked === 0) {
+      onChangeState('termsName', name);
+      onChangeState('termsModal', true);
+      onChangeState('termsHtml', html);
+    } else {
+      onChangeTermsState(name, 0);
+    }
   };
 
   //terms 모두동의
@@ -824,6 +829,18 @@ export default function HouseFireContainer() {
       Keyboard.removeListener('keyboardDidHide', _keyboardDidHide);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  //안드로이드 백버튼 핸들러
+  useEffect(() => {
+    const backAction = () => {
+      DefaultAlert({ title: '알림', msg: '메인페이지로 돌아 가시겠습니까?', okPress: () => navigation.goBack() });
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
   }, []);
 
   return (

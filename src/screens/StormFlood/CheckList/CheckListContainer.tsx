@@ -34,13 +34,20 @@ export default function CheckListContainer({
       return null;
     }
   };
+
+  //terms모달 오픈
+  const onClickTermsModalOpen2 = (name, html) => {
+    onChangeState('termsName', name);
+    onChangeState('termsModal', true);
+    onChangeState('termsHtml', html);
+  };
   if (state.stepNumber === 2) {
     return (
       <Presenter
         state={state}
         onChangeState={onChangeState}
         nextButton={nextButton}
-        onClickTermsModalOpen={onClickTermsModalOpen}
+        onClickTermsModalOpen2={onClickTermsModalOpen2}
         handlePreviousButton={handlePreviousButton}
         termsChange={termsChange}
       />

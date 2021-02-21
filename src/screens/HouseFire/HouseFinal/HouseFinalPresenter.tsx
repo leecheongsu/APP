@@ -88,7 +88,7 @@ function HouseFinalPresenter({
               <ButtonItem>
                 <RightIconButton
                   active={false}
-                  title={state?.loading ? 'Downloading..' : '보험 가입 증명원'}
+                  title="보험 가입 증명원"
                   onPress={() => onChangeState('insuCertificateModal', true)}
                 />
               </ButtonItem>
@@ -100,7 +100,11 @@ function HouseFinalPresenter({
                 />
               </ButtonItem>
               <ButtonItem>
-                <RightIconButton active={false} title="보험약관" onPress={() => downloadfileButton('보험약관')} />
+                <RightIconButton
+                  active={false}
+                  title={state?.loading ? 'Downloading..' : '보험약관'}
+                  onPress={() => downloadfileButton('보험약관')}
+                />
               </ButtonItem>
             </ButtonBox>
             <HelperText>

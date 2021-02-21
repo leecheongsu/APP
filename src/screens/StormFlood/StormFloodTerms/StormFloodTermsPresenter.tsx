@@ -1,13 +1,14 @@
 import React from 'react';
 import { BottomFixButton, CheckLabelButton, DefaultInput, TermsList, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
-import { screenWidth } from '@app/lib';
+import { priceDot, screenWidth } from '@app/lib';
 import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import { TermsModal, TermsPdf } from '@app/screens';
 import theme from '@app/style/theme';
 import { useGlobalState } from '@app/context';
 import { ScrollView } from 'react-native-gesture-handler';
 import { wwTermsSd1, wwTermsSd2 } from '@app/lib/html';
+import moment from 'moment';
 type StormFloodTermsPresenterTypes = {
   state: StormFloodStateTypes;
   nextButton: () => void;
@@ -113,12 +114,10 @@ function StormFloodTermsPresenter({
     state?.terms?.termsf2.isChecked === 1 &&
     state?.terms?.termsf3.isChecked === 1 &&
     state?.terms?.termsf4.isChecked === 1;
-  // const insuEndDateYear = Number(state?.contractInsuInfo?.insDate?.slice(0, 4)) + 1;
-  // const insuEndDateMonth = state?.contractInsuInfo?.insDate?.slice(5, 7);
-  // const insuEndDateDay = Number(state?.contractInsuInfo?.insDate?.slice(8)) - 1;
-  // const filnalInsuEndDateDay =
-  //   String(insuEndDateDay)?.length === 1 ? '0' + String(insuEndDateDay) : String(insuEndDateDay);
-  // const insuEndDate = insuEndDateYear + '-' + insuEndDateMonth + '-' + filnalInsuEndDateDay;
+  const now = new Date();
+  const startDay = moment(now.setDate(now.getDate() + 7)).format('YYYY.MM.DD');
+  const endDate = moment(now.setDate(now.getDate() + 364)).format('YYYY.MM.DD');
+
   return (
     <>
       <Container>
@@ -139,7 +138,7 @@ function StormFloodTermsPresenter({
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    인슈로보풍수해Ⅵ보험
+                    인슈로보 풍수해Ⅵ보험
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -152,7 +151,7 @@ function StormFloodTermsPresenter({
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    현대해상
+                    {state?.selectInsuCompany}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -165,7 +164,7 @@ function StormFloodTermsPresenter({
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    F20200631203
+                    {state?.selectAddress?.quote_no}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -173,12 +172,12 @@ function StormFloodTermsPresenter({
               <RowBox>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY">
-                    상품번호
+                    보험기간
                   </Typhograph>
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    2020.09.26 ~ 2021.09.25 (24:00)
+                    {startDay} ~ {endDate}(24:00)
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -191,7 +190,7 @@ function StormFloodTermsPresenter({
                 </RowItem>
                 <RowItem>
                   <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                    213,400
+                    {priceDot(state?.resultPrice?.tpymPrem)}
                     <Typhograph type="NOTO" color="GRAY">
                       원
                     </Typhograph>
@@ -207,7 +206,7 @@ function StormFloodTermsPresenter({
                 </RowItem>
                 <RowItem>
                   <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                    213,400
+                    {priceDot(state?.resultPrice?.govtPrem)}
                     <Typhograph type="NOTO" color="GRAY">
                       원
                     </Typhograph>
@@ -223,7 +222,7 @@ function StormFloodTermsPresenter({
                 </RowItem>
                 <RowItem>
                   <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                    213,400
+                    {priceDot(state?.resultPrice?.lgovtPrem)}
                     <Typhograph type="NOTO" color="GRAY">
                       원
                     </Typhograph>
@@ -239,7 +238,7 @@ function StormFloodTermsPresenter({
                 </RowItem>
                 <RowItem>
                   <Typhograph type="ROBOTO" color="SKYBLUE" size={16}>
-                    213,400
+                    {priceDot(state?.resultPrice?.perPrem)}
                     <Typhograph type="NOTO" color="GRAY">
                       원
                     </Typhograph>
@@ -260,6 +259,22 @@ function StormFloodTermsPresenter({
                   </Typhograph>
                 </TableHeadItem>
               </TableHeadBox>
+              {/*  풍수해(건물)  */}
+              <TableBodyBox>
+                <TableBodyItem>
+                  <Typhograph type="NOTO" color="GRAY">
+                    풍수해(건물)
+                  </Typhograph>
+                </TableBodyItem>
+                <TableBodyItem>
+                  <Typhograph type="ROBOTO" color="BLACK2" size={16}>
+                    {state?.selectBuildingPrice?.val_name}
+                    <Typhograph type="NOTO" color="GRAY">
+                      원
+                    </Typhograph>
+                  </Typhograph>
+                </TableBodyItem>
+              </TableBodyBox>
               {/*  풍수해(시설 및 집기)  */}
               <TableBodyBox>
                 <TableBodyItem>
@@ -269,25 +284,25 @@ function StormFloodTermsPresenter({
                 </TableBodyItem>
                 <TableBodyItem>
                   <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                    213,400
+                    {state?.selectFacilityprice?.val_name}
                     <Typhograph type="NOTO" color="GRAY">
                       원
                     </Typhograph>
                   </Typhograph>
                 </TableBodyItem>
               </TableBodyBox>
-              {/*  풍수해(재고자산)  */}
+              {/*  재고자산  */}
               <TableBodyBox>
                 <TableBodyItem>
                   <Typhograph type="NOTO" color="GRAY">
-                    풍수해(시설 및 집기)
+                    재고자산
                   </Typhograph>
                 </TableBodyItem>
                 <TableBodyItem>
                   <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                    213,400
+                    {state?.selectInventoryPrice?.val_name}
                     <Typhograph type="NOTO" color="GRAY">
-                      원
+                      {state?.selectInventoryPrice?.val_name === '미가입' ? '' : '원'}
                     </Typhograph>
                   </Typhograph>
                 </TableBodyItem>
@@ -301,7 +316,7 @@ function StormFloodTermsPresenter({
                 </TableBodyItem>
                 <TableBodyItem>
                   <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                    213,400
+                    {state?.selectSelfPrice?.val_name}
                     <Typhograph type="NOTO" color="GRAY">
                       원
                     </Typhograph>
@@ -370,29 +385,17 @@ function StormFloodTermsPresenter({
                   </Typhograph>
                 </RowItem>
               </RowBox>
-              {/* 보험 목적물 */}
-              <RowBox>
-                <RowItem>
-                  <Typhograph type="NOTO" color="GRAY">
-                    보험목적물
-                  </Typhograph>
-                </RowItem>
-                <RowItem>
-                  <Typhograph type="NOTO" color="BLACK2">
-                    임차
-                  </Typhograph>
-                </RowItem>
-              </RowBox>
+
               {/* 소유구분 */}
               <RowBox>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY">
-                    소유구분
+                    보험목적물{'\n'} 소유구분
                   </Typhograph>
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    ""
+                    {state?.possessionDivision}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -405,7 +408,7 @@ function StormFloodTermsPresenter({
                 </RowItem>
                 <RowItem style={{ width: '50%' }}>
                   <Typhograph type="NOTO" color="BLACK2">
-                    부산광역시 기장군 일광면 이화로 163 테 46047
+                    {state?.selectAddress?.address}
                   </Typhograph>
                 </RowItem>
               </RowBox>

@@ -4,6 +4,7 @@ import StormFloodFinalPresenter from './StormFloodFinalPresenter';
 import { Alert, PermissionsAndroid, Platform } from 'react-native';
 import { handleApiError } from '@app/lib';
 import RNFetchBlob from 'rn-fetch-blob';
+import { useNavigation } from '@react-navigation/native';
 
 export default function StormFloodFinalContainer({
   state,
@@ -12,8 +13,9 @@ export default function StormFloodFinalContainer({
   onClickTermsModalOpen,
   handlePreviousButton,
 }) {
+  const navigation = useNavigation();
   const nextButton = () => {
-    handleNextButton();
+    navigation.goBack();
   };
 
   const downloadFile1 = () => {
@@ -76,7 +78,7 @@ export default function StormFloodFinalContainer({
 
   const downloadfileButton = async (name) => {
     switch (name) {
-      case '보험가입증명원': {
+      case '보험증권': {
         if (Platform.OS === 'ios') {
           downloadFile1();
         } else {
@@ -100,7 +102,7 @@ export default function StormFloodFinalContainer({
         }
         return null;
       }
-      case '보험증권': {
+      case '보험약관': {
         if (Platform.OS === 'ios') {
           downloadFile2();
         } else {

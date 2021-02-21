@@ -13,6 +13,7 @@ export type StateTypes = {
   recommendUser: any;
   selectAddress: any;
   isIdentityverification: boolean;
+  insuType: any;
 };
 type StateNames =
   | 'user'
@@ -21,7 +22,12 @@ type StateNames =
   | 'password'
   | 'recommendUser'
   | 'selectAddress'
-  | 'isIdentityverification';
+  | 'isIdentityverification'
+  | 'insuType'
+  | 'postWwPremium'
+  | 'jumina'
+  | 'juminb'
+  | 'electronicSignPreData';
 type Action =
   | { type: 'CHANGE'; name: StateNames; value: any }
   | { type: 'REMOVE'; name: StateNames }
@@ -39,6 +45,11 @@ const initialState = {
   password: undefined,
   recommendUser: undefined,
   isIdentityverification: false,
+  insuType: undefined,
+  postWwPremium: undefined,
+  jumina: '',
+  juminb: '',
+  electronicSignPreData: undefined,
 };
 
 //context

@@ -22,6 +22,11 @@ function BackButton({ onPress, isAlert = false }: BackButtonTypes) {
 
         okPress: () => {
           globalDispatch({ type: 'CHANGE', name: 'recommendUser', value: undefined });
+          globalDispatch({ type: 'CHANGE', name: 'isIdentityverification', value: false });
+          globalDispatch({ type: 'CHANGE', name: 'electronicSignPreData', value: undefined });
+          globalDispatch({ type: 'CHANGE', name: 'recommendUser', value: undefined });
+          globalDispatch({ type: 'CHANGE', name: 'insuType', value: '' });
+          globalDispatch({ type: 'CHANGE', name: 'selectAddress', value: undefined });
           navigation.goBack();
         },
       });

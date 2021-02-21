@@ -1,8 +1,10 @@
-import { Typhograph } from '@app/components';
+import { Loading, Typhograph } from '@app/components';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Button, StyleSheet, View } from 'react-native';
 import WebView from 'react-native-webview';
 function PayPresenter() {
+  const navigation = useNavigation();
   const html = `
   <html> 
   <head> 
@@ -71,18 +73,32 @@ function PayPresenter() {
     } else {
     }
   };
+  const runFirst = `
+  function btnClick(e){ window.ReactNativeWebView.postMessage("ok"); }
+  document.querySelector(".btnClose").addEventListener("click",btnClick)
+  document.querySelector(".btnWrap span").addEventListener("click",btnClick)
+
+`;
+
+  const onNavigationStateChange = (navState) => {
+    if (navState.navigationType === 'backforward') {
+      navigation.goBack();
+    }
+  };
+
   return (
     <WebView
-      style={{
-        flex: 1,
-      }}
+      style={{}}
       source={{
-        html,
+        uri: 'https://mdirect.hi.co.kr/service.do?m=eb38166bf9&seq=16137284343131777323549&ch=W&nm=',
       }}
+      onNavigationStateChange={onNavigationStateChange}
       onMessage={onMessage}
       originWhitelist={'["*"]'}
       renderLoading={() => <Loading />}
+      injectedJavaScript={runFirst}
       javaScriptEnabled={true}
+      javaScriptEnabledAndroid={true}
       domStorageEnabled={true}
       scalesPageToFit={true}
       scrollEnabled={false}

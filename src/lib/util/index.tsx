@@ -5,6 +5,7 @@ import Toast from 'react-native-simple-toast';
 import { showMessage, hideMessage } from 'react-native-flash-message';
 import { ErrorModal } from '@app/screens';
 import { userApis } from '@app/api/User';
+import { DefaultAlert } from '@app/components';
 //font weight 적용하는 함수
 export const setFont = (type: 'NOTO' | 'ROBOTO', weight: 'THIN' | 'LIGHT' | 'REGULAR' | 'MEDIUM' | 'BOLD') => {
   switch (type) {
@@ -236,15 +237,6 @@ export const handleApiError = async (value) => {
       return Toast.show('권한이 없습니다.');
     }
     case 426: {
-      const params = {
-        id: JSON.parse(user).email,
-        pwd: JSON.parse(password),
-      };
-      if (JSON.parse(isAutoLogin)) {
-        userApis.postLogin(params).then((res) => {
-          setStoreData('user', res.data);
-        });
-      }
       alert('토큰이 만료되었습니다. 다시로그인 해주세요.');
     }
     default: {

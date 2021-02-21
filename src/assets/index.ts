@@ -27,6 +27,14 @@ const ARR_RIGHT = require('./icon/arr-right/arr-right.png');
 const RADIO_ON = require('./icon/bg-radio-on/bg-radio-on.png');
 const RADIO_OFF = require('./icon/bg-radio-off/bg-radio-off.png');
 const ICON_FILE = require('./icon/ico-file/ico-file.png');
+const ICON_PHONE = require('./icon/ico-pop-phone/ico-pop-phone.png');
+const ICON_KAKAO = require('./icon/ico-pop-kakao/ico-pop-kakao.png');
+const MY_LIST = require('./icon/ico-mylist/ico-mylist.png');
+const INSU_ROBO = require('./icon/img-robo/img-robo.png');
+const ICON_41 = require('./icon/ico-041-01/ico-041-01.png');
+const ICON_42 = require('./icon/ico-042-01/ico-042-01.png');
+
+const ARR_LR = require('./icon/arrow-lr/arrow-lr.png');
 
 const MAIN_S_ROBOT = require('./img/img-mainSrobot/img-mainSrobot.png');
 const MAIN_B_ROBOT = require('./img/img-mainBrobot/img-mainBrobot.png');
@@ -38,6 +46,10 @@ const STORMFLOOD_MAIN2 = require('./img/ico-031-02/ico-031-02.png');
 const STORMFLOOD_MAIN3 = require('./img/ico-031-03/ico-031-03.png');
 const TERMSD_1 = require('./img/TERMSD_1/TERMSD_1.png');
 const TERMSD_2 = require('./img/TERMSD_2/TERMSD_2.png');
+const MAIN1 = require('./img/main1/main1.png');
+const MAIN2 = require('./img/main2/main2.png');
+const MAIN3 = require('./img/main3/main3.png');
+const MAIN4 = require('./img/main4/main4.png');
 
 export const insuIcon = {
   CLOSE_ICON,
@@ -69,6 +81,13 @@ export const insuIcon = {
   RADIO_ON,
   RADIO_OFF,
   ICON_FILE,
+  ICON_PHONE,
+  ICON_KAKAO,
+  MY_LIST,
+  INSU_ROBO,
+  ICON_41,
+  ARR_LR,
+  ICON_42,
 };
 
 export const insuImg = {
@@ -82,4 +101,8 @@ export const insuImg = {
   STORMFLOOD_MAIN3,
   TERMSD_1,
   TERMSD_2,
+  MAIN1,
+  MAIN2,
+  MAIN3,
+  MAIN4,
 };

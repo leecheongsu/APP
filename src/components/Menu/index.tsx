@@ -3,11 +3,11 @@ import { insuIcon } from '@app/assets';
 import IconButton from '@app/components/Button/IconButton';
 import { clearStoreData, getStoreData, screenHeight, setStoreData } from '@app/lib';
 import styled from '@app/style/typed-components';
-import { Image, Platform } from 'react-native';
+import { Image, Linking, Platform } from 'react-native';
 import { Avatar, LoginButton, TileButton, Typhograph } from '@app/components';
 import theme from '@app/style/theme';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
-import { Switch } from 'react-native-gesture-handler';
+import { Switch, TouchableOpacity } from 'react-native-gesture-handler';
 const Container = styled.View`
   padding-top: ${Platform.OS === 'ios' ? screenHeight() / 20 : 10}px;
   background-color: ${theme.color.MENU_BACKGROUD_COLOR};
@@ -121,7 +121,7 @@ export default function Menu(props) {
   const globalDispatch = useGlobalDispatch();
   const isLogin = globalState.user !== undefined;
   const [isEnabled, setIsEnabled] = useState(globalState.isAutoLogin);
-
+  const phoneNumber = '070-4126-333';
   const logoutButton = () => {
     clearStoreData();
     globalDispatch({ type: 'LOGOUT' });
@@ -132,7 +132,7 @@ export default function Menu(props) {
     isLogin ? navigation.navigate('PROFILE') : navigation.navigate('LOGIN');
   };
   const handleMyInsuButton = () => {
-    isLogin ? navigation.navigate('PROFILE') : navigation.navigate('LOGIN');
+    isLogin ? navigation.navigate('MY_INSU') : navigation.navigate('LOGIN');
   };
 
   const toggleSwitch = async () => {
@@ -283,7 +283,7 @@ export default function Menu(props) {
             </CardBox>
 
             <CardBox>
-              <CardItem onPress={() => navigation.navigate('PAY')}>
+              <CardItem onPress={() => navigation.navigate('STORM_FLOOD2')}>
                 <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
                   배상책임
                 </Typhograph>
@@ -295,7 +295,7 @@ export default function Menu(props) {
                 </IconBox>
               </CardItem>
 
-              <CardItem onPress={() => console.log(1)}>
+              <CardItem onPress={() => navigation.navigate('CALAMITY')}>
                 <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
                   배상책임
                 </Typhograph>
@@ -309,7 +309,7 @@ export default function Menu(props) {
             </CardBox>
           </CardContainer>
           <BottomButtonBox>
-            <BottomButtonLeft>
+            <BottomButtonLeft onPress={() => Linking.openURL(`tel:${phoneNumber}`)}>
               <Image source={insuIcon.PHONE} />
               <Typhograph type="NOTO" color="WHITE" style={{ marginLeft: 10 }}>
                 070-4126-3333

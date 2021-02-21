@@ -5,15 +5,16 @@ import {
   DefaultInput,
   FullLabel,
   IconButton,
+  OverayLoading,
   Select,
   Typhograph,
 } from '@app/components';
 import styled from '@app/style/typed-components';
 import { screenWidth } from '@app/lib';
-import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
+import { InputStateTypes, StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import { TermsModal } from '@app/screens';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Image, Platform } from 'react-native';
+import { Alert, Image, Platform } from 'react-native';
 import { insuIcon } from '@app/assets';
 import { gunmulText, jipgiText, jegoJasanText, jagibudamText } from '@app/lib/html';
 
@@ -28,14 +29,8 @@ type GuaranteeSelectPresenterTypes = {
   handleBuildingPriceSelect: (value: any) => void;
   handleFacilityPriceSelect: (value: any) => void;
   handleselfPriceSelect: (value: any) => void;
-  sectorItems: any;
-  selfPriceItems: any;
-  basicBuildingPriceItems: any;
-  factoryBuildingPriceItems: any;
-  basicFacilityPriceItems: any;
-  factoryFacilityPriceItems: any;
-  inventoryPriceItems: any;
   handleInventoryPriceSelect: (value: any) => void;
+  inputState: InputStateTypes;
 };
 
 const Container = styled.View`
@@ -76,21 +71,16 @@ function GuaranteeSelectPresenter({
   handlePreviousButton,
   openInfoModal,
   handleSectorSelect,
-  sectorItems,
   handleBuildingPriceSelect,
   handleFacilityPriceSelect,
-  basicBuildingPriceItems,
-  basicFacilityPriceItems,
-  factoryBuildingPriceItems,
-  factoryFacilityPriceItems,
   handleselfPriceSelect,
-  selfPriceItems,
-  inventoryPriceItems,
   handleInventoryPriceSelect,
+  inputState,
 }: GuaranteeSelectPresenterTypes) {
   return (
     <>
       <Container>
+        <OverayLoading visible={state.loading} />
         <KeyboardAwareScrollView enableOnAndroid={true} extraScrollHeight={Platform.OS === 'ios' ? 30 : -10}>
           <FullLabel title="기본정보를 확인해주세요." />
           <ContentsContainer>
@@ -112,7 +102,9 @@ function GuaranteeSelectPresenter({
               <RowItem width="49%">
                 <CheckLabelButton
                   iscenter
-                  onPress={() => onChangeState('joinType', '법인')}
+                  onPress={() =>
+                    Alert.alert('알림', `법인사업자는${'\n'}전화문의주시길바랍니다.${'\n'}${'\n'}070-4126-3333`)
+                  }
                   title="법인"
                   active={state?.joinType === '법인'}
                 />
@@ -179,7 +171,7 @@ function GuaranteeSelectPresenter({
               </Typhograph>
             </LabelBox>
             <InputBox>
-              <DefaultInput placeholder="상호명을 입력해 주세요." />
+              <DefaultInput {...inputState.buildName} placeholder="상호명을 입력해 주세요." />
             </InputBox>
             {/* 해당층 */}
             <LabelBox>
@@ -189,12 +181,19 @@ function GuaranteeSelectPresenter({
             </LabelBox>
             <RowBox>
               <RowItem width="49%">
-                <DefaultInput placeholder="시작 층" />
+                <DefaultInput {...inputState.bldFloor1} placeholder="시작 층" keyboardType="numeric" />
               </RowItem>
               <RowItem width="49%">
-                <DefaultInput placeholder="끝 층" />
+                <DefaultInput {...inputState.bldFloor2} placeholder="끝 층" keyboardType="numeric" />
               </RowItem>
             </RowBox>
+            {/* 해당층 */}
+            <LabelBox>
+              <Typhograph type="NOTO" color="BLACK2" weight="BOLD">
+                면적
+              </Typhograph>
+            </LabelBox>
+            <DefaultInput {...inputState.hsArea} placeholder="목적물 면적(m2)" keyboardType="numeric" />
             {/* 업종선택 */}
             <LabelBox>
               <Typhograph type="NOTO" color="BLACK2" weight="BOLD">
@@ -205,7 +204,7 @@ function GuaranteeSelectPresenter({
               <Select
                 label="업종을 선택하세요."
                 value={state.selectSector}
-                items={sectorItems}
+                items={state.sectorItems}
                 onValueChange={handleSectorSelect}
                 disabled={false}
                 borderColor="BORDER_GRAY"
@@ -225,7 +224,7 @@ function GuaranteeSelectPresenter({
               <Select
                 label="건물 가격을 선택해주세요."
                 value={state.selectBuildingPrice}
-                items={state.stuffDivision === '공장' ? factoryBuildingPriceItems : basicBuildingPriceItems}
+                items={state.stuffDivision === '공장' ? state.factoryBuildingPriceItems : state.basicBuildingPriceItems}
                 onValueChange={handleBuildingPriceSelect}
                 disabled={state.possessionDivision === '임차자'}
                 borderColor="BORDER_GRAY"
@@ -245,7 +244,7 @@ function GuaranteeSelectPresenter({
               <Select
                 label="시설(기계) 및 집기"
                 value={state.selectFacilityprice}
-                items={state.stuffDivision === '공장' ? factoryFacilityPriceItems : basicFacilityPriceItems}
+                items={state.stuffDivision === '공장' ? state.factoryFacilityPriceItems : state.basicFacilityPriceItems}
                 onValueChange={handleFacilityPriceSelect}
                 disabled={state.stuffDivision === '공장'}
                 borderColor="BORDER_GRAY"
@@ -265,7 +264,7 @@ function GuaranteeSelectPresenter({
               <Select
                 label="재고자산"
                 value={state.selectInventoryPrice}
-                items={inventoryPriceItems}
+                items={state.inventoryPriceItems}
                 onValueChange={handleInventoryPriceSelect}
                 disabled={false}
                 borderColor="BORDER_GRAY"
@@ -285,7 +284,7 @@ function GuaranteeSelectPresenter({
               <Select
                 label="자기부담금"
                 value={state.selectSelfPrice}
-                items={selfPriceItems}
+                items={state.selfPriceItems}
                 onValueChange={handleselfPriceSelect}
                 disabled={false}
                 borderColor="BORDER_GRAY"
@@ -298,8 +297,9 @@ function GuaranteeSelectPresenter({
             open={state?.termsModal}
             close={() => onChangeState('termsModal', false)}
             html={state?.termsHtml}
-            onPress={() => null}
-            isButton={false}
+            onPress={() => onChangeState('termsModal', false)}
+            buttonTitle="확인"
+            isButton
           />
         </KeyboardAwareScrollView>
         <BottomFixButton

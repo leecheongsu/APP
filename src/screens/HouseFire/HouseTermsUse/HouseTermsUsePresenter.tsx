@@ -128,6 +128,7 @@ function HouseTermsUsePresenter({
                 onClickTermsModalOpen={onClickTermsModalOpen}
                 item={state.terms.TERMSB_1}
                 onChangeTermsState={onChangeTermsState}
+                isButton
               />
             </TermsListItemBox>
           </TermsListBox>

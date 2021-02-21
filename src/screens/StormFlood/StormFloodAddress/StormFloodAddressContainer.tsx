@@ -31,6 +31,71 @@ export default function Container({
     handleNextButton();
   };
 
+  //사용자 셀렉트 박스 셋팅
+  const setSelectItems = (data) => {
+    const sectorItems: any = [];
+    const basicBuildingPriceItems: any = [];
+    const factoryBuildingPriceItems: any = [];
+    const basicFacilityPriceItems: any = [];
+    const factoryFacilityPriceItems: any = [];
+    const inventoryPriceItems: any = [];
+    const selfPriceItems: any = [];
+    data?.lobz_cds?.map((item) => {
+      const newItem = {
+        label: item.name,
+        value: item,
+      };
+      sectorItems.push(newItem);
+    });
+
+    data?.premiums?.map((item) => {
+      if (item.code === 'BLD' && item.sub_name === '일반') {
+        const newItems = {
+          label: item.val_name + '원',
+          value: item,
+        };
+        basicBuildingPriceItems.push(newItems);
+      } else if (item.code === 'BLD' && item.sub_name === '공장') {
+        const newItems = {
+          label: item.val_name + '원',
+          value: item,
+        };
+        factoryBuildingPriceItems.push(newItems);
+      } else if (item.code === 'FCL' && item.sub_name === '일반') {
+        const newItems = {
+          label: item.val_name + '원',
+          value: item,
+        };
+        basicFacilityPriceItems.push(newItems);
+      } else if (item.code === 'FCL' && item.sub_name === '공장') {
+        const newItems = {
+          label: item.val_name + '원',
+          value: item,
+        };
+        factoryFacilityPriceItems.push(newItems);
+      } else if (item.code === 'INV') {
+        const newItems = {
+          label: item.val_name !== '미가입' ? item.val_name + '원' : item.val_name,
+          value: item,
+        };
+        inventoryPriceItems.push(newItems);
+      } else if (item.code === 'SPY') {
+        const newItems = {
+          label: item.val_name + '원',
+          value: item,
+        };
+        selfPriceItems.push(newItems);
+      }
+    });
+    onChangeState('sectorItems', sectorItems);
+    onChangeState('basicBuildingPriceItems', basicBuildingPriceItems);
+    onChangeState('factoryBuildingPriceItems', factoryBuildingPriceItems);
+    onChangeState('basicFacilityPriceItems', basicFacilityPriceItems);
+    onChangeState('factoryFacilityPriceItems', factoryFacilityPriceItems);
+    onChangeState('inventoryPriceItems', inventoryPriceItems);
+    onChangeState('selfPriceItems', selfPriceItems);
+  };
+
   //주소 선택시 도는 로직
   const SelectAddress = (item) => {
     const params = {
@@ -46,6 +111,7 @@ export default function Container({
       .then((res) => {
         if (res.status === 200) {
           onChangeState('selectAddress', res.data);
+          setSelectItems(res.data);
           globalDispatch({ type: 'CHANGE', name: 'selectAddress', value: res.data });
           onChangeState('loading', false);
           handleJoinTypeNextButton();

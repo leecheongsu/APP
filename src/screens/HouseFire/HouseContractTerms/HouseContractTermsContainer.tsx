@@ -3,7 +3,7 @@ import HouseContractTermsPresenter from './HouseContractTermsPresenter';
 import Toast from 'react-native-simple-toast';
 import { priceDot } from '@app/lib';
 import { useNavigation } from '@react-navigation/native';
-import { useGlobalState } from '@app/context';
+import { useGlobalDispatch, useGlobalState } from '@app/context';
 import { EmptyLayout } from '@app/layout';
 
 export default function HouseContractTermsContainer({
@@ -21,6 +21,7 @@ export default function HouseContractTermsContainer({
   const navigation = useNavigation();
   const insuPrice = priceDot(resultBuildPrice() + resultGajePrice());
   const globalState = useGlobalState();
+  const globalDispatch = useGlobalDispatch();
   const selectInsu = state?.selectAddress?.premiums?.filter((item) => {
     return item.aply_yn === 'Y' && item.already_group_ins === state?.selectAddress.already_group_ins;
   });
@@ -48,6 +49,7 @@ export default function HouseContractTermsContainer({
       if (globalState.isIdentityverification) {
         handleNextButton();
       } else {
+        globalDispatch({ type: 'CHANGE', name: 'insuType', value: 'home' });
         navigation.navigate('VERIFICATION');
       }
     }

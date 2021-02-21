@@ -53,6 +53,7 @@ function StormFloodResultPresenter({
   handlePreviousButton,
   onChangeActive,
 }: StormFloodResultPresenterTypes) {
+  console.log(state);
   return (
     <>
       <Container>
@@ -71,23 +72,23 @@ function StormFloodResultPresenter({
             </RowItem>
             <RowItem>
               <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                0
+                {state?.selectBuildingPrice?.val_name}
                 <Typhograph type="NOTO" color="GRAY">
                   원
                 </Typhograph>
               </Typhograph>
             </RowItem>
           </RowBox>
-          {/* 시설 및 자기 */}
+          {/* 시설 및 집기 */}
           <RowBox>
             <RowItem>
               <Typhograph type="NOTO" color="GRAY">
-                시설 및 자기
+                시설 및 집기
               </Typhograph>
             </RowItem>
             <RowItem>
               <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                3,000,000
+                {state?.selectFacilityprice?.val_name}
                 <Typhograph type="NOTO" color="GRAY">
                   원
                 </Typhograph>
@@ -103,9 +104,9 @@ function StormFloodResultPresenter({
             </RowItem>
             <RowItem>
               <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                3,000,000
+                {state?.selectInventoryPrice?.val_name}
                 <Typhograph type="NOTO" color="GRAY">
-                  원
+                  {state?.selectInventoryPrice?.val_name === '미가입' ? '' : '원'}
                 </Typhograph>
               </Typhograph>
             </RowItem>
@@ -119,7 +120,7 @@ function StormFloodResultPresenter({
             </RowItem>
             <RowItem>
               <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                200,000
+                {state?.selectSelfPrice?.val_name}
                 <Typhograph type="NOTO" color="GRAY">
                   원
                 </Typhograph>
@@ -140,7 +141,7 @@ function StormFloodResultPresenter({
             </RowItem>
             <RowItem>
               <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                200,000
+                {priceDot(state?.resultPrice?.tpymPrem)}
                 <Typhograph type="NOTO" color="GRAY">
                   원
                 </Typhograph>
@@ -156,7 +157,7 @@ function StormFloodResultPresenter({
             </RowItem>
             <RowItem>
               <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                200,000
+                {priceDot(state?.resultPrice?.govtPrem)}
                 <Typhograph type="NOTO" color="GRAY">
                   원
                 </Typhograph>
@@ -172,7 +173,7 @@ function StormFloodResultPresenter({
             </RowItem>
             <RowItem>
               <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                200,000
+                {priceDot(state?.resultPrice?.lgovtPrem)}
                 <Typhograph type="NOTO" color="GRAY">
                   원
                 </Typhograph>
@@ -188,7 +189,7 @@ function StormFloodResultPresenter({
             </RowItem>
             <RowItem>
               <Typhograph type="ROBOTO" color="SKYBLUE" size={16}>
-                200,000
+                {priceDot(state?.resultPrice?.perPrem)}
                 <Typhograph type="NOTO" color="GRAY">
                   원
                 </Typhograph>
@@ -198,11 +199,11 @@ function StormFloodResultPresenter({
         </ContentsContainer>
         <CardContainer>
           <ResultCard
-            isActive={state.selectInsuCompany === '메리츠화재'}
-            name="메리츠화재"
+            isActive={state.selectInsuCompany === '현대해상'}
+            name="현대해상"
             img={insuImg.LOGO_HYUNDAI}
             onClick={onChangeActive}
-            price={priceDot(20000)}
+            price={priceDot(state?.resultPrice?.perPrem)}
           />
         </CardContainer>
         <TermsModal

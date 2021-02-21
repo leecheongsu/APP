@@ -7,7 +7,10 @@ import { TermsModal } from '@app/screens';
 import theme from '@app/style/theme';
 import { Platform } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-
+import ElectronicSign from '@app/screens/StormFlood/ElectronicSign';
+import { useGlobalState } from '@app/context';
+import SignConfirm from '@app/screens/StormFlood/SignConfirm';
+import SimpleToast from 'react-native-simple-toast';
 type StormFloodPayPresenterTypes = {
   state: StormFloodStateTypes;
   nextButton: () => void;
@@ -25,6 +28,7 @@ type StormFloodPayPresenterTypes = {
     birthDay: any;
     pw: any;
   };
+  postDenial: () => void;
 };
 
 const Container = styled.View`
@@ -84,7 +88,9 @@ function StormFloodPayPresenter({
   handlePreviousButton,
   inputState,
   selectCard,
+  postDenial,
 }: StormFloodPayPresenterTypes) {
+  const globalState = useGlobalState();
   const selectItem = [
     { label: '현대', value: '현대' },
     { label: '신한', value: '신한' },
@@ -130,10 +136,20 @@ function StormFloodPayPresenter({
                 </RowBox>
               </TitleBox>
               <ButtonBox>
-                <CheckLabelButton iscenter onPress={() => console.log(1)} title="전자서명 하기" />
+                <CheckLabelButton
+                  active={state?.isSign}
+                  iscenter
+                  onPress={() => onChangeState('electronicSignModal', true)}
+                  title="전자서명 하기"
+                />
               </ButtonBox>
               <ButtonBox>
-                <CheckLabelButton iscenter onPress={() => console.log(1)} title="전자서명 확인하기" />
+                <CheckLabelButton
+                  active={state?.isSignConfirm}
+                  iscenter
+                  onPress={() => postDenial()}
+                  title="전자서명 확인하기"
+                />
               </ButtonBox>
             </ResultBox>
             <CardPayBox>
@@ -243,6 +259,21 @@ function StormFloodPayPresenter({
             </CardPayBox>
           </ContentsContainer>
         </KeyboardAwareScrollView>
+
+        <ElectronicSign
+          url={globalState?.electronicSignPreData?.localurltmp}
+          open={state.electronicSignModal}
+          close={() => onChangeState('electronicSignModal', false)}
+          onClick={() => onChangeState('isSign', true)}
+        />
+
+        <SignConfirm
+          url={globalState?.electronicSignPreData?.localurltmp}
+          open={state.signConfirmModal}
+          close={() => onChangeState('signConfirmModal', false)}
+          state={state}
+          onClick={() => onChangeState('isSignConfirm', true)}
+        />
         <TermsModal
           open={state?.termsModal}
           close={() => onChangeState('termsModal', false)}

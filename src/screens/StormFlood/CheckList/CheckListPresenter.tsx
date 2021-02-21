@@ -12,7 +12,7 @@ import { productInfoHtml2, productInfoHtml3 } from '@app/lib/html';
 type CheckListPresenterTypes = {
   state: StormFloodStateTypes;
   nextButton: () => void;
-  onClickTermsModalOpen: (name: any, html: any) => void;
+  onClickTermsModalOpen2: (name: any, html: any) => void;
   handlePreviousButton: () => void;
   onChangeState: (name: StormFloodName, value: any) => void;
   termsChange: (name: any, value: any) => void;
@@ -94,7 +94,7 @@ const InfoButtonBox = styled.View`
 function CheckListPresenter({
   state,
   nextButton,
-  onClickTermsModalOpen,
+  onClickTermsModalOpen2,
   handlePreviousButton,
   termsChange,
   onChangeState,
@@ -187,7 +187,7 @@ function CheckListPresenter({
 
               <InfoButtonContainer
                 onPress={() => {
-                  onClickTermsModalOpen('terms3', productInfoHtml2());
+                  onClickTermsModalOpen2('terms3', productInfoHtml2());
                 }}>
                 <InfoButtonBox>
                   <Image source={insuIcon.ICON_FILE} style={{ marginRight: 10 }} />
@@ -269,7 +269,7 @@ function CheckListPresenter({
             <ButtonBox>
               <CheckLabelButton
                 onPress={() => {
-                  onClickTermsModalOpen('terms5', productInfoHtml3());
+                  onClickTermsModalOpen2('terms5', productInfoHtml3());
                   termsChange('terms5', true);
                 }}
                 title="알아 두실 사항"
@@ -287,8 +287,9 @@ function CheckListPresenter({
             onChangeState('termsModal', false);
           }}
           html={state?.termsHtml}
-          onPress={() => null}
-          isButton={false}
+          onPress={() => onChangeState('termsModal', false)}
+          buttonTitle="확인"
+          isButton
         />
 
         <BottomFixButton

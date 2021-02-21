@@ -82,7 +82,7 @@ function StormFloodFinalPresenter({
               <RightIconButton
                 active={false}
                 disabled={state?.loading}
-                title={state?.loading ? 'Downloading..' : '보험 가입 증명원'}
+                title="보험 가입 증명원"
                 onPress={() => onChangeState('insuCertificateModal', true)}
               />
             </ButtonItem>
@@ -98,8 +98,8 @@ function StormFloodFinalPresenter({
               <RightIconButton
                 disabled={state?.loading}
                 active={false}
-                title="보험약관"
-                onPress={() => downloadfileButton('보험가입증명원')}
+                title={state?.loading ? 'Downloading..' : '보험약관'}
+                onPress={() => downloadfileButton('보험약관')}
               />
             </ButtonItem>
           </ButtonBox>
@@ -123,6 +123,8 @@ function StormFloodFinalPresenter({
             onChangeState('insuCertificateModal', false);
           }}
           isButton
+          insuPrice={0}
+          state={state}
         />
         <BottomFixButton
           index={state.stepNumber}
