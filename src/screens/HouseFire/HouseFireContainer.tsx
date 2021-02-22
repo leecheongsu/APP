@@ -841,7 +841,7 @@ export default function HouseFireContainer() {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
 
     return () => backHandler.remove();
-  }, []);
+  }, [state?.stepNumber]);
 
   return (
     <HouseFirePresenter

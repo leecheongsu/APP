@@ -25,7 +25,7 @@ const Container = styled.View`
 `;
 
 const TopArrow = styled.View`
-  left: 190px;
+  left: 180px;
   top: 0px;
   width: 0px;
   height: 0px;
@@ -145,14 +145,9 @@ function PasswordInfo({ state, inputState, onChangeState }) {
       <KeyboardAwareScrollView
         style={styles.container}
         enableOnAndroid={true}
+        enableResetScrollToCoords={false}
         extraScrollHeight={Platform.OS === 'ios' ? 10 : -10}>
         <Container>
-          <TitleBox>
-            <Typhograph type="NOTO" weight="REGULAR" color="BLACK3">
-              변경하실 비밀번호를 입력해주세요.
-            </Typhograph>
-          </TitleBox>
-
           <TextInputBox>
             <InputLabel>
               <Typhograph type="NOTO" weight="MEDIUM">

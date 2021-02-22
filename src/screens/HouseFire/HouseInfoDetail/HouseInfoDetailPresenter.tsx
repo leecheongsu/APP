@@ -70,7 +70,10 @@ function HouseInfoDetailPresenter({
     <>
       <Container>
         <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
-        <Modal style={styles.container} isVisible={state.isDetailModal}>
+        <Modal
+          style={styles.container}
+          isVisible={state.isDetailModal}
+          onBackButtonPress={() => onChangeState('isDetailModal', false)}>
           <SafeAreaView style={{ flex: 1 }}>
             <Header>
               <HeaderTitle>
@@ -99,7 +102,13 @@ function HouseInfoDetailPresenter({
                   상세 주소 선택(동, 호)
                 </Typhograph>
               </ButtonInfoTitle>
-              <CheckLabelButton iscenter={false} onPress={() => submitAddressDetail()} title={buttonLabel} />
+              {console.log(state)}
+              <CheckLabelButton
+                active={state?.resultDong !== '' && state?.resultDetail !== ''}
+                iscenter={false}
+                onPress={() => submitAddressDetail()}
+                title={buttonLabel}
+              />
             </SubmitButtonBox>
             <SelectBox>
               <Select

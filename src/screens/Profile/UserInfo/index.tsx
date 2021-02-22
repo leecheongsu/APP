@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 const Container = styled.View``;
 
 const TopArrow = styled.View`
-  left: 70px;
+  left: ${Platform.OS === 'ios' ? 65 : 60}px;
   top: 0px;
   width: 0px;
   height: 0px;
@@ -160,6 +160,7 @@ function UserInfo({ state, inputState, onValueChange, onChangeState }) {
       <KeyboardAwareScrollView
         style={styles.container}
         enableOnAndroid={true}
+        enableResetScrollToCoords={false}
         extraScrollHeight={Platform.OS === 'ios' ? 10 : -10}>
         <Container>
           <TextInputBox>

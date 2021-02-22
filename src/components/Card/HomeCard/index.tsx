@@ -24,16 +24,16 @@ function HomeCard() {
     },
     {
       title: '풍수해 Ⅵ',
-      content: insuImg.MAIN2,
-      onClick: () => navigation.navigate('STORM_FLOOD2'),
-    },
-    {
-      title: '풍수해 Ⅲ',
       content: insuImg.MAIN3,
       onClick: () => navigation.navigate('STORM_FLOOD'),
     },
     {
-      title: '배상책임',
+      title: '배상책임(다중이용시설)',
+      content: insuImg.MAIN2,
+      onClick: () => navigation.navigate('STORM_FLOOD2'),
+    },
+    {
+      title: '배상책임(재난)',
       content: insuImg.MAIN4,
       onClick: () => navigation.navigate('CALAMITY'),
     },

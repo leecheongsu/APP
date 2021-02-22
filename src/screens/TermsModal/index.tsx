@@ -19,21 +19,10 @@ const Header = styled.View`
 const BackButtonBox = styled.View``;
 
 export default function TermsModal({ open, close, html, onPress, isButton = true, buttonTitle = '동의' }) {
-  //안드로이드 백버튼 핸들러
-  useEffect(() => {
-    const backAction = () => {
-      close();
-      return true;
-    };
-
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
-
-    return () => backHandler.remove();
-  }, []);
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
-      <Modal isVisible={open} style={{ padding: 0, margin: 0 }}>
+      <Modal isVisible={open} style={{ padding: 0, margin: 0 }} onBackButtonPress={() => close()}>
         <ContentsBox>
           <Header>
             <BackButtonBox>

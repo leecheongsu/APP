@@ -122,6 +122,7 @@ export default function Menu(props) {
   const isLogin = globalState.user !== undefined;
   const [isEnabled, setIsEnabled] = useState(globalState.isAutoLogin);
   const phoneNumber = '070-4126-333';
+  const KAKAO_CHAT_URL = 'http://pf.kakao.com/_EdQmxb/chat';
   const logoutButton = () => {
     clearStoreData();
     globalDispatch({ type: 'LOGOUT' });
@@ -300,7 +301,7 @@ export default function Menu(props) {
                   배상책임
                 </Typhograph>
                 <Typhograph type="NOTO" color="BLACK2" weight="REGULAR" size={14} lineheight={4}>
-                  승강기 사고 재난
+                  재난
                 </Typhograph>
                 <IconBox>
                   <Image source={insuIcon.CONT02} />
@@ -315,7 +316,7 @@ export default function Menu(props) {
                 070-4126-3333
               </Typhograph>
             </BottomButtonLeft>
-            <BottomButtonRight>
+            <BottomButtonRight onPress={() => Linking.openURL(KAKAO_CHAT_URL)}>
               <Image source={insuIcon.KAKAO} />
               <Typhograph type="NOTO" color="WHITE" style={{ marginLeft: 10 }}>
                 카카오톡 문의

@@ -279,7 +279,7 @@ function StromFlood2() {
           DefaultAlert({
             title: '인슈로보 페이지이동',
             msg: '본 상품은 현대해상 [다중이용시설배상책임보험]으로 현대해상다이렉트로 이동합니다.',
-            okPress: () => Linking.openURL('https://insrb.com/DajungCompensate.aspx'),
+            okPress: () => Linking.openURL('https://mplatform.hi.co.kr/service.do?m=pipin1000&jehuCd=hyundaipay'),
           })
         }
         bottomLeftPress={() => null}

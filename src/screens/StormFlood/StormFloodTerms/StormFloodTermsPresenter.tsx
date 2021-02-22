@@ -1,7 +1,7 @@
 import React from 'react';
 import { BottomFixButton, CheckLabelButton, DefaultInput, TermsList, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
-import { priceDot, screenWidth } from '@app/lib';
+import { priceDot, recomendMasking, screenWidth } from '@app/lib';
 import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import { TermsModal, TermsPdf } from '@app/screens';
 import theme from '@app/style/theme';
@@ -429,7 +429,7 @@ function StormFloodTermsPresenter({
                   </RowItem>
                   <RowItem>
                     <Typhograph type="NOTO" color="GRAY">
-                      {globalState.recommendUser.mobile}
+                      {recomendMasking(globalState?.recommendUser?.mobile)}
                     </Typhograph>
                   </RowItem>
                   <RowItem>

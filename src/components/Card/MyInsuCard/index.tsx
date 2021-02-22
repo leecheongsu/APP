@@ -1,16 +1,18 @@
 import React, { useState } from 'react';
-import { CustomButton, Typhograph } from '@app/components';
+import { Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import theme from '@app/style/theme';
 import { Image } from 'react-native';
 import { insuImg } from '@app/assets';
 import { priceDot } from '@app/lib';
-import { InsuCertificate } from '@app/screens';
+import { MyInsuCertificate } from '@app/screens';
+import { useGlobalDispatch } from '@app/context';
 
 const Container = styled.View`
   padding: 20px;
   background-color: ${theme.color.WHITE};
   border-radius: 7px;
+  margin-top: 10px;
 `;
 const ImgBox = styled.View``;
 const TitleBox = styled.View`
@@ -38,7 +40,12 @@ const Button = styled.TouchableOpacity`
 `;
 export default function MyInsuCard({ item, downloadfileButton, loading }) {
   const [insuCertificateModal, setInsuCertificateModal] = useState(false);
-
+  const globalDispatch = useGlobalDispatch();
+  const openCertificate = () => {
+    const insuType = item?.inscompany === '메리츠화재' ? 'home' : 'ww';
+    globalDispatch({ type: 'CHANGE', name: 'insuType', value: insuType });
+    setInsuCertificateModal(true);
+  };
   return (
     <>
       <Container>
@@ -74,7 +81,7 @@ export default function MyInsuCard({ item, downloadfileButton, loading }) {
           </RowItem>
         </RowBox>
         <ButtonBox>
-          <Button onPress={() => setInsuCertificateModal(true)}>
+          <Button onPress={() => openCertificate()}>
             <Typhograph type="NOTO" size={10} color="BLUE">
               보험가입증명원
             </Typhograph>
@@ -91,7 +98,7 @@ export default function MyInsuCard({ item, downloadfileButton, loading }) {
           </Button>
         </ButtonBox>
       </Container>
-      <InsuCertificate
+      <MyInsuCertificate
         open={insuCertificateModal}
         close={() => {
           setInsuCertificateModal(false);
@@ -99,6 +106,7 @@ export default function MyInsuCard({ item, downloadfileButton, loading }) {
         isButton
         insuPrice={0}
         state={null}
+        item={item}
       />
     </>
   );

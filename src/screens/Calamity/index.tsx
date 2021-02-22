@@ -7,7 +7,7 @@ import { screenWidth } from '@app/lib';
 import { insuIcon } from '@app/assets';
 import theme from '@app/style/theme';
 import { TermsModal } from '@app/screens';
-import { wwTerms2s1 } from '@app/lib/html';
+import { wwTerms2s2 } from '@app/lib/html';
 import { useNavigation } from '@react-navigation/native';
 const Container = styled.ScrollView``;
 
@@ -284,7 +284,7 @@ function Calamity() {
         <TermsModal
           open={isOpen}
           close={() => setIsOpen(false)}
-          html={wwTerms2s1()}
+          html={wwTerms2s2()}
           onPress={() => setIsOpen(false)}
           buttonTitle="확인"
           isButton
@@ -298,8 +298,8 @@ function Calamity() {
         bottomRightPress={() =>
           DefaultAlert({
             title: '인슈로보 페이지이동',
-            msg: '본 상품은 현대해상 [다중이용시설배상책임보험]으로 현대해상다이렉트로 이동합니다.',
-            okPress: () => Linking.openURL('https://insrb.com/DajungCompensate.aspx'),
+            msg: '본 상품은 현대해상 [재난배상책임보험]으로 현대해상다이렉트로 이동합니다.',
+            okPress: () => Linking.openURL('https://mplatform.hi.co.kr/service.do?m=pipim1000&jehuCd=hyundaipay'),
           })
         }
         bottomLeftPress={() => null}

@@ -51,7 +51,7 @@ const Input = styled.TextInput<{ isFocus: boolean } & TextInputProps>`
   padding: 0px 10px 0px 10px;
 `;
 
-const ResultEmailContainer = styled.View`
+const ResultEmailContainer = styled.ScrollView`
   padding: 20px;
 `;
 const ResultEmailBox = styled.View`
@@ -59,10 +59,11 @@ const ResultEmailBox = styled.View`
   padding: 30px 0px;
   justify-content: center;
   align-items: center;
+  margin-top: 10px;
 `;
 
 const InfoBox = styled.View`
-  padding: 150px 0px;
+  padding: 50px 0px;
   align-items: center;
 `;
 const CheckIcon = styled.Image`
@@ -72,17 +73,26 @@ const CheckIcon = styled.Image`
 const InfoTextBox = styled.View`
   margin-top: 10px;
 `;
+const PaddingBox = styled.View`
+  height: 100px;
+`;
 
 function ConfirmConatiner({ state }) {
   return (
     <ContentsContainer>
       <FullLabel title={`인슈로보에 등록하신${'\n'} 본인의 이메일은 아래와 같습니다.`} />
       <ResultEmailContainer>
-        <ResultEmailBox>
-          <Typhograph type="NOTO" color="BLACK3" weight="REGULAR">
-            {state?.userEmail}
-          </Typhograph>
-        </ResultEmailBox>
+        {state?.userEmail !== '' &&
+          state?.userEmail?.map((item, index) => {
+            return (
+              <ResultEmailBox key={index}>
+                <Typhograph type="NOTO" color="BLACK3" weight="REGULAR">
+                  {item?.email}
+                </Typhograph>
+              </ResultEmailBox>
+            );
+          })}
+
         <InfoBox>
           <CheckIcon source={insuIcon.BTN_ON} />
           <InfoTextBox>
@@ -91,6 +101,7 @@ function ConfirmConatiner({ state }) {
             </Typhograph>
           </InfoTextBox>
         </InfoBox>
+        <PaddingBox />
       </ResultEmailContainer>
     </ContentsContainer>
   );

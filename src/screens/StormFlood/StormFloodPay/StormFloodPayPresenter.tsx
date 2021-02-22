@@ -115,7 +115,10 @@ function StormFloodPayPresenter({
   return (
     <>
       <Container>
-        <KeyboardAwareScrollView enableOnAndroid={true} extraScrollHeight={Platform.OS === 'ios' ? -200 : -10}>
+        <KeyboardAwareScrollView
+          enableResetScrollToCoords={false}
+          enableOnAndroid={true}
+          extraScrollHeight={Platform.OS === 'ios' ? -200 : -10}>
           <ContentsContainer>
             <ResultBox>
               <TitleBox>

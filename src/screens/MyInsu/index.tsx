@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { FullLabel, Loading, MyInsuCard, Typhograph } from '@app/components';
+import { FocusAwareStatusBar, FullLabel, Loading, MyInsuCard, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import { Alert, BackHandler, Image, PermissionsAndroid, Platform } from 'react-native';
 import { insuIcon } from '@app/assets';
@@ -21,7 +21,7 @@ const RowBox = styled.View`
 const RowItem = styled.View``;
 
 const CardBox = styled.View`
-  padding: 20px 15px;
+  padding: 0px 15px 100px;
   background-color: ${theme.color.GRAY2};
 `;
 
@@ -180,6 +180,7 @@ export default function MyInsu() {
   }, []);
   return (
     <>
+      <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
       {loading ? (
         <Loading height={500} />
       ) : (

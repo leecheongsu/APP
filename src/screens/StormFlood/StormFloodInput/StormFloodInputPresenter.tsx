@@ -1,7 +1,7 @@
 import React from 'react';
 import { BottomFixButton, CheckLabelButton, DefaultInput, IconButton, TermsList, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
-import { screenWidth } from '@app/lib';
+import { recomendMasking, screenWidth } from '@app/lib';
 import { InputStateTypes, StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import { TermsModal } from '@app/screens';
 import theme from '@app/style/theme';
@@ -93,7 +93,10 @@ function StormFloodInputPresenter({
   return (
     <>
       <Container>
-        <KeyboardAwareScrollView enableOnAndroid={true} extraScrollHeight={Platform.OS === 'ios' ? 30 : -10}>
+        <KeyboardAwareScrollView
+          enableResetScrollToCoords={false}
+          enableOnAndroid={true}
+          extraScrollHeight={Platform.OS === 'ios' ? 30 : -10}>
           <ContentsContainer>
             <TitleBox>
               <Typhograph type="NOTO" weight="BOLD" color="BLUE" size={15}>
@@ -199,7 +202,7 @@ function StormFloodInputPresenter({
                   </RowItem>
                   <RowItem>
                     <Typhograph type="NOTO" color="GRAY">
-                      {globalState?.recommendUser?.mobile}
+                      {recomendMasking(globalState?.recommendUser?.mobile)}
                     </Typhograph>
                   </RowItem>
                   <RowItem>

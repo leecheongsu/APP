@@ -1,4 +1,5 @@
 import { BottomFixButton, FocusAwareStatusBar, OverayLoading, SearchInput2, Select, Typhograph } from '@app/components';
+import { recomendMasking } from '@app/lib';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import React from 'react';
@@ -125,7 +126,7 @@ function RecommendUsersPresenter({
                   </RowItem>
                   <RowItem>
                     <Typhograph type="NOTO" color="GRAY">
-                      {item?.mobile}
+                      {recomendMasking(item?.mobile)}
                     </Typhograph>
                   </RowItem>
                   <RowItem>

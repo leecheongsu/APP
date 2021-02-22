@@ -81,7 +81,10 @@ function GuaranteeSelectPresenter({
     <>
       <Container>
         <OverayLoading visible={state.loading} />
-        <KeyboardAwareScrollView enableOnAndroid={true} extraScrollHeight={Platform.OS === 'ios' ? 30 : -10}>
+        <KeyboardAwareScrollView
+          enableResetScrollToCoords={false}
+          extraScrollHeight={Platform.OS === 'ios' ? 30 : -10}
+          enableResetScrollToCoords={false}>
           <FullLabel title="기본정보를 확인해주세요." />
           <ContentsContainer>
             {/* 가입유형 */}

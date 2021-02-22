@@ -88,6 +88,7 @@ function HouseEvaluationPresenter({
   evaluationState,
   onValueChange,
   resultGajePrice,
+  gajeListClick,
 }) {
   const price = state?.selectAddress?.const_price !== undefined && priceDot(state?.selectAddress?.const_price);
   const subText =
@@ -147,7 +148,7 @@ function HouseEvaluationPresenter({
               <CheckButtonCard
                 disabled
                 state={state?.selectAddress}
-                propsToggle={true}
+                propsToggle
                 onPress={() => null}
                 name="BFRE"
                 title="화재/폭발/파열"
@@ -238,6 +239,7 @@ function HouseEvaluationPresenter({
                 />
               )}
             </CheckButtonBox>
+
             <InfoIconTextBox>
               <Typhograph type="NOTO" color="BLACK3">
                 선택담보(특별약관)
@@ -253,7 +255,7 @@ function HouseEvaluationPresenter({
               <CheckButtonCard
                 name="KDRG"
                 state={state?.selectAddress}
-                onPress={clickCheckBox}
+                onPress={gajeListClick}
                 title="급배수누출손해"
                 value={eachPrice('KDRG')?.ins_name}
                 value2={priceDot(eachPrice('KDRG')?.premium)}
@@ -263,7 +265,7 @@ function HouseEvaluationPresenter({
               <CheckButtonCard
                 title="가재도난위험"
                 state={state?.selectAddress}
-                onPress={clickCheckBox}
+                onPress={gajeListClick}
                 name="KSTL"
                 items={
                   state?.selectAddress.already_group_ins === 'Y'
@@ -287,7 +289,7 @@ function HouseEvaluationPresenter({
                 isSelect
                 title="대물배상책임"
                 state={state?.selectAddress}
-                onPress={clickCheckBox}
+                onPress={gajeListClick}
                 name="KLCK"
                 items={
                   state?.selectAddress.already_group_ins === 'Y'

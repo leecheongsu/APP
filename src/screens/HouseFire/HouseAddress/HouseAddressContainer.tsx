@@ -4,7 +4,7 @@ import {
   HouseFireStateTypes,
 } from '@app/screens/HouseFire/HouseFireContainer';
 import React, { useEffect } from 'react';
-import { Keyboard } from 'react-native';
+import { BackHandler, Keyboard } from 'react-native';
 import HouseAddressPresenter from './HouseAddressPresenter';
 import { insuApis } from '@app/api/Insurance';
 import { useAsync } from '@app/hooks';
@@ -12,6 +12,8 @@ import { handleApiError, sortArray } from '@app/lib';
 import Toast from 'react-native-simple-toast';
 import { useGlobalDispatch } from '@app/context';
 import { EmptyLayout } from '@app/layout';
+import { DefaultAlert } from '@app/components';
+import { useNavigation } from '@react-navigation/native';
 
 type HouseAddressContainerTypes = {
   state: HouseFireStateTypes;
@@ -26,6 +28,7 @@ export default function HouseAddressContainer({
   onChangeState,
   handleJoinTypeNextButton,
 }: HouseAddressContainerTypes) {
+  const navigation = useNavigation();
   const [getAddress, getAddressDispatch] = useAsync(
     () => insuApis.getAddress({ search: inputState.searchInput.value }),
     [],
@@ -198,6 +201,7 @@ export default function HouseAddressContainer({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getAddress]);
+
   if (state.stepNumber === 2) {
     return (
       <HouseAddressPresenter

@@ -1,7 +1,7 @@
 import React from 'react';
 import { BottomFixButton, CheckLabelButton, DefaultInput, IconButton, Select, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
-import { screenWidth } from '@app/lib';
+import { recomendMasking, screenWidth } from '@app/lib';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { Image, Platform, StyleSheet } from 'react-native';
 import theme from '@app/style/theme';
@@ -307,7 +307,7 @@ function HouseInputUserPresenter({
                   </RowItem>
                   <RowItem>
                     <Typhograph type="NOTO" color="GRAY">
-                      {globalState?.recommendUser?.mobile}
+                      {recomendMasking(globalState.recommendUser?.mobile)}
                     </Typhograph>
                   </RowItem>
                   <RowItem>

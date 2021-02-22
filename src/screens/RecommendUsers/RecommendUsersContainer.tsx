@@ -7,6 +7,8 @@ import { useInput } from '@app/hooks';
 import { useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
 import { useGlobalDispatch } from '@app/context';
+import { DefaultAlert } from '@app/components';
+import { BackHandler } from 'react-native';
 
 function reducer(state, action) {
   switch (action.type) {
@@ -120,6 +122,18 @@ export default function RecommendUsersContainer() {
   //추천인목록 가져오는 api실행
   useEffect(() => {
     getRecommendUser();
+  }, []);
+
+  //안드로이드 백버튼 핸들러
+  useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
+
+    return () => backHandler.remove();
   }, []);
 
   return (

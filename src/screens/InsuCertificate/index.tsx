@@ -3,7 +3,7 @@ import { BackButton, BottomFixButton, CloseButton, FocusAwareStatusBar, Typhogra
 import styled from '@app/style/typed-components';
 import WebView from 'react-native-webview';
 import Modal from 'react-native-modal';
-import { getInsuText, priceDot, screenWidth } from '@app/lib';
+import { getInsuText, priceDot, recomendMasking, screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
 import { Platform } from 'react-native';
 import { useGlobalState } from '@app/context';
@@ -102,6 +102,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
   const now = new Date();
   const startDay = moment(now.setDate(now.getDate() + 7)).format('YYYY.MM.DD');
   const endDate = moment(now.setDate(now.getDate() + 364)).format('YYYY.MM.DD');
+  const isSede = state?.selectType === 'S';
   return globalState?.insuType === 'ww' ? (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
@@ -287,7 +288,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                     </RowItem>
                     <RowItem>
                       <Typhograph type="NOTO" color="GRAY">
-                        {globalState.recommendUser?.mobile}
+                        {recomendMasking(globalState.recommendUser?.mobile)}
                       </Typhograph>
                     </RowItem>
                     <RowItem>
@@ -632,7 +633,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
               <RowBox>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY">
-                    생년월일
+                    생년월일/사업자등록번호
                   </Typhograph>
                 </RowItem>
                 <RowItem>
@@ -641,21 +642,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                   </Typhograph>
                 </RowItem>
               </RowBox>
-
-              {/* 보험기간 */}
-              <RowBox>
-                <RowItem>
-                  <Typhograph type="NOTO" color="GRAY">
-                    사업자등록번호
-                  </Typhograph>
-                </RowItem>
-                <RowItem>
-                  <Typhograph type="NOTO" color="BLACK2">
-                    123-123-12313
-                  </Typhograph>
-                </RowItem>
-              </RowBox>
-
+              {console.log(state)}
               {/* 연락처 */}
               <RowBox>
                 <RowItem>
@@ -687,12 +674,6 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
             {/* 추천인 정보 */}
             {globalState.recommendUser !== undefined && (
               <InfoBox>
-                <TitleBox>
-                  <Typhograph type="NOTO" weight="BOLD" color="BLUE" size={15}>
-                    추천인 정보
-                  </Typhograph>
-                </TitleBox>
-
                 <RecommendUserBox>
                   <TitleBox>
                     <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
@@ -707,7 +688,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                     </RowItem>
                     <RowItem>
                       <Typhograph type="NOTO" color="GRAY">
-                        {globalState.recommendUser?.mobile}
+                        {recomendMasking(globalState.recommendUser?.mobile)}
                       </Typhograph>
                     </RowItem>
                     <RowItem>

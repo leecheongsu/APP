@@ -96,6 +96,8 @@ export default function Container({
     onChangeState('selfPriceItems', selfPriceItems);
   };
 
+  console.log(state);
+
   //주소 선택시 도는 로직
   const SelectAddress = (item) => {
     const params = {

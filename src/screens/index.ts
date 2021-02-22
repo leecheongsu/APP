@@ -29,8 +29,10 @@ export { default as Calamity } from './Calamity';
 export { default as CustomerCenter } from './CustomerCenter';
 
 export { default as Join } from './Join';
-export { default as JoinIndividual } from './Join/JoinIndividual';
-export { default as JoinBusiness } from './Join/JoinBusiness';
+export { default as BasicForm } from './Join/BasicForm';
+export { default as BusinessForm } from './Join/BusinessForm';
+export { default as PasswordForm } from './Join/PasswordForm';
+
 export { default as JoinSuccess } from './Join/JoinSuccess';
 export { default as TermsModal } from './TermsModal';
 export { default as TermsPdf } from './TermsPdf';
@@ -45,3 +47,4 @@ export { default as Verification } from './Verification';
 export { default as Pay } from './Pay';
 export { default as MyInsu } from './MyInsu';
 export { default as InsuCertificate } from './InsuCertificate';
+export { default as MyInsuCertificate } from './MyInsuCertificate';

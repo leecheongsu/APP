@@ -56,7 +56,7 @@ function HouseInfoPresenter({ state, handleNextButton, handlePreviousButton, inf
                 scrollEnabled={false}
               />
               <InfoListBox>
-                <InfoList list={infoList} />
+                <InfoList list={infoList} state={state} />
               </InfoListBox>
             </>
           )}

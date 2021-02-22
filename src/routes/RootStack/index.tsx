@@ -55,13 +55,7 @@ function RootStack() {
         name="JOIN"
         component={Join}
         options={{
-          headerLeft: () => (
-            <BackButton
-              onPress={() => {
-                navigation.goBack();
-              }}
-            />
-          ),
+          headerLeft: () => <BackButton isAlert />,
           headerLeftContainerStyle: { paddingHorizontal: 10 },
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
@@ -272,7 +266,7 @@ function RootStack() {
           headerLeft: () => <BackButton onPress={() => navigation.navigate('MAIN_STACK')} />,
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
-              비밀번호 찾기
+              비밀번호 변경
             </Typhograph>
           ),
           title: '',

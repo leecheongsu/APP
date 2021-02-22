@@ -63,6 +63,7 @@ function HomePresenter() {
     },
   ];
   const phoneNumber = '070-4126-333';
+  const KAKAO_CHAT_URL = 'http://pf.kakao.com/_EdQmxb/chat';
   return (
     <>
       <MainLayout headerbackcolor="BLUE">
@@ -107,7 +108,7 @@ function HomePresenter() {
               return null;
             }
             case 'kakao': {
-              Linking.openURL(`tel:${phoneNumber}`);
+              Linking.openURL(KAKAO_CHAT_URL);
               return null;
             }
           }

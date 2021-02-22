@@ -6,6 +6,7 @@ import { ProfileStateName, ProfileStateTypes } from './ProfileContainer';
 import UserInfo from '@app/screens/Profile/UserInfo';
 import { BusinessInfo, PasswordInfo } from '@app/screens';
 import { useNavigation } from '@react-navigation/native';
+import { useGlobalState } from '@app/context';
 
 type ProfilePresenterTypes = {
   state: ProfileStateTypes;
@@ -16,7 +17,6 @@ type ProfilePresenterTypes = {
     email: any;
   };
   onValueChange: (name: any) => void;
-  handlePostJoin: () => void;
 };
 
 const Container = styled.View`
@@ -27,14 +27,12 @@ const Container = styled.View`
 const ButtonBox = styled.View`
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   background-color: ${theme.color.MENU_BACKGROUD_COLOR};
   padding: 15px;
 `;
 
-const ButtonItem = styled.View`
-  margin-right: 10px;
-`;
+const ButtonItem = styled.View``;
 
 const InfoBox = styled.View`
   background-color: ${theme.color.WHITE};
@@ -54,9 +52,10 @@ function ProfilePresenter({
   onChangeState,
   inputState,
   onValueChange,
-  handlePostJoin,
 }: ProfilePresenterTypes) {
   const navigation = useNavigation();
+  const globalState = useGlobalState();
+  console.log(globalState);
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
@@ -76,7 +75,7 @@ function ProfilePresenter({
           </SecessionBox>
         </InfoBox>
         <ButtonBox>
-          <ButtonItem>
+          <ButtonItem style={{ marginRight: 10 }}>
             <CustomButton
               onPress={() => handleClickButton('basic')}
               radius={30}
@@ -87,7 +86,7 @@ function ProfilePresenter({
               </Typhograph>
             </CustomButton>
           </ButtonItem>
-          <ButtonItem>
+          <ButtonItem style={{ marginRight: 10 }}>
             <CustomButton
               onPress={() => handleClickButton('password')}
               radius={30}
@@ -98,17 +97,19 @@ function ProfilePresenter({
               </Typhograph>
             </CustomButton>
           </ButtonItem>
-          <ButtonItem>
-            <CustomButton
-              onPress={() => handleClickButton('business')}
-              radius={30}
-              background={state.selectTab === 'business' ? 'SKYBLUE' : 'WHITE'}
-              width={110}>
-              <Typhograph type="NOTO" color={state.selectTab === 'business' ? 'WHITE' : 'BLUE'} weight="MEDIUM">
-                사업자정보
-              </Typhograph>
-            </CustomButton>
-          </ButtonItem>
+          {globalState?.user?.utype !== 'u' && (
+            <ButtonItem>
+              <CustomButton
+                onPress={() => handleClickButton('business')}
+                radius={30}
+                background={state.selectTab === 'business' ? 'SKYBLUE' : 'WHITE'}
+                width={110}>
+                <Typhograph type="NOTO" color={state.selectTab === 'business' ? 'WHITE' : 'BLUE'} weight="MEDIUM">
+                  사업자정보
+                </Typhograph>
+              </CustomButton>
+            </ButtonItem>
+          )}
         </ButtonBox>
         {state.selectTab === 'basic' && (
           <UserInfo state={state} inputState={inputState} onValueChange={onValueChange} onChangeState={onChangeState} />

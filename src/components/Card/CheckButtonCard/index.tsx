@@ -61,6 +61,7 @@ export default function CheckButtonCard({
       onPress(name, !isToggle, isSelect);
     }
   };
+
   useEffect(() => {
     const filterItem = state?.premiums?.filter((i) => {
       if (isSelect && value.ins_name !== undefined) {

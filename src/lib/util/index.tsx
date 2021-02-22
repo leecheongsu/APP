@@ -273,3 +273,7 @@ export const getInsuText = (value) => {
       return null;
   }
 };
+
+export const recomendMasking = (value) => {
+  return value.slice(0, 3) + '****' + value.slice(7, 11);
+};

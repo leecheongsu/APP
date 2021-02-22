@@ -26,7 +26,12 @@ export default function JoinSuccess() {
         로그인 후 이용해주세요.
       </Typhograph>
       <ButtonBox>
-        <CustomButton background="SKYBLUE" onPress={() => navigation.navigate('LOGIN')}>
+        <CustomButton
+          background="SKYBLUE"
+          onPress={() => {
+            navigation.goBack();
+            navigation.navigate('LOGIN');
+          }}>
           <Typhograph type="NOTO" color="WHITE">
             로그인
           </Typhograph>

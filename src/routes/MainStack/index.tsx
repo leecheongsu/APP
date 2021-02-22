@@ -28,6 +28,8 @@ function MainStack() {
           animationEnabled: true,
           headerStyle: {
             backgroundColor: theme.color.BLUE,
+            borderBottomColor: theme.color.BLUE,
+            borderBottomWidth: 1,
             shadowRadius: 0,
             shadowColor: 'transparent',
             shadowOffset: {
@@ -100,7 +102,7 @@ function MainStack() {
           headerLeftContainerStyle: { paddingHorizontal: 10 },
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
-              풍수해 Ⅵ
+              배상책임(다중이용시설)
             </Typhograph>
           ),
           headerShown: true,
@@ -126,7 +128,7 @@ function MainStack() {
           headerLeftContainerStyle: { paddingHorizontal: 10 },
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
-              배상책임
+              배상책임(재난)
             </Typhograph>
           ),
           headerShown: true,

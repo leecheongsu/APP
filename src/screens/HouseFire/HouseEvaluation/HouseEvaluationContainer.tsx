@@ -1,6 +1,7 @@
 import { EmptyLayout } from '@app/layout';
 import { floorPrice, sortArray2 } from '@app/lib';
 import React, { useEffect, useReducer } from 'react';
+import SimpleToast from 'react-native-simple-toast';
 import HouseEvaluationPresenter from './HouseEvaluationPresenter';
 
 function reducer(state, action) {
@@ -193,6 +194,19 @@ export default function HouseEvaluationContainer({
       evalutionChangeState(listName, sortArray2(newList, 'ins_amt'));
     }
   };
+
+  const gajeListClick = (name, isToggle, isSelect) => {
+    const isChecked =
+      state?.selectAddress?.premiums?.filter((item) => {
+        return item.item_id === 'KFRE' && item.aply_yn === 'Y';
+      })?.length > 0;
+    if (isChecked) {
+      clickCheckBox(name, isToggle, isSelect);
+    } else {
+      SimpleToast.show('가재도구 기본담보(보통약관)을 선택후 선택가능합니다.');
+    }
+  };
+
   useEffect(() => {
     if (state?.selectAddress?.premiums !== undefined && evaluationState.listBCMP?.length === 0) {
       if (state.selectType === 'T') {
@@ -227,6 +241,7 @@ export default function HouseEvaluationContainer({
         evaluationState={evaluationState}
         onValueChange={onValueChange}
         resultGajePrice={resultGajePrice}
+        gajeListClick={gajeListClick}
       />
     );
   } else {

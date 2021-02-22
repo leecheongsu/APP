@@ -1,6 +1,6 @@
 import { BottomFixButton, Typhograph } from '@app/components';
 import { useGlobalState } from '@app/context';
-import { getInsuText, priceDot, screenWidth } from '@app/lib';
+import { getInsuText, priceDot, recomendMasking, screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import React from 'react';
@@ -95,6 +95,7 @@ function HouseConfirmPresenter({
   const filnalInsuEndDateDay =
     String(insuEndDateDay)?.length === 1 ? '0' + String(insuEndDateDay) : String(insuEndDateDay);
   const insuEndDate = insuEndDateYear + '-' + insuEndDateMonth + '-' + filnalInsuEndDateDay;
+  const isSede = state?.selectType === 'S';
   return (
     <Container>
       <ContentsContainer>
@@ -372,7 +373,9 @@ function HouseConfirmPresenter({
             </RowItem>
             <RowItem>
               <Typhograph type="NOTO" color="BLACK2">
-                {state?.selectAddress?.address}
+                {isSede
+                  ? `${state?.selectAddress?.address} ${state?.resultDong?.dongNm}${state?.resultDetail?.hoNm}`
+                  : state?.selectAddress?.address}
               </Typhograph>
             </RowItem>
           </RowBox>
@@ -393,7 +396,7 @@ function HouseConfirmPresenter({
               </RowItem>
               <RowItem>
                 <Typhograph type="NOTO" color="GRAY">
-                  {globalState.recommendUser?.mobile}
+                  {recomendMasking(globalState.recommendUser?.mobile)}
                 </Typhograph>
               </RowItem>
               <RowItem>

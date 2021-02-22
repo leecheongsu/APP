@@ -17,7 +17,7 @@ type ServiceSelectPropsTypes = {
 const styles = StyleSheet.create({
   inputIOS: {
     textAlign: 'left',
-    fontSize: 16,
+    fontSize: 14,
     width: 105,
     height: 50,
     paddingLeft: 10,
@@ -47,7 +47,7 @@ export default function ServiceSelect({
       style={{
         ...styles,
         iconContainer: {
-          top: Platform.OS === 'ios' ? 17 : 15,
+          top: 17,
           right: Platform.OS === 'ios' ? 17 : 0,
         },
       }}

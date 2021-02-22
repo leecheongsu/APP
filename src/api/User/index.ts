@@ -10,6 +10,14 @@ export const userApis = {
     });
     return res;
   },
+  async postBusinessJoin(params) {
+    const res = await userApiConfig({
+      method: 'POST',
+      url: 'users/business',
+      params,
+    });
+    return res;
+  },
   async postLogin(params) {
     const res = await userApiConfig({
       method: 'POST',
@@ -47,6 +55,18 @@ export const userApis = {
     const res = await userApiConfig({
       method: 'PUT',
       url: `users/${email}/basic`,
+      params,
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    return res;
+  },
+  async putChangeBusinessInfo(email, params) {
+    const user: any = await getStoreData('user');
+    const res = await userApiConfig({
+      method: 'PUT',
+      url: `users/${email}/business`,
       params,
       headers: {
         Authorization: `Bearer ${user.token}`,

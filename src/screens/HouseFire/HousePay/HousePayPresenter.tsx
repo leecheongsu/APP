@@ -174,7 +174,10 @@ function HousePayPresenter({
     <Container>
       {state?.payway === 'card' ? (
         <>
-          <KeyboardAwareScrollView enableOnAndroid={true} extraScrollHeight={Platform.OS === 'ios' ? 30 : -10}>
+          <KeyboardAwareScrollView
+            enableOnAndroid={true}
+            extraScrollHeight={Platform.OS === 'ios' ? 30 : -10}
+            enableResetScrollToCoords={false}>
             <TitleBox>
               <RowBox style={{ padding: 15 }}>
                 <RowItem>

@@ -7,6 +7,7 @@ import Toast from 'react-native-simple-toast';
 import { userApis } from '@app/api/User';
 import { clearStoreData, handleApiError } from '@app/lib';
 import { useNavigation } from '@react-navigation/native';
+import SimpleToast from 'react-native-simple-toast';
 
 const Container = styled.View``;
 
@@ -48,6 +49,7 @@ function Secession() {
         .putSecession(email)
         .then((res) => {
           if (res.status === 200) {
+            SimpleToast.show('탈퇴처리가 완료되었습니다.');
             globalDispatch({ type: 'REMOVE', name: 'user' });
             clearStoreData();
             navigation.navigate('MAIN_STACK');

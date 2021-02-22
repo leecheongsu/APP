@@ -23,20 +23,11 @@ export default function TermsPdf({ open, close, onPress, isButton = true }) {
     url: 'https://insrb.com/download/MRHI1810_terms.pdf',
   };
   const resourceType = 'url';
-  useEffect(() => {
-    const backAction = () => {
-      close();
-      return true;
-    };
 
-    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
-
-    return () => backHandler.remove();
-  }, []);
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
-      <Modal isVisible={open} style={{ padding: 0, margin: 0 }}>
+      <Modal isVisible={open} style={{ padding: 0, margin: 0 }} onBackButtonPress={() => close()}>
         <ContentsBox>
           <Header>
             <BackButtonBox>
