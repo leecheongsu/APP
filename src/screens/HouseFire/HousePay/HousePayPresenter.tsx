@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BottomFixButton, DefaultInput, Loading, OverayLoading, Select, Typhograph } from '@app/components';
 import { screenWidth } from '@app/lib';
 import { HouseFireStateName, HouseFireStateTypes, TermsNames } from '@app/screens/HouseFire/HouseFireContainer';
@@ -101,7 +101,37 @@ function HousePayPresenter({
   const email = globalState?.user?.email;
   const mobile = globalState?.user?.mobile;
   const product = state?.selectAddress?.product;
-  console.log(vbankInfo);
+  const card2Ref: any = useRef(null);
+  const card3Ref: any = useRef(null);
+  const card4Ref: any = useRef(null);
+  const yyRef: any = useRef(null);
+
+  //카드인풋 자동 다음칸이동
+  useEffect(() => {
+    const inputCardLength =
+      inputState.card1.value + inputState.card2.value + inputState.card3.value + inputState.card4.value;
+    if (inputState.card1.value.length === 4 && inputCardLength.length === 4) {
+      card2Ref.current.focus();
+    } else if (inputState.card2.value.length === 4 && inputCardLength.length === 8) {
+      card3Ref.current.focus();
+    } else if (inputState.card3.value.length === 4 && inputCardLength.length === 12) {
+      card4Ref.current.focus();
+    } else {
+      return;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputState.card1.value, inputState.card2.value, inputState.card3.value]);
+
+  //카드 유효기간 다음칸 자동이동
+  useEffect(() => {
+    const inputTermLength = inputState.cardMonth.value + inputState.cardYear.value;
+    if (inputState.cardMonth.value.length === 2 && inputTermLength.length === 2) {
+      yyRef.current.focus();
+    } else {
+      return;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputState.cardMonth.value]);
   const html = `
   <html> 
   <head> 
@@ -229,13 +259,13 @@ function HousePayPresenter({
                     <DefaultInput {...inputState.card1} keyboardType="numeric" maxLength={4} />
                   </InputItem>
                   <InputItem>
-                    <DefaultInput {...inputState.card2} keyboardType="numeric" maxLength={4} />
+                    <DefaultInput {...inputState.card2} propsRef={card2Ref} keyboardType="numeric" maxLength={4} />
                   </InputItem>
                   <InputItem>
-                    <DefaultInput {...inputState.card3} keyboardType="numeric" maxLength={4} />
+                    <DefaultInput {...inputState.card3} propsRef={card3Ref} keyboardType="numeric" maxLength={4} />
                   </InputItem>
                   <InputItem>
-                    <DefaultInput {...inputState.card4} keyboardType="numeric" maxLength={4} />
+                    <DefaultInput {...inputState.card4} propsRef={card4Ref} keyboardType="numeric" maxLength={4} />
                   </InputItem>
                 </InputContainer>
               </InputBox>
@@ -248,10 +278,16 @@ function HousePayPresenter({
                 </LabelBox>
                 <InputContainer style={{ justifyContent: 'flex-start' }}>
                   <InputItem style={{ marginRight: 5 }}>
-                    <DefaultInput {...inputState.cardYear} placeholder="YY" keyboardType="numeric" maxLength={2} />
+                    <DefaultInput {...inputState.cardMonth} placeholder="MM" keyboardType="numeric" maxLength={2} />
                   </InputItem>
                   <InputItem>
-                    <DefaultInput {...inputState.cardMonth} placeholder="MM" keyboardType="numeric" maxLength={2} />
+                    <DefaultInput
+                      {...inputState.cardYear}
+                      propsRef={yyRef}
+                      placeholder="YY"
+                      keyboardType="numeric"
+                      maxLength={2}
+                    />
                   </InputItem>
                 </InputContainer>
               </InputBox>

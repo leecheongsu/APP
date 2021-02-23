@@ -1,9 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BottomFixButton, CustomButton, DefaultInput, ServiceSelect, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import { screenWidth } from '@app/lib';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Keyboard, Platform, TextInputProps } from 'react-native';
+import { Platform } from 'react-native';
 import theme from '@app/style/theme';
 import Toast from 'react-native-simple-toast';
 
@@ -47,15 +47,6 @@ const RowBox = styled.View`
   align-items: center;
 `;
 
-const Input = styled.TextInput<{ isFocus: boolean } & TextInputProps>`
-  height: 50px;
-  min-width: 0px;
-  border-color: ${(props: any) => (props.isFocus ? theme.color.GRAY : theme.color.INPUT_GRAY)};
-  border-width: ${(props: any) => (props.isFocus ? '1px' : '1px')};
-  border-radius: 10px;
-  padding: 0px 10px 0px 10px;
-`;
-
 const NumberBox = styled.View`
   width: 58%;
 `;
@@ -65,7 +56,6 @@ export default function BasicForm({ state, handleNextButton, onChangeState, inpu
   const phoneCheck = /^\d{3}\d{3,4}\d{4}$/;
   const juminFront = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;
   const sexRef: any = useRef(null);
-  const [isFocus, setIsFocus] = useState(false);
   //정보입력 체크
   const checkInput = () => {
     if (inputState.email.value === '') {
@@ -218,24 +208,7 @@ export default function BasicForm({ state, handleNextButton, onChangeState, inpu
                   -
                 </Typhograph>
                 <InputBox style={{ width: 30, marginRight: 2 }}>
-                  <Input
-                    {...inputState?.sexNumber}
-                    blurOnSubmit={false}
-                    onFocus={() => setIsFocus(true)}
-                    onBlur={() => {
-                      setIsFocus(false);
-                    }}
-                    ref={sexRef}
-                    style={{ alignSelf: 'stretch', fontSize: 13 }}
-                    maxLength={1}
-                    onSubmitEditing={() => Keyboard.dismiss()}
-                    keyboardType="numeric"
-                    isFocus={isFocus}
-                    autoCompleteType="off"
-                    numberOfLines={1}
-                    autoCapitalize="none"
-                    underlineColorAndroid="transparent"
-                  />
+                  <DefaultInput {...inputState?.sexNumber} propsRef={sexRef} maxLength={1} keyboardType="numeric" />
                 </InputBox>
                 <Typhograph type="NOTO" color="GRAY3">
                   ●●●●●●

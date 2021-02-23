@@ -20,7 +20,7 @@ import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
 import HouseInputUser from '@app/screens/HouseFire/HouseInputUser';
-import { useGlobalState } from '@app/context';
+import { useGlobalDispatch, useGlobalState } from '@app/context';
 import moment from 'moment';
 import {
   termsTermsa1,
@@ -454,6 +454,7 @@ const initialState: HouseFireStateTypes = {
 export default function HouseFireContainer() {
   const navigation: any = useNavigation();
   const globalState = useGlobalState();
+  const globalDispatch = useGlobalDispatch();
   const [state, dispatch] = useReducer(reducer, initialState);
   const scrollRef: any = useRef(null);
   const GEO_CORDING_URL = `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${state.selectAddress.address}`;
@@ -831,16 +832,59 @@ export default function HouseFireContainer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  //네비게이션 헤더 셋팅
+  const setPageHeader = () => {
+    switch (state?.stepNumber) {
+      case 1:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '가입구분' });
+        return;
+      case 2:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '주소찾기' });
+        return;
+      case 3:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '기본정보' });
+        return;
+      case 4:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '평가정보' });
+        return;
+      case 5:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '보험료 확인' });
+        return;
+      case 6:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '고객정보 입력' });
+        return;
+      case 7:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '서비스 이용약관 동의' });
+        return;
+      case 8:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '청약확인' });
+        return;
+      case 9:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '청약 확인약관 동의' });
+        return;
+      case 10:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '결제방법' });
+        return;
+      case 11:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '결제' });
+        return;
+      case 12:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '계약완료' });
+        return;
+    }
+  };
+
   //안드로이드 백버튼 핸들러
   useEffect(() => {
+    setPageHeader();
     const backAction = () => {
       DefaultAlert({ title: '알림', msg: '메인페이지로 돌아 가시겠습니까?', okPress: () => navigation.goBack() });
       return true;
     };
 
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
-
     return () => backHandler.remove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.stepNumber]);
 
   return (

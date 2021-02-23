@@ -8,7 +8,7 @@ import { userApis } from '@app/api/User';
 import { handleApiError } from '@app/lib';
 import RNFetchBlob from 'rn-fetch-blob';
 import { useNavigation } from '@react-navigation/native';
-
+import { PROD_URL } from '@env';
 const Container = styled.ScrollView``;
 const CountBox = styled.View`
   padding: 30px 15px;
@@ -28,7 +28,7 @@ const CardBox = styled.View`
 const EmptyBox = styled.View`
   align-items: center;
   justify-content: center;
-  height: 200;
+  height: 200px;
 `;
 
 export default function MyInsu() {
@@ -55,18 +55,19 @@ export default function MyInsu() {
     setLoading(true);
     const { dirs } = RNFetchBlob.fs;
     RNFetchBlob.config({
-      fileCache: true,
+      fileCache: false,
       appendExt: 'pdf',
+      path: `${dirs.DownloadDir}/보험증권.pdf`,
       addAndroidDownloads: {
         useDownloadManager: true,
         notification: true,
         mediaScannable: true,
-        title: '보험 가입 증명원.pdf',
+        title: '보험증권.pdf',
         mime: 'application/pdf',
-        path: `${dirs.DownloadDir}/보험 가입 증명원.pdf`,
+        path: `${dirs.DownloadDir}/보험증권.pdf`,
       },
     })
-      .fetch('GET', 'https://insrb.com/download/MRHI1810_terms.pdf', {})
+      .fetch('GET', `${PROD_URL}/files/ins_condition.pdf`, {})
       .then((res) => {
         setLoading(false);
         if (Platform.OS === 'ios') {
@@ -84,18 +85,19 @@ export default function MyInsu() {
     setLoading(true);
     const { dirs } = RNFetchBlob.fs;
     RNFetchBlob.config({
-      fileCache: true,
+      fileCache: false,
       appendExt: 'pdf',
+      path: `${dirs.DownloadDir}/보험약관.pdf`,
       addAndroidDownloads: {
         useDownloadManager: true,
         notification: true,
         mediaScannable: true,
-        title: '보험증권.pdf',
+        title: '보험약권.pdf',
         mime: 'application/pdf',
-        path: `${dirs.DownloadDir}/보험증권.pdf`,
+        path: `${dirs.DownloadDir}/보험약관.pdf`,
       },
     })
-      .fetch('GET', 'https://insrb.com/download/MRHI1810_terms.pdf', {})
+      .fetch('GET', `${PROD_URL}/files/ins_terms.pdf`, {})
       .then((res) => {
         setLoading(false);
         if (Platform.OS === 'ios') {
@@ -161,8 +163,6 @@ export default function MyInsu() {
       }
     }
   };
-
-  console.log(data);
 
   //안드로이드 백버튼 핸들러
   useEffect(() => {

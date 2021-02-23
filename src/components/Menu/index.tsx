@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { insuIcon } from '@app/assets';
 import IconButton from '@app/components/Button/IconButton';
-import { clearStoreData, getStoreData, screenHeight, setStoreData } from '@app/lib';
+import { clearStoreData, handleApiError, screenHeight, setStoreData } from '@app/lib';
 import styled from '@app/style/typed-components';
 import { Image, Linking, Platform } from 'react-native';
 import { Avatar, LoginButton, TileButton, Typhograph } from '@app/components';
 import theme from '@app/style/theme';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
-import { Switch, TouchableOpacity } from 'react-native-gesture-handler';
+import { Switch } from 'react-native-gesture-handler';
+import { userApis } from '@app/api/User';
+import { KAKAO_CHAT_URL, CUMTOMER_NUMBER } from '@env';
 const Container = styled.View`
   padding-top: ${Platform.OS === 'ios' ? screenHeight() / 20 : 10}px;
   background-color: ${theme.color.MENU_BACKGROUD_COLOR};
@@ -121,11 +123,10 @@ export default function Menu(props) {
   const globalDispatch = useGlobalDispatch();
   const isLogin = globalState.user !== undefined;
   const [isEnabled, setIsEnabled] = useState(globalState.isAutoLogin);
-  const phoneNumber = '070-4126-333';
-  const KAKAO_CHAT_URL = 'http://pf.kakao.com/_EdQmxb/chat';
+  const [data, setData] = useState([]);
   const logoutButton = () => {
     clearStoreData();
-    globalDispatch({ type: 'LOGOUT' });
+    globalDispatch({ type: 'RESET' });
     navigation.navigate('MAIN_STACK');
   };
 
@@ -146,10 +147,30 @@ export default function Menu(props) {
       globalDispatch({ type: 'CHANGE', name: 'isAutoLogin', value: true });
     }
   };
+  const getMyInsu = () => {
+    userApis
+      .getMyInsu()
+      .then((res) => {
+        if (res.status === 200) {
+          setData(res.data);
+        }
+      })
+      .catch((e) => {
+        handleApiError(e.response);
+      });
+  };
 
   useEffect(() => {
     setIsEnabled(globalState.isAutoLogin);
   }, [globalState.isAutoLogin]);
+
+  useEffect(() => {
+    if (isLogin) {
+      getMyInsu();
+    } else {
+      setData([]);
+    }
+  }, [props]);
 
   return (
     <>
@@ -230,6 +251,8 @@ export default function Menu(props) {
                 background="WHITE"
                 color="BLUE"
                 source={insuIcon.ICON_MY}
+                isBadge={isLogin}
+                badgeCount={data?.length}
               />
             </ButtonItem>
           </ButtonContainer>
@@ -310,10 +333,10 @@ export default function Menu(props) {
             </CardBox>
           </CardContainer>
           <BottomButtonBox>
-            <BottomButtonLeft onPress={() => Linking.openURL(`tel:${phoneNumber}`)}>
+            <BottomButtonLeft onPress={() => Linking.openURL(`tel:${CUMTOMER_NUMBER}`)}>
               <Image source={insuIcon.PHONE} />
               <Typhograph type="NOTO" color="WHITE" style={{ marginLeft: 10 }}>
-                070-4126-3333
+                {CUMTOMER_NUMBER}
               </Typhograph>
             </BottomButtonLeft>
             <BottomButtonRight onPress={() => Linking.openURL(KAKAO_CHAT_URL)}>

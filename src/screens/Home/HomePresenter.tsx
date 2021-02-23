@@ -8,6 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { FloatingAction } from 'react-native-floating-action';
 import { Image, Linking, StyleSheet } from 'react-native';
 import theme from '@app/style/theme';
+import { KAKAO_CHAT_URL, CUMTOMER_NUMBER } from '@env';
 const styles = StyleSheet.create({
   // actionButtonIcon: {
   //   fontSize: 20,
@@ -22,7 +23,10 @@ const Container = styled.View`
 const MainTitleBox = styled.View``;
 
 const MainTitleBoxTitle = styled.View``;
-const MainTitleBoxImg = styled.Image``;
+const MainTitleBoxImg = styled.Image`
+  width: 60px;
+  height: 60px;
+`;
 
 const CardContainer = styled.View`
   flex-direction: column;
@@ -62,8 +66,6 @@ function HomePresenter() {
       icon: insuIcon.ICON_KAKAO,
     },
   ];
-  const phoneNumber = '070-4126-333';
-  const KAKAO_CHAT_URL = 'http://pf.kakao.com/_EdQmxb/chat';
   return (
     <>
       <MainLayout headerbackcolor="BLUE">
@@ -104,7 +106,7 @@ function HomePresenter() {
               return null;
             }
             case 'mobile': {
-              Linking.openURL(`tel:${phoneNumber}`);
+              Linking.openURL(`tel:${CUMTOMER_NUMBER}`);
               return null;
             }
             case 'kakao': {

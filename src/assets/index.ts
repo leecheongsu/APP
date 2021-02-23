@@ -33,8 +33,8 @@ const MY_LIST = require('./icon/ico-mylist/ico-mylist.png');
 const INSU_ROBO = require('./icon/img-robo/img-robo.png');
 const ICON_41 = require('./icon/ico-041-01/ico-041-01.png');
 const ICON_42 = require('./icon/ico-042-01/ico-042-01.png');
-
 const ARR_LR = require('./icon/arrow-lr/arrow-lr.png');
+const ICON_LOGOUT = require('./icon/btn-logout/btn-logout.png');
 
 const MAIN_S_ROBOT = require('./img/img-mainSrobot/img-mainSrobot.png');
 const MAIN_B_ROBOT = require('./img/img-mainBrobot/img-mainBrobot.png');
@@ -50,6 +50,9 @@ const MAIN1 = require('./img/main1/main1.png');
 const MAIN2 = require('./img/main2/main2.png');
 const MAIN3 = require('./img/main3/main3.png');
 const MAIN4 = require('./img/main4/main4.png');
+const SPLASH_IMAGE = require('./img/splashImage/splashImage.png');
+const INTRO = require('./img/intro/intro.png');
+const INTRO_LOGO = require('./img/intro-logo/intro-logo.png');
 
 export const insuIcon = {
   CLOSE_ICON,
@@ -88,6 +91,7 @@ export const insuIcon = {
   ICON_41,
   ARR_LR,
   ICON_42,
+  ICON_LOGOUT,
 };
 
 export const insuImg = {
@@ -105,4 +109,7 @@ export const insuImg = {
   MAIN2,
   MAIN3,
   MAIN4,
+  SPLASH_IMAGE,
+  INTRO_LOGO,
+  INTRO,
 };

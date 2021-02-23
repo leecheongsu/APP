@@ -87,7 +87,7 @@ export default function HousePayContainer({
       insloc: state?.selectAddress?.address,
       mobile: globalState?.user?.mobile,
       email: globalState?.user?.email,
-      poption: '4',
+      poption: state?.payway === 'card' ? '4' : '5',
       pbohumja_mobile: state?.contractInsuInfo?.mobile,
       jumin: state?.contractInsuInfo?.juminb,
       owner: state?.contractInsuInfo?.owner,
@@ -181,7 +181,6 @@ export default function HousePayContainer({
       insuApis
         .postVbank(newData)
         .then((res) => {
-          console.log(res);
           handleNextButton();
         })
         .catch((error) => {

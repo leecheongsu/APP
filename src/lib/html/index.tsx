@@ -2774,7 +2774,7 @@ export const productInfoHtml3 = () => {
 
                             <!-- header -->
                             <header id="header">
-                                <h1>보험 가입 증명원</h1>
+                                <h1>알아 두실 사항</h1>
                                 <div class="btn-close"><button type="button"><span class="ir">닫기</span></button></div>
                             </header>
                             <!-- //header -->

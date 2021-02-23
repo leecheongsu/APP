@@ -222,15 +222,6 @@ export const handleApiError = async (value) => {
   }${'\n'}headers${'\n'}${'\n'}Accept:${value?.config?.headers?.Accept}${'\n'}X-insr-servicekey:${
     value?.config?.headers?.['X-insr-servicekey']
   }${'\n'}baseURL:${value?.config?.baseURL}${'\n'}params:${JSON.stringify(value?.config?.params)}`;
-  console.log(value);
-  // showMessage({
-  //   message: 'error message',
-  //   type: 'danger',
-  //   description: alertError,
-  // });
-  const user = await AsyncStorage.getItem('user');
-  const isAutoLogin = await AsyncStorage.getItem('isAutoLogin');
-  const password = await AsyncStorage.getItem('password');
   Alert.alert('알림', value?.data?.message);
   switch (errorCode) {
     case 401: {

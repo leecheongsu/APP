@@ -36,6 +36,7 @@ import {
 import { useInput } from '@app/hooks';
 import { DefaultAlert } from '@app/components';
 import { useNavigation } from '@react-navigation/native';
+import { useGlobalDispatch } from '@app/context';
 export type StormFloodName =
   | 'isInfoModal'
   | 'infoTitle'
@@ -69,7 +70,8 @@ export type StormFloodName =
   | 'selectCard'
   | 'selectTerm'
   | 'insuCertificateModal'
-  | 'sectorItems'
+  | 'basicSectorItems'
+  | 'factorySectorItems'
   | 'basicBuildingPriceItems'
   | 'factoryBuildingPriceItems'
   | 'basicFacilityPriceItems'
@@ -114,7 +116,8 @@ export type StormFloodStateTypes = {
   selectInsuCompany: string;
   selectCard: string;
   selectTerm: string;
-  sectorItems: Array<any>;
+  basicSectorItems: Array<any>;
+  factorySectorItems: Array<any>;
   basicBuildingPriceItems: Array<any>;
   factoryBuildingPriceItems: Array<any>;
   basicFacilityPriceItems: Array<any>;
@@ -128,11 +131,11 @@ export type StormFloodStateTypes = {
   isSign: boolean;
   isSignConfirm: boolean;
   terms: {
-    terms1: boolean;
-    terms2: boolean;
-    terms3: boolean;
-    terms4: boolean;
-    terms5: boolean;
+    terms1: any;
+    terms2: any;
+    terms3: any;
+    terms4: any;
+    terms5: any;
     termsb1: any;
     termsb2: any;
     termsb3: any;
@@ -214,7 +217,8 @@ const initialState = {
   selectCard: '',
   selectTerm: '',
   insuCertificateModal: false,
-  sectorItems: [],
+  basicSectorItems: [],
+  factorySectorItems: [],
   basicBuildingPriceItems: [],
   factoryBuildingPriceItems: [],
   basicFacilityPriceItems: [],
@@ -280,11 +284,21 @@ const initialState = {
     },
   ],
   terms: {
-    terms1: false,
-    terms2: false,
-    terms3: false,
-    terms4: false,
-    terms5: false,
+    terms1: {
+      isChecked: 0,
+    },
+    terms2: {
+      isChecked: 0,
+    },
+    terms3: {
+      isChecked: 0,
+    },
+    terms4: {
+      isChecked: 0,
+    },
+    terms5: {
+      isChecked: 0,
+    },
     termsb1: {
       name: 'termsb1',
       title: '소비자 권익에 관한사항',
@@ -416,6 +430,7 @@ const initialState = {
 
 export default function StormFloodContainer() {
   const navigation = useNavigation();
+  const globalDispatch = useGlobalDispatch();
   const [state, dispatch] = useReducer(reducer, initialState);
   const scrollRef: any = useRef(null);
   const GEO_CORDING_URL = `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${state.selectAddress.address}`;
@@ -707,8 +722,45 @@ export default function StormFloodContainer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.selectAddress]);
 
+  //네비게이션 헤더 셋팅
+  const setPageHeader = () => {
+    switch (state?.stepNumber) {
+      case 1:
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '상품안내' });
+        return;
+      case 2:
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '소상공인 체크리스트' });
+        return;
+      case 3:
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '주소찾기' });
+        return;
+      case 4:
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '건물 기본정보' });
+        return;
+      case 5:
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '담보 선택' });
+        return;
+      case 6:
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '보험료 확인' });
+        return;
+      case 7:
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '고객정보 입력 및 동의	' });
+        return;
+      case 8:
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '청약확인' });
+        return;
+      case 9:
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '청약 확인약관 동의' });
+        return;
+      case 10:
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '계약 완료' });
+        return;
+    }
+  };
+
   //안드로이드 백버튼 핸들러
   useEffect(() => {
+    setPageHeader();
     const backAction = () => {
       DefaultAlert({ title: '알림', msg: '메인페이지로 돌아 가시겠습니까?', okPress: () => navigation.goBack() });
       return true;
@@ -717,7 +769,8 @@ export default function StormFloodContainer() {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
 
     return () => backHandler.remove();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state.stepNumber]);
 
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);

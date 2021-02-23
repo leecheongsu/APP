@@ -8,6 +8,7 @@ import { userApis } from '@app/api/User';
 import { clearStoreData, handleApiError } from '@app/lib';
 import { useNavigation } from '@react-navigation/native';
 import SimpleToast from 'react-native-simple-toast';
+import { CUMTOMER_NUMBER } from '@env';
 
 const Container = styled.View``;
 
@@ -35,7 +36,6 @@ function Secession() {
   const InfoText = `회원탈퇴를 신청하시기 전에 ${'\n'}안내 사항을 꼭 확인해 주세요.`;
   const globalState = useGlobalState();
   const globalDispatch = useGlobalDispatch();
-  const number = '070-4126-3333';
   const [isAgree, setIsAgree] = useState(false);
 
   const handleClickButton = () => {
@@ -50,7 +50,7 @@ function Secession() {
         .then((res) => {
           if (res.status === 200) {
             SimpleToast.show('탈퇴처리가 완료되었습니다.');
-            globalDispatch({ type: 'REMOVE', name: 'user' });
+            globalDispatch({ type: 'RESET' });
             clearStoreData();
             navigation.navigate('MAIN_STACK');
           }
@@ -101,7 +101,7 @@ function Secession() {
             <Typhograph type="NOTO" size={14} color="BLACK2">
               계약정보는 고객센터{' '}
               <Typhograph type="ROBOTO" weight="BOLD" color="BLACK3" size={16}>
-                {number}
+                {CUMTOMER_NUMBER}
               </Typhograph>{' '}
               으로 연락 주시면 확인이 가능합니다.
             </Typhograph>

@@ -137,4 +137,16 @@ export const insuApis = {
     });
     return res;
   },
+  async postWwPay(data) {
+    const user: any = await getStoreData('user');
+    const res = await commonApiConfig({
+      method: 'POST',
+      url: 'ww/order',
+      data,
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    });
+    return res;
+  },
 };

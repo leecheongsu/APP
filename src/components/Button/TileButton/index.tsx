@@ -13,6 +13,8 @@ type TileButtonTypes = {
   isBorder?: boolean;
   onPress?: () => void;
   borderColor?: ColorName;
+  isBadge?: boolean;
+  badgeCount?: number;
 };
 
 const Container = styled.TouchableOpacity`
@@ -30,6 +32,14 @@ const IconBox = styled.View`
   margin-right: 10px;
 `;
 const TextBox = styled.View``;
+const BadgeBox = styled.View`
+  background-color: ${theme.color.GRAY2};
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+  margin-left: 5px;
+`;
 export default function TileButton({
   onPress = () => null,
   source,
@@ -38,6 +48,8 @@ export default function TileButton({
   color = 'WHITE',
   isBorder,
   borderColor = 'GRAY',
+  isBadge = false,
+  badgeCount,
 }: TileButtonTypes) {
   return (
     <Container background={background} isBorder={isBorder} onPress={() => onPress()} borderColor={borderColor}>
@@ -49,6 +61,18 @@ export default function TileButton({
           {title}
         </Typhograph>
       </TextBox>
+      {isBadge && (
+        <BadgeBox>
+          <Typhograph
+            type="ROBOTO"
+            color="SKYBLUE"
+            size={10}
+            lineheight={6}
+            style={{ width: 20, height: 20, textAlign: 'center' }}>
+            {badgeCount}
+          </Typhograph>
+        </BadgeBox>
+      )}
     </Container>
   );
 }

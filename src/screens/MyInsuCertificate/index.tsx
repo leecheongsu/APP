@@ -99,11 +99,9 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
   const selectInsu = state?.selectAddress?.premiums?.filter((item) => {
     return item.aply_yn === 'Y' && item.already_group_ins === state?.selectAddress.already_group_ins;
   });
-  console.log(item);
   const now = new Date();
   const startDay = moment(now.setDate(now.getDate() + 7)).format('YYYY.MM.DD');
   const endDate = moment(now.setDate(now.getDate() + 364)).format('YYYY.MM.DD');
-  console.log(item);
   return globalState?.insuType === 'ww' ? (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />

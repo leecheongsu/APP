@@ -13,7 +13,6 @@ const Container = styled.ScrollView``;
 const RowBox = styled.View`
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
 `;
 const RowItem = styled.View``;
 const LeftTextBox = styled.View`
@@ -274,7 +273,7 @@ function StromFlood2() {
       <BottomFixButton
         index={1}
         leftTitle="이전"
-        rightTitle="다음"
+        rightTitle="보험료 간편계산"
         bottomRightPress={() =>
           DefaultAlert({
             title: '인슈로보 페이지이동',

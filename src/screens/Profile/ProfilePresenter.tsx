@@ -55,7 +55,6 @@ function ProfilePresenter({
 }: ProfilePresenterTypes) {
   const navigation = useNavigation();
   const globalState = useGlobalState();
-  console.log(globalState);
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />

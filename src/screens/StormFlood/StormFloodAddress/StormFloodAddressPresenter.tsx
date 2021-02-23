@@ -38,8 +38,9 @@ const SearchBox = styled.View`
   border-bottom-color: ${theme.color.BORDER_GRAY};
 `;
 
-const AddressFlatList = styled.FlatList`
-  margin-bottom: 20px;
+const AddressFlatList = styled.FlatList``;
+const PaddingBox = styled.View`
+  height: 220px;
 `;
 
 function StormFloodAddressPresenter({
@@ -78,12 +79,15 @@ function StormFloodAddressPresenter({
               windowSize={3}
               renderItem={({ item, index }) => {
                 return (
-                  <AddressCard
-                    onPress={SelectAddress}
-                    item={item}
-                    index={index}
-                    highlight={inputState.searchInput.value}
-                  />
+                  <>
+                    <AddressCard
+                      onPress={SelectAddress}
+                      item={item}
+                      index={index}
+                      highlight={inputState.searchInput.value}
+                    />
+                    {index === state.addressData.length - 1 && <PaddingBox />}
+                  </>
                 );
               }}
             />

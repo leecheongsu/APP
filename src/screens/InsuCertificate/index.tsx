@@ -642,7 +642,6 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                   </Typhograph>
                 </RowItem>
               </RowBox>
-              {console.log(state)}
               {/* 연락처 */}
               <RowBox>
                 <RowItem>

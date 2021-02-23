@@ -53,7 +53,6 @@ function StormFloodResultPresenter({
   handlePreviousButton,
   onChangeActive,
 }: StormFloodResultPresenterTypes) {
-  console.log(state);
   return (
     <>
       <Container>

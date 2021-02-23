@@ -102,7 +102,6 @@ function HouseInfoDetailPresenter({
                   상세 주소 선택(동, 호)
                 </Typhograph>
               </ButtonInfoTitle>
-              {console.log(state)}
               <CheckLabelButton
                 active={state?.resultDong !== '' && state?.resultDetail !== ''}
                 iscenter={false}

@@ -1,7 +1,7 @@
-import React from 'react';
-import { BottomFixButton, CheckLabelButton, DefaultInput, Select, Typhograph } from '@app/components';
+import React, { useEffect, useRef } from 'react';
+import { BottomFixButton, CheckLabelButton, DefaultInput, OverayLoading, Select, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
-import { screenWidth } from '@app/lib';
+import { priceDot, screenWidth } from '@app/lib';
 import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import { TermsModal } from '@app/screens';
 import theme from '@app/style/theme';
@@ -29,6 +29,7 @@ type StormFloodPayPresenterTypes = {
     pw: any;
   };
   postDenial: () => void;
+  selectTerm: (name) => void;
 };
 
 const Container = styled.View`
@@ -89,8 +90,13 @@ function StormFloodPayPresenter({
   inputState,
   selectCard,
   postDenial,
+  selectTerm,
 }: StormFloodPayPresenterTypes) {
   const globalState = useGlobalState();
+  const card2Ref: any = useRef(null);
+  const card3Ref: any = useRef(null);
+  const card4Ref: any = useRef(null);
+  const yyRef: any = useRef(null);
   const selectItem = [
     { label: '현대', value: '현대' },
     { label: '신한', value: '신한' },
@@ -112,9 +118,36 @@ function StormFloodPayPresenter({
     { label: '11개월', value: '11개월' },
     { label: '12개월', value: '12개월' },
   ];
+  //카드인풋 자동 다음칸이동
+  useEffect(() => {
+    const inputCardLength =
+      inputState.card1.value + inputState.card2.value + inputState.card3.value + inputState.card4.value;
+    if (inputState.card1.value.length === 4 && inputCardLength.length === 4) {
+      card2Ref.current.focus();
+    } else if (inputState.card2.value.length === 4 && inputCardLength.length === 8) {
+      card3Ref.current.focus();
+    } else if (inputState.card3.value.length === 4 && inputCardLength.length === 12) {
+      card4Ref.current.focus();
+    } else {
+      return;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputState.card1.value, inputState.card2.value, inputState.card3.value]);
+
+  //카드 유효기간 다음칸 자동이동
+  useEffect(() => {
+    const inputTermLength = inputState.cardMonth.value + inputState.cardYear.value;
+    if (inputState.cardMonth.value.length === 2 && inputTermLength.length === 2) {
+      yyRef.current.focus();
+    } else {
+      return;
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inputState.cardMonth.value]);
   return (
     <>
       <Container>
+        <OverayLoading visible={false} />
         <KeyboardAwareScrollView
           enableResetScrollToCoords={false}
           enableOnAndroid={true}
@@ -130,7 +163,7 @@ function StormFloodPayPresenter({
                   </RowItem>
                   <RowItem>
                     <Typhograph type="ROBOTO" weight="BOLD" color="SKYBLUE" size={16}>
-                      200,000
+                      {priceDot(state?.resultPrice?.perPrem)}
                       <Typhograph type="NOTO" color="GRAY">
                         원
                       </Typhograph>
@@ -186,7 +219,7 @@ function StormFloodPayPresenter({
                   items={selectItem2}
                   label="할부개월수를 선택해주세요."
                   value={state.selectTerm}
-                  onValueChange={selectCard}
+                  onValueChange={selectTerm}
                   borderColor="BORDER_GRAY"
                 />
               </SelectBox>
@@ -202,13 +235,13 @@ function StormFloodPayPresenter({
                     <DefaultInput {...inputState.card1} keyboardType="numeric" maxLength={4} />
                   </InputItem>
                   <InputItem>
-                    <DefaultInput {...inputState.card2} keyboardType="numeric" maxLength={4} />
+                    <DefaultInput {...inputState.card2} propsRef={card2Ref} keyboardType="numeric" maxLength={4} />
                   </InputItem>
                   <InputItem>
-                    <DefaultInput {...inputState.card3} keyboardType="numeric" maxLength={4} />
+                    <DefaultInput {...inputState.card3} propsRef={card3Ref} keyboardType="numeric" maxLength={4} />
                   </InputItem>
                   <InputItem>
-                    <DefaultInput {...inputState.card4} keyboardType="numeric" maxLength={4} />
+                    <DefaultInput {...inputState.card4} propsRef={card4Ref} keyboardType="numeric" maxLength={4} />
                   </InputItem>
                 </InputContainer>
               </InputBox>
@@ -221,10 +254,16 @@ function StormFloodPayPresenter({
                 </LabelBox>
                 <InputContainer style={{ justifyContent: 'flex-start' }}>
                   <InputItem style={{ marginRight: 5 }}>
-                    <DefaultInput {...inputState.cardYear} placeholder="YY" keyboardType="numeric" maxLength={2} />
+                    <DefaultInput {...inputState.cardMonth} placeholder="MM" keyboardType="numeric" maxLength={2} />
                   </InputItem>
                   <InputItem>
-                    <DefaultInput {...inputState.cardMonth} placeholder="MM" keyboardType="numeric" maxLength={2} />
+                    <DefaultInput
+                      propsRef={yyRef}
+                      {...inputState.cardYear}
+                      placeholder="YY"
+                      keyboardType="numeric"
+                      maxLength={2}
+                    />
                   </InputItem>
                 </InputContainer>
               </InputBox>
@@ -285,7 +324,7 @@ function StormFloodPayPresenter({
           isButton={false}
         />
         <BottomFixButton
-          index={state.stepNumber}
+          index={1}
           leftTitle="이전"
           rightTitle="다음"
           bottomRightPress={() => nextButton()}

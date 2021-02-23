@@ -35,6 +35,9 @@ const SearchBox = styled.View`
 const AddressFlatList = styled.FlatList`
   margin-bottom: 20px;
 `;
+const PaddingBox = styled.View`
+  height: 220px;
+`;
 
 function HouseAddressPresenter({
   state,
@@ -72,7 +75,15 @@ function HouseAddressPresenter({
           windowSize={3}
           renderItem={({ item, index }) => {
             return (
-              <AddressCard onPress={SelectAddress} item={item} index={index} highlight={inputState.searchInput.value} />
+              <>
+                <AddressCard
+                  onPress={SelectAddress}
+                  item={item}
+                  index={index}
+                  highlight={inputState.searchInput.value}
+                />
+                {index === state.addressData.length - 1 && <PaddingBox />}
+              </>
             );
           }}
         />

@@ -1,10 +1,9 @@
+import React from 'react';
 import { insuApis } from '@app/api/Insurance';
-import { useGlobalDispatch, useGlobalState } from '@app/context';
+import { useGlobalDispatch } from '@app/context';
 import { EmptyLayout } from '@app/layout';
 import { handleApiError } from '@app/lib';
-import React, { useEffect } from 'react';
 import { Alert } from 'react-native';
-import { Value } from 'react-native-reanimated';
 import SimpleToast from 'react-native-simple-toast';
 import GuaranteeSelectPresenter from './GuaranteeSelectPresenter';
 export default function GuaranteeSelectContainer({
@@ -18,8 +17,8 @@ export default function GuaranteeSelectContainer({
 }) {
   const globalDispatch = useGlobalDispatch();
   const sumPrice =
-    (state.selectBuildingPrice === '' ? 0 : state.selectBuildingPrice) +
-    (state.selectFacilityprice === '' ? 0 : state.selectFacilityprice);
+    (state.selectBuildingPrice?.key_name === undefined ? 0 : Number(state.selectBuildingPrice?.key_name)) +
+    (state.selectFacilityprice?.key_name === undefined ? 0 : Number(state.selectFacilityprice?.key_name));
   const checkInput = () => {
     if (inputState.buildName.value === '') {
       SimpleToast.show('상호명을 입력해주세요.');
@@ -36,7 +35,7 @@ export default function GuaranteeSelectContainer({
     } else if (state.selectSector === '') {
       SimpleToast.show('업종을 선택해주세요.');
       return false;
-    } else if (state.selectBuildingPrice === '') {
+    } else if (state?.possessionDivision !== '임차자' && state.selectBuildingPrice === '') {
       SimpleToast.show('건물 가격을 선택해주세요');
       return false;
     } else if (state.selectFacilityprice === '') {
@@ -66,15 +65,18 @@ export default function GuaranteeSelectContainer({
             bldFloors2: inputState.bldFloor2.value,
             lobzCd: state.selectSector?.code,
             gitdTarifCat1: state.selectSelfPrice?.key_name,
-            objTypCd1: 'Y',
+            objTypCd1: state.selectBuildingPrice?.key_name === undefined ? 'N' : 'Y',
             objTypCd2: 'Y',
             objTypCd3: state.selectInventoryPrice.val_name === '미가입' ? 'N' : 'Y',
-            elagOrgnInsdAmt1: state.selectBuildingPrice?.key_name,
+            elagOrgnInsdAmt1:
+              state.selectBuildingPrice?.key_name === undefined ? '0' : state.selectBuildingPrice?.key_name,
             elagOrgnInsdAmt2: state.selectFacilityprice?.key_name,
             elagOrgnInsdAmt3: state.selectInventoryPrice?.key_name,
+            objAddr2: `${state.selectAddress.ww_info.oagi6002vo.objAddr2} ${inputState.buildName.value}`,
           },
         },
       };
+      console.log(data);
       globalDispatch({ type: 'CHANGE', name: 'postWwPremium', value: data });
       onChangeState('loading', true);
       insuApis
@@ -82,7 +84,6 @@ export default function GuaranteeSelectContainer({
         .then((res) => {
           if (res.status === 200) {
             onChangeState('loading', false);
-
             onChangeState('resultPrice', res.data);
             handleNextButton();
           } else {
@@ -99,6 +100,8 @@ export default function GuaranteeSelectContainer({
   };
 
   const handleBuildingPriceSelect = (value) => {
+    console.log(sumPrice, 123123);
+
     if (state.stuffDivision === '일반' && sumPrice > 100000000) {
       Alert.alert('알림', '일반 물건은 건물 금액과 시설(기계) 및 집기 금액의 합계 금액이 1억원을 넘을 수 없습니다.');
       onChangeState('selectBuildingPrice', '');

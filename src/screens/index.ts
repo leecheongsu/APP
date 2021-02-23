@@ -48,3 +48,5 @@ export { default as Pay } from './Pay';
 export { default as MyInsu } from './MyInsu';
 export { default as InsuCertificate } from './InsuCertificate';
 export { default as MyInsuCertificate } from './MyInsuCertificate';
+
+export { default as SplashScreen } from './SplashScreen';

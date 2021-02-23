@@ -184,9 +184,7 @@ function HouseFinalPresenter({
                   </Typhograph>
                 </RowItem>
               </RowBox>
-              {console.log(
-                moment(state?.vbankResult?.P_VACT_DATE + state?.vbankResult?.P_VACT_TIME).format('YYYY-MM-DD')
-              )}
+
               <RowBox>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY">
@@ -229,7 +227,7 @@ function HouseFinalPresenter({
       />
 
       <BottomFixButton
-        index={state.stepNumber}
+        index={1}
         leftTitle="이전"
         rightTitle="다음"
         bottomRightPress={submitNextButton}

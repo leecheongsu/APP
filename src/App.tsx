@@ -6,9 +6,10 @@ import { ignoreWarningLists } from '@app/lib/util/ignoreWarningLists';
 import { ThemeProvider } from '@app/style/typed-components';
 import { NavigationContainer } from '@react-navigation/native';
 import DrawerStack from '@app/routes/DrawerStack';
-import { getStoreData, handleApiError, setStoreData } from '@app/lib';
+import { getStoreData, handleApiError, setStoreData, clearStoreData } from '@app/lib';
 import { userApis } from '@app/api/User';
 import { OverayLoading } from '@app/components';
+import { SplashScreen } from '@app/screens';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare const global: { HermesInternal: null | {} };
 
@@ -21,6 +22,7 @@ const App = () => {
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const [loading, setLoading] = useState(false);
+  const [isSplash, setIsSplash] = useState(true);
   const _handleAppStateChange = async (nextAppState) => {
     appState.current = nextAppState;
     setAppStateVisible(appState.current);
@@ -47,6 +49,7 @@ const App = () => {
         })
         .catch((e) => {
           setLoading(false);
+          clearStoreData();
           handleApiError(e.response);
         });
     }
@@ -74,7 +77,6 @@ const App = () => {
     };
 
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
-
     return () => backHandler.remove();
   }, []);
 
@@ -84,14 +86,28 @@ const App = () => {
       AppState.removeEventListener('change', _handleAppStateChange);
     };
   }, []);
+
+  useEffect(() => {
+    if (isSplash) {
+      setTimeout(() => {
+        setIsSplash(false);
+      }, 1500);
+    }
+  }, [isSplash]);
+
   return (
     <React.Fragment>
       <GlobalContextProvider>
         <ThemeProvider theme={theme}>
-          <NavigationContainer theme={navigationTheme}>
-            <DrawerStack />
-            {/* <OverayLoading visible={loading} /> */}
-          </NavigationContainer>
+          {isSplash ? (
+            <SplashScreen />
+          ) : (
+            <>
+              <NavigationContainer theme={navigationTheme}>
+                <DrawerStack />
+              </NavigationContainer>
+            </>
+          )}
         </ThemeProvider>
       </GlobalContextProvider>
     </React.Fragment>

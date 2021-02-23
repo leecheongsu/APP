@@ -12,7 +12,7 @@ type StormFloodFinalPresenterTypes = {
   onClickTermsModalOpen: (name: any, html: any) => void;
   handlePreviousButton: () => void;
   onChangeState: (name: StormFloodName, value: any) => void;
-  downloadfileButton: (name: any) => Promise<null | undefined>;
+  downloadfileButton: () => void;
 };
 
 const Container = styled.View`
@@ -91,7 +91,7 @@ function StormFloodFinalPresenter({
                 active={false}
                 disabled={state?.loading}
                 title={state?.loading ? 'Downloading..' : '보험증권'}
-                onPress={() => downloadfileButton('보험증권')}
+                onPress={() => downloadfileButton()}
               />
             </ButtonItem>
             <ButtonItem>
@@ -99,7 +99,7 @@ function StormFloodFinalPresenter({
                 disabled={state?.loading}
                 active={false}
                 title={state?.loading ? 'Downloading..' : '보험약관'}
-                onPress={() => downloadfileButton('보험약관')}
+                onPress={() => downloadfileButton()}
               />
             </ButtonItem>
           </ButtonBox>
@@ -127,7 +127,7 @@ function StormFloodFinalPresenter({
           state={state}
         />
         <BottomFixButton
-          index={state.stepNumber}
+          index={1}
           leftTitle="이전"
           rightTitle="다음"
           bottomRightPress={() => nextButton()}

@@ -14,7 +14,6 @@ const Container = styled.ScrollView``;
 const RowBox = styled.View`
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
 `;
 const RowItem = styled.View``;
 const LeftTextBox = styled.View`

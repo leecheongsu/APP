@@ -14,6 +14,7 @@ export type StateTypes = {
   selectAddress: any;
   isIdentityverification: boolean;
   insuType: any;
+  isSplash: boolean;
 };
 type StateNames =
   | 'user'
@@ -27,10 +28,13 @@ type StateNames =
   | 'postWwPremium'
   | 'jumina'
   | 'juminb'
-  | 'electronicSignPreData';
+  | 'electronicSignPreData'
+  | 'homeFireTitle'
+  | 'stormFloodTitle';
 type Action =
   | { type: 'CHANGE'; name: StateNames; value: any }
   | { type: 'REMOVE'; name: StateNames }
+  | { type: 'RESET' }
   | { type: 'LOGOUT' };
 
 type GlobalDispatch = Dispatch<Action>;
@@ -50,6 +54,8 @@ const initialState = {
   jumina: '',
   juminb: '',
   electronicSignPreData: undefined,
+  homeFireTitle: '가입구분',
+  stormFloodTitle: '상품안내',
 };
 
 //context
@@ -72,6 +78,21 @@ function globalReducer(state: StateTypes, action: Action): any {
       return {
         ...state,
         [action.name]: undefined,
+      };
+    case 'RESET':
+      return {
+        ...state,
+        user: undefined,
+        isAutoLogin: undefined,
+        isLogin: undefined,
+        password: undefined,
+        recommendUser: undefined,
+        isIdentityverification: false,
+        insuType: undefined,
+        postWwPremium: undefined,
+        jumina: '',
+        juminb: '',
+        electronicSignPreData: undefined,
       };
     case 'LOGOUT':
       return {

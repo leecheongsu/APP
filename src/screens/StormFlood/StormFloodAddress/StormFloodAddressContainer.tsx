@@ -2,7 +2,7 @@ import { insuApis } from '@app/api/Insurance';
 import { useGlobalDispatch } from '@app/context';
 import { useAsync, useInput } from '@app/hooks';
 import { EmptyLayout } from '@app/layout';
-import { handleApiError, sortArray } from '@app/lib';
+import { handleApiError } from '@app/lib';
 import React, { useEffect } from 'react';
 import { Keyboard } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
@@ -33,23 +33,33 @@ export default function Container({
 
   //사용자 셀렉트 박스 셋팅
   const setSelectItems = (data) => {
-    const sectorItems: any = [];
+    const basicSectorItems: any = [];
+    const factorySectorItems: any = [];
     const basicBuildingPriceItems: any = [];
     const factoryBuildingPriceItems: any = [];
     const basicFacilityPriceItems: any = [];
     const factoryFacilityPriceItems: any = [];
     const inventoryPriceItems: any = [];
     const selfPriceItems: any = [];
-    data?.lobz_cds?.map((item) => {
-      const newItem = {
-        label: item.name,
-        value: item,
-      };
-      sectorItems.push(newItem);
-    });
 
+    data?.lobz_cds?.map((item) => {
+      if (item.obj_type === '2') {
+        const newBasicItems = {
+          label: item.name,
+          value: item,
+        };
+        basicSectorItems.push(newBasicItems);
+      } else {
+        const newFactoryItems = {
+          label: item.name,
+          value: item,
+        };
+        factorySectorItems.push(newFactoryItems);
+      }
+    });
     data?.premiums?.map((item) => {
       if (item.code === 'BLD' && item.sub_name === '일반') {
+        item.default_yn === 'Y' && onChangeState('selectBuildingPrice', item);
         const newItems = {
           label: item.val_name + '원',
           value: item,
@@ -62,6 +72,7 @@ export default function Container({
         };
         factoryBuildingPriceItems.push(newItems);
       } else if (item.code === 'FCL' && item.sub_name === '일반') {
+        item.default_yn === 'Y' && onChangeState('selectFacilityprice', item);
         const newItems = {
           label: item.val_name + '원',
           value: item,
@@ -74,12 +85,14 @@ export default function Container({
         };
         factoryFacilityPriceItems.push(newItems);
       } else if (item.code === 'INV') {
+        item.default_yn === 'Y' && onChangeState('selectInventoryPrice', item);
         const newItems = {
           label: item.val_name !== '미가입' ? item.val_name + '원' : item.val_name,
           value: item,
         };
         inventoryPriceItems.push(newItems);
       } else if (item.code === 'SPY') {
+        item.default_yn === 'Y' && onChangeState('selectSelfPrice', item);
         const newItems = {
           label: item.val_name + '원',
           value: item,
@@ -87,7 +100,8 @@ export default function Container({
         selfPriceItems.push(newItems);
       }
     });
-    onChangeState('sectorItems', sectorItems);
+    onChangeState('basicSectorItems', basicSectorItems);
+    onChangeState('factorySectorItems', factorySectorItems);
     onChangeState('basicBuildingPriceItems', basicBuildingPriceItems);
     onChangeState('factoryBuildingPriceItems', factoryBuildingPriceItems);
     onChangeState('basicFacilityPriceItems', basicFacilityPriceItems);
@@ -95,8 +109,6 @@ export default function Container({
     onChangeState('inventoryPriceItems', inventoryPriceItems);
     onChangeState('selfPriceItems', selfPriceItems);
   };
-
-  console.log(state);
 
   //주소 선택시 도는 로직
   const SelectAddress = (item) => {

@@ -4,9 +4,11 @@ import { Calamity, CustomerCenter, Home, HouseFire, HouseInfoDetail, StormFlood,
 import { BackButton, DefaultAlert, LogoTitle, MenuButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';
 import UserButton from '@app/components/Header/UserButton';
+import { useGlobalState } from '@app/context';
 
 function MainStack() {
   const Stacks = createStackNavigator();
+  const globalState = useGlobalState();
   return (
     <Stacks.Navigator
       initialRouteName="HOME"
@@ -49,7 +51,7 @@ function MainStack() {
           headerLeftContainerStyle: { paddingHorizontal: 10 },
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
-              주택화재
+              {globalState?.homeFireTitle}
             </Typhograph>
           ),
           headerShown: true,
@@ -76,7 +78,7 @@ function MainStack() {
           headerLeftContainerStyle: { paddingHorizontal: 10 },
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
-              풍수해
+              {globalState?.stormFloodTitle}
             </Typhograph>
           ),
           headerShown: true,

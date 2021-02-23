@@ -6,11 +6,20 @@ import { WebView } from 'react-native-webview';
 const Container = styled.View`
   width: ${screenWidth()}px;
 `;
-const InfoListBox = styled.View`
-  padding-bottom: 100px;
+const ContentsContainer = styled.View``;
+
+const InfoScrollView = styled.ScrollView``;
+const InfoListBox = styled.View``;
+
+const WebviewBox = styled.View`
+  height: 310px;
+  max-height: 310px;
 `;
 
-const ContentsContainer = styled.ScrollView``;
+const PaddingBox = styled.View`
+  height: 400px;
+`;
+
 function StormFloodInfoPresenter({ state, handleNextButton, handlePreviousButton, infoList }) {
   const html = `
   <html lang="en">
@@ -43,21 +52,28 @@ function StormFloodInfoPresenter({ state, handleNextButton, handlePreviousButton
             <Loading />
           ) : (
             <>
-              <WebView
-                style={{ height: 320 }}
-                source={{
-                  html,
-                  baseUrl: 'web/',
-                }}
-                originWhitelist={'["*"]'}
-                javaScriptEnabled={true}
-                domStorageEnabled={true}
-                scalesPageToFit={true}
-                scrollEnabled={false}
-              />
-              <InfoListBox>
-                <InfoList list={infoList} isHouse={false} />
-              </InfoListBox>
+              <WebviewBox contentContainerStyle={{ flexGrow: 1 }}>
+                <WebView
+                  style={{ height: 310 }}
+                  source={{
+                    html,
+                    baseUrl: 'web/',
+                  }}
+                  automaticallyAdjustContentInsets={false}
+                  startInLoadingState={true}
+                  originWhitelist={'["*"]'}
+                  javaScriptEnabled={true}
+                  domStorageEnabled={true}
+                  scalesPageToFit={true}
+                  scrollEnabled={false}
+                />
+              </WebviewBox>
+              <InfoScrollView>
+                <InfoListBox>
+                  <InfoList list={infoList} state={state} />
+                  <PaddingBox />
+                </InfoListBox>
+              </InfoScrollView>
             </>
           )}
         </ContentsContainer>

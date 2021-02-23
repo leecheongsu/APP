@@ -17,6 +17,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Alert, Image, Platform } from 'react-native';
 import { insuIcon } from '@app/assets';
 import { gunmulText, jipgiText, jegoJasanText, jagibudamText } from '@app/lib/html';
+import { CUMTOMER_NUMBER } from '@env';
 
 type GuaranteeSelectPresenterTypes = {
   state: StormFloodStateTypes;
@@ -81,10 +82,7 @@ function GuaranteeSelectPresenter({
     <>
       <Container>
         <OverayLoading visible={state.loading} />
-        <KeyboardAwareScrollView
-          enableResetScrollToCoords={false}
-          extraScrollHeight={Platform.OS === 'ios' ? 30 : -10}
-          enableResetScrollToCoords={false}>
+        <KeyboardAwareScrollView enableResetScrollToCoords={false} extraScrollHeight={Platform.OS === 'ios' ? 30 : -10}>
           <FullLabel title="기본정보를 확인해주세요." />
           <ContentsContainer>
             {/* 가입유형 */}
@@ -106,7 +104,7 @@ function GuaranteeSelectPresenter({
                 <CheckLabelButton
                   iscenter
                   onPress={() =>
-                    Alert.alert('알림', `법인사업자는${'\n'}전화문의주시길바랍니다.${'\n'}${'\n'}070-4126-3333`)
+                    Alert.alert('알림', `법인사업자는${'\n'}전화문의주시길바랍니다.${'\n'}${'\n'}${CUMTOMER_NUMBER}`)
                   }
                   title="법인"
                   active={state?.joinType === '법인'}
@@ -161,6 +159,7 @@ function GuaranteeSelectPresenter({
                   onPress={() => {
                     onChangeState('possessionDivision', '임차자');
                     onChangeState('selectBuildingPrice', '');
+                    onChangeState('selectFacilityprice', '');
                   }}
                   title="임차자"
                   active={state.possessionDivision === '임차자'}
@@ -202,12 +201,15 @@ function GuaranteeSelectPresenter({
               <Typhograph type="NOTO" color="BLACK2" weight="BOLD">
                 업종선택
               </Typhograph>
+              <Typhograph type="NOTO" color="WARING_RED" weight="BOLD" size={10}>
+                ※업종 중 주유소 및 경정비업소는 가입이 불가합니다.
+              </Typhograph>
             </LabelBox>
             <InputBox>
               <Select
                 label="업종을 선택하세요."
                 value={state.selectSector}
-                items={state.sectorItems}
+                items={state?.stuffDivision === '일반' ? state?.basicSectorItems : state?.factorySectorItems}
                 onValueChange={handleSectorSelect}
                 disabled={false}
                 borderColor="BORDER_GRAY"
@@ -249,7 +251,6 @@ function GuaranteeSelectPresenter({
                 value={state.selectFacilityprice}
                 items={state.stuffDivision === '공장' ? state.factoryFacilityPriceItems : state.basicFacilityPriceItems}
                 onValueChange={handleFacilityPriceSelect}
-                disabled={state.stuffDivision === '공장'}
                 borderColor="BORDER_GRAY"
               />
             </InputBox>

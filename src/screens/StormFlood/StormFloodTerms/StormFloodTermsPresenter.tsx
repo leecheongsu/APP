@@ -420,7 +420,6 @@ function StormFloodTermsPresenter({
                     추천인 정보
                   </Typhograph>
                 </TitleBox>
-                {console.log(globalState)}
                 <RowBox>
                   <RowItem>
                     <Typhograph type="NOTO" color="GRAY">

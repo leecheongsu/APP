@@ -33,6 +33,7 @@ export default function DefaultInput(props) {
         onBlur={() => {
           setIsFocus(false);
         }}
+        ref={props?.propsRef}
         editable={props.editable}
         style={{ alignSelf: 'stretch', fontSize: 13 }}
         secureTextEntry={props.secureTextEntry}

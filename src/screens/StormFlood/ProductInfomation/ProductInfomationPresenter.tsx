@@ -145,7 +145,7 @@ function ProductInfomationPresenter({
         <BottomFixButton
           index={state.stepNumber}
           leftTitle="이전"
-          rightTitle="다음"
+          rightTitle="보험료 간편계산"
           bottomRightPress={() => nextButton()}
           bottomLeftPress={() => null}
           isKeybordView={state.isKeybordView}

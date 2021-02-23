@@ -2,6 +2,7 @@ import { insuApis } from '@app/api/Insurance';
 import { useGlobalState } from '@app/context';
 import { useInput } from '@app/hooks';
 import { EmptyLayout } from '@app/layout';
+import { handleApiError } from '@app/lib';
 import React from 'react';
 import { Alert } from 'react-native';
 import StormFloodPayPresenter from './StormFloodPayPresenter';
@@ -56,16 +57,15 @@ export default function StormFloodPayContainer({
   const selectCard = (name) => {
     onChangeState('selectCard', name);
   };
+
+  const selectTerm = (name) => {
+    onChangeState('selectTerm', name);
+  };
   const postDenial = () => {
     const data = {
       user_id: globalState.user.email,
       quote_no: state?.selectAddress?.quote_no,
-      data: {
-        intgAgmtKind: state?.selectAddress?.ww_info?.oagi6002vo?.agmtKind,
-        regNo: globalState.jumina + globalState.juminb,
-        certConfmSeqNo: globalState?.electronicSignPreData?.certconfmseqno,
-        mappingNo: globalState?.electronicSignPreData?.mappingno,
-      },
+      reg_no: globalState.jumina + globalState.juminb,
     };
     insuApis
       .postDenial(data)
@@ -74,7 +74,6 @@ export default function StormFloodPayContainer({
           onChangeState('signConfirmModal', true);
           onChangeState('signData', res.data);
         }
-        console.log(res);
       })
       .catch((e) => {
         console.log(e.response);
@@ -82,12 +81,13 @@ export default function StormFloodPayContainer({
   };
 
   const submitPay = () => {
+    onChangeState('loading', true);
     const params = {
       user_id: globalState?.user?.email,
       data: {
-        quete_no: state?.selectAddress?.quote_no,
+        quote_no: state?.selectAddress?.quote_no,
         prod_code: state?.selectAddress?.product?.p_code,
-        advisor_no: globalState?.recommendUser?.seq,
+        advisor_no: String(globalState?.recommendUser?.seq),
         card: {
           regNo1: globalState?.jumina,
           regNo2: globalState?.juminb,
@@ -124,12 +124,20 @@ export default function StormFloodPayContainer({
       },
     };
     // handleNextButton();
-    console.log(params);
+    insuApis
+      .postWwPay(params)
+      .then((res) => {
+        onChangeState('loading', false);
+      })
+      .catch((e) => {
+        handleApiError(e.response);
+        console.log(e.response);
+        onChangeState('loading', false);
+      });
   };
 
   const nextButton = () => {
     handleNextButton();
-
     if (checkInput()) {
       submitPay();
     }
@@ -145,6 +153,7 @@ export default function StormFloodPayContainer({
         inputState={inputState}
         selectCard={selectCard}
         postDenial={postDenial}
+        selectTerm={selectTerm}
       />
     );
   } else {

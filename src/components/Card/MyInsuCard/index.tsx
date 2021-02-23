@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import theme from '@app/style/theme';
-import { Image } from 'react-native';
+import { Alert, Image } from 'react-native';
 import { insuImg } from '@app/assets';
 import { priceDot } from '@app/lib';
 import { MyInsuCertificate } from '@app/screens';
@@ -46,6 +46,16 @@ export default function MyInsuCard({ item, downloadfileButton, loading }) {
     globalDispatch({ type: 'CHANGE', name: 'insuType', value: insuType });
     setInsuCertificateModal(true);
   };
+
+  const onClickInsuButton = (value) => {
+    if (item?.inscompany === '메리츠화재') {
+      downloadfileButton(value);
+      downloadfileButton(value);
+    } else {
+      Alert.alert('알림', '계약시 발송된 email을 확인해주세요.');
+    }
+  };
+
   return (
     <>
       <Container>
@@ -86,12 +96,12 @@ export default function MyInsuCard({ item, downloadfileButton, loading }) {
               보험가입증명원
             </Typhograph>
           </Button>
-          <Button onPress={() => downloadfileButton('보험증권')}>
+          <Button onPress={() => onClickInsuButton('보험증권')}>
             <Typhograph type="NOTO" size={10} color="BLUE">
               {loading ? 'loading...' : '보험증권'}
             </Typhograph>
           </Button>
-          <Button onPress={() => downloadfileButton('보험약관')}>
+          <Button onPress={() => onClickInsuButton('보험약관')}>
             <Typhograph type="NOTO" size={10} color="BLUE">
               {loading ? 'loading...' : '보험약관'}
             </Typhograph>

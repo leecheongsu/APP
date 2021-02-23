@@ -12,13 +12,17 @@ export default function CheckListContainer({
   termsChange,
 }) {
   const checkterms = () => {
-    if (state?.terms?.terms1 === false) {
+    if (state?.terms?.terms1?.isChecked === 0) {
       Toast.show('질문에 동의해주세요.');
       return false;
-    } else if (state?.terms?.terms2 === false || state?.terms?.terms3 === false || state?.terms?.terms4 === false) {
+    } else if (
+      state?.terms?.terms2?.isChecked === 0 ||
+      state?.terms?.terms3?.isChecked === 0 ||
+      state?.terms?.terms4?.isChecked === 0
+    ) {
       Toast.show('본 상품은 소상공인임이 확인("예")이 되어야 가입이 가능합니다.');
       return false;
-    } else if (state?.terms?.terms5 === false) {
+    } else if (state?.terms?.terms5?.isChecked === 0) {
       Toast.show('알아두실 사항을 읽어주세요');
       return false;
     } else {
@@ -27,7 +31,6 @@ export default function CheckListContainer({
   };
 
   const nextButton = () => {
-    console.log(checkterms());
     if (checkterms()) {
       handleNextButton();
     } else {

@@ -18,8 +18,8 @@ export default function JoinSuccess() {
   const navigation = useNavigation();
   return (
     <Container>
-      <Image source={insuImg.BG_LOGO} />
-      <Typhograph type="NOTO" weight="BOLD" color="BLACK2" size={17} style={{ textAlign: 'center' }}>
+      <Image source={insuImg.BG_LOGO} width={80} />
+      <Typhograph type="NOTO" weight="BOLD" color="BLACK2" size={17} style={{ textAlign: 'center', marginTop: 30 }}>
         인슈로보의 신규회원이 되신것을{'\n'} 축하드립니다.
       </Typhograph>
       <Typhograph type="NOTO" weight="REGULAR" color="BLACK2" size={12} style={{ marginTop: 10 }}>

@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import { EmptyLayout } from '@app/layout';
 import { Alert, PermissionsAndroid, Platform } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
+import { PROD_URL } from '@env';
 
 export default function HouseFinalContainer({
   state,
@@ -30,16 +31,17 @@ export default function HouseFinalContainer({
     RNFetchBlob.config({
       fileCache: true,
       appendExt: 'pdf',
+      path: `${dirs.DownloadDir}/보험증권.pdf`,
       addAndroidDownloads: {
         useDownloadManager: true,
         notification: true,
         mediaScannable: true,
-        title: '보험 가입 증명원.pdf',
+        title: '보험증권.pdf',
         mime: 'application/pdf',
-        path: `${dirs.DownloadDir}/보험 가입 증명원.pdf`,
+        path: `${dirs.DownloadDir}/보험증권.pdf`,
       },
     })
-      .fetch('GET', 'https://insrb.com/download/MRHI1810_terms.pdf', {})
+      .fetch('GET', `${PROD_URL}/files/ins_condition.pdf`, {})
       .then((res) => {
         onChangeState('loading', false);
         if (Platform.OS === 'ios') {
@@ -59,16 +61,17 @@ export default function HouseFinalContainer({
     RNFetchBlob.config({
       fileCache: true,
       appendExt: 'pdf',
+      path: `${dirs.DownloadDir}/보험약관.pdf`,
       addAndroidDownloads: {
         useDownloadManager: true,
         notification: true,
         mediaScannable: true,
-        title: '보험증권.pdf',
+        title: '보험약관.pdf',
         mime: 'application/pdf',
-        path: `${dirs.DownloadDir}/보험증권.pdf`,
+        path: `${dirs.DownloadDir}/보험약관.pdf`,
       },
     })
-      .fetch('GET', 'https://insrb.com/download/MRHI1810_terms.pdf', {})
+      .fetch('GET', `${PROD_URL}/files/ins_terms.pdf`, {})
       .then((res) => {
         onChangeState('loading', false);
         if (Platform.OS === 'ios') {

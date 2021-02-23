@@ -115,8 +115,10 @@ function CheckListPresenter({
             <CheckBox>
               <RowBox>
                 <RowItem width="10%">
-                  <IconButton onPress={() => termsChange('terms1', !state?.terms?.terms1)}>
-                    <Image source={state?.terms?.terms1 ? insuIcon.BT_CHECK_ON : insuIcon.BT_CHECK_OFF} />
+                  <IconButton onPress={() => termsChange('terms1', state?.terms?.terms1?.isChecked === 0 ? 1 : 0)}>
+                    <Image
+                      source={state?.terms?.terms1?.isChecked === 1 ? insuIcon.BT_CHECK_ON : insuIcon.BT_CHECK_OFF}
+                    />
                   </IconButton>
                 </RowItem>
                 <RowItem width="90%">
@@ -137,7 +139,7 @@ function CheckListPresenter({
                 </RowItem>
                 <RowItem width="83%">
                   <Typhograph type="NOTO" color="GRAY" size={12}>
-                    ┌ “소상공인 보호 및 지원에 관한 법률” 제2조, “중소기업 기본법” 제2조2항 ┘에서는 소상공인의 상시
+                    「“소상공인 보호 및 지원에 관한 법률” 제2조, “중소기업 기본법” 제2조2항 」에서는 소상공인의 상시
                     근로자 수를 광업·제조업·건설업·운수업은 10명 미만, 그 밖의 업종은 5명 미만으로 제한 합니다.
                     피보험자의 상시 근로자수 (아르바이트 제외)가 기준 미만입니까?
                   </Typhograph>
@@ -146,8 +148,8 @@ function CheckListPresenter({
               <RadioBox>
                 <RadioItem>
                   <RadioItemBox>
-                    <IconButton onPress={() => termsChange('terms2', true)}>
-                      <Image source={state?.terms?.terms2 ? insuIcon.RADIO_ON : insuIcon.RADIO_OFF} />
+                    <IconButton onPress={() => termsChange('terms2', 1)}>
+                      <Image source={state?.terms?.terms2?.isChecked === 1 ? insuIcon.RADIO_ON : insuIcon.RADIO_OFF} />
                     </IconButton>
                     <Typhograph type="NOTO" color="GRAY" style={{ marginLeft: 10 }}>
                       네
@@ -157,8 +159,8 @@ function CheckListPresenter({
 
                 <RadioItem style={{ marginLeft: 30 }}>
                   <RadioItemBox>
-                    <IconButton onPress={() => termsChange('terms2', false)}>
-                      <Image source={state?.terms?.terms2 ? insuIcon.RADIO_OFF : insuIcon.RADIO_ON} />
+                    <IconButton onPress={() => termsChange('terms2', 2)}>
+                      <Image source={state?.terms?.terms2?.isChecked === 1 ? insuIcon.RADIO_OFF : insuIcon.RADIO_ON} />
                     </IconButton>
 
                     <Typhograph type="NOTO" color="GRAY" style={{ marginLeft: 10 }}>
@@ -179,7 +181,7 @@ function CheckListPresenter({
                 </RowItem>
                 <RowItem width="83%">
                   <Typhograph type="NOTO" color="GRAY" size={12}>
-                    ┌” 중소기업기본법시행령” 제8조1항 ┘에서는 주요 업종별 평균 매출액을 ‘주요 업종별 연평균 매출액
+                    「 “중소기업기본법시행령” 제8조1항 」 에서는 주요 업종별 평균 매출액을 [주요 업종별 연평균 매출액
                     제한]과 같이 제한합니다. 피보험자의 평균매출액이 기존 미만입니까?
                   </Typhograph>
                 </RowItem>
@@ -201,8 +203,8 @@ function CheckListPresenter({
               <RadioBox>
                 <RadioItem>
                   <RadioItemBox>
-                    <IconButton onPress={() => termsChange('terms3', !state?.terms?.terms3)}>
-                      <Image source={state?.terms?.terms3 ? insuIcon.RADIO_ON : insuIcon.RADIO_OFF} />
+                    <IconButton onPress={() => termsChange('terms3', 1)}>
+                      <Image source={state?.terms?.terms3?.isChecked ? insuIcon.RADIO_ON : insuIcon.RADIO_OFF} />
                     </IconButton>
                     <Typhograph type="NOTO" color="GRAY" style={{ marginLeft: 10 }}>
                       네
@@ -212,8 +214,8 @@ function CheckListPresenter({
 
                 <RadioItem style={{ marginLeft: 30 }}>
                   <RadioItemBox>
-                    <IconButton onPress={() => termsChange('terms3', !state?.terms?.terms3)}>
-                      <Image source={state?.terms?.terms3 ? insuIcon.RADIO_OFF : insuIcon.RADIO_ON} />
+                    <IconButton onPress={() => termsChange('terms3', 0)}>
+                      <Image source={state?.terms?.terms3?.isChecked ? insuIcon.RADIO_OFF : insuIcon.RADIO_ON} />
                     </IconButton>
 
                     <Typhograph type="NOTO" color="GRAY" style={{ marginLeft: 10 }}>
@@ -244,8 +246,8 @@ function CheckListPresenter({
               <RadioBox>
                 <RadioItem>
                   <RadioItemBox>
-                    <IconButton onPress={() => termsChange('terms4', true)}>
-                      <Image source={state?.terms?.terms4 ? insuIcon.RADIO_ON : insuIcon.RADIO_OFF} />
+                    <IconButton onPress={() => termsChange('terms4', 1)}>
+                      <Image source={state?.terms?.terms4?.isChecked ? insuIcon.RADIO_ON : insuIcon.RADIO_OFF} />
                     </IconButton>
                     <Typhograph type="NOTO" color="GRAY" style={{ marginLeft: 10 }}>
                       네
@@ -255,8 +257,8 @@ function CheckListPresenter({
 
                 <RadioItem style={{ marginLeft: 30 }}>
                   <RadioItemBox>
-                    <IconButton onPress={() => termsChange('terms4', false)}>
-                      <Image source={state?.terms?.terms4 ? insuIcon.RADIO_OFF : insuIcon.RADIO_ON} />
+                    <IconButton onPress={() => termsChange('terms4', 0)}>
+                      <Image source={state?.terms?.terms4?.isChecked ? insuIcon.RADIO_OFF : insuIcon.RADIO_ON} />
                     </IconButton>
 
                     <Typhograph type="NOTO" color="GRAY" style={{ marginLeft: 10 }}>
@@ -270,17 +272,16 @@ function CheckListPresenter({
               <CheckLabelButton
                 onPress={() => {
                   onClickTermsModalOpen2('terms5', productInfoHtml3());
-                  termsChange('terms5', true);
+                  termsChange('terms5', 1);
                 }}
                 title="알아 두실 사항"
                 iscenter
-                active={state?.terms.terms5}
+                active={state?.terms.terms5.isChecked === 1}
               />
             </ButtonBox>
             <PaddingBox />
           </ContentsContainer>
         </ScrollView>
-
         <TermsModal
           open={state?.termsModal}
           close={() => {
