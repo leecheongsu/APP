@@ -5,6 +5,7 @@ import { handleApiError, screenWidth } from '@app/lib';
 import FindeEmailPresenter from './FindEmailPresenter';
 import Toast from 'react-native-simple-toast';
 import { useNavigation } from '@react-navigation/native';
+import { Alert } from 'react-native';
 
 export type FindEmailStateTypes = {
   currentPage: number;
@@ -127,13 +128,13 @@ export default function FindeEmailContainer() {
               scrollRef.current?.scrollTo({ x: screenWidth(), animated: true });
             } else {
               onChangeState('loading', false);
-              Toast.show('오류가 발생하였습니다.');
+              Alert.alert('알림', '오류가 발생하였습니다.');
             }
           })
           .catch((e) => {
             onChangeState('loading', false);
-            if (e.response.data?.message === 'no user') {
-              Toast.show('등록된사용자가 없습니다.');
+            if (e.response.status === 404) {
+              Alert.alert('알림', '등록된 사용자가 없습니다.');
             } else {
               handleApiError(e.response);
             }

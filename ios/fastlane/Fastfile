@@ -17,6 +17,7 @@ platform :ios do
     scan(scheme: "insurobo")
   end
 
+  #버젼설정
   def updateVersion(options)
     if options[:version]
       version = options[:version]

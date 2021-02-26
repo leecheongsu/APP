@@ -17,11 +17,77 @@ default_platform(:android)
 
 platform :android do
 
+  desc "Runs all the tests"
+    lane :test do
+    increment_version_code(
+      gradle_file_path: "app/build.gradle"
+    )
+    gradle(task: "test")
+  end
+
+  #버젼설정 
+  def increment_version_number(bump_type: nil, version_number: nil)
+    path = '../app/build.gradle'
+    re = /versionName\s+("\d+.\d+.\d+")/
+    s = File.read(path)
+
+    versionName = s[re, 1].gsub!('"','').split('.')
+
+    major = versionName[0].to_i
+    minor = versionName[1].to_i
+    patch = versionName[2].to_i
+
+    if (bump_type == 'major')
+        major += 1
+        minor = 0
+        patch = 0
+    elsif (bump_type == 'minor')
+        minor += 1
+        patch = 0
+    elsif (bump_type == 'patch')
+        patch += 1
+    end
+
+    if(version_number)
+      s[re, 1] = "\"#{version_number}\""
+    else
+      s[re, 1] = "\"#{major}.#{minor}.#{patch}\""
+    end
+
+    f = File.new(path, 'w')
+    f.write(s)
+    f.close
+    increment_version_code()
+  end
+
+  # 버젼업데이트 설정
+  def updateVersion(options)
+    if options[:version]
+      version = options[:version]
+    else
+      version = prompt(text: "Enter the version type or specific version\n(major, minor, patch or 1.0.0): ")
+    end
+
+    re = /\d+.\d+.\d+/
+    versionNum = version[re, 0]
+
+    if (versionNum)
+      increment_version_number(
+        version_number: versionNum
+      )
+    elsif (version == 'major' || version == 'minor' || version == 'patch')
+      increment_version_number(
+        bump_type: version
+      )
+    else
+      UI.user_error!("[ERROR] Wrong version!!!!!!")
+    end
+  end
+
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
     gradle(task: "clean assembleRelease")
     crashlytics
-  
     # sh "your_script.sh"
     # You can also use other beta testing services here
   end
@@ -40,26 +106,26 @@ platform :android do
     )
   end
 
+  # 파이어베이스 배포
   desc "Firebase_app_distribution"
     lane :distribute do |options|
-      # increment_version_code(
-      #   gradle_file_path: "android/",
-      #   #ext_constant_name: "test"
-      #   #app_folder_name:"app"
-      # )
-          build_android_app(task: "clean assembleRelease") 
-          # build_android_app is a built-in fastlane action.
-          firebase_app_distribution(
-              app: "1:934772389661:android:ff695659785f1c96f893f4",
-              firebase_cli_token: "1//0eHJ9p5pP4UA5CgYIARAAGA4SNwF-L9IrhJZcDO7W1t683dHjH8t2BaSZpVwT1qGBZxXI1yBHD-_D8I02K673yRiZYr3w1KHseNQ",
-              groups: "인슈로보내부",
-              release_notes: "테스트배포"
-          )
-          slack(
-            slack_url: "https://hooks.slack.com/services/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",
-            channel: "#app-deploy",
-            message: "android appTester 배포완료",
-          )
+      increment_version_code(
+        gradle_file_path: "app/build.gradle"
+      )
+      updateVersion(options)
+      gradle(task: "clean assembleRelease")
+      # build_android_app is a built-in fastlane action.
+      firebase_app_distribution(
+          app: "1:934772389661:android:ff695659785f1c96f893f4",
+          firebase_cli_token: "1//0eHJ9p5pP4UA5CgYIARAAGA4SNwF-L9IrhJZcDO7W1t683dHjH8t2BaSZpVwT1qGBZxXI1yBHD-_D8I02K673yRiZYr3w1KHseNQ",
+          groups: "인슈로보내부",
+          release_notes: ""
+      )
+      slack(
+        slack_url: "https://hooks.slack.com/services/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",
+        channel: "#app-deploy",
+        message: "android appTester 배포완료",
+      )
     end
 
 end

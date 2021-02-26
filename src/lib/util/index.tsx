@@ -204,7 +204,10 @@ export const juminFront = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0
 //api error handler
 export const handleApiError = async (value) => {
   const errorCode = value?.data?.status;
-  Alert.alert('알림', value?.data?.message === undefined ? '알수없는 오류가 발생하였습니다.' : value?.data?.message);
+  if (value?.data?.message !== undefined) {
+    Alert.alert('알림', value?.data?.message);
+  }
+  console.log(value);
   switch (errorCode) {
     case 401: {
       return Toast.show('권한이 없습니다.');
