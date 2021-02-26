@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef } from 'react';
+import React, { useCallback, useEffect, useReducer, useRef } from 'react';
 import { screenWidth } from '@app/lib';
 import {
   CheckList,
@@ -207,7 +207,7 @@ const initialState = {
   addressErrorMessage: '',
   joinType: '개인',
   stuffDivision: '일반',
-  possessionDivision: '소유자',
+  possessionDivision: '임차자',
   selectSector: '',
   selectBuildingPrice: '',
   selectFacilityprice: '',
@@ -215,7 +215,7 @@ const initialState = {
   selectInventoryPrice: '',
   selectInsuCompany: '',
   selectCard: '',
-  selectTerm: '',
+  selectTerm: '0',
   insuCertificateModal: false,
   basicSectorItems: [],
   factorySectorItems: [],
@@ -443,13 +443,13 @@ export default function StormFloodContainer() {
     hsArea: useInput(''),
   };
 
-  const onChangeState = (name: StormFloodName, value: any) => {
+  const onChangeState = useCallback((name, value) => {
     dispatch({ type: 'CHANGE', name, value });
-  };
+  }, []);
 
-  const termsChange = (name, value: any) => {
+  const termsChange = useCallback((name, value) => {
     dispatch({ type: 'TERMS_CHANGE', name, value });
-  };
+  }, []);
 
   //가입유형 다음 버튼
   const handleJoinTypeNextButton = () => {
@@ -726,7 +726,7 @@ export default function StormFloodContainer() {
   const setPageHeader = () => {
     switch (state?.stepNumber) {
       case 1:
-        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '상품안내' });
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '풍수해Ⅵ' });
         return;
       case 2:
         globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '소상공인 체크리스트' });
@@ -750,7 +750,7 @@ export default function StormFloodContainer() {
         globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '청약확인' });
         return;
       case 9:
-        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '청약 확인약관 동의' });
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '신용카드 간편결제' });
         return;
       case 10:
         globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '계약 완료' });

@@ -85,7 +85,7 @@ function LoginPresenter({ inputState, state, handleAutoLoginButton, submitLogin 
         <SearchAndChangeButtonBox>
           <TextButton onPress={() => navigation.navigate('FIND_EMAIL')}>
             <Typhograph type="NOTO" color="BLACK2">
-              아이디 찾기
+              이메일 찾기
             </Typhograph>
           </TextButton>
           <Typhograph type="NOTO" color="BLACK2" size={12} lineheight={3}>

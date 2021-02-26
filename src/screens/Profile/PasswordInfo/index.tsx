@@ -47,7 +47,7 @@ const TitleBox = styled.View`
 `;
 
 const TextInputBox = styled.View`
-  margin-top: 10px;
+  margin-top: 20px;
 `;
 const InputLabel = styled.View``;
 const InputBox = styled.View`
@@ -148,7 +148,7 @@ function PasswordInfo({ state, inputState, onChangeState }) {
         enableResetScrollToCoords={false}
         extraScrollHeight={Platform.OS === 'ios' ? 10 : -10}>
         <Container>
-          <TextInputBox>
+          <TextInputBox style={{ marginTop: 0 }}>
             <InputLabel>
               <Typhograph type="NOTO" weight="MEDIUM">
                 비밀번호

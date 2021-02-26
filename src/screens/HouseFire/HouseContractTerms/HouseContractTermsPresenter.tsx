@@ -283,6 +283,7 @@ function HouseContractTermsPresenter({
         }}
         onPress={onClickTermsModalAgree}
         isButton
+        flag="meritz"
       />
       <BottomFixButton
         index={state.stepNumber}

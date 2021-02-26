@@ -31,7 +31,7 @@ export default function HouseFinalContainer({
     RNFetchBlob.config({
       fileCache: true,
       appendExt: 'pdf',
-      path: `${dirs.DownloadDir}/보험증권.pdf`,
+      path: `${dirs.DocumentDir}/보험증권.pdf`,
       addAndroidDownloads: {
         useDownloadManager: true,
         notification: true,
@@ -46,7 +46,7 @@ export default function HouseFinalContainer({
         onChangeState('loading', false);
         if (Platform.OS === 'ios') {
           RNFetchBlob.fs.writeFile(res.path(), res.data, 'base64');
-          RNFetchBlob.ios.previewDocument(res.path());
+          RNFetchBlob.ios.openDocument(res.path());
         }
       })
       .catch((e) => {
@@ -61,7 +61,7 @@ export default function HouseFinalContainer({
     RNFetchBlob.config({
       fileCache: true,
       appendExt: 'pdf',
-      path: `${dirs.DownloadDir}/보험약관.pdf`,
+      path: `${dirs.DocumentDir}/보험약관.pdf`,
       addAndroidDownloads: {
         useDownloadManager: true,
         notification: true,
@@ -76,7 +76,7 @@ export default function HouseFinalContainer({
         onChangeState('loading', false);
         if (Platform.OS === 'ios') {
           RNFetchBlob.fs.writeFile(res.path(), res.data, 'base64');
-          RNFetchBlob.ios.previewDocument(res.path());
+          RNFetchBlob.ios.openDocument(res.path());
         }
       })
       .catch((e) => {
@@ -93,19 +93,15 @@ export default function HouseFinalContainer({
         } else {
           try {
             const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE, {
-              title: 'Storage Permission Required',
-              message: 'Application needs access to your storage to download File',
+              title: '저장 권한',
+              message: '파일을 다운로드하려면 애플리케이션이 스토리지에 액세스해야합니다.',
             });
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-              // Start downloading
               downloadFile1();
-              console.log('파일다운로드 권한 허용');
             } else {
-              // If permission denied then show alert
-              Alert.alert('Error', 'Storage Permission Not Granted');
+              Alert.alert('에러', '파일접근권한이 없습니다.');
             }
           } catch (err) {
-            // To handle permission related exception
             console.log('++++' + err);
           }
         }
@@ -117,19 +113,15 @@ export default function HouseFinalContainer({
         } else {
           try {
             const granted = await PermissionsAndroid.request(PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE, {
-              title: 'Storage Permission Required',
-              message: 'Application needs access to your storage to download File',
+              title: '저장 권한',
+              message: '파일을 다운로드하려면 애플리케이션이 스토리지에 액세스해야합니다.',
             });
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
-              // Start downloading
               downloadFile2();
-              console.log('파일다운로드 권한 허용');
             } else {
-              // If permission denied then show alert
-              Alert.alert('Error', 'Storage Permission Not Granted');
+              Alert.alert('에러', '파일접근권한이 없습니다.');
             }
           } catch (err) {
-            // To handle permission related exception
             console.log('++++' + err);
           }
         }
@@ -142,7 +134,7 @@ export default function HouseFinalContainer({
     navigation.goBack();
   };
 
-  if (state.stepNumber === 12) {
+  if (state.stepNumber === 13) {
     return (
       <HouseFinalPresenter
         state={state}

@@ -40,7 +40,7 @@ export default function HouseInfoContainer({
     use_apr_date: moment(state.selectAddress?.use_apr_date).format('YYYY.MM.DD'),
     roof_name: state.selectAddress?.roof_name,
   };
-  if (state.stepNumber === 3) {
+  if (state.stepNumber === 4) {
     return (
       <HouseInfoPresenter
         state={state}

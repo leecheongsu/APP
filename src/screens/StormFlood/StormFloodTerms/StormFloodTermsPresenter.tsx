@@ -270,7 +270,7 @@ function StormFloodTermsPresenter({
                   <Typhograph type="ROBOTO" color="BLACK2" size={16}>
                     {state?.selectBuildingPrice?.val_name}
                     <Typhograph type="NOTO" color="GRAY">
-                      원
+                      {state?.selectBuildingPrice?.val_name === undefined ? '-' : '원'}
                     </Typhograph>
                   </Typhograph>
                 </TableBodyItem>
@@ -595,6 +595,7 @@ function StormFloodTermsPresenter({
           }}
           onPress={onClickTermsModalAgree}
           isButton
+          flag="hyundai"
         />
         <BottomFixButton
           index={state.stepNumber}

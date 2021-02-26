@@ -9,6 +9,7 @@ type HouseFirePresenterTypes = {
   onChangeState: (name, value) => void;
   returnComponent: (
     id:
+      | 'productInfo'
       | 'joinType'
       | 'address'
       | 'info'

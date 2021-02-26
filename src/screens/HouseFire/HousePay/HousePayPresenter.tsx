@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react';
-import { BottomFixButton, DefaultInput, Loading, OverayLoading, Select, Typhograph } from '@app/components';
+import { BottomFixButton, DefaultInput, OverayLoading, Select, Typhograph } from '@app/components';
 import { screenWidth } from '@app/lib';
 import { HouseFireStateName, HouseFireStateTypes, TermsNames } from '@app/screens/HouseFire/HouseFireContainer';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Platform } from 'react-native';
+import { Keyboard, Platform, StatusBar } from 'react-native';
 import WebView from 'react-native-webview';
 import { ScrollView } from 'react-native-gesture-handler';
 import { useGlobalState } from '@app/context';
@@ -67,21 +67,13 @@ const InputContainer = styled.View`
 const InputItem = styled.View`
   width: 24%;
 `;
-const PaddingBox = styled.View`
-  height: 20px;
-`;
 
 function HousePayPresenter({
   state,
   submitNextButton,
   handlePreviousButton,
-  onChangeTermsState,
   onChangeState,
-  onClickTermsModalAgree,
-  onClickTermsModalOpen,
-  onClickAllCheck,
   insuPrice,
-  selectInsu,
   selectCard,
   inputState,
   onMessage,
@@ -121,6 +113,27 @@ function HousePayPresenter({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputState.card1.value, inputState.card2.value, inputState.card3.value]);
+
+  //웹뷰에서 키보드 입력하면 status바 없어지는거 방지
+  const _keyboardDidShow = () => {
+    StatusBar.setBarStyle('dark-content');
+  };
+
+  const _keyboardDidHide = () => {
+    StatusBar.setBarStyle('dark-content');
+  };
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+
+    // cleanup function
+    return () => {
+      Keyboard.removeListener('keyboardDidShow', _keyboardDidShow);
+      Keyboard.removeListener('keyboardDidHide', _keyboardDidHide);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   //카드 유효기간 다음칸 자동이동
   useEffect(() => {

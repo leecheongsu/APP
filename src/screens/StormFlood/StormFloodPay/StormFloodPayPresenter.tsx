@@ -104,19 +104,19 @@ function StormFloodPayPresenter({
     { label: 'KB국민', value: 'KB국민' },
   ];
   const selectItem2 = [
-    { label: '일시불', value: '일시불' },
-    { label: '1개월', value: '1개월' },
-    { label: '2개월', value: '2개월' },
-    { label: '3개월', value: '3개월' },
-    { label: '4개월', value: '4개월' },
-    { label: '5개월', value: '5개월' },
-    { label: '6개월', value: '6개월' },
-    { label: '7개월', value: '7개월' },
-    { label: '8개월', value: '8개월' },
-    { label: '9개월', value: '9개월' },
-    { label: '10개월', value: '10개월' },
-    { label: '11개월', value: '11개월' },
-    { label: '12개월', value: '12개월' },
+    { label: '일시불', value: '0' },
+    { label: '1개월', value: '1' },
+    { label: '2개월', value: '2' },
+    { label: '3개월', value: '3' },
+    { label: '4개월', value: '4' },
+    { label: '5개월', value: '5' },
+    { label: '6개월', value: '6' },
+    { label: '7개월', value: '7' },
+    { label: '8개월', value: '8' },
+    { label: '9개월', value: '9' },
+    { label: '10개월', value: '10' },
+    { label: '11개월', value: '11' },
+    { label: '12개월', value: '12' },
   ];
   //카드인풋 자동 다음칸이동
   useEffect(() => {
@@ -147,7 +147,7 @@ function StormFloodPayPresenter({
   return (
     <>
       <Container>
-        <OverayLoading visible={false} />
+        <OverayLoading visible={state?.loading} />
         <KeyboardAwareScrollView
           enableResetScrollToCoords={false}
           enableOnAndroid={true}
@@ -307,6 +307,8 @@ function StormFloodPayPresenter({
           open={state.electronicSignModal}
           close={() => onChangeState('electronicSignModal', false)}
           onClick={() => onChangeState('isSign', true)}
+          state={state}
+          onChangeState={onChangeState}
         />
 
         <SignConfirm

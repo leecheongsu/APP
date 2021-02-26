@@ -3,6 +3,7 @@ import { useGlobalState } from '@app/context';
 import { useInput } from '@app/hooks';
 import { EmptyLayout } from '@app/layout';
 import { handleApiError } from '@app/lib';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { Alert } from 'react-native';
 import StormFloodPayPresenter from './StormFloodPayPresenter';
@@ -13,6 +14,7 @@ export default function StormFloodPayContainer({
   onClickTermsModalOpen,
   handlePreviousButton,
 }) {
+  const navigation = useNavigation();
   const globalState = useGlobalState();
   const inputState = {
     card1: useInput(''),
@@ -36,6 +38,9 @@ export default function StormFloodPayContainer({
       return false;
     } else if (state.selectCard === '') {
       Alert.alert('알림', '카드사를 선택해주세요.');
+      return false;
+    } else if (state.selectTerm === '') {
+      Alert.alert('알림', '할부개월수를 선택해주세요.');
       return false;
     } else if (cardNumber.length !== 16) {
       Alert.alert('알림', '카드번호를 입력해주세요.');
@@ -76,10 +81,9 @@ export default function StormFloodPayContainer({
         }
       })
       .catch((e) => {
-        console.log(e.response);
+        handleApiError(e.response);
       });
   };
-
   const submitPay = () => {
     onChangeState('loading', true);
     const params = {
@@ -87,7 +91,7 @@ export default function StormFloodPayContainer({
       data: {
         quote_no: state?.selectAddress?.quote_no,
         prod_code: state?.selectAddress?.product?.p_code,
-        advisor_no: String(globalState?.recommendUser?.seq),
+        advisor_no: globalState?.recommendUser?.seq === undefined ? '' : String(globalState?.recommendUser?.seq),
         card: {
           regNo1: globalState?.jumina,
           regNo2: globalState?.juminb,
@@ -95,8 +99,9 @@ export default function StormFloodPayContainer({
           cardNo2: inputState.card2.value,
           cardNo3: inputState.card3.value,
           cardNo4: inputState.card4.value,
+          cardDivide: state.selectTerm,
           validMonth: inputState.cardMonth.value,
-          validYear: inputState.cardYear.value,
+          validYear: '20' + inputState.cardYear.value,
         },
         terms: {
           termsa_1: 1,
@@ -128,16 +133,17 @@ export default function StormFloodPayContainer({
       .postWwPay(params)
       .then((res) => {
         onChangeState('loading', false);
+        if (res.status === 200) {
+          handleNextButton();
+        }
       })
       .catch((e) => {
         handleApiError(e.response);
-        console.log(e.response);
         onChangeState('loading', false);
       });
   };
 
   const nextButton = () => {
-    handleNextButton();
     if (checkInput()) {
       submitPay();
     }

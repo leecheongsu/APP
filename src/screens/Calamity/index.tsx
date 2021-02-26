@@ -87,52 +87,40 @@ function Calamity() {
   const rightValue2 = useState(new Animated.Value(width))[0];
 
   const leftmove = () => {
-    Animated.timing(leftValue, {
-      toValue: 0,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
+    Animated.loop(
+      Animated.sequence([
+        Animated.delay(500),
+        Animated.timing(leftValue, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+        Animated.timing(rightValue, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+        Animated.timing(leftValue2, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+        Animated.timing(rightValue2, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+      ])
+    ).start(() => leftmove());
   };
 
-  const leftmove2 = () => {
-    Animated.timing(leftValue2, {
-      toValue: 0,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const rightMove = () => {
-    Animated.timing(rightValue, {
-      toValue: 0,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
-  const rightMove2 = () => {
-    Animated.timing(rightValue2, {
-      toValue: 0,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  useEffect(() => {
-    leftmove();
-    setTimeout(() => rightMove(), 500);
-    setTimeout(() => leftmove2(), 1200);
-    setTimeout(() => rightMove2(), 1700);
-  }, []);
-
-  //안드로이드 백버튼 핸들러
   useEffect(() => {
     const backAction = () => {
-      DefaultAlert({ title: '알림', msg: '메인페이지로 돌아 가시겠습니까?', okPress: () => navigation.goBack() });
+      navigation.goBack();
       return true;
     };
-
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
-
+    leftmove();
     return () => backHandler.remove();
   }, []);
 
@@ -293,10 +281,10 @@ function Calamity() {
       <BottomFixButton
         index={1}
         leftTitle="이전"
-        rightTitle="다음"
+        rightTitle="보험료 간편계산"
         bottomRightPress={() =>
           DefaultAlert({
-            title: '인슈로보 페이지이동',
+            title: '알림',
             msg: '본 상품은 현대해상 [재난배상책임보험]으로 현대해상다이렉트로 이동합니다.',
             okPress: () => Linking.openURL('https://mplatform.hi.co.kr/service.do?m=pipim1000&jehuCd=hyundaipay'),
           })

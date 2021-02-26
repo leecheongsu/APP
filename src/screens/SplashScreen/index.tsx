@@ -1,14 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import { FocusAwareStatusBar, SafeArea, Typhograph } from '@app/components';
+import { Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import { MainLayout } from '@app/layout';
-import { Image, Platform, StatusBar } from 'react-native';
+import { Image, StatusBar, StyleSheet } from 'react-native';
 import { insuImg } from '@app/assets';
-import { screenHeight, screenWidth } from '@app/lib';
+import { screenWidth } from '@app/lib';
 import * as Progress from 'react-native-progress';
 import theme from '@app/style/theme';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
+
+const styles = StyleSheet.create({
+  isIphone: {
+    ...ifIphoneX({
+      paddingTop: 25,
+    }),
+  },
+});
 const Container = styled.View`
-  padding: 20px;
+  padding: 70px 20px 20px 20px;
   background-color: ${theme.color.WHITE};
   height: 500px;
 `;
@@ -30,17 +39,16 @@ export default function SplashScreen() {
   const [value, setValue] = useState(0);
   useEffect(() => {
     if (value < 1) {
-      console.log(1);
       setTimeout(() => {
         setValue(value + 0.1);
-      }, 100);
+      }, 500);
     }
   }, [value]);
   return (
     <>
       <MainLayout>
         <StatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
-        <Container>
+        <Container style={styles.isIphone}>
           <Logobox>
             <Image source={insuImg.INTRO_LOGO} />
           </Logobox>
@@ -56,7 +64,7 @@ export default function SplashScreen() {
               progress={value}
               width={200}
               color={theme.color.SKYBLUE}
-              borderColor={theme.color.SKYBLUE}
+              borderColor={theme.color.GRAY2}
               height={3}
             />
             <Typhograph type="NOTO" color="GRAY" size={10}>

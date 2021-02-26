@@ -4,6 +4,16 @@ import { getInsuText, priceDot, recomendMasking, screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import React from 'react';
+import { StyleSheet } from 'react-native';
+
+const styles = StyleSheet.create({
+  left: {
+    width: '30%',
+  },
+  right: {
+    width: '70%',
+  },
+});
 
 const Container = styled.View`
   width: ${screenWidth()}px;
@@ -371,11 +381,10 @@ function HouseConfirmPresenter({
                 보험목적물{'\n'}소재지
               </Typhograph>
             </RowItem>
-            <RowItem>
-              <Typhograph type="NOTO" color="BLACK2">
-                {isSede
-                  ? `${state?.selectAddress?.address} ${state?.resultDong?.dongNm}${state?.resultDetail?.hoNm}`
-                  : state?.selectAddress?.address}
+            <RowItem style={styles.right}>
+              {console.log(state?.selectAddress?.address)}
+              <Typhograph type="NOTO" color="BLACK2" style={{ textAlign: 'right' }}>
+                {isSede ? `${state?.selectAddress?.address}` : state?.selectAddress?.address}
               </Typhograph>
             </RowItem>
           </RowBox>

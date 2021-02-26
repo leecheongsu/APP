@@ -100,11 +100,11 @@ function MainStack() {
         name="STORM_FLOOD2"
         component={StormFlood2}
         options={{
-          headerLeft: () => <BackButton isAlert />,
+          headerLeft: () => <BackButton />,
           headerLeftContainerStyle: { paddingHorizontal: 10 },
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
-              배상책임(다중이용시설)
+              다중이용시설 화재배상책임
             </Typhograph>
           ),
           headerShown: true,
@@ -126,11 +126,11 @@ function MainStack() {
         name="CALAMITY"
         component={Calamity}
         options={{
-          headerLeft: () => <BackButton isAlert />,
+          headerLeft: () => <BackButton />,
           headerLeftContainerStyle: { paddingHorizontal: 10 },
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
-              배상책임(재난)
+              재난 배상책임
             </Typhograph>
           ),
           headerShown: true,
@@ -152,7 +152,7 @@ function MainStack() {
         name="CUSTOMER_CENTER"
         component={CustomerCenter}
         options={{
-          headerLeft: () => <BackButton isAlert />,
+          headerLeft: () => <BackButton />,
           headerLeftContainerStyle: { paddingHorizontal: 10 },
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">

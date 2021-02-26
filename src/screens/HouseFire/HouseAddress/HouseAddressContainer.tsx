@@ -202,7 +202,7 @@ export default function HouseAddressContainer({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [getAddress]);
 
-  if (state.stepNumber === 2) {
+  if (state.stepNumber === 3) {
     return (
       <HouseAddressPresenter
         state={state}

@@ -167,7 +167,6 @@ export default function JoinContainer() {
       userApis
         .postBusinessJoin(params)
         .then((res) => {
-          console.log(res);
           if (res.status === 200) {
             Toast.show('정상적으로 가입완료 되었습니다.');
             navigation.navigate('JOIN_SUCCESS');

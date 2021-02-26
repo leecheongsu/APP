@@ -33,7 +33,7 @@ export default function HouseTermsUseContainer({
     }
   };
 
-  if (state.stepNumber === 8) {
+  if (state.stepNumber === 9) {
     return (
       <HouseConfirmPresenter
         state={state}

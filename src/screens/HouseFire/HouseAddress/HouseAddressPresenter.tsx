@@ -1,5 +1,5 @@
 import React from 'react';
-import { FullLabel, Loading, SearchInput, EmptyCard, AddressCard } from '@app/components';
+import { FullLabel, Loading, SearchInput, EmptyCard, AddressCard, Typhograph } from '@app/components';
 import { screenWidth } from '@app/lib';
 import {
   HouseFireInputStateTypes,
@@ -39,6 +39,10 @@ const PaddingBox = styled.View`
   height: 220px;
 `;
 
+const TipBox = styled.View`
+  padding: 20px;
+`;
+
 function HouseAddressPresenter({
   state,
   inputState,
@@ -55,7 +59,6 @@ function HouseAddressPresenter({
   return (
     <Container>
       <FullLabel title="주소를 입력해주세요." />
-
       <SearchBox>
         <SearchInput
           {...inputState.searchInput}
@@ -64,6 +67,42 @@ function HouseAddressPresenter({
           onChangeState={onChangeState}
         />
       </SearchBox>
+      {state?.addressData?.length === 0 && (
+        <TipBox>
+          <Typhograph type="NOTO" color="BLACK2" weight="REGULAR">
+            ****** 검색 Tip{'\n'}
+            아래와 같은 조합으로 검색을 하시면 더욱정확한 결과가 검색됩니다.
+          </Typhograph>
+          {/* 도로명 + 건물번호*/}
+          <Typhograph type="NOTO" color="BLACK" weight="BOLD" style={{ marginTop: 20 }}>
+            도로명 + 건물번호
+          </Typhograph>
+          <Typhograph type="NOTO" color="BROWN" size={12}>
+            예) 유엔빌리지3길 84, 송정중앙로 9-1
+          </Typhograph>
+          {/* 지역명(동/리) + 번지*/}
+          <Typhograph type="NOTO" color="BLACK" weight="BOLD" style={{ marginTop: 20 }}>
+            지역명(동/리) + 번지
+          </Typhograph>
+          <Typhograph type="NOTO" color="BROWN" size={12}>
+            예) 전포동 375-51
+          </Typhograph>
+          {/* 지역명(동/리) + 건물명(아파트명)*/}
+          <Typhograph type="NOTO" color="BLACK" weight="BOLD" style={{ marginTop: 20 }}>
+            지역명(동/리) + 건물명(아파트명)
+          </Typhograph>
+          <Typhograph type="NOTO" color="BROWN" size={12}>
+            예) 효창동 현대아트빌(아파트), 논현동 신동아(아파트)
+          </Typhograph>
+          {/* 세대별 가입*/}
+          <Typhograph type="NOTO" color="BLACK" weight="BOLD" style={{ marginTop: 20 }}>
+            세대별 가입
+          </Typhograph>
+          <Typhograph type="NOTO" color="BROWN" size={12}>
+            예) 하단 대진아파트, 중동 아남하이츠3차
+          </Typhograph>
+        </TipBox>
+      )}
       {loading ? (
         <Loading height={300} />
       ) : isErrorAndEmpty ? (

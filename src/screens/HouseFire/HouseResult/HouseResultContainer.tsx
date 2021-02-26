@@ -18,7 +18,7 @@ export default function HouseResultContainer({
     onChangeState('selectInsuCompany', company);
   };
 
-  if (state.stepNumber === 5) {
+  if (state.stepNumber === 6) {
     return (
       <HouseResultPresenter
         state={state}

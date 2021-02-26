@@ -103,7 +103,10 @@ function CheckListPresenter({
     <>
       <Container>
         <ScrollView>
-          <FullLabel title={`아래3가지 질문사항을 확인하시고 ${'\n'} 모두 해당되어야 가입이 가능합니다.`} />
+          <FullLabel
+            title={`법률상소상공인 여부를${'\n'} 확인바랍니다.`}
+            icon={<Image style={{ marginLeft: 10 }} source={insuIcon.STORMFLOOD_CHECK} />}
+          />
           <ContentsContainer>
             <TextBox>
               <Typhograph type="NOTO" color="GRAY" size={12}>
@@ -274,7 +277,7 @@ function CheckListPresenter({
                   onClickTermsModalOpen2('terms5', productInfoHtml3());
                   termsChange('terms5', 1);
                 }}
-                title="알아 두실 사항"
+                title="꼭!! 알아 두실 사항"
                 iscenter
                 active={state?.terms.terms5.isChecked === 1}
               />

@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">인슈로보 V0.7</string>
+    <string name="app_name">인슈로보 V1.0</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">0jVh4suBSHPuGOAzV2DHPnjOsQWxFxKREhhzl</string>
 </resources>
+

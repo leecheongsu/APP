@@ -19,7 +19,6 @@ function BackButton({ onPress, isAlert = false }: BackButtonTypes) {
       DefaultAlert({
         title: '알림',
         msg: '메인페이지로 돌아 가시겠습니까?',
-
         okPress: () => {
           globalDispatch({ type: 'CHANGE', name: 'recommendUser', value: undefined });
           globalDispatch({ type: 'CHANGE', name: 'isIdentityverification', value: false });

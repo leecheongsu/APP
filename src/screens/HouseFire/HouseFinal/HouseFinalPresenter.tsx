@@ -229,7 +229,7 @@ function HouseFinalPresenter({
       <BottomFixButton
         index={1}
         leftTitle="이전"
-        rightTitle="다음"
+        rightTitle="확인"
         bottomRightPress={submitNextButton}
         bottomLeftPress={handlePreviousButton}
         isKeybordView={state.isKeybordView}

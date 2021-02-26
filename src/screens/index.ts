@@ -11,6 +11,7 @@ export { default as HouseConfirm } from './HouseFire/HouseConfirm';
 export { default as HouseContractTerms } from './HouseFire/HouseContractTerms';
 export { default as HousePay } from './HouseFire/HousePay';
 export { default as HouseFinal } from './HouseFire/HouseFinal';
+export { default as HouseProductInfo } from './HouseFire/HouseProductInfo';
 
 export { default as StormFlood } from './StormFlood';
 export { default as ProductInfomation } from './StormFlood/ProductInfomation';

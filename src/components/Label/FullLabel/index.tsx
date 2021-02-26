@@ -5,6 +5,7 @@ import theme from '@app/style/theme';
 
 type FullLabelTypes = {
   title: string | number;
+  icon?: any;
 };
 
 const Container = styled.View`
@@ -20,9 +21,29 @@ const Diveder = styled.View`
   height: 8px;
   background-color: ${theme.color.DIVIDER_BACK};
 `;
+const RowBox = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
 
-function FullLabel({ title }: FullLabelTypes) {
-  return (
+const RowItem = styled.View``;
+
+function FullLabel({ title, icon }: FullLabelTypes) {
+  return icon ? (
+    <>
+      <Container>
+        <RowBox>
+          <RowItem>
+            <Typhograph type="NOTO" color="BLACK2" size={14} weight="MEDIUM" style={{ textAlign: 'center' }}>
+              {title}
+            </Typhograph>
+          </RowItem>
+          <RowItem>{icon}</RowItem>
+        </RowBox>
+      </Container>
+      <Diveder />
+    </>
+  ) : (
     <>
       <Container>
         <Typhograph type="NOTO" color="BLACK2" size={14} weight="MEDIUM" style={{ textAlign: 'center' }}>

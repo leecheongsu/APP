@@ -71,7 +71,7 @@ export default function HouseContractTermsContainer({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [globalState?.isIdentityverification]);
 
-  if (state.stepNumber === 9) {
+  if (state.stepNumber === 10) {
     return (
       <HouseContractTermsPresenter
         state={state}

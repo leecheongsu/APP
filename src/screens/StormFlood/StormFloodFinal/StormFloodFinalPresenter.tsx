@@ -59,7 +59,7 @@ function StormFloodFinalPresenter({
     <>
       <Container>
         {/* 카드결제 결과 */}
-        <FullLabel title={`인슈로보 주택화재보험 계약이${'\n'}정상적으로 완료되었습니다.`} />
+        <FullLabel title={`인슈로보 풍수해 Ⅵ 계약이${'\n'}정상적으로 완료되었습니다.`} />
         <ContentsContainer>
           <InfoBox>
             <InfotextBox>
@@ -132,7 +132,7 @@ function StormFloodFinalPresenter({
           rightTitle="다음"
           bottomRightPress={() => nextButton()}
           bottomLeftPress={() => handlePreviousButton()}
-          isKeybordView={state.isKeybordView}
+          isKeybordView={false}
         />
       </Container>
     </>

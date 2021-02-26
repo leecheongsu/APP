@@ -115,7 +115,7 @@ export default function HouseInputUserContainer({ state, onChangeState, handlePr
     }
   };
 
-  if (state.stepNumber === 6) {
+  if (state.stepNumber === 7) {
     return (
       <HouseInputUserPresenter
         state={state}

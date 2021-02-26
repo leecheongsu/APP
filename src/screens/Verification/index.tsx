@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { userApis } from '@app/api/User';
-import { DefaultAlert, Loading, OverayLoading } from '@app/components';
+import { DefaultAlert, FocusAwareStatusBar, Loading, OverayLoading } from '@app/components';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
 import { handleApiError } from '@app/lib';
 import { useNavigation } from '@react-navigation/native';
 import WebView from 'react-native-webview';
 import { insuApis } from '@app/api/Insurance';
-import { BackHandler } from 'react-native';
+import { Alert, BackHandler, Keyboard, StatusBar } from 'react-native';
 
 function Verification() {
   const navigation = useNavigation();
@@ -69,16 +69,16 @@ function Verification() {
   </body>
   </html>
   `;
-
   const onMessage = (e) => {
+    StatusBar.setBarStyle('dark-content');
     if (globalState.insuType === 'home') {
       if (e.nativeEvent.data === 'ok') {
         globalDispatch({ type: 'CHANGE', name: 'isIdentityverification', value: true });
-        alert('본인인증에 성공하였습니다.');
+        Alert.alert('알림', '본인인증에 성공하였습니다.');
         navigation.goBack();
       } else {
         globalDispatch({ type: 'CHANGE', name: 'isIdentityverification', value: false });
-        alert('인증에 실패하였습니다. 다시 본인인증을 진행해 주세요.');
+        Alert.alert('알림', '인증에 실패하였습니다. 다시 본인인증을 진행해 주세요.');
         navigation.goBack();
       }
     } else {
@@ -101,7 +101,7 @@ function Verification() {
                 regNo2: globalState?.juminb,
                 telCat: '3',
                 telNo1: globalState?.user?.mobile?.slice(0, 3),
-                telNo2: globalState?.user?.mobile?.slice(4, 8),
+                telNo2: globalState?.user?.mobile?.slice(3, 7),
                 telNo3: globalState?.user?.mobile?.slice(7, 11),
                 ptyBizNm: '',
                 bizNo1: '',
@@ -119,10 +119,10 @@ function Verification() {
               globalDispatch({ type: 'CHANGE', name: 'electronicSignPreData', value: res.data });
               navigation.goBack();
               setLoading(false);
-              alert('본인인증에 성공하였습니다.');
+              Alert.alert('알림', '본인인증에 성공하였습니다.');
             } else {
               globalDispatch({ type: 'CHANGE', name: 'isIdentityverification', value: false });
-              alert('오류가발생하였습니다.');
+              Alert.alert('알림', '오류가발생하였습니다.');
               navigation.goBack();
               setLoading(false);
             }
@@ -135,18 +135,19 @@ function Verification() {
           });
       } else {
         // globalDispatch({ type: 'CHANGE', name: 'isIdentityverification', value: false });
-        alert('인증에 실패하였습니다. 다시 본인인증을 진행해 주세요.');
+        Alert.alert('알림', '인증에 실패하였습니다. 다시 본인인증을 진행해 주세요.');
         navigation.goBack();
       }
     }
   };
 
   const handleLoading = (e) => {
-    console.log(e);
+    StatusBar.setBarStyle('dark-content');
   };
 
   useEffect(() => {
     getOkcert();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //안드로이드 백버튼 핸들러
@@ -155,14 +156,34 @@ function Verification() {
       DefaultAlert({ title: '알림', msg: '본인인증을 종료하시겠습니까?', okPress: () => navigation.goBack() });
       return true;
     };
-
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
-
     return () => backHandler.remove();
+  }, [navigation]);
+
+  //웹뷰에서 키보드 입력하면 status바 없어지는거 방지
+  const _keyboardDidShow = () => {
+    StatusBar.setBarStyle('dark-content');
+  };
+
+  const _keyboardDidHide = () => {
+    StatusBar.setBarStyle('dark-content');
+  };
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+
+    // cleanup function
+    return () => {
+      Keyboard.removeListener('keyboardDidShow', _keyboardDidShow);
+      Keyboard.removeListener('keyboardDidHide', _keyboardDidHide);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <>
+      <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
       <OverayLoading visible={loading} />
       <WebView
         style={{ height: 100 }}

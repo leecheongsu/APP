@@ -1,118 +1,203 @@
-// Example of Collapsible/Accordion/Expandable List View in React Native
-// https://aboutreact.com/collapsible-accordion-expandable-view/
-
-// import React in our code
 import { insuImg } from '@app/assets';
 import { Typhograph } from '@app/components';
 import { useInterval } from '@app/hooks';
 import theme from '@app/style/theme';
-import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
-import { StyleSheet, View, TouchableOpacity, Image } from 'react-native';
-import * as Animatable from 'react-native-animatable';
-import Accordion from 'react-native-collapsible/Accordion';
+import styled from '@app/style/typed-components';
+import React, { useEffect, useRef, useState } from 'react';
+import { StyleSheet, Image, Animated } from 'react-native';
 
-function HomeCard() {
-  const [activeSections, setActiveSections] = useState([0]);
-  const navigation = useNavigation();
+const CollapsContainer = styled.View`
+  width: 90%;
+`;
+const CollapsHeader = styled.TouchableOpacity`
+  background-color: ${theme.color.GRAY2};
+  align-items: center;
+  padding: 20px;
+`;
+const CollapsBody = styled.TouchableOpacity`
+  align-items: center;
+  justify-content: center;
+  background-color: ${theme.color.WHITE};
+  min-height: 300px;
+`;
 
-  const CONTENT = [
-    {
-      title: '주택화재',
-      content: insuImg.MAIN1,
-      onClick: () => navigation.navigate('HOUSE_FIRE'),
-    },
-    {
-      title: '풍수해 Ⅵ',
-      content: insuImg.MAIN3,
-      onClick: () => navigation.navigate('STORM_FLOOD'),
-    },
-    {
-      title: '배상책임(다중이용시설)',
-      content: insuImg.MAIN2,
-      onClick: () => navigation.navigate('STORM_FLOOD2'),
-    },
-    {
-      title: '배상책임(재난)',
-      content: insuImg.MAIN4,
-      onClick: () => navigation.navigate('CALAMITY'),
-    },
-  ];
+function HomeCard({ navigation }) {
+  // const navigation = useNavigation();
+  const colList = ['col1', 'col2', 'col3', 'col4'];
+  const [isClick, setIsClick] = useState(false);
+  const [collapsed, setCollapsed] = useState({
+    col1: false,
+    col2: false,
+    col3: false,
+    col4: false,
+  });
 
-  const setSections = (sections) => {
-    setActiveSections(sections.includes(undefined) ? [] : sections);
+  const colAnimationheight = {
+    col1: useRef(new Animated.Value(0)).current,
+    col2: useRef(new Animated.Value(0)).current,
+    col3: useRef(new Animated.Value(0)).current,
+    col4: useRef(new Animated.Value(0)).current,
   };
 
-  const renderHeader = (section, index, isActive) => {
-    //Accordion Header view
-    return (
-      <Animatable.View
-        duration={200}
-        style={[
-          styles.header,
-          isActive ? styles.active : styles.inactive,
-          index === 0 && styles.topRadius,
-          index === 0 ? { padding: 25 } : isActive ? { padding: 0 } : { padding: 25 },
-          index === 3 && styles.bottomRadius,
-          index === 3 && { borderBottomWidth: 0 },
-          ,
-        ]}
-        transition="backgroundColor">
-        {isActive ? null : (
-          <Typhograph type="NOTO" color="BLUE" style={{ textAlign: 'center', fontSize: 20 }}>
-            {section.title}
-          </Typhograph>
-        )}
-      </Animatable.View>
-    );
+  const toggleCollapsed = (name) => {
+    // setName(name);
+    const newCol = {
+      col1: false,
+      col2: false,
+      col3: false,
+      col4: false,
+    };
+    colList.map((item) => {
+      if (item === name) {
+        if (collapsed[item]) {
+          collapseView(item);
+        } else {
+          expandView(item);
+        }
+      } else {
+        collapseView(item);
+      }
+    });
+    setCollapsed({
+      ...newCol,
+      [name]: !collapsed[name],
+    });
   };
 
-  const renderContent = (section, index, isActive) => {
-    //Accordion Content view
-    return (
-      <Animatable.View
-        duration={200}
-        style={[
-          styles.content,
-          isActive ? styles.active : styles.inactive,
-          index === 0 && { marginTop: -20 },
-          index === 3 && styles.bottomRadius,
-        ]}
-        transition="backgroundColor">
-        {isActive ? (
-          <TouchableOpacity onPress={() => section.onClick()}>
-            <Animatable.Image easing="ease-in" source={section.content} style={{ width: 300, height: 260 }} />
-          </TouchableOpacity>
-        ) : (
-          <View style={{ width: 300, height: 260, backgroundColor: 'white' }} />
-        )}
-      </Animatable.View>
-    );
+  const collapseView = (value) => {
+    Animated.timing(colAnimationheight[value], {
+      duration: 300,
+      toValue: 0,
+      useNativeDriver: false,
+    }).start();
+  };
+
+  const expandView = (value) => {
+    Animated.timing(colAnimationheight[value], {
+      duration: 300,
+      toValue: 300,
+      useNativeDriver: false,
+    }).start();
   };
 
   useInterval(() => {
-    if (activeSections[0] === 0) {
-      return setSections([1]);
-    } else if (activeSections[0] === 1) {
-      return setSections([2]);
-    } else if (activeSections[0] === 2) {
-      return setSections([3]);
-    } else if (activeSections[0] === 3) {
-      return setSections([0]);
+    if (!isClick) {
+      if (collapsed.col1) {
+        return toggleCollapsed('col2');
+      } else if (collapsed.col2) {
+        return toggleCollapsed('col3');
+      } else if (collapsed.col3) {
+        return toggleCollapsed('col4');
+      } else if (collapsed.col4) {
+        return toggleCollapsed('col1');
+      } else {
+        return null;
+      }
     }
-  }, 3000);
+  }, 10000);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      setIsClick(false);
+      toggleCollapsed('col1');
+    });
+    return unsubscribe;
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigation]);
 
   return (
-    <View style={styles.container}>
-      <Accordion
-        activeSections={activeSections}
-        sections={CONTENT}
-        renderHeader={renderHeader}
-        renderContent={renderContent}
-        duration={400}
-        onChange={setSections}
-      />
-    </View>
+    <CollapsContainer style={styles.container}>
+      {!collapsed.col1 && (
+        <CollapsHeader
+          style={[styles.topRadius, styles.borderBottom]}
+          onPress={() => {
+            toggleCollapsed('col1');
+            setIsClick(true);
+          }}
+          activeOpacity={0.9}>
+          <Typhograph type="NOTO" color="BLUE" size={18}>
+            주택화재
+          </Typhograph>
+        </CollapsHeader>
+      )}
+      <Animated.View style={{ maxHeight: colAnimationheight.col1 }}>
+        {collapsed.col1 && (
+          <CollapsBody
+            style={collapsed.col1 && styles.topRadius}
+            onPress={() => navigation.navigate('HOUSE_FIRE')}
+            activeOpacity={0.9}>
+            <Image style={styles.image} source={insuImg.MAIN1} />
+          </CollapsBody>
+        )}
+      </Animated.View>
+
+      {!collapsed.col2 && (
+        <CollapsHeader
+          onPress={() => {
+            toggleCollapsed('col2');
+            setIsClick(true);
+          }}
+          activeOpacity={0.9}
+          style={[styles.borderBottom]}>
+          <Typhograph type="NOTO" color="BLUE" size={18}>
+            풍수해 Ⅵ
+          </Typhograph>
+        </CollapsHeader>
+      )}
+      <Animated.View style={{ maxHeight: colAnimationheight.col2 }}>
+        {collapsed.col2 && (
+          <CollapsBody onPress={() => navigation.navigate('STORM_FLOOD')} activeOpacity={0.9}>
+            <Image style={styles.image} source={insuImg.MAIN3} />
+          </CollapsBody>
+        )}
+      </Animated.View>
+
+      {!collapsed.col3 && (
+        <CollapsHeader
+          onPress={() => {
+            toggleCollapsed('col3');
+            setIsClick(true);
+          }}
+          activeOpacity={0.9}
+          style={styles.borderBottom}>
+          <Typhograph type="NOTO" color="BLUE" size={18}>
+            다중이용시설 화재배상책임
+          </Typhograph>
+        </CollapsHeader>
+      )}
+      <Animated.View style={{ maxHeight: colAnimationheight.col3 }}>
+        {collapsed.col3 && (
+          <CollapsBody onPress={() => navigation.navigate('STORM_FLOOD2')} activeOpacity={0.9}>
+            <Image style={styles.image} source={insuImg.MAIN2} />
+          </CollapsBody>
+        )}
+      </Animated.View>
+
+      {!collapsed.col4 && (
+        <CollapsHeader
+          style={!collapsed.col4 && styles.bottomRadius}
+          onPress={() => {
+            toggleCollapsed('col4');
+            setIsClick(true);
+          }}
+          activeOpacity={0.9}>
+          <Typhograph type="NOTO" color="BLUE" size={18}>
+            재난 배상책임
+          </Typhograph>
+        </CollapsHeader>
+      )}
+      <Animated.View style={{ maxHeight: colAnimationheight.col4 }}>
+        {collapsed.col4 && (
+          <CollapsBody
+            style={collapsed.col4 && styles.bottomRadius}
+            onPress={() => navigation.navigate('CALAMITY')}
+            activeOpacity={0.9}>
+            <Image style={styles.image} source={insuImg.MAIN4} />
+          </CollapsBody>
+        )}
+      </Animated.View>
+    </CollapsContainer>
   );
 }
 
@@ -120,8 +205,8 @@ export default HomeCard;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     marginTop: 30,
+    backgroundColor: theme.color.WHITE,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -130,7 +215,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
-    backgroundColor: 'white',
     borderTopRightRadius: 25,
     borderTopLeftRadius: 25,
     borderBottomRightRadius: 25,
@@ -144,31 +228,16 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 25,
     borderBottomLeftRadius: 25,
   },
-  title: {
-    textAlign: 'center',
-    fontSize: 18,
-    fontWeight: '300',
-    marginBottom: 20,
+  borderBottom: {
+    borderBottomWidth: 1,
+    borderBottomColor: theme.color.INPUT_GRAY,
   },
-  header: {
-    backgroundColor: '#F5FCFF',
+  borderTop: {
+    borderTopWidth: 1,
+    borderTopColor: theme.color.INPUT_GRAY,
   },
-  headerText: {
-    textAlign: 'center',
-    fontSize: 16,
-    fontWeight: '500',
-  },
-  content: {
-    padding: 15,
-    paddingHorizontal: 20,
-    backgroundColor: '#fff',
-  },
-  active: {
-    backgroundColor: 'rgba(255,255,255,1)',
-  },
-  inactive: {
-    backgroundColor: theme.color.GRAY2,
-    borderBottomWidth: 0.9,
-    borderBottomColor: theme.color.BORDER_GRAY,
+  image: {
+    width: 300,
+    height: 280,
   },
 });

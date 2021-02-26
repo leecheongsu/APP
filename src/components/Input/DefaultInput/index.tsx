@@ -35,7 +35,7 @@ export default function DefaultInput(props) {
         }}
         ref={props?.propsRef}
         editable={props.editable}
-        style={{ alignSelf: 'stretch', fontSize: 13 }}
+        style={{ ...props.style, alignSelf: 'stretch', fontSize: 13 }}
         secureTextEntry={props.secureTextEntry}
         maxLength={props.maxLength}
         onSubmitEditing={() => Keyboard.dismiss()}

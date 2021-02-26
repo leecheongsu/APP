@@ -656,7 +656,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
               </RowBox>
 
-              {/* 주민(사업자)등록번호 */}
+              {/* 보험목적물 소재지 */}
               <RowBox>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY">
@@ -665,7 +665,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem style={{ width: '50%' }}>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {state?.selectAddress?.address}
+                    {isSede ? `${state?.selectAddress?.address}` : state?.selectAddress?.address}
                   </Typhograph>
                 </RowItem>
               </RowBox>

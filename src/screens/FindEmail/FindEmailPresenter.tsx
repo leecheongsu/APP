@@ -23,13 +23,16 @@ const ContentsBox = styled.View`
 `;
 const InputContainer = styled.View`
   justify-content: center;
+  margin-top: 10px;
 `;
 const LabelBox = styled.View`
-  margin: 10px 0px;
-`;
-const InputBox = styled.View``;
-const InputBox2 = styled.View`
   margin-top: 10px;
+`;
+const InputBox = styled.View`
+  margin-top: 5px;
+`;
+const InputBox2 = styled.View`
+  margin-top: 5px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -66,6 +69,12 @@ const InfoBox = styled.View`
   padding: 50px 0px;
   align-items: center;
 `;
+
+const RowBox = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
+
 const CheckIcon = styled.Image`
   width: 66px;
   height: 66px;
@@ -75,6 +84,9 @@ const InfoTextBox = styled.View`
 `;
 const PaddingBox = styled.View`
   height: 100px;
+`;
+const NumberBox = styled.View`
+  width: 58%;
 `;
 
 function ConfirmConatiner({ state }) {
@@ -111,10 +123,10 @@ function InputConatiner({ inputState, state, onValueChange }) {
   const sexRef: any = useRef(null);
   const [isFocus, setIsFocus] = useState(false);
   useEffect(() => {
-    if (inputState.idNumber.value.length === 6) {
+    if (inputState.jumina.value.length === 6) {
       sexRef.current.focus();
     }
-  }, [inputState.idNumber.value]);
+  }, [inputState.jumina.value]);
   return (
     <>
       <ContentsContainer>
@@ -135,19 +147,21 @@ function InputConatiner({ inputState, state, onValueChange }) {
                 휴대전화
               </Typhograph>
             </LabelBox>
-            <InputBox2>
-              <SelectBox style={{ width: '40%', marginRight: '2%' }}>
-                <ServiceSelect
-                  value={state.selectService}
-                  items={state.serviceType}
-                  right={15}
-                  onValueChange={onValueChange}
-                />
-              </SelectBox>
-              <InputBox style={{ width: '58%' }}>
-                <DefaultInput {...inputState.phone} keyboardType="phone-pad" />
-              </InputBox>
-            </InputBox2>
+            <InputBox>
+              <RowBox>
+                <SelectBox style={{ width: '40%', marginRight: '2%' }}>
+                  <ServiceSelect
+                    value={state.selectService}
+                    items={state.serviceType}
+                    right={15}
+                    onValueChange={onValueChange}
+                  />
+                </SelectBox>
+                <NumberBox>
+                  <DefaultInput {...inputState.phone} keyboardType="phone-pad" maxLength={11} />
+                </NumberBox>
+              </RowBox>
+            </InputBox>
           </InputContainer>
 
           <InputContainer>

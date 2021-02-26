@@ -33,10 +33,10 @@ const InfoBox = styled.View`
 
 const RowBox = styled.View`
   flex-direction: row;
+  justify-content: flex-end;
 `;
 
 const RowItem = styled.View`
-  width: 50%;
   justify-content: center;
 `;
 
@@ -62,25 +62,15 @@ export default function ResultCard({
       )}
 
       <InfoBox>
-        {period && (
-          <Typhograph type="NOTO" color="BLUE" weight="REGULAR" size={12}>
-            {period}
-          </Typhograph>
-        )}
         <RowBox>
           <RowItem>
-            <Typhograph type="NOTO" color="GRAY" weight="REGULAR" size={12}>
-              {periodDetail}
-            </Typhograph>
-          </RowItem>
-          <RowItem>
-            <Typhograph style={{ textAlign: 'right' }} type="ROBOTO" color="SKYBLUE" weight="BOLD" size={18}>
-              <Typhograph type="NOTO" color="SKYBLUE" weight="REGULAR" size={15}>
-                연
-              </Typhograph>{' '}
-              {price}
-              <Typhograph type="NOTO" color="BLUE" weight="REGULAR" size={14}>
-                원
+            <Typhograph type="NOTO" color="BLACK2">
+              1년 보험료 총{'     '}
+              <Typhograph type="NOTO" color="SKYBLUE" size={16}>
+                {price}{' '}
+                <Typhograph type="NOTO" color="BLACK2">
+                  원
+                </Typhograph>
               </Typhograph>
             </Typhograph>
           </RowItem>

@@ -22,13 +22,13 @@ const ContentsBox = styled.View`
 `;
 const InputContainer = styled.View`
   justify-content: center;
+  margin-top: 10px;
 `;
 const LabelBox = styled.View`
   margin: 10px 0px;
 `;
 const InputBox = styled.View``;
 const InputBox2 = styled.View`
-  margin-top: 10px;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -114,7 +114,7 @@ function InputConatiner({ inputState, state, onValueChange }) {
             <LabelBox>
               <Typhograph type="NOTO">이메일</Typhograph>
             </LabelBox>
-            <InputBox>
+            <InputBox style={{ marginTop: 0 }}>
               <DefaultInput {...inputState?.email} placeholder="이메일을 입력하세요.(예 : abc@gmail.com)" />
             </InputBox>
           </InputContainer>
@@ -135,7 +135,7 @@ function InputConatiner({ inputState, state, onValueChange }) {
                 />
               </SelectBox>
               <InputBox style={{ width: '58%' }}>
-                <DefaultInput {...inputState.phone} keyboardType="phone-pad" />
+                <DefaultInput {...inputState.phone} keyboardType="phone-pad" maxLength={11} />
               </InputBox>
             </InputBox2>
           </InputContainer>

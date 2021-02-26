@@ -8,7 +8,6 @@ import moment from 'moment';
 import { useInput } from '@app/hooks';
 import { Alert } from 'react-native';
 import { insuApis } from '@app/api/Insurance';
-import axios from 'axios';
 
 export default function HousePayContainer({
   state,
@@ -193,7 +192,7 @@ export default function HousePayContainer({
     }
   };
 
-  if (state.stepNumber === 11) {
+  if (state.stepNumber === 12) {
     return (
       <HousePayPresenter
         state={state}

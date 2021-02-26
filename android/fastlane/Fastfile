@@ -16,10 +16,6 @@
 default_platform(:android)
 
 platform :android do
-  desc "Runs all the tests"
-  lane :test do
-    gradle(task: "test")
-  end
 
   desc "Submit a new Beta Build to Crashlytics Beta"
   lane :beta do
@@ -31,23 +27,39 @@ platform :android do
   end
 
   desc "Deploy a new version to the Google Play"
-  lane :deploy do
-    gradle(task: "clean assembleRelease")
-    upload_to_play_store
+  lane :release do |options|
+    updateVersion(options)
+
+    gradle(task: "clean bundleRelease")
+    upload_to_play_store(
+      skip_upload_metadata: true,
+      skip_upload_changelogs: true,
+      skip_upload_screenshots: true,
+      skip_upload_images: true,
+      skip_upload_apk: true
+    )
   end
 
   desc "Firebase_app_distribution"
     lane :distribute do |options|
-      build_android_app(task: "assembleRelease") 
-# build_android_app is a built-in fastlane action.
-
-      firebase_app_distribution(
-          app: "1:934772389661:android:ff695659785f1c96f893f4",
-          firebase_cli_token: "1//0eHJ9p5pP4UA5CgYIARAAGA4SNwF-L9IrhJZcDO7W1t683dHjH8t2BaSZpVwT1qGBZxXI1yBHD-_D8I02K673yRiZYr3w1KHseNQ",
-          groups: "인슈로보내부",
-          release_notes: "테스트버젼 배포"
-      )
-
+      # increment_version_code(
+      #   gradle_file_path: "android/",
+      #   #ext_constant_name: "test"
+      #   #app_folder_name:"app"
+      # )
+          build_android_app(task: "clean assembleRelease") 
+          # build_android_app is a built-in fastlane action.
+          firebase_app_distribution(
+              app: "1:934772389661:android:ff695659785f1c96f893f4",
+              firebase_cli_token: "1//0eHJ9p5pP4UA5CgYIARAAGA4SNwF-L9IrhJZcDO7W1t683dHjH8t2BaSZpVwT1qGBZxXI1yBHD-_D8I02K673yRiZYr3w1KHseNQ",
+              groups: "인슈로보내부",
+              release_notes: "테스트배포"
+          )
+          slack(
+            slack_url: "https://hooks.slack.com/services/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",
+            channel: "#app-deploy",
+            message: "android appTester 배포완료",
+          )
     end
 
 end

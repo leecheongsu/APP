@@ -1,11 +1,13 @@
-import React, { useState } from 'react';
-import { BackButton, BottomFixButton, CloseButton, FocusAwareStatusBar, Loading, OverayLoading } from '@app/components';
+import React, { useEffect, useState } from 'react';
+import { FocusAwareStatusBar, Loading, OverayLoading } from '@app/components';
 import styled from '@app/style/typed-components';
 import WebView from 'react-native-webview';
 import Modal from 'react-native-modal';
-import { screenWidth } from '@app/lib';
+import { handleApiError, screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
-import { Platform } from 'react-native';
+import { Alert, Keyboard, Platform, StatusBar } from 'react-native';
+import { useGlobalState } from '@app/context';
+import { insuApis } from '@app/api/Insurance';
 const ContentsBox = styled.View`
   width: ${screenWidth()}px;
   height: 100%;
@@ -16,36 +18,98 @@ const Header = styled.View`
   border-bottom-width: 0px;
   align-items: flex-end;
 `;
-const BackButtonBox = styled.View``;
 
-export default function ElectronicSign({ open, close, url, onClick }) {
+export default function ElectronicSign({ state, open, close, url, onClick, onChangeState }) {
+  const globalState = useGlobalState();
+
+  const postDenial = () => {
+    const data = {
+      user_id: globalState.user.email,
+      quote_no: state?.selectAddress?.quote_no,
+      reg_no: globalState.jumina + globalState.juminb,
+    };
+    insuApis
+      .postDenial(data)
+      .then((res) => {
+        if (res.status === 200) {
+          onChangeState('isSign', true);
+        } else {
+          onChangeState('isSign', false);
+        }
+      })
+      .catch((e) => {
+        onChangeState('isSign', false);
+      });
+  };
+
   const onMessage = (e) => {
-    if (e.nativeEvent.data === 'ok') {
-      close();
-    } else {
+    if (e.nativeEvent?.data === 'close') {
+      if (e.nativeEvent?.title === '휴대폰 직접서명') {
+        postDenial();
+        close();
+      } else {
+        close();
+        Platform.OS === 'android' && Alert.alert('알림', '이미 전자서명을 완료하였습니다. 전자서명을 확인하여주세요.');
+      }
     }
   };
-  const runFirst = `
-      function btnClick(e){ window.ReactNativeWebView.postMessage("ok"); }
+
+  const androidJs = `
+    window.addEventListener("beforeunload", function (event) {
+      event.preventDefault();
+      window.ReactNativeWebView.postMessage("close");
+    });
+    document.querySelector(".blue").style.display = "none";
+  `;
+
+  const iosJs = `
+      function btnClick(e){ window.ReactNativeWebView.postMessage("close"); }
+      document.querySelector(".btnWrap a").addEventListener("click",btnClick);
+      document.querySelector(".btnWrap span").addEventListener("click",btnClick);
       document.querySelector(".btnClose").addEventListener("click",btnClick);
       document.querySelector(".blue").style.display = "none";
-      document.querySelector(".btnWrap span").addEventListener("click",btnClick);
-
-`;
+      // window.addEventListener("beforeunload", function (event) {
+      //   event.preventDefault();
+      //   window.ReactNativeWebView.postMessage(event);
+      // });
+      window.ReactNativeWebView.postMessage("");
+  `;
 
   const onNavigationStateChange = (navState) => {
-    if (navState.navigationType === 'backforward') {
+    if (navState.canGoBack && navState.title === '휴대폰 직접서명' && Platform.OS === 'ios') {
       close();
-      onClick();
+      postDenial();
     }
   };
+
+  //웹뷰에서 키보드 입력하면 status바 없어지는거 방지
+  const _keyboardDidShow = () => {
+    StatusBar.setBarStyle('dark-content');
+  };
+
+  const _keyboardDidHide = () => {
+    StatusBar.setBarStyle('dark-content');
+  };
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+
+    // cleanup function
+    return () => {
+      Keyboard.removeListener('keyboardDidShow', _keyboardDidShow);
+      Keyboard.removeListener('keyboardDidHide', _keyboardDidHide);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const [loading, setLoading] = useState(false);
   return (
     <>
+      <OverayLoading visible={loading} />
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
-      <Modal isVisible={open} style={{ padding: 0, margin: 0 }}>
+      <Modal isVisible={open} style={{ padding: 0, margin: 0 }} onBackButtonPress={() => close()}>
         <ContentsBox>
-          <OverayLoading visible={loading} />
           <Header>
             {/* <BackButtonBox>
               <CloseButton onPress={() => close()} />
@@ -55,11 +119,11 @@ export default function ElectronicSign({ open, close, url, onClick }) {
             source={{
               uri: url,
             }}
-            onNavigationStateChange={onNavigationStateChange}
             onMessage={onMessage}
+            onNavigationStateChange={onNavigationStateChange}
             originWhitelist={'["*"]'}
             renderLoading={() => <Loading />}
-            injectedJavaScript={runFirst}
+            injectedJavaScript={Platform.OS === 'ios' ? iosJs : androidJs}
             javaScriptEnabled={true}
             onLoadStart={(e) => setLoading(e.nativeEvent.loading)}
             onLoadEnd={(e) => setLoading(e.nativeEvent.loading)}

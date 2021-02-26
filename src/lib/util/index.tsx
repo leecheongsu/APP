@@ -1,11 +1,8 @@
-import { useGlobalDispatch } from '@app/context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert, Dimensions, PixelRatio, Platform } from 'react-native';
 import Toast from 'react-native-simple-toast';
-import { showMessage, hideMessage } from 'react-native-flash-message';
-import { ErrorModal } from '@app/screens';
-import { userApis } from '@app/api/User';
-import { DefaultAlert } from '@app/components';
+
+const isDev = __DEV__;
 //font weight 적용하는 함수
 export const setFont = (type: 'NOTO' | 'ROBOTO', weight: 'THIN' | 'LIGHT' | 'REGULAR' | 'MEDIUM' | 'BOLD') => {
   switch (type) {
@@ -206,23 +203,8 @@ export const juminFront = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0
 
 //api error handler
 export const handleApiError = async (value) => {
-  const error = value?.data;
   const errorCode = value?.data?.status;
-  const isDev = __DEV__;
-  const alertError = `DATA${'\n'}status:${value?.data?.status}${'\n'}error:${value?.data?.error}${'\n'}message:${
-    value?.data?.message
-  }${'\n'}path:${value?.data?.path}${'\n'}statusText:${value?.statusText}${'\n'}${'\n'}HEADERS${'\n'}vary:${
-    value?.headers?.vary
-  }${'\n'}connection:${value?.headers?.connection}${'\n'}transfer-encoding:${
-    value?.headers?.['transfer-encoding']
-  }${'\n'}date:${value?.headers?.date}${'\n'}content-type:${
-    value?.headers?.['content-type']
-  }${'\n'}${'\n'}CONFIG${'\n'}url:${value?.config?.url}${'\n'}method:${
-    value?.config?.method
-  }${'\n'}headers${'\n'}${'\n'}Accept:${value?.config?.headers?.Accept}${'\n'}X-insr-servicekey:${
-    value?.config?.headers?.['X-insr-servicekey']
-  }${'\n'}baseURL:${value?.config?.baseURL}${'\n'}params:${JSON.stringify(value?.config?.params)}`;
-  Alert.alert('알림', value?.data?.message);
+  Alert.alert('알림', value?.data?.message === undefined ? '알수없는 오류가 발생하였습니다.' : value?.data?.message);
   switch (errorCode) {
     case 401: {
       return Toast.show('권한이 없습니다.');
@@ -231,11 +213,7 @@ export const handleApiError = async (value) => {
       alert('토큰이 만료되었습니다. 다시로그인 해주세요.');
     }
     default: {
-      // if (isDev) {
-      //   return Toast.show(error?.message);
-      // } else {
-      //   return Toast.show('오류가 발생하였습니다.');
-      // }
+      return null;
     }
   }
 };

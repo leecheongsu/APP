@@ -70,7 +70,7 @@ function StormFloodInfoPresenter({ state, handleNextButton, handlePreviousButton
               </WebviewBox>
               <InfoScrollView>
                 <InfoListBox>
-                  <InfoList list={infoList} state={state} />
+                  <InfoList list={infoList} state={state} isHouse={false} />
                   <PaddingBox />
                 </InfoListBox>
               </InfoScrollView>

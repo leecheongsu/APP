@@ -90,7 +90,6 @@ function HouseEvaluationPresenter({
   resultGajePrice,
   gajeListClick,
 }) {
-  const price = state?.selectAddress?.const_price !== undefined && priceDot(state?.selectAddress?.const_price);
   const subText =
     '건물 보험가입금액은 한국감정원 신축단가표와 건축물대장의 연면적, 건물구조를 반영하여 평가한 금액입니다.';
   return (
@@ -98,7 +97,11 @@ function HouseEvaluationPresenter({
       <Container>
         <ContentsContainer>
           <CardBox>
-            <InsuCard leftText="건물 평가 보험가액" leftSubText="(보험가입금액)" rightText={price} />
+            <InsuCard
+              leftText="건물 평가 보험가액"
+              leftSubText="(보험가입금액)"
+              rightText={priceDot(state?.selectAddress?.amt_ins)}
+            />
             <SubTextBox>
               <Typhograph type="NOTO" color="BLACK2" weight="LIGHT" size={10} lineheight={3}>
                 {subText}
@@ -140,6 +143,7 @@ function HouseEvaluationPresenter({
               </>
             )}
           </SectionTwoContainer>
+
           <Collapse title="건물" value={sliceTenThousand(state?.selectAddress?.amt_ins)} value2={resultBuildPrice()}>
             <Typhograph type="NOTO" color="BLACK3">
               기본담보(보통약관)

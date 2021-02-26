@@ -49,7 +49,7 @@ const ButtonItem = styled.View`
 const Section1Container = styled.View`
   padding-horizontal: 20px;
 `;
-const MenuContainer = styled.View`
+const MenuContainer = styled.ScrollView`
   padding: 15px;
   background-color: ${theme.color.WHITE};
   border-top-left-radius: 15px;
@@ -69,6 +69,7 @@ const CardTitleBox = styled.View`
 
 const CardContainer = styled.View`
   background-color: ${theme.color.WHITE};
+  margin-top: 20px;
 `;
 const CardBox = styled.View`
   flex-direction: row;
@@ -88,15 +89,30 @@ const IconBox = styled.View`
   align-items: flex-end;
 `;
 
-const BottomButtonBox = styled.View`
-  flex-direction: row;
+const BottomButtonContainer = styled.View`
   margin-top: 30px;
 `;
+
+const BottomButtonWideBox = styled.View``;
+const BottomButtonWideItem = styled.TouchableOpacity`
+  background-color: ${theme.color.SOFTGRAY};
+  border-top-right-radius: 15px;
+  border-top-left-radius: 15px;
+  border-bottom-width: 1px;
+  border-bottom-color: ${theme.color.WHITE};
+  padding: 10px 0px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`;
+const BottomButtonBox = styled.View`
+  flex-direction: row;
+`;
+
 const BottomButtonLeft = styled.TouchableOpacity`
   background-color: ${theme.color.SOFTGRAY};
   width: 50%;
-  padding: 20px 0px;
-  border-top-left-radius: 15px;
+  padding: 10px 0px;
   border-bottom-left-radius: 15px;
   border-right-width: 1px;
   border-right-color: ${theme.color.WHITE};
@@ -107,8 +123,7 @@ const BottomButtonLeft = styled.TouchableOpacity`
 const BottomButtonRight = styled.TouchableOpacity`
   background-color: ${theme.color.SOFTGRAY};
   width: 50%;
-  padding: 20px 0px;
-  border-top-right-radius: 15px;
+  padding: 10px 0px;
   border-bottom-right-radius: 15px;
   border-right-width: 1px;
   border-right-color: ${theme.color.WHITE};
@@ -147,30 +162,10 @@ export default function Menu(props) {
       globalDispatch({ type: 'CHANGE', name: 'isAutoLogin', value: true });
     }
   };
-  const getMyInsu = () => {
-    userApis
-      .getMyInsu()
-      .then((res) => {
-        if (res.status === 200) {
-          setData(res.data);
-        }
-      })
-      .catch((e) => {
-        handleApiError(e.response);
-      });
-  };
 
   useEffect(() => {
     setIsEnabled(globalState.isAutoLogin);
   }, [globalState.isAutoLogin]);
-
-  useEffect(() => {
-    if (isLogin) {
-      getMyInsu();
-    } else {
-      setData([]);
-    }
-  }, [props]);
 
   return (
     <>
@@ -252,7 +247,7 @@ export default function Menu(props) {
                 color="BLUE"
                 source={insuIcon.ICON_MY}
                 isBadge={isLogin}
-                badgeCount={data?.length}
+                badgeCount={globalState?.user?.cnt_of_insu}
               />
             </ButtonItem>
           </ButtonContainer>
@@ -274,12 +269,6 @@ export default function Menu(props) {
             </SwitchBox>
           )}
           <CardContainer>
-            <CardTitleBox>
-              <Typhograph type="NOTO" color="GRAY" weight="MEDIUM" size={16}>
-                상품목록
-              </Typhograph>
-            </CardTitleBox>
-
             <CardBox>
               <CardItem onPress={() => navigation.navigate('HOUSE_FIRE')}>
                 <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
@@ -315,7 +304,7 @@ export default function Menu(props) {
                   다중이용시설
                 </Typhograph>
                 <IconBox>
-                  <Image source={insuIcon.CONT01} />
+                  <Image source={insuIcon.CONT03} />
                 </IconBox>
               </CardItem>
 
@@ -327,25 +316,35 @@ export default function Menu(props) {
                   재난
                 </Typhograph>
                 <IconBox>
-                  <Image source={insuIcon.CONT02} />
+                  <Image source={insuIcon.CONT04} />
                 </IconBox>
               </CardItem>
             </CardBox>
           </CardContainer>
-          <BottomButtonBox>
-            <BottomButtonLeft onPress={() => Linking.openURL(`tel:${CUMTOMER_NUMBER}`)}>
-              <Image source={insuIcon.PHONE} />
-              <Typhograph type="NOTO" color="WHITE" style={{ marginLeft: 10 }}>
-                {CUMTOMER_NUMBER}
-              </Typhograph>
-            </BottomButtonLeft>
-            <BottomButtonRight onPress={() => Linking.openURL(KAKAO_CHAT_URL)}>
-              <Image source={insuIcon.KAKAO} />
-              <Typhograph type="NOTO" color="WHITE" style={{ marginLeft: 10 }}>
-                카카오톡 문의
-              </Typhograph>
-            </BottomButtonRight>
-          </BottomButtonBox>
+          <BottomButtonContainer>
+            <BottomButtonWideBox>
+              <BottomButtonWideItem onPress={() => navigation.navigate('CUSTOMER_CENTER')}>
+                <Image source={insuIcon.ICON_CUSTOMER} style={{ tintColor: theme.color.WHITE }} />
+                <Typhograph type="NOTO" color="WHITE" style={{ marginLeft: 10 }}>
+                  고객센터 바로가기
+                </Typhograph>
+              </BottomButtonWideItem>
+            </BottomButtonWideBox>
+            <BottomButtonBox>
+              <BottomButtonLeft onPress={() => Linking.openURL(`tel:${CUMTOMER_NUMBER}`)}>
+                <Image source={insuIcon.PHONE} />
+                <Typhograph type="NOTO" color="WHITE" style={{ marginLeft: 10 }}>
+                  {CUMTOMER_NUMBER}
+                </Typhograph>
+              </BottomButtonLeft>
+              <BottomButtonRight onPress={() => Linking.openURL(KAKAO_CHAT_URL)}>
+                <Image source={insuIcon.KAKAO} />
+                <Typhograph type="NOTO" color="WHITE" style={{ marginLeft: 10 }}>
+                  카카오톡 문의
+                </Typhograph>
+              </BottomButtonRight>
+            </BottomButtonBox>
+          </BottomButtonContainer>
         </MenuContainer>
       </Container>
     </>

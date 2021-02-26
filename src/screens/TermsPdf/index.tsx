@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BackButton, BottomFixButton, FocusAwareStatusBar } from '@app/components';
 import styled from '@app/style/typed-components';
 import Modal from 'react-native-modal';
 import { screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
-import { BackHandler, Platform, View } from 'react-native';
+import { Platform, View } from 'react-native';
 import PDFView from 'react-native-view-pdf';
+import { PROD_URL } from '@env';
 const ContentsBox = styled.View`
   width: ${screenWidth()}px;
   height: 100%;
@@ -17,10 +18,10 @@ const Header = styled.View`
 `;
 const BackButtonBox = styled.View``;
 
-export default function TermsPdf({ open, close, onPress, isButton = true }) {
+export default function TermsPdf({ flag, open, close, onPress, isButton = true }) {
   const resources = {
     file: Platform.OS === 'ios' ? 'downloadedDocument.pdf' : '/sdcard/Download/downloadedDocument.pdf',
-    url: 'https://insrb.com/download/MRHI1810_terms.pdf',
+    url: flag === 'hyundai' ? `${PROD_URL}/files/PUNGSUHAI6.pdf` : `${PROD_URL}/files/MRHI1810_terms.pdf`,
   };
   const resourceType = 'url';
 

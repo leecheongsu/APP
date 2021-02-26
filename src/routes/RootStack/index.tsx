@@ -55,7 +55,7 @@ function RootStack() {
         name="JOIN"
         component={Join}
         options={{
-          headerLeft: () => <BackButton isAlert />,
+          headerLeft: () => <BackButton />,
           headerLeftContainerStyle: { paddingHorizontal: 10 },
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
@@ -263,7 +263,7 @@ function RootStack() {
         name="FIND_PASSWORD"
         component={FindPassword}
         options={{
-          headerLeft: () => <BackButton onPress={() => navigation.navigate('MAIN_STACK')} />,
+          headerLeft: () => <BackButton />,
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
               비밀번호 변경

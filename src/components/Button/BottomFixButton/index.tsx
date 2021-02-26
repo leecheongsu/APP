@@ -2,9 +2,10 @@ import React from 'react';
 import styled from '@app/style/typed-components';
 import Typhograph from '@app/components/Typhograph';
 import theme from '@app/style/theme';
-import { nomalize, isIphoneX } from '@app/lib';
+import { nomalize } from '@app/lib';
 import { Loading } from '@app/components';
-
+import { StyleSheet } from 'react-native';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
 type BottomFixButtonTypes = {
   bottomLeftPress: () => void;
   bottomRightPress: () => void;
@@ -15,6 +16,14 @@ type BottomFixButtonTypes = {
   loading?: boolean;
 };
 
+const styles = StyleSheet.create({
+  iphone: {
+    ...ifIphoneX({
+      height: 70,
+    }),
+  },
+});
+
 const Container = styled.View`
   flex-direction: row;
   position: absolute;
@@ -23,13 +32,13 @@ const Container = styled.View`
 
 const LeftButton = styled.TouchableOpacity`
   background-color: ${theme.color.GRAY_RGB};
-  height: ${isIphoneX() ? nomalize(53) : nomalize(53)}px;
+  height: ${nomalize(53)}px;
   align-items: center;
   justify-content: center;
 `;
 const RightButton = styled.TouchableOpacity`
   background-color: ${theme.color.BLUE_RGB};
-  height: ${isIphoneX() ? nomalize(53) : nomalize(53)}px;
+  height: ${nomalize(53)}px;
   align-items: center;
   justify-content: center;
   opacity: 1;
@@ -56,7 +65,7 @@ function BottomFixButton({
       return (
         <Container isKeybordView={isKeybordView}>
           <WideBox>
-            <RightButton onPress={() => bottomRightPress()}>
+            <RightButton onPress={() => bottomRightPress()} style={styles.iphone}>
               {loading ? (
                 <Loading />
               ) : (

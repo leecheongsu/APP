@@ -5,10 +5,12 @@ import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import { View } from 'react-native';
 import { useGlobalState } from '@app/context';
+import { HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
 
 type InfoListPropsTypes = {
   list: InfoListTypes;
   isHouse?: boolean;
+  state: HouseFireStateTypes;
 };
 
 const Container = styled.View``;
@@ -60,7 +62,7 @@ export default function InfoList({ list, isHouse = true, state }: InfoListPropsT
         </ListLabel>
         <ListItem>
           <Typhograph type="NOTO" color="BLACK2" weight="REGULAR" size={13}>
-            {isSede ? `${list?.address} ${state?.resultDong?.dongNm}${state?.resultDetail?.hoNm}` : list?.address}
+            {isSede ? `${list?.address}` : list?.address}
           </Typhograph>
         </ListItem>
       </ListBox>
@@ -100,7 +102,6 @@ export default function InfoList({ list, isHouse = true, state }: InfoListPropsT
           </Typhograph>
         </ListItem>
       </ListBox>
-
       <ListBox>
         <ListLabel>
           <Typhograph type="NOTO" color="GRAY" weight="REGULAR" size={13}>
@@ -160,8 +161,22 @@ export default function InfoList({ list, isHouse = true, state }: InfoListPropsT
           </ListBox>
         </>
       )}
+      {!isHouse && (
+        <ListBox>
+          <ListLabel>
+            <Typhograph type="NOTO" color="GRAY" weight="REGULAR" size={13}>
+              전체 연면적
+            </Typhograph>
+          </ListLabel>
+          <ListItem>
+            <Typhograph type="NOTO" color="BLACK2" weight="REGULAR" size={13}>
+              {list?.total_area} ㎡
+            </Typhograph>
+          </ListItem>
+        </ListBox>
+      )}
 
-      {/* {is && (
+      {isHouse && isSede && (
         <ListBox2>
           <ListLabel>
             <Typhograph type="NOTO" color="GRAY" weight="REGULAR" size={13}>
@@ -171,11 +186,12 @@ export default function InfoList({ list, isHouse = true, state }: InfoListPropsT
 
           <ListItem>
             <Typhograph type="NOTO" color="BLACK2" weight="REGULAR" size={13}>
-              {state?.resultDetail?.dongNm} {state?.resultDetail?.hoNm} / {state?.resultDetail?.area} ㎡
+              {state?.selectAddress?.dong_info} / {state?.resultDetail?.area} ㎡
             </Typhograph>
           </ListItem>
         </ListBox2>
-      )} */}
+      )}
+
       <ListBox>
         <ListLabel>
           <Typhograph type="NOTO" color="GRAY" weight="REGULAR" size={13}>

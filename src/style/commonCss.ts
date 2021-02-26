@@ -14,6 +14,21 @@ export const commonCssHtml = () => {
 	  background:#fff
 
   }
+  .headers{
+	width:100%;
+	left:0;
+	top:0;
+	z-index: 10;
+	background:#fff
+
+}
+.headerh1{
+	font-size: 17px;
+	line-height: 55px;
+	text-align: center;
+	width: 100%;
+	color:#000
+}
   header .go-back{
 	  width:37px;
 	  height:37px;
@@ -642,7 +657,7 @@ export const commonCssHtml = () => {
   
   /*약관*/
   .term h1{
-	  font-size: 16px;
+	  font-size: 14px;
 	  padding: 15px 0 10px;
 	  text-align: center;
 	  color: #333;

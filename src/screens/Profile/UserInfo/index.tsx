@@ -39,11 +39,11 @@ const TopArrow = styled.View`
 `;
 
 const TextInputBox = styled.View`
-  margin-top: 0px;
+  margin-top: 20px;
 `;
 const InputLabel = styled.View``;
 const InputBox = styled.View`
-  margin-top: 10px;
+  margin-top: 5px;
 `;
 const InputBox2 = styled.View`
   margin-top: 10px;
@@ -163,7 +163,7 @@ function UserInfo({ state, inputState, onValueChange, onChangeState }) {
         enableResetScrollToCoords={false}
         extraScrollHeight={Platform.OS === 'ios' ? 10 : -10}>
         <Container>
-          <TextInputBox>
+          <TextInputBox style={{ marginTop: 0 }}>
             <InputLabel>
               <Typhograph type="NOTO" weight="MEDIUM">
                 이메일
@@ -207,11 +207,11 @@ function UserInfo({ state, inputState, onValueChange, onChangeState }) {
                 />
               </SelectBox>
               <InputItem style={{ width: '58%' }}>
-                <DefaultInput {...inputState.phone} keyboardType="phone-pad" />
+                <DefaultInput {...inputState.phone} keyboardType="phone-pad" maxLength={11} />
               </InputItem>
             </InputBox2>
           </TextInputBox>
-          <TextInputBox>
+          <TextInputBox style={{ paddingBottom: 150 }}>
             <InputLabel>
               <Typhograph type="NOTO" weight="MEDIUM">
                 주민등록번호

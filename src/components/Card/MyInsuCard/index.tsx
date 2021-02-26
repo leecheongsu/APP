@@ -83,7 +83,7 @@ export default function MyInsuCard({ item, downloadfileButton, loading }) {
           </RowItem>
           <RowItem>
             <Typhograph type="NOTO" color="SKYBLUE">
-              연 {priceDot(item?.opayment)}{' '}
+              연 {item?.inscompany === '메리츠화재' ? priceDot(item?.opayment) : priceDot(Math.floor(item?.opayment))}{' '}
               <Typhograph type="NOTO" color="BLACK2">
                 원
               </Typhograph>

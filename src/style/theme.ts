@@ -31,6 +31,8 @@ const WARING_RED = '#fd4173';
 const MSG_BACK = '#dedede';
 const CIRCLE_BACK = '#e8eaef';
 const SOFTBLUE = '#40a1ef';
+const YELLOW = '#ffc75f';
+const BROWN = '#cc561e';
 
 const theme: DefaultTheme = {
   color: {
@@ -64,6 +66,8 @@ const theme: DefaultTheme = {
     MSG_BACK,
     BLACK4,
     CIRCLE_BACK,
+    YELLOW,
+    BROWN,
   },
 };
 

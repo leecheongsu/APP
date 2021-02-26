@@ -178,28 +178,55 @@ function GuaranteeSelectPresenter({
             {/* 해당층 */}
             <LabelBox>
               <Typhograph type="NOTO" color="BLACK2" weight="BOLD">
-                해당 층(시작/끝)
+                가입 층 (시작층 ~ 끝층)
               </Typhograph>
             </LabelBox>
-            <RowBox>
-              <RowItem width="49%">
-                <DefaultInput {...inputState.bldFloor1} placeholder="시작 층" keyboardType="numeric" />
+            <RowBox style={{ justifyContent: 'flex-start' }}>
+              <RowItem width="13%">
+                <DefaultInput
+                  style={{ textAlign: 'right' }}
+                  {...inputState.bldFloor1}
+                  placeholder="시작"
+                  keyboardType="numeric"
+                  maxLength={3}
+                />
               </RowItem>
-              <RowItem width="49%">
-                <DefaultInput {...inputState.bldFloor2} placeholder="끝 층" keyboardType="numeric" />
+              <RowItem width="7%">
+                <Typhograph type="NOTO" color="BLACK2">
+                  층
+                </Typhograph>
+              </RowItem>
+              <RowItem width="12%" style={{ marginLeft: -7 }}>
+                <Typhograph type="NOTO" color="BLACK2">
+                  ~
+                </Typhograph>
+              </RowItem>
+              <RowItem width="13%">
+                <DefaultInput
+                  style={{ textAlign: 'right' }}
+                  {...inputState.bldFloor2}
+                  placeholder="끝"
+                  keyboardType="numeric"
+                  maxLength={3}
+                />
+              </RowItem>
+              <RowItem width="7%">
+                <Typhograph type="NOTO" color="BLACK2">
+                  층
+                </Typhograph>
               </RowItem>
             </RowBox>
             {/* 해당층 */}
             <LabelBox>
               <Typhograph type="NOTO" color="BLACK2" weight="BOLD">
-                면적
+                가입면적
               </Typhograph>
             </LabelBox>
-            <DefaultInput {...inputState.hsArea} placeholder="목적물 면적(m2)" keyboardType="numeric" />
+            <DefaultInput {...inputState.hsArea} placeholder="목적물 면적(㎡)" keyboardType="numeric" />
             {/* 업종선택 */}
             <LabelBox>
               <Typhograph type="NOTO" color="BLACK2" weight="BOLD">
-                업종선택
+                영위하시는 업종
               </Typhograph>
               <Typhograph type="NOTO" color="WARING_RED" weight="BOLD" size={10}>
                 ※업종 중 주유소 및 경정비업소는 가입이 불가합니다.
@@ -239,7 +266,7 @@ function GuaranteeSelectPresenter({
             {/* 시설(기계) 및 집기  */}
             <LabelBox2>
               <Typhograph type="NOTO" color="BLACK2" weight="BOLD">
-                시설(기계) 및 집기
+                시설,집기,인테리어
               </Typhograph>
               <IconButton onPress={() => openInfoModal('시설(기계) 및 집기', jipgiText())}>
                 <Image source={insuIcon.ICON_INFO} />

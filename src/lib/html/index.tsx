@@ -2248,6 +2248,280 @@ export const termsTermsSd2 = () => {
   return html;
 };
 
+export const houseProductInfoHtml = () => {
+  const html = `
+                          <html>
+                          <head>
+                          <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+                          <link rel="stylesheet" type="text/css" href="../src/style/common.css">  
+                          <style type="text/css">
+                            ${commonCss}
+                            ${defaultCss}
+                          </style>
+                          </head>
+                          <body>
+                          <!-- header -->
+                            <header id="header">
+                                <h1>상품안내 및 보장내용 자세히 보기</h1>
+                                <div class="btn-close"><button type="button"><span class="ir">닫기</span></button></div>
+                            </header>
+                            <!-- //header -->
+
+                            <!-- container -->
+                            <div id="container">
+
+                                <!-- content -->
+                                <div id="content">
+                                    <div class="cont-inner">                
+                                        <div class="term">
+                                            <h2 class="first">1.상품안내</h2>
+                                            <ol class="ol-type">
+                                                <li>우연하고 급격한 외래의 물리적 사고(화재, 폭발, 파열, 붕괴 등)로 생긴 손해를 보장</li>
+                                                <li>건물, 가재도구 등의 피해를 보장</li>
+                                                <li>특약 가입시 급배수누출손해, 유리손해, 대물배상책임, 가재도난위험, 잠금장치교체 비용 보장</li>
+                                            </ol>
+                                            <h2>2.보장내용</h2>
+                                            <ol class="ol-type">
+                                                <li>가입 대상
+                                                    <ul class="dep2">
+                                                        <li>아파트(15층 이하), 연립주택, 다세대 주택, 단독주택, 다가구 주택</li>
+                                                        <li>보험 목적물 : 주택건물, 가재도구(보석, 귀금속, 귀중품 등 명기가재는 가입불가)</li>
+                                                    </ul>
+                                                <li>보장 형태
+                                                    <div class="dep2">실본보상형</div>
+                                                </li>
+                                                <li>보장내용
+                                                    <div class="tbl">
+                                                        <table>
+                                                            <colgroup>
+                                                                <col style="width:15%">
+                                                                <col style="width:25%">
+                                                                <col style="width:40%">
+                                                                <col style="width:20%">
+                                                            </colgroup>
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>구분</th>
+                                                                    <th>보장명</th>
+                                                                    <th>보장내용</th>
+                                                                    <th>보장금액</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <tr>
+                                                                    <th>기본<br>보장</th>
+                                                                    <td class="ac">재물위험손해<br>(건물 및 가재도구)</td>
+                                                                    <td>우연한 사고(화재, 폭발, 파열, 붕괴 등)로 인한 손해 발생시 가입금액 한도 내 보상</td>
+                                                                    <td>가입금액 한도</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th rowspan="3">특약<br>보장</th>
+                                                                    <td class="ac">가재도난위험</td>
+                                                                    <td>주택 구내의 가재(보험목적)로 보관되어 있는 동안에 강도 또는 절도(그 미수를 포함)로 생긴 도난, 훼손 또는 망가진 손해를 입었을 경우
+                                                                        <div class="type-in">자기부담금 3만원 공제</div>
+                                                                    </td>
+                                                                    <td>가입금액 한도</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="ac bl">잠금장치 교체비용</td>
+                                                                    <td>가재도난 위험담보에 따라 보험금이 지급된 경우 보험가입금액을 잠금장치 교체비용으로 지급</td>
+                                                                    <td>가입금액</td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td class="ac bl">대물배상책임위험</td>
+                                                                    <td>피보험자의 주택 구내에서 발생한 화재사고로 인하여 타인의 재물을 손괴하여 배상책임이 발생한 경우 보한한도액 내에서 보상.<br>
+                                                                        단, 피보험자가 소유, 점유, 임차, 관리, 통제하는 재물의 경우는 보상 불가.</td>
+                                                                    <td>가입금액 한도</td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </li>
+                                                <li>보상하는 손해
+                                                    <ul class="dep2">
+                                                        <li>잔존물 제거 비용 
+                                                            <div class="type-in">사고현장에서의 잔존물의 해체비용, 청소비용, 및 상차 비용. 단, 증권에서 보장하지 않는 위험으로 인한 손해는 보상하지 않음</div>
+                                                        </li>
+                                                        <li>손해방지비용
+                                                            <div class="type-in">손해의 방지 또는 경감을 위하여 지출한 필요 또는 유익한 비용</div>
+                                                        </li>
+                                                        <li>대위권 보전 비용
+                                                            <div class="type-in">제3자로부터 손해의 배상을 받을 수 있는 경우에는 그 권리를 지키거나 행사하기 위하여 지출한 필요 또는 유익한 비용</div>
+                                                        </li>
+                                                        <li>잔존물 보전비용
+                                                            <div class="type-in">잔존물을 보전하기 위하여 지출한 필요 또는 유익한 비용. 단 회사가 잔존물을 취득한 경우에 한함</div>
+                                                        </li>
+                                                        <li>기타 협력비용 
+                                                            <div class="type-in">회사의 요구에 따르기 위하여 지출한 필요 또는 유익한 비용<br>
+                                                                [청소비용] → 사고현장 및 인근 지역의 토양, 대기 및 수질 오염 물질 제거비용과 상차 후 폐기물 처리비용은 포함되지 않음
+                                                                <div class="info-txt bk">기타 자세한 내용은 약관의 내용을 따릅니다.</div>
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ol>
+                                            <h2>3.유의사항</h2>
+                                            <ol class="ol-type">
+                                                <li>보상하지 않는 손해
+                                                    <ul class="dep2">
+                                                        <li>계약자, 피보험자 또는 이들의 법정대리인의 고의 또는 중대한 과실로 생긴 손해</li>
+                                                        <li>피보험자에게 보험금이 지급되도록 하기 위하여 피보험자의 친족 또는 고용인이 고의로 일으킨 손해</li>
+                                                        <li>지진 또는 분화 등의 천재지변으로 생긴 손해</li>
+                                                        <li>전쟁, 외국의 무력행사, 혁명, 내란, 사변, 폭동, 테러 또는 기타 이들과 유사한 사태로 생긴 손해</li>
+                                                        <li>핵연료물질 또는 핵연료 물질에 의하여 오염된 물질의 방사성, 폭발성 그 밖의 유해한 특성 또는 이들의 특성에 의한 사고로 인한 손해 또는
+                                                            <br>방사선을 쬐는것(照射) 또는 방사능 오염으로 인한 손해
+                                                        </li>
+                                                        <li>태풍, 회오리바람, 폭풍, 폭풍우, 홍수, 해일, 범람 및 이와 비슷한 풍재 또는 수재로 보험의 목적에 생긴 손해<br>
+                                                            단, 건물에 부착된 유리는 풍재 또는 수재로 인한 손해를 보상하며, 수조, 급배수설비(헤드, 배관, 경보장치, 탱크, 펌프 및 이의 부속기구 포함하지 않음) 또는
+                                                            수관(이하 「급배수설비」)이 우연한 사고로 인해 누수 또는 방수됨에 따라 보험의 목적에 생긴 손해는 보상함
+                                                        </li>
+                                                        <li>자연발열, 자연발화, 마모, 내재적 결함, 재질 변경, 녹 및 부식, 누설, 쥐, 곤충, 해충, 기후·온도 조건의 변화, 통상적인 해수면의 변화, 기타 점진적으로 작용하는 원인으로 생긴 손해. 단, 자연발열 또는 자연발화로 연소된 다른 보험의 목적에 생긴 손해는 보상함</li>
+                                                        <li>법률적으로 또는 실질적으로 정부 및 공공기관의 행위나 명령에 의한 몰수, 국유화, 징발, 파괴 또는 손상으로 생긴 손해</li>
+                                                        <li>공공설비(전기, 가스, 통신, 수도 또는 기타 에너지원)의 공급불능, 불량으로 발생한손해</li>
+                                                        <li>도난, 망실 또는 분실 손해. 단, 절도 또는 강도행위로 발생한 건물의 파손 손해는 보상함</li>
+                                                        <li>외부적 힘에 의하지 않은 부속설비 및 가재에 생긴 손해</li>
+                                                        <li>피보험자나 고용인의 잘못된 운영이나 잘못된 기술로 인하여 전기․기계장비에 생긴 손해</li>
+                                                        <li>가재 또는 유리(건물에 부착된 유리 제외)의 파손 손해. 다만 화재, 낙뢰, 폭발, 붕괴, 사태, 자동차나 항공기와의 충돌, 항공기로부터 낙하물체와의 충돌, 소요, 노동쟁의, 피보험자 또는 이들 법정대리인이 아닌 자의 고의적이고 악의적인 행위로 인한 파손 손해는 보상함</li>
+                                                        <li>발전기, 여자기(정류기 포함), 변류기, 변압기, 전압조정기, 축전기, 개폐기, 차단기, 피뢰기, 배전반 및 그 밖의 전기기기 또는 장치의 전기적 사고로 생긴 손해<br>단, 그 결과로 생긴 손해는 보상함</li>
+                                                        <li>기관, 기기, 증기기관, 내연기관, 유압기 등의 물리적인 폭발, 파열이나 기계의 운동 부분 또는 회전부분이 분해되어 날아 흩어짐으로 인해 생긴 손해
+                                                            <ul class="dep3">
+                                                                <li>[핵연료 물질] → 사용된 연료를 포함</li>
+                                                                <li>[핵연료 물질에 의해 오염된 물질] → 원자핵 분열 생성물을 포함</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>보험모집질서위반
+                                                    <ul class="dep2">
+                                                        <li>보험계약 청약과 관련 특별이익을 제공하는 등 보험모집질서 위반행위는 보험업법에 의해 처벌 받을 수 있습니다.</li>
+                                                        <li>금육감독원 위반행위 신고 센터
+                                                            <ul class="dep3">
+                                                                <li>전화 : 국번없이 <a href="tel:1332">1332</a></li>
+                                                                <li>휴대전화 : <a href="tel:02-1332">02-1332</a></li>
+                                                                <li>인터넷 : <a href="http://www.fss.or.kr/fss/kr/main.html" target="_blank">www.fss.or.kr</a> 내 “보험모집질서위반신고”</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>손해보험협회
+                                                            <ul class="dep3">
+                                                                <li>전화 : <a href="tel:02-3702-8585">02-3702-8585</a></li>
+                                                                <li>팩스 : 02-3702-8691</li>
+                                                                <li>인터넷 : <a href="https://www.knia.or.kr/main" target="_blank">www.knia.or.kr</a> 내 “모집질서문란 신고센터＂</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>보험료 환급
+                                                    <div class="dep2">순수 보장성 상품으로 만기 시 환급금이 없습니다.
+                                                        <div class="info-txt2 bk">
+                                                            기타 자세한 사항은 약관의 내용을 따릅니다.
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                                <li>보험계약상의 알릴 의무
+                                                    <ul class="dep2">
+                                                        <li>계약 전 알릴 의무
+                                                            <div class="dep3">
+                                                            계약을 맺을 때에 계약자, 피보험자 또는 이들의 대리인은 계약 청약서(질문서를 포함. 이하 동일)의 기재사항에 관하여 아는 사실을 빠짐없이
+                                                            그대로 회사에 알려야 합니다. 인터넷 계약의 경우 입력사항을 정확하게 기재해 주셔야 합니다.
+                                                            </div>
+                                                        </li>
+                                                        <li>계약 후 알릴 의무
+                                                            <ul class="dep3">
+                                                                <li>이 계약에서 담보하는 위험과 동일한 위험에 대해서 다른 회사와 다른 계약을 맺을 때</li>
+                                                                <li>보험의 목적물을 양도할 때</li>
+                                                                <li>보험의 목적 또는 보험의 목적을 수용하는 건물의 구조를 변경, 개축, 증축하거나 계속하여 15일 이상 수선하는 경우</li>
+                                                                <li>보험의 목적 또는 보험의 목적을 수용하는 건물의 용도를 변경함으로써 위험이 변경하는 경우</li>
+                                                                <li>보험의 목적인 건물 또는 보험의 목적이 들어있는 건물을 계속하여 30일 이상 비워 두거나 휴업하는 경우</li>
+                                                                <li>위 이외의 위험이 뚜렷이 증가할 경우</li>
+                                                                <li>알릴 의무를 위반하신 경우 계약을 해지하거나 보험금 지급이 제한될 수 있습니다.
+                                                                    <div class="info-txt2 bk">
+                                                                        기타 자세한 사항은 약관의 내용을 따릅니다.
+                                                                    </div>
+                                                                </li>
+                                                            </ul>                                    
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>3대 기본 지키기 및 계약자 의무사항
+                                                    <ul class="dep2">
+                                                        <li>자필서명 (인터넷 계약은 공동인증을 통해 대체될 수 있음)</li>
+                                                        <li>청약서 부본전달 (인터넷 계약은 예외)</li>
+                                                        <li>보험약관전달 (인터넷 계약은 이메일 등 전자적 수단에 의해 전달될 수 있음)
+                                                            <div class="info-txt2 bk">3대 기본 지키기 미이행시는 계약성립일로부터 3개월 이내에 계약을 취소할 수 있습니다.</div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>청약철회 청구제도
+                                                    <ul class="dep2">
+                                                        <li>보험계약자는 보험증권을 받은 날부터 15일 이내에 그 청약을 철회할 수 있으며, 이 경우 3일 이내에 보험료를 돌려드립니다.<br>
+                                                        다만, 진단계약, 보험기간이 1년 미만인 계약 또는 전문보험계약자가 체결한 계약 및 청약을 한 날로부터 30일을 초과하는 경우에는 청약을 철회할 수 없습니다.<br>
+                                                        청약철회 기간 내에 청약철회를 하실 경우 납입한 보험료 전액을 돌려받으실 수 있습니다.
+                                                        </li>
+                                                        <li>전문보험계약자
+                                                            <div class="dep3">
+                                                                보험계약에 관한 전문성, 자산규모 등에 비추어 보험계약의 내용을 이해하고 이행할 능력이 있는 자로서 보험업법 제2조(정의),
+                                                                보험업법시행령 제6조의 2(전문보험계약자의 범위 등) 도는 보험업감독규정 제1-4조의 2(전문보험계약자의 범위)에서 정한 국가, 한국은행, 
+                                                                대통령령으로 정하는 금융기관, 주권상장법인, 지방자치단체, 단체보험계약자 등의 전문보험계약자를 말합니다.
+                                                            </div>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                                <li>상담 및 보험분쟁조정안내
+                                                    <ul class="dep2">
+                                                        <li>보험에 대한 문의사항 및 불만사항이 있을 경우 현대해상(전화 <a href="tel:1588-5656">1588-5656</a> / 인터넷 <a href="https://www.hi.co.kr/index.jsp" target="_blank">hi.co.kr</a> &gt; 전자민원접수) 또는
+                                                            인슈로보(전화 <a href="tel:070-4126-3333">070-4126-3333</a> / 카카오톡채널 “인슈로보”)로 연락주시면 신속하게 처리해 드립니다.<br>
+                                                            또한 보험에 관한 분쟁이 있을 때에는 금융감독원 및 한국소비자원에 분쟁조정을 신청하실 수 있습니다.
+                                                        </li>
+                                                        <li>금융감독원
+                                                            <ul class="dep3">
+                                                                <li>전화 : <a href="tel:1332">1332</a></li>
+                                                                <li>홈페이지 : <a href="http://www.fss.or.kr/fss/kr/main.html" target="_blank">www.fss.or.kr</a></li>
+                                                                <li>e-금융센터 : <a href="https://www.fcsc.kr/" target="_blank">www.fcsc.kr</a>)</li>
+                                                            </ul>
+                                                        </li>
+                                                        <li>한국소비자원
+                                                            <ul class="dep3">
+                                                                <li>전화 : <a href="tel:1372">1372</a></li>
+                                                                <li>홈페이지 : <a href="https://www.kca.go.kr/home/main.do" target="_blank">www.kca.go.kr</a>)</li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                    <li>계약자배당에 관한 사항
+                                                        <div class="dep2">무배당 상품으로 배당을 하지 않습니다.</div>
+                                                    </li>
+                                                    <li>보험계약체결
+                                                        <ul class="dep2">
+                                                            <li>보험계약 체결 전에 상품설명서 및 약관을 읽어 보시기 바랍니다.</li>
+                                                            <li>기존에 체결했던 보험계약을 해지하고 다른 보험계약을 체결하면 보험인수가 거절, 보험료가 안상 또는 보장내용이 달라질 수 있습니다.</li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>예금자 보호안내
+                                                        <div class="dep2">
+                                                            이 보험계약은 예금자보호법에 따라 예금보험공사가 보호하되, 보호 한도는 본 보험회사에 귀하의 모든 예금보호 대상 금융상품의
+                                                            해약환급금(또는 만기시 보험금이나 사고 보험금)에 기타지급금을 합하여 1인당 “최고 5천만원＂이며, 5천만원을 초과하는 나머지 금액은 보호하지 않습니다.
+                                                            또한, 보험계약자 및 보험료 납부자가 법인이면 보호되지 않습니다.
+                                                            <div class="info-txt2 bk">
+                                                                위 내용은 예금자보호법 및 관련 법령의 개정에 따라 달라질 수 있으며, 자세한 내용은 예금보험공사(<a href="http://www.kdic.or.kr/main.do" target="_blank">www.kdic.or.kr</a>)로 문의 바랍니다.
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </li>
+                                            </ol>       
+                                        </div>
+                                    </div>
+                                </div>
+            
+                            </div>
+                            <!-- // container -->
+
+                        </div>
+                        <!-- //wrap -->
+                          </body>
+                          </html>
+                            `;
+  return html;
+};
+
 export const productInfoHtml = () => {
   const html = `
                     <html>
@@ -2581,9 +2855,9 @@ export const productInfoHtml2 = () => {
                         <div id="wrap" class="pop">
 
                             <!-- header -->
-                            <header id="header">
-                                <h1>주요 업종별 연평균 매출액</h1>
-                            </header>
+                            <div class="headers">
+                                <h1 class="headerh1">주요 업종별 연평균 매출액</h1>
+                            </div>
                             <!-- //header -->
 
                             <!-- container -->
@@ -2773,10 +3047,9 @@ export const productInfoHtml3 = () => {
                         <div id="wrap" class="pop">
 
                             <!-- header -->
-                            <header id="header">
-                                <h1>알아 두실 사항</h1>
-                                <div class="btn-close"><button type="button"><span class="ir">닫기</span></button></div>
-                            </header>
+                            <div class="headers">
+                                <h1 class="headerh1">꼭!! 알아 두실 사항</h1>
+                            </div>
                             <!-- //header -->
 
                             <!-- container -->
@@ -4187,10 +4460,10 @@ export const wwTerms2s1 = () => {
                                   <div id="wrap" class="pop">
                                   
                                       <!-- header -->
-                                      <header id="header">
-                                          <h1>상품안내 및 보장내용 자세히 보기</h1>
+                                      <div class="headers">
+                                          <h1 class="headerh1">상품안내 및 보장내용 자세히 보기</h1>
                                           <div class="btn-close"><button type="button"><span class="ir">닫기</span></button></div>
-                                      </header>
+                                      </div>
                                       <!-- //header -->
                                   
                                       <!-- container -->
@@ -4487,10 +4760,10 @@ export const wwTerms2s2 = () => {
 <div id="wrap" class="pop">
 
 	<!-- header -->
-	<header id="header">
-		<h1>상품안내 및 보장내용 자세히 보기</h1>
+	<div class="headers">
+		<h1 class="headerh1">상품안내 및 보장내용 자세히 보기</h1>
 		<div class="btn-close"><button type="button"><span class="ir">닫기</span></button></div>
-	</header>
+	</div>
 	<!-- //header -->
 
 	<!-- container -->

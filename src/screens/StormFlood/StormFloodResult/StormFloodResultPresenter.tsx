@@ -126,7 +126,7 @@ function StormFloodResultPresenter({
               </Typhograph>
             </RowItem>
           </RowBox>
-          <TitleBox>
+          <TitleBox style={{ marginTop: 10 }}>
             <Typhograph type="NOTO" weight="BOLD" color="BLUE" size={15}>
               연 보험료
             </Typhograph>

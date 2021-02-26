@@ -1,5 +1,5 @@
 import React from 'react';
-import { BottomFixButton, CheckLabelButton, Typhograph } from '@app/components';
+import { BottomFixButton, CheckLabelButton, FocusAwareStatusBar, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import { screenWidth } from '@app/lib';
 import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';

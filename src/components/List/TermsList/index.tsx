@@ -26,6 +26,12 @@ const RowButton = styled.TouchableOpacity`
   align-items: center;
 `;
 const Item = styled.View``;
+const TextBox = styled.View`
+  width: 95%;
+`;
+const ImageBox = styled.View`
+  width: 5%;
+`;
 export default function TermsList({
   item,
   onChangeTermsState,
@@ -40,10 +46,15 @@ export default function TermsList({
     <Container>
       <Item style={{ width: '80%' }}>
         <RowButton onPress={() => (isButton ? onClickTermsModalOpen(item.name, item.html) : null)}>
-          <Typhograph lineheight={3} type="NOTO" color="BLUE" size={11} style={{ marginRight: 5 }}>
-            {item.title}
-          </Typhograph>
-          <Image style={{ width: 5, height: 8 }} source={insuIcon.ARR_RIGHT} />
+          <TextBox>
+            <Typhograph lineheight={3} type="NOTO" color="BLUE" size={11} style={{ marginRight: 5 }}>
+              {item.title}
+            </Typhograph>
+          </TextBox>
+
+          <ImageBox>
+            <Image style={{ width: 5, height: 8 }} source={insuIcon.ARR_RIGHT} />
+          </ImageBox>
         </RowButton>
       </Item>
       <Item style={{ width: '20%' }}>

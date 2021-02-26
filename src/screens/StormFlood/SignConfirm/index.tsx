@@ -1,23 +1,15 @@
-import React, { useState } from 'react';
-import {
-  BackButton,
-  BottomFixButton,
-  CloseButton,
-  FocusAwareStatusBar,
-  Loading,
-  OverayLoading,
-  Typhograph,
-} from '@app/components';
+import React, { useEffect, useState } from 'react';
+import { BottomFixButton, FocusAwareStatusBar, Loading, OverayLoading, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import WebView from 'react-native-webview';
 import Modal from 'react-native-modal';
 import { screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
-import { Platform, View } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
+import { Keyboard, Platform, StatusBar, View } from 'react-native';
 const ContentsBox = styled.View`
   width: ${screenWidth()}px;
   height: 100%;
+  background-color: ${theme.color.WHITE};
 `;
 const Header = styled.View`
   padding: ${Platform.OS === 'ios' ? '50px 0px 0px 0px' : '10px 0px 10px 10px'};
@@ -25,13 +17,14 @@ const Header = styled.View`
   border-bottom-width: 0px;
   align-items: center;
 `;
-const BackButtonBox = styled.View``;
-const TitleBox = styled.View``;
+
 export default function SignConfirm({ open, close, url, state, onClick }) {
+  const [loading, setLoading] = useState(false);
+  console.log(state?.signData);
   const onMessage = (e) => {
     if (e.nativeEvent.data === 'ok') {
-      //   alert('본인인증에 성공하였습니다.');
       close();
+      onClick();
     } else {
     }
   };
@@ -41,24 +34,44 @@ export default function SignConfirm({ open, close, url, state, onClick }) {
       document.querySelector(".blue").style.display = "none";
       document.querySelector(".btnWrap span").addEventListener("click",btnClick);
 `;
-
   const onNavigationStateChange = (navState) => {
     if (navState.navigationType === 'backforward') {
       close();
       onClick();
     }
   };
-  const [loading, setLoading] = useState(false);
+
+  //웹뷰에서 키보드 입력하면 status바 없어지는거 방지
+  const _keyboardDidShow = () => {
+    StatusBar.setBarStyle('dark-content');
+  };
+
+  const _keyboardDidHide = () => {
+    StatusBar.setBarStyle('dark-content');
+  };
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
+    Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
+
+    // cleanup function
+    return () => {
+      Keyboard.removeListener('keyboardDidShow', _keyboardDidShow);
+      Keyboard.removeListener('keyboardDidHide', _keyboardDidHide);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
-      <Modal isVisible={open} style={{ padding: 0, margin: 0 }}>
+      <Modal isVisible={open} style={{ padding: 0, margin: 0 }} onBackButtonPress={() => close()}>
         <ContentsBox>
           <OverayLoading visible={loading} />
           <Header>
             <Typhograph type="NOTO">전자서명 확인하기</Typhograph>
           </Header>
-          <View style={{ backgroundColor: 'white', height: 1000, padding: 20 }}>
+          <View style={{ backgroundColor: 'white', height: 360, padding: 20 }}>
             <WebView
               source={{
                 uri: state?.signData,

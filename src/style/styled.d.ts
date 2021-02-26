@@ -31,7 +31,9 @@ declare module 'styled-components' {
     | 'SOFTBLUE'
     | 'MSG_BACK'
     | 'BLACK4'
-    | 'CIRCLE_BACK';
+    | 'CIRCLE_BACK'
+    | 'YELLOW'
+    | 'BROWN';
   export interface DefaultTheme {
     color: {
       BLACK: string;
@@ -64,6 +66,7 @@ declare module 'styled-components' {
       MSG_BACK: string;
       BLACK4: string;
       CIRCLE_BACK: string;
+      YELLOW: string;
     };
   }
 }

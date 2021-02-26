@@ -26,7 +26,7 @@ export default function HouseTermsUseContainer({
     }
   };
 
-  if (state.stepNumber === 7) {
+  if (state.stepNumber === 8) {
     return (
       <HouseTermsUsePresenter
         state={state}

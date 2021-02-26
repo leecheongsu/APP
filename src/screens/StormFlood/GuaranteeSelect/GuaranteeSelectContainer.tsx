@@ -76,7 +76,6 @@ export default function GuaranteeSelectContainer({
           },
         },
       };
-      console.log(data);
       globalDispatch({ type: 'CHANGE', name: 'postWwPremium', value: data });
       onChangeState('loading', true);
       insuApis
@@ -100,8 +99,6 @@ export default function GuaranteeSelectContainer({
   };
 
   const handleBuildingPriceSelect = (value) => {
-    console.log(sumPrice, 123123);
-
     if (state.stuffDivision === '일반' && sumPrice > 100000000) {
       Alert.alert('알림', '일반 물건은 건물 금액과 시설(기계) 및 집기 금액의 합계 금액이 1억원을 넘을 수 없습니다.');
       onChangeState('selectBuildingPrice', '');

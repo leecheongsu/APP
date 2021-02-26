@@ -225,7 +225,7 @@ export default function HouseEvaluationContainer({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [handleNextButton, handlePreviousButton]);
-  if (state.stepNumber === 4) {
+  if (state.stepNumber === 5) {
     return (
       <HouseEvaluationPresenter
         state={state}

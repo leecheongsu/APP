@@ -43,7 +43,6 @@ export default function useAsync(callback, deps: any = [], skip = false) {
     } catch (e) {
       handleApiError(e.response);
       dispatch({ type: 'ERROR', error: e });
-      console.log(e, 'error');
     }
   };
 

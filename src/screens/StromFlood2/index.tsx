@@ -1,13 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from '@app/style/typed-components';
 import { BottomFixButton, DefaultAlert, RightIconButton, Typhograph } from '@app/components';
-import { Animated, Image, Linking, StyleSheet, Text } from 'react-native';
+import { Animated, BackHandler, Image, Linking, StyleSheet, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { screenWidth } from '@app/lib';
 import { insuIcon } from '@app/assets';
 import theme from '@app/style/theme';
 import { TermsModal } from '@app/screens';
 import { wwTerms2s1 } from '@app/lib/html';
+import { useNavigation } from '@react-navigation/native';
 const Container = styled.ScrollView``;
 
 const RowBox = styled.View`
@@ -78,6 +79,7 @@ const PaddingBox = styled.View`
 
 function StromFlood2() {
   const [isOpen, setIsOpen] = useState(false);
+  const navigation = useNavigation();
   const width = screenWidth();
   const leftValue = useState(new Animated.Value(-width))[0];
   const leftValue2 = useState(new Animated.Value(-width))[0];
@@ -85,41 +87,42 @@ function StromFlood2() {
   const rightValue2 = useState(new Animated.Value(width))[0];
 
   const leftmove = () => {
-    Animated.timing(leftValue, {
-      toValue: 0,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const leftmove2 = () => {
-    Animated.timing(leftValue2, {
-      toValue: 0,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
-
-  const rightMove = () => {
-    Animated.timing(rightValue, {
-      toValue: 0,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
-  };
-  const rightMove2 = () => {
-    Animated.timing(rightValue2, {
-      toValue: 0,
-      duration: 1000,
-      useNativeDriver: true,
-    }).start();
+    Animated.loop(
+      Animated.sequence([
+        Animated.delay(500),
+        Animated.timing(leftValue, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+        Animated.timing(rightValue, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+        Animated.timing(leftValue2, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+        Animated.timing(rightValue2, {
+          toValue: 0,
+          duration: 1000,
+          useNativeDriver: false,
+        }),
+      ])
+    ).start(() => leftmove());
   };
 
   useEffect(() => {
+    const backAction = () => {
+      navigation.goBack();
+      return true;
+    };
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
     leftmove();
-    setTimeout(() => rightMove(), 500);
-    setTimeout(() => leftmove2(), 1200);
-    setTimeout(() => rightMove2(), 1700);
+
+    return () => backHandler.remove();
   }, []);
 
   return (
@@ -174,7 +177,7 @@ function StromFlood2() {
                   <Typhograph type="NOTO" color="GRAY" size={13}>
                     그럼,
                     <Typhograph type="NOTO" color="GRAY" weight="BOLD">
-                      다중이용시설 배상책임보험
+                      다중이용시설 화재배상책임보험
                     </Typhograph>{' '}
                     은?
                   </Typhograph>
@@ -276,8 +279,8 @@ function StromFlood2() {
         rightTitle="보험료 간편계산"
         bottomRightPress={() =>
           DefaultAlert({
-            title: '인슈로보 페이지이동',
-            msg: '본 상품은 현대해상 [다중이용시설배상책임보험]으로 현대해상다이렉트로 이동합니다.',
+            title: '알림',
+            msg: '본 상품은 현대해상 [다중이용시설 화재배상책임 보험]으로 현대해상다이렉트로 이동합니다.',
             okPress: () => Linking.openURL('https://mplatform.hi.co.kr/service.do?m=pipin1000&jehuCd=hyundaipay'),
           })
         }

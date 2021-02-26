@@ -52,21 +52,19 @@ function ProductInfomationPresenter({
         <ContentsContainer>
           <TextBox>
             <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={20}>
-              태풍, 홍수 걱정된다면?{'\n'}
-              “풍수해 보험” 에 가입하세요.
+              태풍, 홍수 걱정된다면?
             </Typhograph>
           </TextBox>
           <TextBox>
             <Typhograph type="NOTO" color="BLACK3" weight="MEDIUM" size={15}>
-              올해부터는 최대{' '}
               <Typhograph type="NOTO" color="SKYBLUE">
-                92%까지
-              </Typhograph>{' '}
-              지원해주는{'\n'}
-              정부지원금으로 부담없이 지켜 드립니다.
-            </Typhograph>
-            <Typhograph type="NOTO" size={12} color="BLACK3">
-              (태풍, 홍수, 호우, 강풍, 대설, 지진, 풍랑, 해일)
+                최대 92%까지{' '}
+              </Typhograph>
+              보험료 정부지원받고{'\n'}
+              <Typhograph type="NOTO" color="SKYBLUE">
+                "풍수해보험"{' '}
+              </Typhograph>
+              가입하세요.
             </Typhograph>
           </TextBox>
 
@@ -87,22 +85,10 @@ function ProductInfomationPresenter({
           </RowBox>
 
           <RowBox style={{ marginTop: 20 }}>
-            <RowItem width="33%">
-              <Image source={insuImg.STORMFLOOD_MAIN1} />
-              <Typhograph type="NOTO" color="BLUE" style={{ textAlign: 'center' }}>
-                주택의{'\n'} 파손또는 침수
-              </Typhograph>
-            </RowItem>
-            <RowItem width="33%">
-              <Image source={insuImg.STORMFLOOD_MAIN2} />
-              <Typhograph type="NOTO" color="BLUE" style={{ textAlign: 'center' }}>
-                온실의{'\n'} 파손 및 유실
-              </Typhograph>
-            </RowItem>
-            <RowItem width="33%">
+            <RowItem width="100%">
               <Image source={insuImg.STORMFLOOD_MAIN3} />
               <Typhograph type="NOTO" color="BLUE" style={{ textAlign: 'center' }}>
-                소상공인{'\n'}상가·공장
+                소상공인 상가
               </Typhograph>
             </RowItem>
           </RowBox>
@@ -121,7 +107,7 @@ function ProductInfomationPresenter({
                 </Typhograph>{' '}
                 합니다.{'\n'}
                 <Typhograph type="NOTO" color="BLUE" lineheight={2} weight="MEDIUM" size={13}>
-                  지진, 태풍, 홍수, 호우, 강풍 등으로 인한 사고를 실손 비용 보상
+                  가입자가 부담해야 할 보험료의 52.5% ~ 92%를 정부와 지자체가 지원해 드립니다.
                 </Typhograph>
               </Typhograph>
             </RowItem>

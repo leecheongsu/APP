@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer, useRef } from 'react';
+import React, { useCallback, useEffect, useReducer, useRef } from 'react';
 import { floorPrice, screenWidth } from '@app/lib';
 import {
   HouseAddress,
@@ -7,6 +7,7 @@ import {
   HouseEvaluation,
   HouseFinal,
   HousePay,
+  HouseProductInfo,
   HouseResult,
   HouseTermsUse,
   JoinType,
@@ -148,6 +149,7 @@ export type HouseFireStateTypes = {
   joinType: Array<{ title: string; value: 'T' | 'S' }>;
   houseStep: {
     id:
+      | 'productInfo'
       | 'joinType'
       | 'address'
       | 'info'
@@ -350,7 +352,7 @@ const terms = {
 const initialState: HouseFireStateTypes = {
   stepperTitle: '가입유형',
   isKeybordView: false,
-  stepNumber: 0,
+  stepNumber: 1,
   loading: false,
   addressCommon: {},
   addressData: [],
@@ -388,6 +390,11 @@ const initialState: HouseFireStateTypes = {
   insFrom: moment(new Date()).format('YYYY-MM-DD'),
   vbankResult: undefined,
   houseStep: [
+    {
+      id: 'productInfo',
+      title: '상품안내',
+      backgroundcolor: 'SKYBLUE',
+    },
     {
       id: 'joinType',
       title: '가입유형',
@@ -464,13 +471,13 @@ export default function HouseFireContainer() {
     searchInput: useInput(''),
   };
 
-  const onChangeState = (name: HouseFireStateName, value: any) => {
+  const onChangeState = useCallback((name: HouseFireStateName, value: any) => {
     dispatch({ type: 'CHANGE', name, value });
-  };
+  }, []);
 
-  const onChangeTermsState = (name: TermsNames, value: any) => {
+  const onChangeTermsState = useCallback((name: TermsNames, value: any) => {
     dispatch({ type: 'TERMS_CHANGE', name, value });
-  };
+  }, []);
 
   //가입유형 다음 버튼
   const handleJoinTypeNextButton = () => {
@@ -501,6 +508,10 @@ export default function HouseFireContainer() {
         return null;
       }
       case 5: {
+        handleJoinTypeNextButton();
+        return null;
+      }
+      case 6: {
         if (state.selectInsuCompany === '') {
           Toast.show('보험상품을 선택해주세요.');
           return null;
@@ -511,10 +522,6 @@ export default function HouseFireContainer() {
           handleJoinTypeNextButton();
           return null;
         }
-      }
-      case 6: {
-        handleJoinTypeNextButton();
-        return null;
       }
       case 7: {
         handleJoinTypeNextButton();
@@ -537,6 +544,10 @@ export default function HouseFireContainer() {
         return null;
       }
       case 12: {
+        handleJoinTypeNextButton();
+        return null;
+      }
+      case 13: {
         navigation.navigate('MAIN_STACK');
         return null;
       }
@@ -640,10 +651,29 @@ export default function HouseFireContainer() {
       | 'HousePay'
       | 'HouseFinal'
       | 'HousePayWay'
+      | 'productInfo'
   ) => {
     switch (id) {
+      case 'productInfo':
+        return (
+          <HouseProductInfo
+            key={id}
+            state={state}
+            inputState={inputState}
+            onChangeState={onChangeState}
+            handleJoinTypeNextButton={handleJoinTypeNextButton}
+          />
+        );
       case 'joinType':
-        return <JoinType key={id} state={state} onChangeState={onChangeState} handleNextButton={handleNextButton} />;
+        return (
+          <JoinType
+            key={id}
+            state={state}
+            onChangeState={onChangeState}
+            handleNextButton={handleNextButton}
+            handlePreviousButton={handlePreviousButton}
+          />
+        );
       case 'address':
         return (
           <HouseAddress
@@ -822,7 +852,6 @@ export default function HouseFireContainer() {
   useEffect(() => {
     Keyboard.addListener('keyboardDidShow', _keyboardDidShow);
     Keyboard.addListener('keyboardDidHide', _keyboardDidHide);
-    state.stepNumber === 0 && onChangeState('stepNumber', 1);
 
     // cleanup function
     return () => {
@@ -836,39 +865,42 @@ export default function HouseFireContainer() {
   const setPageHeader = () => {
     switch (state?.stepNumber) {
       case 1:
-        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '가입구분' });
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '주택화재' });
         return;
       case 2:
-        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '주소찾기' });
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '가입구분' });
         return;
       case 3:
-        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '기본정보' });
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '주소찾기' });
         return;
       case 4:
-        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '평가정보' });
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '기본정보' });
         return;
       case 5:
-        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '보험료 확인' });
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '평가정보' });
         return;
       case 6:
-        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '고객정보 입력' });
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '보험료 확인' });
         return;
       case 7:
-        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '서비스 이용약관 동의' });
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '고객정보 입력' });
         return;
       case 8:
-        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '청약확인' });
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '서비스 이용약관 동의' });
         return;
       case 9:
-        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '청약 확인약관 동의' });
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '청약확인' });
         return;
       case 10:
-        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '결제방법' });
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '청약 확인약관 동의' });
         return;
       case 11:
-        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '결제' });
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '결제방법' });
         return;
       case 12:
+        globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '결제' });
+        return;
+      case 13:
         globalDispatch({ type: 'CHANGE', name: 'homeFireTitle', value: '계약완료' });
         return;
     }

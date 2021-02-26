@@ -141,13 +141,7 @@ export default function FindPasswordContainer() {
             }
           })
           .catch((e) => {
-            if (e.response.data?.message === 'no user') {
-              Toast.show('등록된사용자가 없습니다.');
-            } else if (e.response.status === 404) {
-              Toast.show('입력하신 정보가 등록한 정보와 다릅니다.');
-            } else {
-              handleApiError(e.response);
-            }
+            handleApiError(e.response);
             onChangeState('loading', false);
           });
       }
@@ -169,7 +163,7 @@ export default function FindPasswordContainer() {
             onChangeState('loading', false);
           })
           .catch((e) => {
-            console.log(e.response);
+            handleApiError(e.response);
             Toast.show('오류가 발생하였습니다.');
             onChangeState('loading', false);
           });

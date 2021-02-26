@@ -1,7 +1,8 @@
 import { insuApis } from '@app/api/Insurance';
 import { EmptyLayout } from '@app/layout';
-import { priceDot } from '@app/lib';
+import { handleApiError, priceDot } from '@app/lib';
 import React, { useEffect } from 'react';
+import SimpleToast from 'react-native-simple-toast';
 import HousePayWayPresenter from './HousePayWayPresenter';
 export default function HousePayWayContainer({
   state,
@@ -13,8 +14,13 @@ export default function HousePayWayContainer({
   resultGajePrice,
 }) {
   const nextButton = () => {
-    handleNextButton();
+    if (state?.payway === '') {
+      SimpleToast.show('결제방법을 선택해주세요.');
+    } else {
+      handleNextButton();
+    }
   };
+
   const price = priceDot(resultBuildPrice() + resultGajePrice());
   const getVbankInfo = () => {
     insuApis
@@ -25,7 +31,7 @@ export default function HousePayWayContainer({
         }
       })
       .catch((e) => {
-        console.log(e.response);
+        handleApiError(e.response);
       });
   };
 
@@ -36,7 +42,7 @@ export default function HousePayWayContainer({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state?.payway]);
 
-  if (state.stepNumber === 10) {
+  if (state.stepNumber === 11) {
     return (
       <HousePayWayPresenter
         state={state}

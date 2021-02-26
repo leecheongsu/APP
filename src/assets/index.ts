@@ -29,12 +29,17 @@ const RADIO_OFF = require('./icon/bg-radio-off/bg-radio-off.png');
 const ICON_FILE = require('./icon/ico-file/ico-file.png');
 const ICON_PHONE = require('./icon/ico-pop-phone/ico-pop-phone.png');
 const ICON_KAKAO = require('./icon/ico-pop-kakao/ico-pop-kakao.png');
+const ICON_CUSTOMER = require('./icon/ico-pop-customer/ico-pop-customer.png');
 const MY_LIST = require('./icon/ico-mylist/ico-mylist.png');
 const INSU_ROBO = require('./icon/img-robo/img-robo.png');
 const ICON_41 = require('./icon/ico-041-01/ico-041-01.png');
 const ICON_42 = require('./icon/ico-042-01/ico-042-01.png');
 const ARR_LR = require('./icon/arrow-lr/arrow-lr.png');
 const ICON_LOGOUT = require('./icon/btn-logout/btn-logout.png');
+const ICON_19_1 = require('./icon/ico-019-01/ico-019-01.png');
+const ICON_19_2 = require('./icon/ico-019-02/ico-019-02.png');
+const ICON_19_3 = require('./icon/ico-019-03/ico-019-03.png');
+const STORMFLOOD_CHECK = require('./icon/ico-check-list/ico-check-list.png');
 
 const MAIN_S_ROBOT = require('./img/img-mainSrobot/img-mainSrobot.png');
 const MAIN_B_ROBOT = require('./img/img-mainBrobot/img-mainBrobot.png');
@@ -53,6 +58,11 @@ const MAIN4 = require('./img/main4/main4.png');
 const SPLASH_IMAGE = require('./img/splashImage/splashImage.png');
 const INTRO = require('./img/intro/intro.png');
 const INTRO_LOGO = require('./img/intro-logo/intro-logo.png');
+
+const IMG_19_1 = require('./img/img-019-01/img-019-01.png');
+const IMG_19_2 = require('./img/img-019-02/img-019-02.png');
+const IMG_19_3 = require('./img/img-019-03/img-019-03.png');
+const IMG_19_4 = require('./img/img-019-04/img-019-04.png');
 
 export const insuIcon = {
   CLOSE_ICON,
@@ -86,12 +96,17 @@ export const insuIcon = {
   ICON_FILE,
   ICON_PHONE,
   ICON_KAKAO,
+  ICON_CUSTOMER,
   MY_LIST,
   INSU_ROBO,
   ICON_41,
   ARR_LR,
   ICON_42,
   ICON_LOGOUT,
+  ICON_19_1,
+  ICON_19_2,
+  ICON_19_3,
+  STORMFLOOD_CHECK,
 };
 
 export const insuImg = {
@@ -112,4 +127,8 @@ export const insuImg = {
   SPLASH_IMAGE,
   INTRO_LOGO,
   INTRO,
+  IMG_19_1,
+  IMG_19_2,
+  IMG_19_3,
+  IMG_19_4,
 };

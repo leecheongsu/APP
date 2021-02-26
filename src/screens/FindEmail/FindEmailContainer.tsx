@@ -121,7 +121,6 @@ export default function FindeEmailContainer() {
           .getFindEmail(params)
           .then((res) => {
             if (res.status === 200) {
-              console.log(res);
               onChangeState('loading', false);
               onChangeState('userEmail', res.data);
               onChangeState('currentPage', 2);
