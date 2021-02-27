@@ -14,19 +14,44 @@
 # update_fastlane
 
 default_platform(:android)
-
 platform :android do
 
   desc "Runs all the tests"
     lane :test do
-    increment_version_code(
-      gradle_file_path: "app/build.gradle"
-    )
-    gradle(task: "test")
   end
 
+   # 코드푸쉬 키 & diplay 네임 설정
+   def setCodepushkeyAndDisplayName(build_type, version)
+    require 'nokogiri'
+    path = '../app/src/main/res/values/strings.xml'
+    doc = Nokogiri::XML(File.open(path),nil,"UTF-8")
+    devAppname = "인슈로보 #{version}"
+    stagingAppname = "인슈로보 #{version}"
+    releaseAppName = "인슈로보"
+
+    dev_key = "wS-b_xYvQtcun2_1xd0O5kz33rB3BCuMVLAnr"
+    staging_key = "0jVh4suBSHPuGOAzV2DHPnjOsQWxFxKREhhzl"
+    release_key = "uupoZuGrH5e_bqAvSNvuQYncaZnr9NK0MdIM1"
+
+    if (build_type == "dev")
+      doc.search("//string[@name='app_name']").first.content = devAppname
+      doc.search("//string[@name='CodePushDeploymentKey']").first.content = dev_key
+      File.open(path, 'w') { |f| f.print(doc.to_xml) }
+    elsif (build_type === "staging")
+      doc.search("//string[@name='app_name']").first.content = stagingAppname
+      doc.search("//string[@name='CodePushDeploymentKey']").first.content = staging_key
+      File.open(path, 'w') { |f| f.print(doc.to_xml) }
+    elsif (build_type === "release")
+      doc.search("//string[@name='app_name']").first.content = releaseAppName
+      doc.search("//string[@name='CodePushDeploymentKey']").first.content = release_key
+      File.open(path, 'w') { |f| f.print(doc.to_xml) }
+    else 
+      UI.user_error!("[ERROR] Wrong build type!!!!!!")
+    end
+  end 
+
   #버젼설정 
-  def increment_version_number(bump_type: nil, version_number: nil)
+  def increment_version_number(bump_type: nil, version_number: nil, build_type:nil)
     path = '../app/build.gradle'
     re = /versionName\s+("\d+.\d+.\d+")/
     s = File.read(path)
@@ -50,8 +75,10 @@ platform :android do
 
     if(version_number)
       s[re, 1] = "\"#{version_number}\""
+      setCodepushkeyAndDisplayName(build_type, version_number)
     else
       s[re, 1] = "\"#{major}.#{minor}.#{patch}\""
+      setCodepushkeyAndDisplayName(build_type, "#{major}.#{minor}.#{patch}")
     end
 
     f = File.new(path, 'w')
@@ -61,23 +88,20 @@ platform :android do
   end
 
   # 버젼업데이트 설정
-  def updateVersion(options)
-    if options[:version]
-      version = options[:version]
-    else
-      version = prompt(text: "Enter the version type or specific version\n(major, minor, patch or 1.0.0): ")
-    end
-
+  def updateVersion(build_type,version)
+   
     re = /\d+.\d+.\d+/
     versionNum = version[re, 0]
 
     if (versionNum)
       increment_version_number(
-        version_number: versionNum
+        version_number: versionNum,
+        build_type:build_type
       )
     elsif (version == 'major' || version == 'minor' || version == 'patch')
       increment_version_number(
-        bump_type: version
+        bump_type: version,
+        build_type:build_type
       )
     else
       UI.user_error!("[ERROR] Wrong version!!!!!!")
@@ -92,10 +116,36 @@ platform :android do
     # You can also use other beta testing services here
   end
 
+  # 슬랙 메시지 설정
+  def sendSlack(build_type,version)
+    url = "https://hooks.slack.com/services/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"
+    channel = "#app-deploy"
+    if(build_type == "dev")
+      slack(
+        slack_url: url,
+        channel: "#dev",
+        message: "android appTester staging(#{version}) version 배포완료",
+      )
+    elsif (build_type == "staging")
+      slack(
+        slack_url: url,
+        channel: channel,
+        message: "android appTester staging(#{version}) version 배포완료",
+      )
+    elsif (build_type === "release")
+      slack(
+        slack_url: url,
+        channel: channel,
+        message: "android appTester release(#{version}) version 배포완료",
+      )
+    else 
+      UI.user_error!("[ERROR] Wrong build type!!!!!!")
+    end
+  end
+
   desc "Deploy a new version to the Google Play"
   lane :release do |options|
-    updateVersion(options)
-
+    updateVersion()
     gradle(task: "clean bundleRelease")
     upload_to_play_store(
       skip_upload_metadata: true,
@@ -106,26 +156,34 @@ platform :android do
     )
   end
 
+
   # 파이어베이스 배포
   desc "Firebase_app_distribution"
     lane :distribute do |options|
+      build_type =  prompt(text: "Please enter the build type\n(release, staging, dev): ")
+      version = prompt(text: "Enter the version type or specific version\n(major, minor, patch or 1.0.0): ")
       increment_version_code(
         gradle_file_path: "app/build.gradle"
       )
-      updateVersion(options)
+      updateVersion(build_type,version)
       gradle(task: "clean assembleRelease")
       # build_android_app is a built-in fastlane action.
-      firebase_app_distribution(
+      if(build_type == "dev")
+        firebase_app_distribution(
           app: "1:934772389661:android:ff695659785f1c96f893f4",
           firebase_cli_token: "1//0eHJ9p5pP4UA5CgYIARAAGA4SNwF-L9IrhJZcDO7W1t683dHjH8t2BaSZpVwT1qGBZxXI1yBHD-_D8I02K673yRiZYr3w1KHseNQ",
           groups: "인슈로보내부",
           release_notes: ""
-      )
-      slack(
-        slack_url: "https://hooks.slack.com/services/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",
-        channel: "#app-deploy",
-        message: "android appTester 배포완료",
-      )
+        )
+      else
+        firebase_app_distribution(
+          app: "1:934772389661:android:ff695659785f1c96f893f4",
+          firebase_cli_token: "1//0eHJ9p5pP4UA5CgYIARAAGA4SNwF-L9IrhJZcDO7W1t683dHjH8t2BaSZpVwT1qGBZxXI1yBHD-_D8I02K673yRiZYr3w1KHseNQ",
+          groups: "인슈로보내부",
+          release_notes: ""
+        )
+      end
+      sendSlack(build_type,version)
     end
 
 end
