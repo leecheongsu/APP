@@ -1,4 +1,4 @@
-import React, { useReducer, useRef } from 'react';
+import React, { useCallback, useReducer, useRef } from 'react';
 import { userApis } from '@app/api/User';
 import { useInput } from '@app/hooks';
 import { handleApiError, screenWidth } from '@app/lib';
@@ -26,6 +26,7 @@ function reducer(state: FindPasswordStateTypes, action: FindEmailActionTypes) {
       };
   }
 }
+
 const initialState: FindPasswordStateTypes = {
   currentPage: 1,
   selectService: 'SKT',
@@ -69,14 +70,19 @@ export default function FindPasswordContainer() {
     password: useInput(''),
     passwordConfirm: useInput(''),
   };
-  const onChangeState = (name: FindPasswordStateNames, value: any) => {
+
+  const onChangeState = useCallback((name: FindPasswordStateNames, value: any) => {
     dispatch({ type: 'CHANGE', name, value });
-  };
+  }, []);
 
-  const onValueChange = (value) => {
-    onChangeState('selectService', value);
-  };
+  const onValueChange = useCallback(
+    (value) => {
+      onChangeState('selectService', value);
+    },
+    [onChangeState]
+  );
 
+  //check 로직
   const checkInput = () => {
     const phoneCheck = /^\d{3}\d{3,4}\d{4}$/;
     const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;

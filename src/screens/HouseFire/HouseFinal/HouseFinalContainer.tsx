@@ -6,25 +6,28 @@ import { EmptyLayout } from '@app/layout';
 import { Alert, PermissionsAndroid, Platform } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import { PROD_URL } from '@env';
+import { HouseFireStateName, HouseFireStateTypes, TermsNames } from '@app/screens/HouseFire/HouseFireContainer';
+
+type HouseFinalContainerTypes = {
+  state: HouseFireStateTypes;
+  onChangeState: (name: HouseFireStateName, value: any) => void;
+  handlePreviousButton: () => void;
+  handleNextButton: () => void;
+  resultBuildPrice: () => number;
+  resultGajePrice: () => number;
+};
 
 export default function HouseFinalContainer({
   state,
   onChangeState,
   handlePreviousButton,
-  handleNextButton,
-  onChangeTermsState,
-  onClickTermsModalAgree,
-  onClickTermsModalOpen,
-  onClickAllCheck,
   resultBuildPrice,
   resultGajePrice,
-}) {
+}: HouseFinalContainerTypes) {
   const navigation = useNavigation();
   const insuPrice = priceDot(resultBuildPrice() + resultGajePrice());
-  const selectInsu = state?.selectAddress?.premiums?.filter((item) => {
-    return item.aply_yn === 'Y';
-  });
 
+  //보험증권 다운로드 로직
   const downloadFile1 = () => {
     onChangeState('loading', true);
     const { dirs } = RNFetchBlob.fs;
@@ -55,6 +58,7 @@ export default function HouseFinalContainer({
       });
   };
 
+  //보험 약관 다운로드 로직
   const downloadFile2 = () => {
     onChangeState('loading', true);
     const { dirs } = RNFetchBlob.fs;
@@ -85,6 +89,7 @@ export default function HouseFinalContainer({
       });
   };
 
+  //다운로드 파일버튼 핸들러
   const downloadfileButton = async (name) => {
     switch (name) {
       case '보험증권': {
@@ -130,6 +135,7 @@ export default function HouseFinalContainer({
     }
   };
 
+  //다음버튼
   const submitNextButton = () => {
     navigation.goBack();
   };
@@ -140,13 +146,8 @@ export default function HouseFinalContainer({
         state={state}
         submitNextButton={submitNextButton}
         handlePreviousButton={handlePreviousButton}
-        onChangeTermsState={onChangeTermsState}
         onChangeState={onChangeState}
-        onClickTermsModalAgree={onClickTermsModalAgree}
-        onClickTermsModalOpen={onClickTermsModalOpen}
-        onClickAllCheck={onClickAllCheck}
         insuPrice={insuPrice}
-        selectInsu={selectInsu}
         downloadfileButton={downloadfileButton}
       />
     );

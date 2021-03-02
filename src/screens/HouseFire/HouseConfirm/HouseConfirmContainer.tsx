@@ -3,6 +3,20 @@ import HouseConfirmPresenter from './HouseConfirmPresenter';
 import Toast from 'react-native-simple-toast';
 import { priceDot } from '@app/lib';
 import { EmptyLayout } from '@app/layout';
+import { HouseFireStateName, HouseFireStateTypes, TermsNames } from '@app/screens/HouseFire/HouseFireContainer';
+
+type HouseTermsUseContainerTypes = {
+  state: HouseFireStateTypes;
+  onChangeState: (name: HouseFireStateName, value: any) => void;
+  handlePreviousButton: () => void;
+  handleNextButton: () => void;
+  onChangeTermsState: (name: TermsNames, value: any) => void;
+  onClickTermsModalAgree: () => void;
+  onClickTermsModalOpen: (name: any, html: any) => void;
+  onClickAllCheck: (list: any, isActive: any) => void;
+  resultBuildPrice: () => number;
+  resultGajePrice: () => number;
+};
 
 export default function HouseTermsUseContainer({
   state,
@@ -15,7 +29,7 @@ export default function HouseTermsUseContainer({
   onClickAllCheck,
   resultBuildPrice,
   resultGajePrice,
-}) {
+}: HouseTermsUseContainerTypes) {
   const insuPrice = priceDot(resultBuildPrice() + resultGajePrice());
   const selectInsu = state?.selectAddress?.premiums?.filter((item) => {
     return item.aply_yn === 'Y' && item.already_group_ins === state?.selectAddress.already_group_ins;

@@ -13,6 +13,24 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
 import { insuIcon } from '@app/assets';
+import { FindPasswordStateNames, FindPasswordStateTypes } from '@app/screens/FindPassword/FindPasswordContainer';
+import { InputTypes } from '@app/types';
+
+type FindPasswordPresenterTypes = {
+  state: FindPasswordStateTypes;
+  onChangeState: (name: FindPasswordStateNames, value: any) => void;
+  handleNextButton(): void;
+  handlePreviousButton(): void;
+  scrollRef: any;
+  inputState: {
+    email: InputTypes;
+    phone: InputTypes;
+    password: InputTypes;
+    passwordConfirm: InputTypes;
+  };
+  onValueChange: (value: any) => void;
+};
+
 const Container = styled.View``;
 const ContentsContainer = styled.View`
   width: ${screenWidth()}px;
@@ -69,7 +87,7 @@ function ResultContainer() {
   );
 }
 
-function ConfirmConatiner({ state, inputState }) {
+function ConfirmConatiner({ inputState }) {
   return (
     <ContentsContainer>
       <FullLabel title={`새로운 비밀번호를${'\n'} 입력하여 주세요.`} />
@@ -153,7 +171,7 @@ function FindPasswordPresenter({
   scrollRef,
   inputState,
   onValueChange,
-}) {
+}: FindPasswordPresenterTypes) {
   return (
     <>
       <OverayLoading visible={state?.loading} />
@@ -169,7 +187,7 @@ function FindPasswordPresenter({
           keyboardShouldPersistTaps="handled"
           ref={scrollRef}>
           <InputConatiner inputState={inputState} state={state} onValueChange={onValueChange} />
-          <ConfirmConatiner state={state} inputState={inputState} />
+          <ConfirmConatiner inputState={inputState} />
           <ResultContainer />
         </ScrollView>
       </Container>
@@ -179,7 +197,7 @@ function FindPasswordPresenter({
         rightTitle="확인"
         bottomRightPress={handleNextButton}
         bottomLeftPress={handlePreviousButton}
-        isKeybordView={state.isKeybordView}
+        isKeybordView={false}
       />
     </>
   );

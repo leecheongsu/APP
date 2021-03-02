@@ -2,6 +2,13 @@ import React from 'react';
 import HouseInfoPresenter from './HouseInfoPresenter';
 import moment from 'moment';
 import { EmptyLayout } from '@app/layout';
+import { HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
+
+export type HouseInfoContainerTypes = {
+  state: HouseFireStateTypes;
+  handleNextButton: () => void;
+  handlePreviousButton: () => void;
+};
 
 export type InfoListTypes = {
   address: string;
@@ -17,13 +24,7 @@ export type InfoListTypes = {
   roof_name: string;
 };
 
-export default function HouseInfoContainer({
-  state,
-  inputState,
-  onChangeState,
-  handleNextButton,
-  handlePreviousButton,
-}) {
+export default function HouseInfoContainer({ state, handleNextButton, handlePreviousButton }: HouseInfoContainerTypes) {
   const infoList: InfoListTypes = {
     address: state.selectAddress?.address,
     bld_name: state.selectAddress?.bld_name,

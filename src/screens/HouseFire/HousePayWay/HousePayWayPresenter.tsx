@@ -1,8 +1,7 @@
 import React from 'react';
-import { BottomFixButton, CheckLabelButton, FocusAwareStatusBar, Typhograph } from '@app/components';
+import { BottomFixButton, CheckLabelButton, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import { screenWidth } from '@app/lib';
-import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import { TermsModal } from '@app/screens';
 import { HouseFireStateName, HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
 import theme from '@app/style/theme';
@@ -10,7 +9,6 @@ import theme from '@app/style/theme';
 type HousePayWayPresenterTypes = {
   state: HouseFireStateTypes;
   nextButton: () => void;
-  onClickTermsModalOpen: (name: any, html: any) => void;
   handlePreviousButton: () => void;
   onChangeState: (name: HouseFireStateName, value: any) => void;
   price: any;
@@ -51,7 +49,6 @@ function HousePayWayPresenter({
   state,
   nextButton,
   onChangeState,
-  onClickTermsModalOpen,
   handlePreviousButton,
   price,
 }: HousePayWayPresenterTypes) {

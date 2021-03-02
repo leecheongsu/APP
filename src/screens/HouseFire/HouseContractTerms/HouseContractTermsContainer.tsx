@@ -1,10 +1,21 @@
 import React, { useEffect } from 'react';
 import HouseContractTermsPresenter from './HouseContractTermsPresenter';
 import Toast from 'react-native-simple-toast';
-import { priceDot } from '@app/lib';
 import { useNavigation } from '@react-navigation/native';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
 import { EmptyLayout } from '@app/layout';
+import { HouseFireStateName, HouseFireStateTypes, TermsNames } from '@app/screens/HouseFire/HouseFireContainer';
+
+type HouseContractTermsContainerTypes = {
+  state: HouseFireStateTypes;
+  onChangeState: (name: HouseFireStateName, value: any) => void;
+  handlePreviousButton: () => void;
+  handleNextButton: () => void;
+  onChangeTermsState: (name: TermsNames, value: any) => void;
+  onClickTermsModalAgree: () => void;
+  onClickTermsModalOpen: (name: any, html: any) => void;
+  onClickAllCheck: (list: any, isActive: any) => void;
+};
 
 export default function HouseContractTermsContainer({
   state,
@@ -15,16 +26,10 @@ export default function HouseContractTermsContainer({
   onClickTermsModalAgree,
   onClickTermsModalOpen,
   onClickAllCheck,
-  resultBuildPrice,
-  resultGajePrice,
-}) {
+}: HouseContractTermsContainerTypes) {
   const navigation = useNavigation();
-  const insuPrice = priceDot(resultBuildPrice() + resultGajePrice());
   const globalState = useGlobalState();
   const globalDispatch = useGlobalDispatch();
-  const selectInsu = state?.selectAddress?.premiums?.filter((item) => {
-    return item.aply_yn === 'Y' && item.already_group_ins === state?.selectAddress.already_group_ins;
-  });
 
   const submitNextButton = () => {
     const isChecked =
@@ -82,8 +87,6 @@ export default function HouseContractTermsContainer({
         onClickTermsModalAgree={onClickTermsModalAgree}
         onClickTermsModalOpen={onClickTermsModalOpen}
         onClickAllCheck={onClickAllCheck}
-        insuPrice={insuPrice}
-        selectInsu={selectInsu}
         buttonTermsPdf={buttonTermsPdf}
       />
     );

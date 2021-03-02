@@ -42,10 +42,6 @@ const TitleBox2 = styled.View`
   border-bottom-color: ${theme.color.BORDER_GRAY};
 `;
 
-const InfoBox = styled.View`
-  margin-top: 10px;
-`;
-
 const RowBox = styled.View`
   margin-top: 5px;
   flex-direction: row;
@@ -88,11 +84,11 @@ function HousePayPresenter({
     { label: 'NH농협', value: 'NH농협' },
     { label: '롯데', value: '롯데' },
   ];
-  const vbankInfo = state?.vbankInfo;
-  const name = globalState?.user?.name;
-  const email = globalState?.user?.email;
-  const mobile = globalState?.user?.mobile;
-  const product = state?.selectAddress?.product;
+  const vbankInfo = state?.vbankInfo; //가상계좌 정보
+  const name = globalState?.user?.name; //유저이름
+  const email = globalState?.user?.email; //유저 이메일
+  const mobile = globalState?.user?.mobile; //유저 전화번호
+  const product = state?.selectAddress?.product; //상품
   const card2Ref: any = useRef(null);
   const card3Ref: any = useRef(null);
   const card4Ref: any = useRef(null);

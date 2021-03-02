@@ -2,12 +2,25 @@ import React from 'react';
 import HousePayPresenter from './HousePayPresenter';
 import { handleApiError, priceDot } from '@app/lib';
 import { EmptyLayout } from '@app/layout';
-import { useNavigation } from '@react-navigation/native';
 import { useGlobalState } from '@app/context';
 import moment from 'moment';
 import { useInput } from '@app/hooks';
 import { Alert } from 'react-native';
 import { insuApis } from '@app/api/Insurance';
+import { HouseFireStateName, HouseFireStateTypes, TermsNames } from '@app/screens/HouseFire/HouseFireContainer';
+
+type HousePayContainerTypes = {
+  state: HouseFireStateTypes;
+  onChangeState: (name: HouseFireStateName, value: any) => void;
+  handlePreviousButton: () => void;
+  handleNextButton: () => void;
+  onChangeTermsState: (name: TermsNames, value: any) => void;
+  onClickTermsModalAgree: () => void;
+  onClickTermsModalOpen: (name: any, html: any) => void;
+  onClickAllCheck: (list: any, isActive: any) => void;
+  resultBuildPrice: () => number;
+  resultGajePrice: () => number;
+};
 
 export default function HousePayContainer({
   state,
@@ -20,8 +33,7 @@ export default function HousePayContainer({
   onClickAllCheck,
   resultBuildPrice,
   resultGajePrice,
-}) {
-  const navigation = useNavigation();
+}: HousePayContainerTypes) {
   const globalState = useGlobalState();
   const insuPrice = priceDot(resultBuildPrice() + resultGajePrice());
   const selectInsu = state?.selectAddress?.premiums?.filter((item) => {
@@ -33,6 +45,7 @@ export default function HousePayContainer({
   const filnalInsuEndDateDay =
     String(insuEndDateDay)?.length === 1 ? '0' + String(insuEndDateDay) : String(insuEndDateDay);
   const insuEndDate = insuEndDateYear + '-' + insuEndDateMonth + '-' + filnalInsuEndDateDay;
+
   const inputState = {
     card1: useInput(''),
     card2: useInput(''),
@@ -44,6 +57,7 @@ export default function HousePayContainer({
     pw: useInput(''),
   };
 
+  //인풋 체크로직
   const checkInput = () => {
     const cardNumber =
       inputState.card1.value + inputState.card2.value + inputState.card3.value + inputState.card4.value;
@@ -67,6 +81,8 @@ export default function HousePayContainer({
       return true;
     }
   };
+
+  //최종 결제데이터
   const data = {
     user_id: globalState?.user?.email,
     data: {
@@ -120,6 +136,7 @@ export default function HousePayContainer({
     },
   };
 
+  //카드 결제 액션
   const handleCardPay = () => {
     const card_number =
       inputState.card1.value + inputState.card2.value + inputState.card3.value + inputState.card4.value;
@@ -154,14 +171,17 @@ export default function HousePayContainer({
     }
   };
 
+  //카드사 선택
   const selectCard = (name) => {
     onChangeState('selectCard', name);
   };
 
+  //결제 실행
   const submitNextButton = () => {
     handleCardPay();
   };
 
+  //가상계좌완료되면 서버에서 받아오는 onmessage
   const onMessage = (e) => {
     const result = JSON.parse(e.nativeEvent.data);
     if (result.status === 'ok') {

@@ -5,6 +5,19 @@ import { termsTermsSd1, termsTermsSd2 } from '@app/lib/html';
 import { TermsModal, TermsPdf } from '@app/screens';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
+import { HouseFireStateName, HouseFireStateTypes, TermsNames } from '@app/screens/HouseFire/HouseFireContainer';
+
+type HouseContractTermsPresenterTypes = {
+  state: HouseFireStateTypes;
+  onChangeState: (name: HouseFireStateName, value: any) => void;
+  handlePreviousButton: () => void;
+  onChangeTermsState: (name: TermsNames, value: any) => void;
+  onClickTermsModalAgree: () => void;
+  onClickTermsModalOpen: (name: any, html: any) => void;
+  onClickAllCheck: (list: any, isActive: any) => void;
+  submitNextButton: () => void;
+  buttonTermsPdf: (name: any) => void;
+};
 
 const Container = styled.View`
   width: ${screenWidth()}px;
@@ -17,16 +30,6 @@ const TitleBox = styled.View`
   border-bottom-width: 1px;
   border-bottom-color: ${theme.color.BORDER_GRAY};
 `;
-
-const InfoBox = styled.View`
-  margin-top: 10px;
-`;
-const RowBox = styled.View`
-  margin-top: 5px;
-  flex-direction: row;
-  justify-content: space-between;
-`;
-const RowItem = styled.View``;
 
 const ButtonContainer = styled.View``;
 const ButtonItemBox = styled.View`
@@ -57,11 +60,8 @@ function HouseContractTermsPresenter({
   onClickTermsModalAgree,
   onClickTermsModalOpen,
   onClickAllCheck,
-  buttonTerms,
   buttonTermsPdf,
-  insuPrice,
-  selectInsu,
-}) {
+}: HouseContractTermsPresenterTypes) {
   const allCheckList1 = ['TERMSC_1', 'TERMSC_2', 'TERMSC_3', 'TERMSC_4', 'TERMSC_5', 'TERMSA_5', 'TERMSF_1'];
   const isActive1 =
     state?.terms?.TERMSC_1.isChecked === 1 &&
@@ -269,7 +269,6 @@ function HouseContractTermsPresenter({
         open={state?.termsModal}
         close={() => {
           onChangeState('termsModal', false);
-          onChangeState('termsImg', false);
         }}
         html={state?.termsHtml}
         onPress={onClickTermsModalAgree}

@@ -14,6 +14,16 @@ import Modal from 'react-native-modal';
 import theme from '@app/style/theme';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { insuIcon } from '@app/assets';
+import { HouseFireStateName, HouseFireStateTypes, HouseInputState } from '@app/screens/HouseFire/HouseFireContainer';
+type HouseInfoDetailPresenterTypes = {
+  state: HouseFireStateTypes;
+  onChangeState: (name: HouseFireStateName, value: any) => void;
+  inputState: HouseInputState;
+  handleSelectDong: (value: any) => void;
+  handleSelectDetail: (value: any) => void;
+  submitAddressDetail: () => void;
+};
+
 const styles = StyleSheet.create({
   container: {
     backgroundColor: theme.color.WHITE,
@@ -59,7 +69,7 @@ function HouseInfoDetailPresenter({
   handleSelectDong,
   handleSelectDetail,
   submitAddressDetail,
-}) {
+}: HouseInfoDetailPresenterTypes) {
   const buttonLabel =
     state.resultDong === ''
       ? '동.호를 선택해주세요.'

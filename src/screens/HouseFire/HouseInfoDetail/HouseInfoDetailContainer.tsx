@@ -1,7 +1,15 @@
-import { DefaultAlert } from '@app/components';
-import React, { useEffect } from 'react';
-import { BackHandler } from 'react-native';
+import { HouseFireStateName, HouseFireStateTypes, HouseInputState } from '@app/screens/HouseFire/HouseFireContainer';
+import React from 'react';
 import HouseInfoDetailPresenter from './HouseInfoDetailPresenter';
+
+type HouseInfoDetailContainerTypes = {
+  state: HouseFireStateTypes;
+  onChangeState: (name: HouseFireStateName, value: any) => void;
+  inputState: HouseInputState;
+  handleSelectDong: (value: any) => void;
+  handleSelectDetail: (value: any) => void;
+  submitAddressDetail: () => void;
+};
 
 export default function HouseInfoDetailContainer({
   state,
@@ -10,7 +18,7 @@ export default function HouseInfoDetailContainer({
   handleSelectDong,
   handleSelectDetail,
   submitAddressDetail,
-}) {
+}: HouseInfoDetailContainerTypes) {
   return (
     <HouseInfoDetailPresenter
       state={state}

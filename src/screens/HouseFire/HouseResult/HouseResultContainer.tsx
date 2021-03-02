@@ -1,19 +1,25 @@
+import React from 'react';
 import { EmptyLayout } from '@app/layout';
-import { floorPrice } from '@app/lib';
-import React, { useState } from 'react';
 import HouseResultPresenter from './HouseResultPresenter';
+import { HouseFireStateName, HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
+
+type HouseResultContainerTypes = {
+  state: HouseFireStateTypes;
+  handlePreviousButton: () => void;
+  onChangeState: (name: HouseFireStateName, value: any) => void;
+  handleNextButton: () => void;
+  resultBuildPrice: () => number;
+  resultGajePrice: () => number;
+};
 
 export default function HouseResultContainer({
   state,
-  inputState,
   onChangeState,
   handlePreviousButton,
   handleNextButton,
   resultBuildPrice,
   resultGajePrice,
-}) {
-  const [isActive, setIsActive] = useState(false);
-
+}: HouseResultContainerTypes) {
   const onChangeActive = (company) => {
     onChangeState('selectInsuCompany', company);
   };
@@ -22,13 +28,10 @@ export default function HouseResultContainer({
     return (
       <HouseResultPresenter
         state={state}
-        inputState={inputState}
-        onChangeState={onChangeState}
         handlePreviousButton={handlePreviousButton}
         handleNextButton={handleNextButton}
         resultBuildPrice={resultBuildPrice}
         resultGajePrice={resultGajePrice}
-        isActive={isActive}
         onChangeActive={onChangeActive}
       />
     );

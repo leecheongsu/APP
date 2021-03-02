@@ -9,6 +9,34 @@ import { insuIcon } from '@app/assets';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { useNavigation } from '@react-navigation/native';
 import { useGlobalState } from '@app/context';
+import { HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
+import { InputTypes } from '@app/types';
+
+type HouseInputUserPresenterTypes = {
+  state: HouseFireStateTypes;
+  handlePreviousButton: () => void;
+  inputState: {
+    insuName: InputTypes;
+    insuPhone: InputTypes;
+    issuJumina: InputTypes;
+    juminb: InputTypes;
+  };
+  handleClickEqualButton: () => void;
+  user: any;
+  isCheck: boolean;
+  showDatePicker: () => void;
+  hideDatePicker: () => void;
+  handleConfirm: (date: any) => void;
+  onValueChange: (value: any) => void;
+  selectItem: {
+    label: string;
+    value: string;
+  }[];
+  isDatePickerVisible: boolean;
+  onDeleteRecommedUserButton: () => void;
+  buttomNextButton: () => void;
+};
+
 const Container = styled.View`
   width: ${screenWidth()}px;
 `;
@@ -63,10 +91,8 @@ const PaddingBox = styled.View`
 
 function HouseInputUserPresenter({
   state,
-  handleNextButton,
   handlePreviousButton,
   inputState,
-  onChangeState,
   handleClickEqualButton,
   user,
   isCheck,
@@ -78,7 +104,7 @@ function HouseInputUserPresenter({
   isDatePickerVisible,
   onDeleteRecommedUserButton,
   buttomNextButton,
-}) {
+}: HouseInputUserPresenterTypes) {
   const navigation = useNavigation();
   const globalState = useGlobalState();
   return (

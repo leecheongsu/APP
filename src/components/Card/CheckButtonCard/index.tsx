@@ -13,7 +13,7 @@ type CheckButtonCardPropsTypes = {
   value2?: string | number;
   isSelect?: boolean;
   disabled?: boolean;
-  items?: [];
+  items?: Array<any>;
   name: string;
   propsToggle?: boolean;
   onValueChange?: (item: any) => void;
@@ -92,7 +92,7 @@ export default function CheckButtonCard({
               style={{ width: '33%', textAlign: 'right' }}
               type="NOTO"
               color="BLACK2"
-              size={14}
+              size={13}
               weight="REGULAR"
               numberOfLines={1}>
               {priceDot(value)}만원
@@ -100,7 +100,7 @@ export default function CheckButtonCard({
           )}
 
           <Typhograph
-            style={{ width: '32%', textAlign: 'center' }}
+            style={{ width: '30%', textAlign: 'right', paddingRight: 10 }}
             type="NOTO"
             color="BLACK2"
             size={14}

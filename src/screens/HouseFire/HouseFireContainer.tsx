@@ -15,7 +15,7 @@ import {
 import { ColorName } from 'styled-components';
 import HouseFirePresenter from './HouseFirePresenter';
 import { useInput } from '@app/hooks';
-import { Alert, BackHandler, Keyboard } from 'react-native';
+import { BackHandler, Keyboard } from 'react-native';
 import HouseInfo from '@app/screens/HouseFire/HouseInfo';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
@@ -23,6 +23,7 @@ import Toast from 'react-native-simple-toast';
 import HouseInputUser from '@app/screens/HouseFire/HouseInputUser';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
 import moment from 'moment';
+import { GEO_CORDING_ID, GEO_CORDING_KEY, GEO_CORDING_URL } from '@env';
 import {
   termsTermsa1,
   termsTermsa2,
@@ -42,6 +43,7 @@ import {
 } from '@app/lib/html';
 import HousePayWay from '@app/screens/HouseFire/HousePayWay';
 import { DefaultAlert } from '@app/components';
+import { InputTypes } from '@app/types';
 
 export type TermsNames =
   | string
@@ -193,6 +195,10 @@ export type HouseFireStateTypes = {
 };
 export type HouseFireInputStateTypes = {
   searchInput: any;
+};
+
+export type HouseInputState = {
+  searchInput: InputTypes;
 };
 
 type ActionTypes =
@@ -464,9 +470,7 @@ export default function HouseFireContainer() {
   const globalDispatch = useGlobalDispatch();
   const [state, dispatch] = useReducer(reducer, initialState);
   const scrollRef: any = useRef(null);
-  const GEO_CORDING_URL = `https://naveropenapi.apigw.ntruss.com/map-geocode/v2/geocode?query=${state.selectAddress.address}`;
-  const GEO_CORDING_ID = 'inselh2wtl';
-  const GEO_CORDING_KEY = 'OPjA2JmsSCweRxKFpHX1qyfzDGrxgSSI9yL6Duta';
+  const CORDING_URL = GEO_CORDING_URL + state.selectAddress.address;
   const inputState = {
     searchInput: useInput(''),
   };
@@ -551,9 +555,6 @@ export default function HouseFireContainer() {
         navigation.navigate('MAIN_STACK');
         return null;
       }
-      // default:
-      //   handleJoinTypeNextButton();
-      //   return null;
     }
   };
 
@@ -659,7 +660,6 @@ export default function HouseFireContainer() {
           <HouseProductInfo
             key={id}
             state={state}
-            inputState={inputState}
             onChangeState={onChangeState}
             handleJoinTypeNextButton={handleJoinTypeNextButton}
           />
@@ -689,8 +689,6 @@ export default function HouseFireContainer() {
           <HouseInfo
             key={id}
             state={state}
-            inputState={inputState}
-            onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
             handleNextButton={handleNextButton}
           />
@@ -699,7 +697,6 @@ export default function HouseFireContainer() {
         return (
           <HouseEvaluation
             state={state}
-            inputState={inputState}
             onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
             handleNextButton={handleNextButton}
@@ -711,7 +708,6 @@ export default function HouseFireContainer() {
         return (
           <HouseResult
             state={state}
-            inputState={inputState}
             onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
             handleNextButton={handleNextButton}
@@ -767,8 +763,6 @@ export default function HouseFireContainer() {
             onClickTermsModalAgree={onClickTermsModalAgree}
             onClickTermsModalOpen={onClickTermsModalOpen}
             onClickAllCheck={onClickAllCheck}
-            resultBuildPrice={resultBuildPrice}
-            resultGajePrice={resultGajePrice}
           />
         );
       case 'HousePayWay':
@@ -778,7 +772,6 @@ export default function HouseFireContainer() {
             onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
             handleNextButton={handleNextButton}
-            onClickTermsModalOpen={onClickTermsModalOpen}
             resultBuildPrice={resultBuildPrice}
             resultGajePrice={resultGajePrice}
           />
@@ -804,7 +797,6 @@ export default function HouseFireContainer() {
             state={state}
             onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
-            handleNextButton={handleNextButton}
             onChangeTermsState={onChangeTermsState}
             onClickTermsModalAgree={onClickTermsModalAgree}
             onClickTermsModalOpen={onClickTermsModalOpen}
@@ -821,7 +813,7 @@ export default function HouseFireContainer() {
     if (state.selectAddress.address !== undefined && state.selectAddress.address !== '') {
       onChangeState('loading', true);
       axios({
-        url: GEO_CORDING_URL,
+        url: CORDING_URL,
         method: 'GET',
         headers: {
           'X-NCP-APIGW-API-KEY-ID': GEO_CORDING_ID,
@@ -841,6 +833,7 @@ export default function HouseFireContainer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state.selectAddress]);
 
+  //키보드 셋팅
   const _keyboardDidShow = () => {
     onChangeState('isKeybordView', true);
   };
