@@ -554,16 +554,16 @@ export default function StormFloodContainer() {
 
   const returnComponent = (
     id:
-      | 'productInfomation'
-      | 'checkList'
-      | 'stormFloodAddress'
-      | 'info'
-      | 'guaranteeSelect'
-      | 'stormFloodResult'
-      | 'stormFloodInput'
-      | 'stormFloodTerms'
-      | 'stormFloodPay'
-      | 'stormFloodFinal'
+      | 'productInfomation' //상품안내
+      | 'checkList' //소상공인 체크리스틀
+      | 'stormFloodAddress' //주소찾기
+      | 'info' //건물기본정보
+      | 'guaranteeSelect' //담보선택
+      | 'stormFloodResult' //보험료확인
+      | 'stormFloodInput' //고객정보 입력및 동의
+      | 'stormFloodTerms' // 청약확인
+      | 'stormFloodPay' //신용카드 간편결제
+      | 'stormFloodFinal' //계약완료
   ) => {
     switch (id) {
       case 'productInfomation':
@@ -586,6 +586,7 @@ export default function StormFloodContainer() {
             onClickTermsModalOpen={onClickTermsModalOpen}
             handlePreviousButton={handlePreviousButton}
             termsChange={termsChange}
+            onClickTermsModalAgree={onClickTermsModalAgree}
           />
         );
       case 'stormFloodAddress':

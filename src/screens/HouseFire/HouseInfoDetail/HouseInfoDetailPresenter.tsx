@@ -64,7 +64,7 @@ function HouseInfoDetailPresenter({
     state.resultDong === ''
       ? '동.호를 선택해주세요.'
       : state?.resultDetail !== '' && state.resultDong !== ''
-      ? `${state?.addressData[0]?.roadAddr} ${state?.resultDong.dongNm} ${state?.resultDetail.hoNm}`
+      ? `${state?.sedeAddress?.roadAddr} ${state?.resultDong.dongNm} ${state?.resultDetail.hoNm}`
       : '호를 선택 해주세요.';
   return (
     <>

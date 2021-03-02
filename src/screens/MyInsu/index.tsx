@@ -92,7 +92,7 @@ export default function MyInsu() {
         useDownloadManager: true,
         notification: true,
         mediaScannable: true,
-        title: '보험약권.pdf',
+        title: '보험약관.pdf',
         mime: 'application/pdf',
         path: `${dirs.DownloadDir}/보험약관.pdf`,
       },
@@ -144,7 +144,6 @@ export default function MyInsu() {
             });
             if (granted === PermissionsAndroid.RESULTS.GRANTED) {
               downloadFile2();
-              console.log('파일다운로드 권한 허용');
             } else {
               Alert.alert('에러', '파일접근권한이 없습니다.');
             }

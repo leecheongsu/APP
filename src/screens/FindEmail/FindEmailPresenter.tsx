@@ -12,14 +12,53 @@ import {
 import { ScrollView } from 'react-native-gesture-handler';
 import { screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
-import { Image, Keyboard, TextInputProps } from 'react-native';
+import { Keyboard } from 'react-native';
 import { insuIcon } from '@app/assets';
+import { FindEmailStateNames, FindEmailStateTypes } from '@app/screens/FindEmail/FindEmailContainer';
+
+type FindEmailPresenterTypes = {
+  state: FindEmailStateTypes;
+  onChangeState: (name: FindEmailStateNames, value: any) => void;
+  handleNextButton(): void;
+  handlePreviousButton(): void;
+  scrollRef: any;
+  inputState: {
+    name: {
+      value: string;
+      onChangeText: (text: string) => void;
+      setValue: React.Dispatch<React.SetStateAction<string>>;
+    };
+    phone: {
+      value: string;
+      onChangeText: (text: string) => void;
+      setValue: React.Dispatch<React.SetStateAction<string>>;
+    };
+    jumina: {
+      value: string;
+      onChangeText: (text: string) => void;
+      setValue: React.Dispatch<React.SetStateAction<string>>;
+    };
+    idNumber: {
+      value: string;
+      onChangeText: (text: string) => void;
+      setValue: React.Dispatch<React.SetStateAction<string>>;
+    };
+    sex: {
+      value: string;
+      onChangeText: (text: string) => void;
+      setValue: React.Dispatch<React.SetStateAction<string>>;
+    };
+  };
+  onValueChange: (value: any) => void;
+};
+
 const Container = styled.View``;
 const ContentsContainer = styled.View`
   width: ${screenWidth()}px;
 `;
 const ContentsBox = styled.View`
   padding: 10px 20px;
+  height: 500px;
 `;
 const InputContainer = styled.View`
   justify-content: center;
@@ -35,7 +74,7 @@ const InputBox2 = styled.View`
   margin-top: 5px;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
 `;
 const SelectBox = styled.View`
   border-width: 1px;
@@ -43,15 +82,6 @@ const SelectBox = styled.View`
   justify-content: center;
   border-radius: 10px;
   border-color: ${theme.color.BORDER_GRAY};
-`;
-
-const Input = styled.TextInput<{ isFocus: boolean } & TextInputProps>`
-  height: 50px;
-  min-width: 0px;
-  border-color: ${(props: any) => (props.isFocus ? theme.color.GRAY : theme.color.INPUT_GRAY)};
-  border-width: ${(props: any) => (props.isFocus ? '1px' : '1px')};
-  border-radius: 10px;
-  padding: 0px 10px 0px 10px;
 `;
 
 const ResultEmailContainer = styled.ScrollView`
@@ -93,6 +123,7 @@ function ConfirmConatiner({ state }) {
   return (
     <ContentsContainer>
       <FullLabel title={`인슈로보에 등록하신${'\n'} 본인의 이메일은 아래와 같습니다.`} />
+
       <ResultEmailContainer>
         {state?.userEmail !== '' &&
           state?.userEmail?.map((item, index) => {
@@ -183,7 +214,7 @@ function InputConatiner({ inputState, state, onValueChange }) {
                 -
               </Typhograph>
               <InputBox style={{ width: 30 }}>
-                <Input
+                <DefaultInput
                   {...inputState.sex}
                   blurOnSubmit={false}
                   onFocus={() => setIsFocus(true)}
@@ -221,7 +252,7 @@ function FindEmailPresenter({
   scrollRef,
   inputState,
   onValueChange,
-}) {
+}: FindEmailPresenterTypes) {
   return (
     <>
       <OverayLoading visible={state?.loading} />
@@ -246,7 +277,7 @@ function FindEmailPresenter({
         rightTitle="확인"
         bottomRightPress={handleNextButton}
         bottomLeftPress={handlePreviousButton}
-        isKeybordView={state.isKeybordView}
+        isKeybordView={false}
       />
     </>
   );

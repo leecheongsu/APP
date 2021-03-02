@@ -145,15 +145,18 @@ platform :android do
 
   desc "Deploy a new version to the Google Play"
   lane :release do |options|
-    updateVersion()
+    build_type =  prompt(text: "Please enter the build type\n(release, staging, dev): ")
+    version = prompt(text: "Enter the version type or specific version\n(major, minor, patch or 1.0.0): ")
+    updateVersion(build_type,version)
     gradle(task: "clean bundleRelease")
-    upload_to_play_store(
-      skip_upload_metadata: true,
-      skip_upload_changelogs: true,
-      skip_upload_screenshots: true,
-      skip_upload_images: true,
-      skip_upload_apk: true
-    )
+    # upload_to_play_store(
+    #   skip_upload_metadata: true,
+    #   skip_upload_changelogs: true,
+    #   skip_upload_screenshots: true,
+    #   skip_upload_images: true,
+    #   skip_upload_apk: true
+    # )
+    sendSlack(build_type,version)
   end
 
 

@@ -37,12 +37,13 @@ const ImageBox = styled.View`
 
 export default function SplashScreen() {
   const [value, setValue] = useState(0);
+
+  //progress bar
   useEffect(() => {
-    if (value < 1) {
-      setTimeout(() => {
-        setValue(value + 0.1);
-      }, 500);
-    }
+    let timer = setTimeout(() => {
+      setValue(value + 0.1);
+    }, 500);
+    return () => clearTimeout(timer);
   }, [value]);
   return (
     <>

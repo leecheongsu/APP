@@ -40,6 +40,7 @@ const ButtonItem = styled.View``;
 
 function CustomerCenter() {
   const navigation = useNavigation();
+  //안드로이드 하드웨어 백버튼 핸들러
   useEffect(() => {
     const backAction = () => {
       navigation.goBack();
@@ -48,6 +49,7 @@ function CustomerCenter() {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
 
     return () => backHandler.remove();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <>

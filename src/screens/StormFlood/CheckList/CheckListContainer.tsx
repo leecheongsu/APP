@@ -10,6 +10,7 @@ export default function CheckListContainer({
   onClickTermsModalOpen,
   handlePreviousButton,
   termsChange,
+  onClickTermsModalAgree,
 }) {
   const checkterms = () => {
     if (state?.terms?.terms1?.isChecked === 0) {
@@ -53,6 +54,7 @@ export default function CheckListContainer({
         onClickTermsModalOpen2={onClickTermsModalOpen2}
         handlePreviousButton={handlePreviousButton}
         termsChange={termsChange}
+        onClickTermsModalAgree={onClickTermsModalAgree}
       />
     );
   } else {

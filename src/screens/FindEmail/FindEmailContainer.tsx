@@ -1,4 +1,4 @@
-import React, { useReducer, useRef } from 'react';
+import React, { useCallback, useReducer, useRef } from 'react';
 import { userApis } from '@app/api/User';
 import { useInput } from '@app/hooks';
 import { handleApiError, screenWidth } from '@app/lib';
@@ -71,14 +71,19 @@ export default function FindeEmailContainer() {
     idNumber: useInput(''),
     sex: useInput(''),
   };
-  const onChangeState = (name: FindEmailStateNames, value: any) => {
+  const onChangeState = useCallback((name: FindEmailStateNames, value: any) => {
     dispatch({ type: 'CHANGE', name, value });
-  };
+  }, []);
 
-  const onValueChange = (value) => {
-    onChangeState('selectService', value);
-  };
+  //휴대전화 통신사 선택
+  const onValueChange = useCallback(
+    (value) => {
+      onChangeState('selectService', value);
+    },
+    [onChangeState]
+  );
 
+  //이메일찾기 체크로직
   const checkInput = () => {
     const phoneCheck = /^\d{3}\d{3,4}\d{4}$/;
     const juminFront = /^(?:[0-9]{2}(?:0[1-9]|1[0-2])(?:0[1-9]|[1,2][0-9]|3[0,1]))$/;

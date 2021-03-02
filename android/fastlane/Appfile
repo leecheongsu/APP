@@ -1,2 +1,2 @@
-json_key_file("25bdd0b006f870008a9f5bd67fc524982b13c589") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
+json_key_file("./key.json") # Path to the json secret file - Follow https://docs.fastlane.tools/actions/supply/#setup to get one
 package_name("com.insurobo") # e.g. com.krausefx.app

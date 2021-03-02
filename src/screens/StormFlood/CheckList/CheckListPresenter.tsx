@@ -16,6 +16,7 @@ type CheckListPresenterTypes = {
   handlePreviousButton: () => void;
   onChangeState: (name: StormFloodName, value: any) => void;
   termsChange: (name: any, value: any) => void;
+  onClickTermsModalAgree: () => void;
 };
 
 const Container = styled.View`
@@ -98,6 +99,7 @@ function CheckListPresenter({
   handlePreviousButton,
   termsChange,
   onChangeState,
+  onClickTermsModalAgree,
 }: CheckListPresenterTypes) {
   return (
     <>
@@ -275,7 +277,7 @@ function CheckListPresenter({
               <CheckLabelButton
                 onPress={() => {
                   onClickTermsModalOpen2('terms5', productInfoHtml3());
-                  termsChange('terms5', 1);
+                  // termsChange('terms5', 1);
                 }}
                 title="꼭!! 알아 두실 사항"
                 iscenter
@@ -291,7 +293,7 @@ function CheckListPresenter({
             onChangeState('termsModal', false);
           }}
           html={state?.termsHtml}
-          onPress={() => onChangeState('termsModal', false)}
+          onPress={onClickTermsModalAgree}
           buttonTitle="확인"
           isButton
         />

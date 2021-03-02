@@ -639,19 +639,19 @@ export default function HouseFireContainer() {
   //houseStep 스텝별 컴퍼넌트 셋팅
   const returnComponent = (
     id:
-      | 'joinType'
-      | 'address'
-      | 'info'
-      | 'evaluation'
-      | 'priceConfirm'
-      | 'InputUser'
-      | 'HouseTermsUse'
-      | 'HouseConfirm'
-      | 'HouseContractTerms'
-      | 'HousePay'
-      | 'HouseFinal'
-      | 'HousePayWay'
-      | 'productInfo'
+      | 'productInfo' //상품안내
+      | 'joinType' //가입구분
+      | 'address' //주소찾기
+      | 'info' //기본정보
+      | 'evaluation' //평가정보
+      | 'priceConfirm' //보험료확인
+      | 'InputUser' //고객정보입력
+      | 'HouseTermsUse' //서비스이용약관동의
+      | 'HouseConfirm' //청약확인
+      | 'HouseContractTerms' //청약확인약관동의
+      | 'HousePayWay' //결제방법
+      | 'HousePay' //신용카드 간편결제 & 가상계좌
+      | 'HouseFinal' // 계약완료
   ) => {
     switch (id) {
       case 'productInfo':

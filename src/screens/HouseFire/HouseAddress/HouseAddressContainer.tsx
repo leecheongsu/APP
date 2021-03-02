@@ -4,7 +4,7 @@ import {
   HouseFireStateTypes,
 } from '@app/screens/HouseFire/HouseFireContainer';
 import React, { useEffect } from 'react';
-import { BackHandler, Keyboard } from 'react-native';
+import { Keyboard } from 'react-native';
 import HouseAddressPresenter from './HouseAddressPresenter';
 import { insuApis } from '@app/api/Insurance';
 import { useAsync } from '@app/hooks';
@@ -12,7 +12,6 @@ import { handleApiError, sortArray } from '@app/lib';
 import Toast from 'react-native-simple-toast';
 import { useGlobalDispatch } from '@app/context';
 import { EmptyLayout } from '@app/layout';
-import { DefaultAlert } from '@app/components';
 import { useNavigation } from '@react-navigation/native';
 
 type HouseAddressContainerTypes = {

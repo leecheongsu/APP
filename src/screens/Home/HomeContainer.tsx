@@ -1,14 +1,14 @@
 import React, { useEffect } from 'react';
 import HomePresenter from '@app/screens/Home/HomePresenter';
 import { getStoreData } from '@app/lib';
-import { useGlobalDispatch, useGlobalState } from '@app/context';
+import { useGlobalDispatch } from '@app/context';
 import { useNavigation } from '@react-navigation/native';
 
 export default function HomeContainer() {
   const navigation = useNavigation();
-  const globalState = useGlobalState();
-
   const globalDispatch = useGlobalDispatch();
+
+  // user정보 얻어온뒤에 globalState에 셋팅
   const loadUser = async () => {
     const localUser = await getStoreData('user');
     const isAutoLogin = await getStoreData('isAutoLogin');

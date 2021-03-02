@@ -50,7 +50,6 @@ export default function MyInsuCard({ item, downloadfileButton, loading }) {
   const onClickInsuButton = (value) => {
     if (item?.inscompany === '메리츠화재') {
       downloadfileButton(value);
-      downloadfileButton(value);
     } else {
       Alert.alert('알림', '계약시 발송된 email을 확인해주세요.');
     }
