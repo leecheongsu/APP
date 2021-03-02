@@ -25,3 +25,5 @@ declare module '*.png' {
 declare type LooseObject = {
   [key: string]: any;
 };
+
+export type FontweightTypes = 'THIN' | 'LIGHT' | 'REGULAR' | 'MEDIUM' | 'BOLD';

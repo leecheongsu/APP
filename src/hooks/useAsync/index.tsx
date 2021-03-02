@@ -1,5 +1,6 @@
 /* eslint-disable eslint-comments/no-unlimited-disable */
 import { ActionType, ReducerType } from '@app/hooks/useAsync/useAsyncTypes';
+import { handleApiError } from '@app/lib';
 import { useReducer, useEffect } from 'react';
 
 function reducer(state, action: ActionType): ReducerType {
@@ -33,20 +34,15 @@ export default function useAsync(callback, deps: any = [], skip = false) {
     data: null,
     error: false,
   });
-  const fetchData = async () => {
+  const fetchData: any = async () => {
     dispatch({ type: 'LOADING' });
+
     try {
       const data = await callback();
-      if (data?.data?.result === 'fail') {
-        dispatch({ type: 'ERROR', error: data?.data?.error?.message });
-        // console.log(data, 'fail');
-      } else {
-        dispatch({ type: 'SUCCESS', data });
-        // console.log(data, 'SUCCESS');
-      }
+      dispatch({ type: 'SUCCESS', data });
     } catch (e) {
+      handleApiError(e.response);
       dispatch({ type: 'ERROR', error: e });
-      console.log(e, 'error');
     }
   };
 

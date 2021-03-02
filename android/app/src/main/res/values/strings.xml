@@ -1,3 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <resources>
-    <string name="app_name">insurobo</string>
+    <string name="app_name">인슈로보 1.0.2</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey">0jVh4suBSHPuGOAzV2DHPnjOsQWxFxKREhhzl</string>
 </resources>
