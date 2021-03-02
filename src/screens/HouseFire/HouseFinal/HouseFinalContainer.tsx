@@ -12,7 +12,6 @@ type HouseFinalContainerTypes = {
   state: HouseFireStateTypes;
   onChangeState: (name: HouseFireStateName, value: any) => void;
   handlePreviousButton: () => void;
-  handleNextButton: () => void;
   resultBuildPrice: () => number;
   resultGajePrice: () => number;
 };

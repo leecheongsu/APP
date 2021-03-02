@@ -797,10 +797,6 @@ export default function HouseFireContainer() {
             state={state}
             onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
-            onChangeTermsState={onChangeTermsState}
-            onClickTermsModalAgree={onClickTermsModalAgree}
-            onClickTermsModalOpen={onClickTermsModalOpen}
-            onClickAllCheck={onClickAllCheck}
             resultBuildPrice={resultBuildPrice}
             resultGajePrice={resultGajePrice}
           />
