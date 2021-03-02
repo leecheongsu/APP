@@ -5,6 +5,16 @@ import styled from '@app/style/typed-components';
 import { BottomFixButton, ResultCard, Typhograph } from '@app/components';
 import theme from '@app/style/theme';
 import { insuImg } from '@app/assets';
+import { HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
+
+type HouseResultPresenterTypes = {
+  state: HouseFireStateTypes;
+  handlePreviousButton: () => void;
+  handleNextButton: () => void;
+  resultBuildPrice: () => number;
+  resultGajePrice: () => number;
+  onChangeActive: (company: any) => void;
+};
 
 const Container = styled.View`
   width: ${screenWidth()}px;
@@ -32,15 +42,12 @@ const CardTitleBox = styled.View`
 
 function HouseResultPresenter({
   state,
-  inputState,
-  onChangeState,
   handlePreviousButton,
   handleNextButton,
   resultBuildPrice,
   resultGajePrice,
-  isActive,
   onChangeActive,
-}) {
+}: HouseResultPresenterTypes) {
   return (
     <Container>
       <ContentsContainer>

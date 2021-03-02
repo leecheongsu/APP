@@ -1,10 +1,19 @@
 import { BottomFixButton, Typhograph } from '@app/components';
 import { useGlobalState } from '@app/context';
 import { getInsuText, priceDot, recomendMasking, screenWidth } from '@app/lib';
+import { HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import React from 'react';
 import { StyleSheet } from 'react-native';
+
+type HouseConfirmPresenterTypes = {
+  state: HouseFireStateTypes;
+  submitNextButton: () => void;
+  insuPrice: any;
+  selectInsu: any;
+  handlePreviousButton: () => void;
+};
 
 const styles = StyleSheet.create({
   left: {
@@ -90,14 +99,9 @@ function HouseConfirmPresenter({
   state,
   submitNextButton,
   handlePreviousButton,
-  onChangeTermsState,
-  onChangeState,
-  onClickTermsModalAgree,
-  onClickTermsModalOpen,
-  onClickAllCheck,
   insuPrice,
   selectInsu,
-}) {
+}: HouseConfirmPresenterTypes) {
   const globalState = useGlobalState();
   const insuEndDateYear = Number(state?.contractInsuInfo?.insDate?.slice(0, 4)) + 1;
   const insuEndDateMonth = state?.contractInsuInfo?.insDate?.slice(5, 7);
@@ -382,7 +386,6 @@ function HouseConfirmPresenter({
               </Typhograph>
             </RowItem>
             <RowItem style={styles.right}>
-              {console.log(state?.selectAddress?.address)}
               <Typhograph type="NOTO" color="BLACK2" style={{ textAlign: 'right' }}>
                 {isSede ? `${state?.selectAddress?.address}` : state?.selectAddress?.address}
               </Typhograph>

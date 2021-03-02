@@ -1,7 +1,7 @@
 import React from 'react';
 import { BottomFixButton, CheckLabelButton, FullLabel, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
-import { screenHeight, screenWidth } from '@app/lib';
+import { screenWidth } from '@app/lib';
 import { HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
 
 type JoinTypeTypes = {

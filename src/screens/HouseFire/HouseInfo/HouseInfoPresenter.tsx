@@ -3,7 +3,12 @@ import { BottomFixButton, InfoList, Loading } from '@app/components';
 import { screenWidth } from '@app/lib';
 import styled from '@app/style/typed-components';
 import { WebView } from 'react-native-webview';
-import { TouchableWithoutFeedback } from 'react-native-gesture-handler';
+import { HouseInfoContainerTypes, InfoListTypes } from './HouseInfoContainer';
+
+type HouseInfoPresenterTypes = HouseInfoContainerTypes & {
+  infoList: InfoListTypes;
+};
+
 const Container = styled.View`
   width: ${screenWidth()}px;
 `;
@@ -21,7 +26,7 @@ const PaddingBox = styled.View`
   height: 400px;
 `;
 
-function HouseInfoPresenter({ state, handleNextButton, handlePreviousButton, infoList }) {
+function HouseInfoPresenter({ state, handleNextButton, handlePreviousButton, infoList }: HouseInfoPresenterTypes) {
   const html = `
   <html lang="en">
   <head>

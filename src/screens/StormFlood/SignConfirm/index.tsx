@@ -20,7 +20,6 @@ const Header = styled.View`
 
 export default function SignConfirm({ open, close, url, state, onClick }) {
   const [loading, setLoading] = useState(false);
-  console.log(state?.signData);
   const onMessage = (e) => {
     if (e.nativeEvent.data === 'ok') {
       close();

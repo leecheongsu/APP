@@ -14,6 +14,23 @@ import theme from '@app/style/theme';
 import { Image, Platform } from 'react-native';
 import { insuIcon } from '@app/assets';
 import { danchInfoText, selectDamboText, gajeDamboText } from '@app/lib/html';
+import { HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
+import { evaluationStateTypes } from '@app/screens/HouseFire/HouseEvaluation/HouseEvaluationContainer';
+
+type HouseEvaluationPresenterTypes = {
+  state: HouseFireStateTypes;
+  handleNextButton: () => void;
+  handlePreviousButton: () => void;
+  openInfoModal: (title: any, contents: any) => void;
+  eachPrice: (name: any) => any;
+  clickCheckBox: (name: any, isToggle: any, isSelect: any) => void;
+  clickDancheButton: (value: any) => void;
+  resultBuildPrice: () => number;
+  resultGajePrice: () => number;
+  evaluationState: evaluationStateTypes;
+  onValueChange: () => void;
+  gajeListClick: (name: any, isToggle: any, isSelect: any) => void;
+};
 
 const Container = styled.View`
   width: ${screenWidth()}px;
@@ -79,9 +96,7 @@ function HouseEvaluationPresenter({
   handleNextButton,
   handlePreviousButton,
   openInfoModal,
-  onChangeState,
   eachPrice,
-  resultPrice,
   clickCheckBox,
   clickDancheButton,
   resultBuildPrice,
@@ -89,7 +104,7 @@ function HouseEvaluationPresenter({
   onValueChange,
   resultGajePrice,
   gajeListClick,
-}) {
+}: HouseEvaluationPresenterTypes) {
   const subText =
     '건물 보험가입금액은 한국감정원 신축단가표와 건축물대장의 연면적, 건물구조를 반영하여 평가한 금액입니다.';
   return (

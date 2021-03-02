@@ -12,7 +12,6 @@ import { handleApiError, sortArray } from '@app/lib';
 import Toast from 'react-native-simple-toast';
 import { useGlobalDispatch } from '@app/context';
 import { EmptyLayout } from '@app/layout';
-import { useNavigation } from '@react-navigation/native';
 
 type HouseAddressContainerTypes = {
   state: HouseFireStateTypes;
@@ -27,7 +26,6 @@ export default function HouseAddressContainer({
   onChangeState,
   handleJoinTypeNextButton,
 }: HouseAddressContainerTypes) {
-  const navigation = useNavigation();
   const [getAddress, getAddressDispatch] = useAsync(
     () => insuApis.getAddress({ search: inputState.searchInput.value }),
     [],
@@ -184,6 +182,7 @@ export default function HouseAddressContainer({
     getAddressDispatch();
   };
 
+  //주소검색후 데이터 셋팅
   useEffect(() => {
     if (getAddress.data?.data?.results !== undefined) {
       const result = getAddress.data?.data?.results;

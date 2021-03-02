@@ -1,13 +1,26 @@
+import React, { useCallback, useState } from 'react';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
-import React, { useState } from 'react';
 import HouseInputUserPresenter from './HouseInputUserPresenter';
 import moment from 'moment';
 import Toast from 'react-native-simple-toast';
 import { useInput } from '@app/hooks';
 import { DefaultAlert } from '@app/components';
 import { EmptyLayout } from '@app/layout';
+import { HouseFireStateName, HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
 
-export default function HouseInputUserContainer({ state, onChangeState, handlePreviousButton, handleNextButton }) {
+type HouseInputUserContainerTypes = {
+  state: HouseFireStateTypes;
+  onChangeState: (name: HouseFireStateName, value: any) => void;
+  handleNextButton: () => void;
+  handlePreviousButton: () => void;
+};
+
+export default function HouseInputUserContainer({
+  state,
+  onChangeState,
+  handlePreviousButton,
+  handleNextButton,
+}: HouseInputUserContainerTypes) {
   const globalState = useGlobalState();
   const globalDispatch = useGlobalDispatch();
   const user = globalState?.user;
@@ -18,6 +31,7 @@ export default function HouseInputUserContainer({ state, onChangeState, handlePr
     issuJumina: useInput(''),
     juminb: useInput(''),
   };
+
   const handleClickEqualButton = () => {
     setIsCheck(!isCheck);
     if (!isCheck) {
@@ -37,6 +51,7 @@ export default function HouseInputUserContainer({ state, onChangeState, handlePr
     { label: '자가', value: 'o' },
     { label: '임차', value: 'r' },
   ];
+
   //데이트피커 보여지는함수
   const showDatePicker = () => {
     setDatePickerVisibility(true);
@@ -47,16 +62,22 @@ export default function HouseInputUserContainer({ state, onChangeState, handlePr
   };
 
   //날짜선택 버튼
-  const handleConfirm = (date) => {
-    const selectDate = moment(date).format('YYYY-MM-DD');
-    onChangeState('insFrom', selectDate);
-    hideDatePicker();
-  };
+  const handleConfirm = useCallback(
+    (date) => {
+      const selectDate = moment(date).format('YYYY-MM-DD');
+      onChangeState('insFrom', selectDate);
+      hideDatePicker();
+    },
+    [onChangeState]
+  );
 
   //보험목적물 소유구분 변경
-  const onValueChange = (value) => {
-    onChangeState('owner', value);
-  };
+  const onValueChange = useCallback(
+    (value) => {
+      onChangeState('owner', value);
+    },
+    [onChangeState]
+  );
 
   //추천인 삭제 버튼
   const onDeleteRecommedUserButton = () => {
@@ -120,9 +141,7 @@ export default function HouseInputUserContainer({ state, onChangeState, handlePr
       <HouseInputUserPresenter
         state={state}
         inputState={inputState}
-        handleNextButton={handleNextButton}
         handlePreviousButton={handlePreviousButton}
-        onChangeState={onChangeState}
         handleClickEqualButton={handleClickEqualButton}
         user={user}
         isCheck={isCheck}

@@ -48,7 +48,7 @@ function Typhograph({
       style={style}
       maxLength={maxLength}
       numberOfLines={numberOfLines}
-      ellipsizeMode="middle"
+      ellipsizeMode="tail"
       {...option}>
       {children}
     </Text>

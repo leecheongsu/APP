@@ -76,7 +76,6 @@ const App = () => {
     if (!state.isConnected) {
       Alert.alert('안내', '네트워크 연결이 일시적으로 원할하지 않습니다.데이터또는 wi-fi연결상태를 확인해주세요.');
     }
-    console.log(state);
   });
 
   //앱상태

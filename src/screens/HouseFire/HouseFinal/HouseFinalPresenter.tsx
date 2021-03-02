@@ -1,11 +1,20 @@
-import { BottomFixButton, FullLabel, Typhograph, RightIconButton, OverayLoading } from '@app/components';
+import React from 'react';
+import { BottomFixButton, FullLabel, Typhograph, RightIconButton } from '@app/components';
 import { useGlobalState } from '@app/context';
 import { screenWidth } from '@app/lib';
 import { InsuCertificate } from '@app/screens';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
-import React from 'react';
-import moment from 'moment';
+import { HouseFireStateName, HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
+
+type HouseFinalPresenterTypes = {
+  state: HouseFireStateTypes;
+  onChangeState: (name: HouseFireStateName, value: any) => void;
+  handlePreviousButton: () => void;
+  submitNextButton: () => void;
+  insuPrice: any;
+  downloadfileButton: (name: any) => Promise<null | undefined>;
+};
 
 const Container = styled.View`
   width: ${screenWidth()}px;
@@ -13,11 +22,6 @@ const Container = styled.View`
 `;
 const ContentsContainer = styled.ScrollView`
   padding: 20px;
-`;
-const TitleBox = styled.View`
-  padding-bottom: 10px;
-  border-bottom-width: 1px;
-  border-bottom-color: ${theme.color.BORDER_GRAY};
 `;
 
 const InfoBox = styled.View`
@@ -45,22 +49,14 @@ const InfoTextBox2 = styled.View`
   background-color: ${theme.color.GRAY2};
 `;
 
-const HelperText2 = styled.View`
-  margin-top: 10px;
-`;
 function HouseFinalPresenter({
   state,
   submitNextButton,
   handlePreviousButton,
-  onChangeTermsState,
   onChangeState,
-  onClickTermsModalAgree,
-  onClickTermsModalOpen,
-  onClickAllCheck,
   insuPrice,
-  selectInsu,
   downloadfileButton,
-}) {
+}: HouseFinalPresenterTypes) {
   const globalState = useGlobalState();
   return (
     <Container>

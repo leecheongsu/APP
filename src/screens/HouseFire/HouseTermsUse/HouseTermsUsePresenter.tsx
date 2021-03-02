@@ -1,9 +1,21 @@
+import React from 'react';
 import { BottomFixButton, CheckLabelButton, TermsList, Typhograph } from '@app/components';
 import { screenWidth } from '@app/lib';
 import { TermsModal } from '@app/screens';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
-import React from 'react';
+import { HouseFireStateName, HouseFireStateTypes, TermsNames } from '@app/screens/HouseFire/HouseFireContainer';
+
+type HouseTermsUsePresenterTypes = {
+  state: HouseFireStateTypes;
+  onChangeState: (name: HouseFireStateName, value: any) => void;
+  handlePreviousButton: () => void;
+  onChangeTermsState: (name: TermsNames, value: any) => void;
+  onClickTermsModalAgree: () => void;
+  onClickTermsModalOpen: (name: any, html: any) => void;
+  onClickAllCheck: (list: any, isActive: any) => void;
+  submitNextButton: () => void;
+};
 
 const Container = styled.View`
   width: ${screenWidth()}px;
@@ -37,7 +49,7 @@ function HouseTermsUsePresenter({
   onClickTermsModalAgree,
   onClickTermsModalOpen,
   onClickAllCheck,
-}) {
+}: HouseTermsUsePresenterTypes) {
   const isActive1 =
     state?.terms?.TERMSA_1.isChecked === 1 &&
     state?.terms?.TERMSA_2.isChecked === 1 &&

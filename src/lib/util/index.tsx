@@ -207,7 +207,6 @@ export const handleApiError = async (value) => {
   if (value?.data?.message !== undefined) {
     Alert.alert('알림', value?.data?.message);
   }
-  console.log(value);
   switch (errorCode) {
     case 401: {
       return Toast.show('권한이 없습니다.');

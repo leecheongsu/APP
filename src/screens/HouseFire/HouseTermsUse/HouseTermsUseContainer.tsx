@@ -2,6 +2,18 @@ import React from 'react';
 import HouseTermsUsePresenter from './HouseTermsUsePresenter';
 import Toast from 'react-native-simple-toast';
 import { EmptyLayout } from '@app/layout';
+import { HouseFireStateName, HouseFireStateTypes, TermsNames } from '@app/screens/HouseFire/HouseFireContainer';
+
+type HouseTermsUseContainerTypes = {
+  state: HouseFireStateTypes;
+  onChangeState: (name: HouseFireStateName, value: any) => void;
+  handlePreviousButton: () => void;
+  handleNextButton: () => void;
+  onChangeTermsState: (name: TermsNames, value: any) => void;
+  onClickTermsModalAgree: () => void;
+  onClickTermsModalOpen: (name: any, html: any) => void;
+  onClickAllCheck: (list: any, isActive: any) => void;
+};
 
 export default function HouseTermsUseContainer({
   state,
@@ -12,7 +24,7 @@ export default function HouseTermsUseContainer({
   onClickTermsModalAgree,
   onClickTermsModalOpen,
   onClickAllCheck,
-}) {
+}: HouseTermsUseContainerTypes) {
   const submitNextButton = () => {
     const isChecked =
       state.terms.TERMSA_1.isChecked === 1 &&

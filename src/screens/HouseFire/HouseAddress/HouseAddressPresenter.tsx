@@ -9,6 +9,7 @@ import {
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import { HouseInfoDetail } from '@app/screens';
+
 type HouseAddressPresenterTypes = {
   state: HouseFireStateTypes;
   inputState: HouseFireInputStateTypes;
