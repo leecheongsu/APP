@@ -1,12 +1,33 @@
-import { BottomFixButton, CheckLabelButton, DefaultInput, Typhograph } from '@app/components';
+import React from 'react';
 import { screenWidth } from '@app/lib';
-import { individualTerms, useTermsHtml } from '@app/lib/html';
-import { TermsModal } from '@app/screens';
 import styled from '@app/style/typed-components';
-import React, { useEffect } from 'react';
-import { BackHandler, Platform } from 'react-native';
+import { BottomFixButton, CheckLabelButton, DefaultInput, Typhograph } from '@app/components';
+import { TermsModal } from '@app/screens';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Toast from 'react-native-simple-toast';
+import { Platform } from 'react-native';
+import { JoinStateName, JoinStateTypes } from '@app/screens/Join/JoinContainer';
+import { InputTypes } from '@app/types';
+
+type PasswordFormPresenterTypes = {
+  state: JoinStateTypes;
+  onChangeState: (name: JoinStateName, value: any) => void;
+  inputState: {
+    email: InputTypes;
+    name: InputTypes;
+    phone: InputTypes;
+    idNumber: InputTypes;
+    sexNumber: InputTypes;
+    password: InputTypes;
+    passwordConfirm: InputTypes;
+    companyName: InputTypes;
+    companyNumber: InputTypes;
+  };
+  handleIndividualButtonClick: () => void;
+  handleUseTermsButtonClick: () => void;
+  handleClickInModal: () => void;
+  nextButton: () => void;
+  handlePreviousButton: () => void;
+};
 
 const Container = styled.View`
   width: ${screenWidth()}px;
@@ -29,77 +50,17 @@ const AgreeBox = styled.View`
 const AgreeBoxItem = styled.View`
   margin-top: 10px;
 `;
-export default function PasswordForm({
+
+function PasswordFormPresenter({
   state,
-  inputState,
   onChangeState,
-  handleNextButton,
+  inputState,
+  handleIndividualButtonClick,
+  handleUseTermsButtonClick,
+  handleClickInModal,
+  nextButton,
   handlePreviousButton,
-  handlePostJoin,
-}) {
-  //비밀번호 체크 로직
-  const checkPassword = () => {
-    const pattern1 = /[0-9]/;
-    const pattern2 = /[a-zA-Z]/;
-    const pattern3 = /[~!@\#$%<>^&*]/;
-    const pw = inputState.password.value;
-    if (pw === '') {
-      Toast.show('비밀번호를 입력하세요.');
-      return false;
-    } else if (!pattern1.test(pw) || !pattern2.test(pw) || !pattern3.test(pw) || pw.length < 8 || pw.length > 50) {
-      Toast.show('영문+숫자+특수기호 8자리 이상으로 구성하여야 합니다.');
-      return false;
-    } else if (pw !== inputState.passwordConfirm.value) {
-      Toast.show('확인된 비밀번호가 틀립니다.');
-      return false;
-    } else if (!state.isAgreeIndividualTerms) {
-      Toast.show('개인정보 처리방침에 동의해주세요.');
-    } else if (!state.isAgreeUseTerms) {
-      Toast.show('이용약관에 동의해주세요.');
-    } else {
-      return true;
-    }
-  };
-
-  //모달안의 확인버튼 핸들러
-  const handleClickInModal = () => {
-    onChangeState('termsModal', false);
-    switch (state.selectTermsModal) {
-      case 'individual':
-        return onChangeState('isAgreeIndividualTerms', true);
-      case 'useTerms':
-        return onChangeState('isAgreeUseTerms', true);
-    }
-  };
-
-  //개인정보 처리방침 버튼
-  const handleIndividualButtonClick = () => {
-    if (state.isAgreeIndividualTerms) {
-      onChangeState('isAgreeIndividualTerms', false);
-    } else {
-      onChangeState('termsModal', true);
-      onChangeState('selectTermsModal', 'individual');
-      onChangeState('termsHtml', individualTerms());
-    }
-  };
-
-  //이용약관 버튼
-  const handleUseTermsButtonClick = () => {
-    if (state.isAgreeUseTerms) {
-      onChangeState('isAgreeUseTerms', false);
-    } else {
-      onChangeState('termsModal', true);
-      onChangeState('selectTermsModal', 'useTerms');
-      onChangeState('termsHtml', useTermsHtml());
-    }
-  };
-
-  const nextButton = () => {
-    if (checkPassword()) {
-      handlePostJoin();
-    }
-  };
-
+}: PasswordFormPresenterTypes) {
   return (
     <Container>
       <KeyboardAwareScrollView
@@ -172,8 +133,10 @@ export default function PasswordForm({
         rightTitle="다음"
         bottomRightPress={() => nextButton()}
         bottomLeftPress={() => handlePreviousButton()}
-        isKeybordView={state.isKeybordView}
+        isKeybordView={false}
       />
     </Container>
   );
 }
+
+export default PasswordFormPresenter;

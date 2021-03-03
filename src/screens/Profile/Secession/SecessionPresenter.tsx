@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
-import styled from '@app/style/typed-components';
+import React from 'react';
 import { BottomFixButton, CheckLabelButton, FocusAwareStatusBar, FullLabel, Typhograph } from '@app/components';
-import { useGlobalDispatch, useGlobalState } from '@app/context';
+import { useGlobalState } from '@app/context';
 import theme from '@app/style/theme';
-import Toast from 'react-native-simple-toast';
-import { userApis } from '@app/api/User';
-import { clearStoreData, handleApiError } from '@app/lib';
-import { useNavigation } from '@react-navigation/native';
-import SimpleToast from 'react-native-simple-toast';
+import styled from '@app/style/typed-components';
 import { CUMTOMER_NUMBER } from '@env';
+
+type SecessionPresenterTypes = {
+  handleClickButton: () => void;
+  isAgree: boolean;
+  handleSubmitButton: () => void;
+};
 
 const Container = styled.View``;
 
@@ -30,39 +31,10 @@ const ButtonBox = styled.View`
   margin-top: 20px;
 `;
 
-function Secession() {
-  const navigation = useNavigation();
-  const dot = '\u2022';
-  const InfoText = `회원탈퇴를 신청하시기 전에 ${'\n'}안내 사항을 꼭 확인해 주세요.`;
+function SecessionPresenter({ handleClickButton, isAgree, handleSubmitButton }: SecessionPresenterTypes) {
   const globalState = useGlobalState();
-  const globalDispatch = useGlobalDispatch();
-  const [isAgree, setIsAgree] = useState(false);
-
-  const handleClickButton = () => {
-    setIsAgree(!isAgree);
-  };
-
-  const handleSubmitButton = () => {
-    if (isAgree) {
-      const email = globalState.user?.email;
-      userApis
-        .putSecession(email)
-        .then((res) => {
-          if (res.status === 200) {
-            SimpleToast.show('탈퇴처리가 완료되었습니다.');
-            globalDispatch({ type: 'RESET' });
-            clearStoreData();
-            navigation.navigate('MAIN_STACK');
-          }
-        })
-        .catch((e) => {
-          handleApiError(e.response);
-        });
-    } else {
-      Toast.show('동의후 탈퇴 가능합니다.');
-    }
-  };
-
+  const InfoText = `회원탈퇴를 신청하시기 전에 ${'\n'}안내 사항을 꼭 확인해 주세요.`;
+  const dot = '\u2022';
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
@@ -131,4 +103,4 @@ function Secession() {
   );
 }
 
-export default Secession;
+export default SecessionPresenter;

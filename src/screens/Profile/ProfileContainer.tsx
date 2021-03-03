@@ -1,9 +1,10 @@
-import React, { useEffect, useReducer, useRef } from 'react';
+import React, { useCallback, useEffect, useReducer, useRef } from 'react';
 import { useInput } from '@app/hooks';
 import { useNavigation } from '@react-navigation/native';
 import ProfilePresenter from '@app/screens/Profile/ProfilePresenter';
 import { useGlobalState } from '@app/context';
 import { BackHandler } from 'react-native';
+import { InputTypes } from '@app/types';
 
 export type ProfileStateName =
   | 'selectTab'
@@ -31,6 +32,18 @@ export type ProfileStateTypes = {
   selectTermsModal: string;
   individualStep: any;
   loading: boolean;
+};
+
+export type ProfileInputTypes = {
+  email: InputTypes;
+  name: InputTypes;
+  phone: InputTypes;
+  idNumber: InputTypes;
+  sexNumber: InputTypes;
+  password: InputTypes;
+  passwordConfirm: InputTypes;
+  companyName: InputTypes;
+  companyNumber: InputTypes;
 };
 type ActionTypes = { type: 'CHANGE'; name: ProfileStateName; value: any };
 
@@ -107,9 +120,9 @@ export default function ProfileContainer() {
     companyName: useInput(globalState?.user?.comname),
     companyNumber: useInput(globalState?.user?.businessnum),
   };
-  const onChangeState = (name: ProfileStateName, value: any) => {
+  const onChangeState = useCallback((name: ProfileStateName, value: any) => {
     dispatch({ type: 'CHANGE', name, value });
-  };
+  }, []);
 
   const handleClickButton = (value) => {
     onChangeState('selectTab', value);
@@ -125,11 +138,9 @@ export default function ProfileContainer() {
       navigation.goBack();
       return true;
     };
-
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
-
     return () => backHandler.remove();
-  }, []);
+  }, [navigation]);
   return (
     <ProfilePresenter
       handleClickButton={handleClickButton}

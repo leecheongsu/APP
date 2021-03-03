@@ -3,10 +3,9 @@ import LoginPresenter from '@app/screens/Login/LoginPresenter';
 import { useInput } from '@app/hooks';
 import Toast from 'react-native-simple-toast';
 import { userApis } from '@app/api/User';
-import { getStoreData, handleApiError, removeStoreData, setStoreData } from '@app/lib';
+import { handleApiError, setStoreData } from '@app/lib';
 import { useNavigation } from '@react-navigation/native';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
-import { onChange } from 'react-native-reanimated';
 
 export type LoginStateNames = 'isAutoLogin' | 'loading';
 export type LoginStateTypes = {
@@ -34,7 +33,6 @@ export default function LoginContainer({ route }) {
   const navigation = useNavigation();
   const [state, dispatch] = useReducer(reducer, initialState);
   const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-  const globalState = useGlobalState();
   const globalDispatch = useGlobalDispatch();
   const inputState = {
     email: useInput(''),

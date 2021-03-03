@@ -2,7 +2,7 @@ import React from 'react';
 import { BottomFixButton, CheckLabelButton, DefaultInput, IconButton, TermsList, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import { recomendMasking, screenWidth } from '@app/lib';
-import { InputStateTypes, StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
+import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import { TermsModal } from '@app/screens';
 import theme from '@app/style/theme';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -23,7 +23,6 @@ type StormFloodInputPresenterTypes = {
   termsChange: (name: 'terms1' | 'terms2' | 'terms3' | 'terms4' | 'terms5' | 'termsb1', value: any) => void;
   onClickAllCheck: any;
   onClickTermsModalAgree: any;
-  inputState: InputStateTypes;
 };
 
 const Container = styled.View`
@@ -81,7 +80,6 @@ function StormFloodInputPresenter({
   termsChange,
   onClickAllCheck,
   onClickTermsModalAgree,
-  inputState,
 }: StormFloodInputPresenterTypes) {
   const globalState = useGlobalState();
   const navigation = useNavigation();

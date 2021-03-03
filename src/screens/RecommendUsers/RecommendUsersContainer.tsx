@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useCallback, useEffect, useReducer } from 'react';
 import RecommendUsersPresenter from './RecommendUsersPresenter';
 import { userApis } from '@app/api/User';
 import { handleApiError } from '@app/lib';
@@ -7,10 +7,26 @@ import { useInput } from '@app/hooks';
 import { useNavigation } from '@react-navigation/native';
 import Toast from 'react-native-simple-toast';
 import { useGlobalDispatch } from '@app/context';
-import { DefaultAlert } from '@app/components';
 import { BackHandler } from 'react-native';
 
-function reducer(state, action) {
+export type RecommendUsersStateTypes = {
+  selectCompanyItem: Array<any>;
+  selectCompany: string;
+  recommendUsers: Array<any>;
+  selectRecommendUser: undefined;
+  loading: boolean;
+};
+
+export type RecommendUsersStateName =
+  | 'selectCompanyItem'
+  | 'selectCompany'
+  | 'recommendUsers'
+  | 'selectRecommendUser'
+  | 'loading';
+
+type ActionTypes = { type: 'CHANGE'; name: RecommendUsersStateName; value: any };
+
+function reducer(state: RecommendUsersStateTypes, action: ActionTypes) {
   switch (action.type) {
     case 'CHANGE':
       return {
@@ -20,7 +36,7 @@ function reducer(state, action) {
   }
 }
 
-const initialState = {
+const initialState: RecommendUsersStateTypes = {
   selectCompanyItem: [],
   selectCompany: 'all',
   recommendUsers: [],
@@ -36,10 +52,9 @@ export default function RecommendUsersContainer() {
     searchInput: useInput(''),
   };
 
-  //
-  const onChangeState = (name, value) => {
+  const onChangeState = useCallback((name: RecommendUsersStateName, value) => {
     dispatch({ type: 'CHANGE', name, value });
-  };
+  }, []);
 
   //리스트 추천인 선택함수
   const onClickRecommendUser = (user) => {
@@ -122,6 +137,7 @@ export default function RecommendUsersContainer() {
   //추천인목록 가져오는 api실행
   useEffect(() => {
     getRecommendUser();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   //안드로이드 백버튼 핸들러
@@ -130,11 +146,9 @@ export default function RecommendUsersContainer() {
       navigation.goBack();
       return true;
     };
-
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
-
     return () => backHandler.remove();
-  }, []);
+  }, [navigation]);
 
   return (
     <RecommendUsersPresenter
@@ -144,7 +158,6 @@ export default function RecommendUsersContainer() {
       inputState={inputState}
       bottomLeftPress={bottomLeftPress}
       bottomRightPress={bottomRightPress}
-      getRecommendUser={getRecommendUser}
       getRecommendRist={getRecommendRist}
       onClickRecommendUser={onClickRecommendUser}
     />

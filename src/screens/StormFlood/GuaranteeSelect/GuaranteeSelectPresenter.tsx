@@ -22,7 +22,6 @@ import { CUMTOMER_NUMBER } from '@env';
 type GuaranteeSelectPresenterTypes = {
   state: StormFloodStateTypes;
   nextButton: () => void;
-  onClickTermsModalOpen: (name: any, html: any) => void;
   handlePreviousButton: () => void;
   onChangeState: (name: StormFloodName, value: any) => void;
   openInfoModal: (title: any, contents: any) => void;
@@ -68,7 +67,6 @@ function GuaranteeSelectPresenter({
   state,
   nextButton,
   onChangeState,
-  onClickTermsModalOpen,
   handlePreviousButton,
   openInfoModal,
   handleSectorSelect,

@@ -1,11 +1,22 @@
+import React from 'react';
 import { DefaultAlert } from '@app/components';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
 import { useInput } from '@app/hooks';
 import { EmptyLayout } from '@app/layout';
-import React from 'react';
-import { Alert } from 'react-native';
 import Toast from 'react-native-simple-toast';
 import StormFloodInputPresenter from './StormFloodInputPresenter';
+import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
+type StormFloodInputContainerTypes = {
+  state: StormFloodStateTypes;
+  onChangeState: (name: StormFloodName, value: any) => void;
+  handleNextButton: () => null | undefined;
+  onClickTermsModalOpen: (name: any, html: any) => void;
+  handlePreviousButton: () => void;
+  termsChange: (name: any, value: any) => void;
+  onClickAllCheck: any;
+  onClickTermsModalAgree: any;
+};
+
 export default function StormFloodInputContainer({
   state,
   onChangeState,
@@ -15,8 +26,7 @@ export default function StormFloodInputContainer({
   termsChange,
   onClickTermsModalAgree,
   onClickAllCheck,
-  inputState,
-}) {
+}: StormFloodInputContainerTypes) {
   const juminb = useInput('');
   const globalState = useGlobalState();
   const globalDispatch = useGlobalDispatch();
@@ -63,35 +73,6 @@ export default function StormFloodInputContainer({
     }
   };
 
-  //신청버튼
-  // const buttomNextButton = () => {
-  //   if (checkInput()) {
-  //     const newContractInsuInfo = {
-  //       ...state?.contractInsuInfo,
-  //       name: inputState.insuName.value,
-  //       email: user?.email,
-  //       mobile: user?.mobile,
-  //       jumin: user?.jumina + '-' + user?.sex + inputState.juminb.value,
-  //       juminb: inputState.juminb.value,
-  //       pbohumjaBirth: inputState.issuJumina.value,
-  //       insDate: state?.insFrom,
-  //       owner: state?.owner,
-  //       insloc: state?.selectAddress?.address,
-  //       advisor_no: globalState?.recommendUser === undefined ? '' : globalState?.recommendUser?.seq,
-  //     };
-  //     onChangeState('contractInsuInfo', newContractInsuInfo);
-  //     if (globalState.recommendUser === undefined) {
-  //       DefaultAlert({
-  //         title: '추천인을 선택하지않으셨습니다.',
-  //         msg: '이대로 진행하시겠습니까?',
-  //         okPress: handleNextButton,
-  //       });
-  //     } else {
-  //       handleNextButton();
-  //     }
-  //   }
-  // };
-
   if (state.stepNumber === 7) {
     return (
       <StormFloodInputPresenter
@@ -105,7 +86,6 @@ export default function StormFloodInputContainer({
         termsChange={termsChange}
         onClickAllCheck={onClickAllCheck}
         onClickTermsModalAgree={onClickTermsModalAgree}
-        inputState={inputState}
       />
     );
   } else {

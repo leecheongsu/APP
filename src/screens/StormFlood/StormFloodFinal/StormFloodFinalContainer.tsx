@@ -1,18 +1,21 @@
 import React from 'react';
 import { EmptyLayout } from '@app/layout';
 import StormFloodFinalPresenter from './StormFloodFinalPresenter';
-import { Alert, PermissionsAndroid, Platform } from 'react-native';
-import { handleApiError } from '@app/lib';
-import RNFetchBlob from 'rn-fetch-blob';
+import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
+
+type StormFloodFinalContainerTypes = {
+  state: StormFloodStateTypes;
+  onChangeState: (name: StormFloodName, value: any) => void;
+  handlePreviousButton: () => void;
+};
 
 export default function StormFloodFinalContainer({
   state,
   onChangeState,
-  handleNextButton,
-  onClickTermsModalOpen,
   handlePreviousButton,
-}) {
+}: StormFloodFinalContainerTypes) {
   const navigation = useNavigation();
   const nextButton = () => {
     navigation.goBack();
@@ -29,7 +32,6 @@ export default function StormFloodFinalContainer({
         nextButton={nextButton}
         onChangeState={onChangeState}
         handlePreviousButton={handlePreviousButton}
-        onClickTermsModalOpen={onClickTermsModalOpen}
         downloadfileButton={downloadfileButton}
       />
     );
