@@ -14,6 +14,7 @@ type JoinPresenterTypes = {
   };
   onValueChange: (name: any) => void;
   handlePostJoin: () => void;
+  returnComponent: (id: 'step1' | 'step2' | 'step3' | 'step4') => React.ReactNode | undefined;
 };
 
 const Container = styled.View`

@@ -6,19 +6,29 @@ import { handleApiError } from '@app/lib';
 import { Alert } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
 import GuaranteeSelectPresenter from './GuaranteeSelectPresenter';
+import { InputStateTypes, StormFloodStateTypes, StormFloodName } from '@app/screens/StormFlood/StormFloodContainer';
+
+type GuaranteeSelectContainerTypes = {
+  state: StormFloodStateTypes;
+  handlePreviousButton: () => void;
+  onChangeState: (name: StormFloodName, value: any) => void;
+  openInfoModal: (title: any, contents: any) => void;
+  handleNextButton: () => null | undefined;
+  inputState: InputStateTypes;
+};
 export default function GuaranteeSelectContainer({
   state,
   onChangeState,
   handleNextButton,
-  onClickTermsModalOpen,
   handlePreviousButton,
   openInfoModal,
   inputState,
-}) {
+}: GuaranteeSelectContainerTypes) {
   const globalDispatch = useGlobalDispatch();
   const sumPrice =
     (state.selectBuildingPrice?.key_name === undefined ? 0 : Number(state.selectBuildingPrice?.key_name)) +
     (state.selectFacilityprice?.key_name === undefined ? 0 : Number(state.selectFacilityprice?.key_name));
+  //체크로직
   const checkInput = () => {
     if (inputState.buildName.value === '') {
       SimpleToast.show('상호명을 입력해주세요.');
@@ -52,6 +62,7 @@ export default function GuaranteeSelectContainer({
     }
   };
 
+  //다음버튼
   const nextButton = () => {
     if (checkInput()) {
       const data = {
@@ -98,6 +109,7 @@ export default function GuaranteeSelectContainer({
     }
   };
 
+  //건물 셀렉트박스 핸들러
   const handleBuildingPriceSelect = (value) => {
     if (state.stuffDivision === '일반' && sumPrice > 100000000) {
       Alert.alert('알림', '일반 물건은 건물 금액과 시설(기계) 및 집기 금액의 합계 금액이 1억원을 넘을 수 없습니다.');
@@ -114,6 +126,8 @@ export default function GuaranteeSelectContainer({
       onChangeState('selectBuildingPrice', value);
     }
   };
+
+  // 시설집기 셀렉트박스 핸들러
   const handleFacilityPriceSelect = (value) => {
     if (state.stuffDivision === '일반' && sumPrice > 100000000) {
       Alert.alert('알림', '일반 물건은 건물 금액과 시설(기계) 및 집기 금액의 합계 금액이 1억원을 넘을 수 없습니다.');
@@ -131,13 +145,17 @@ export default function GuaranteeSelectContainer({
     }
   };
 
+  //업종 셀렉트 박스 핸들러
   const handleSectorSelect = (value) => {
     onChangeState('selectSector', value);
   };
 
+  //자기부담금 셀렉트 박스 핸들러
   const handleselfPriceSelect = (value) => {
     onChangeState('selectSelfPrice', value);
   };
+
+  //재고자산 셀렉트 박스 핸들러
   const handleInventoryPriceSelect = (value) => {
     onChangeState('selectInventoryPrice', value);
   };
@@ -149,7 +167,6 @@ export default function GuaranteeSelectContainer({
         nextButton={nextButton}
         onChangeState={onChangeState}
         handlePreviousButton={handlePreviousButton}
-        onClickTermsModalOpen={onClickTermsModalOpen}
         openInfoModal={openInfoModal}
         handleSectorSelect={handleSectorSelect}
         handleBuildingPriceSelect={handleBuildingPriceSelect}

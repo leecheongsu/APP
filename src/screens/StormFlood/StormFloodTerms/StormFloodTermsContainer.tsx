@@ -1,9 +1,21 @@
+import React, { useEffect } from 'react';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
 import { EmptyLayout } from '@app/layout';
 import { useNavigation } from '@react-navigation/native';
-import React, { useEffect } from 'react';
 import SimpleToast from 'react-native-simple-toast';
 import StormFloodTermsPresenter from './StormFloodTermsPresenter';
+import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
+
+type StormFloodTermsContainerTypes = {
+  state: StormFloodStateTypes;
+  onChangeState: (name: StormFloodName, value: any) => void;
+  onClickTermsModalOpen: (name: any, html: any) => void;
+  handleNextButton: () => null | undefined;
+  handlePreviousButton: () => void;
+  termsChange: (name: any, value: any) => void;
+  onClickAllCheck: (list: any, isActive: any) => void;
+  onClickTermsModalAgree: () => void;
+};
 export default function StormFloodTermsContainer({
   state,
   onChangeState,
@@ -13,7 +25,7 @@ export default function StormFloodTermsContainer({
   termsChange,
   onClickAllCheck,
   onClickTermsModalAgree,
-}) {
+}: StormFloodTermsContainerTypes) {
   const navigation = useNavigation();
   const globalState = useGlobalState();
   const globalDispatch = useGlobalDispatch();

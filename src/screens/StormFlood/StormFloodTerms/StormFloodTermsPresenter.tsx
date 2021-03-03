@@ -1,5 +1,5 @@
 import React from 'react';
-import { BottomFixButton, CheckLabelButton, DefaultInput, TermsList, Typhograph } from '@app/components';
+import { BottomFixButton, CheckLabelButton, TermsList, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import { priceDot, recomendMasking, screenWidth } from '@app/lib';
 import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
@@ -15,7 +15,7 @@ type StormFloodTermsPresenterTypes = {
   onClickTermsModalOpen: (name: any, html: any) => void;
   handlePreviousButton: () => void;
   onChangeState: (name: StormFloodName, value: any) => void;
-  termsChange: (name) => void;
+  termsChange: (name, value) => void;
   onClickAllCheck: (list: any, isActive: any) => void;
   onClickTermsModalAgree: () => void;
   buttonTermsPdf: (name) => void;
@@ -83,9 +83,7 @@ const ButtonBox = styled.View`
 const Terms2Box = styled.View`
   margin-top: 30px;
 `;
-const TermsListBox = styled.View`
-  margin-top: 10px;
-`;
+
 const TermsListItemBox = styled.View``;
 const Divider = styled.View`
   border-bottom-width: 1px;

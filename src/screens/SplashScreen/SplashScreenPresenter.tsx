@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { Typhograph } from '@app/components';
-import styled from '@app/style/typed-components';
-import { MainLayout } from '@app/layout';
-import { Image, StatusBar, StyleSheet } from 'react-native';
-import { insuImg } from '@app/assets';
-import { screenWidth } from '@app/lib';
-import * as Progress from 'react-native-progress';
+import React from 'react';
 import theme from '@app/style/theme';
+import styled from '@app/style/typed-components';
+import { Image, StatusBar, StyleSheet } from 'react-native';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
+import { MainLayout } from '@app/layout';
+import { Typhograph } from '@app/components';
+import { insuImg } from '@app/assets';
+import * as Progress from 'react-native-progress';
+import { screenWidth } from '@app/lib';
+
+type SplashScreenPresenterTypes = {
+  value: number;
+};
 
 const styles = StyleSheet.create({
   isIphone: {
@@ -35,16 +39,7 @@ const ImageBox = styled.View`
   bottom: 0px;
 `;
 
-export default function SplashScreen() {
-  const [value, setValue] = useState(0);
-
-  //progress bar
-  useEffect(() => {
-    let timer = setTimeout(() => {
-      setValue(value + 0.1);
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [value]);
+function SplashScreenPresenter({ value }: SplashScreenPresenterTypes) {
   return (
     <>
       <MainLayout>
@@ -80,3 +75,5 @@ export default function SplashScreen() {
     </>
   );
 }
+
+export default SplashScreenPresenter;

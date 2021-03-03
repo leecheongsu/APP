@@ -1,4 +1,4 @@
-import React, { useReducer, useRef } from 'react';
+import React, { useCallback, useReducer, useRef } from 'react';
 import { userApis } from '@app/api/User';
 import { useInput } from '@app/hooks';
 import JoinPresenter from './JoinPresenter';
@@ -109,17 +109,20 @@ export default function JoinContainer() {
     companyName: useInput(''),
     companyNumber: useInput(''),
   };
-  const onChangeState = (name: JoinStateName, value: any) => {
+  const onChangeState = useCallback((name: JoinStateName, value: any) => {
     dispatch({ type: 'CHANGE', name, value });
-  };
+  }, []);
 
   const handleClickButton = (value) => {
     onChangeState('selectType', value);
   };
 
-  const onValueChange = (value) => {
-    onChangeState('selectService', value);
-  };
+  const onValueChange = useCallback(
+    (value) => {
+      onChangeState('selectService', value);
+    },
+    [onChangeState]
+  );
 
   const handlePostJoin = () => {
     if (state.selectType === 'individual') {
@@ -238,7 +241,6 @@ export default function JoinContainer() {
               state={state}
               inputState={inputState}
               onChangeState={onChangeState}
-              handleNextButton={handleNextButton}
               handlePreviousButton={handlePreviousButton}
               handlePostJoin={handlePostJoin}
             />
@@ -249,7 +251,6 @@ export default function JoinContainer() {
               key={id}
               state={state}
               inputState={inputState}
-              onChangeState={onChangeState}
               handleNextButton={handleNextButton}
               handlePreviousButton={handlePreviousButton}
             />
@@ -262,7 +263,6 @@ export default function JoinContainer() {
             state={state}
             inputState={inputState}
             onChangeState={onChangeState}
-            handleNextButton={handleNextButton}
             handlePreviousButton={handlePreviousButton}
             handlePostJoin={handlePostJoin}
           />

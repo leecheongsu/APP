@@ -4,7 +4,7 @@ import styled from '@app/style/typed-components';
 import { screenWidth } from '@app/lib';
 import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import { Image } from 'react-native';
-import { insuIcon, insuImg } from '@app/assets';
+import { insuIcon } from '@app/assets';
 import theme from '@app/style/theme';
 import { ScrollView } from 'react-native-gesture-handler';
 import TermsModal from '@app/screens/TermsModal';

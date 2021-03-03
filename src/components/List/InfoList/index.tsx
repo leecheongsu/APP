@@ -3,14 +3,12 @@ import { Typhograph } from '@app/components';
 import { InfoListTypes } from '@app/screens/HouseFire/HouseInfo/HouseInfoContainer';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
-import { View } from 'react-native';
 import { useGlobalState } from '@app/context';
-import { HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
 
 type InfoListPropsTypes = {
   list: InfoListTypes;
   isHouse?: boolean;
-  state: HouseFireStateTypes;
+  state: any;
 };
 
 const Container = styled.View``;
@@ -50,7 +48,6 @@ const ListItem2Rigth = styled.View`
 `;
 
 export default function InfoList({ list, isHouse = true, state }: InfoListPropsTypes) {
-  const globalState = useGlobalState();
   const isSede = state?.selectType === 'S';
   return (
     <Container>

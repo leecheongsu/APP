@@ -1,9 +1,24 @@
+import React from 'react';
 import { BottomFixButton, FocusAwareStatusBar, OverayLoading, SearchInput2, Select, Typhograph } from '@app/components';
 import { recomendMasking } from '@app/lib';
+import { RecommendUsersStateTypes, RecommendUsersStateName } from '@app/screens/RecommendUsers/RecommendUsersContainer';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
-import React from 'react';
+import { InputTypes } from '@app/types';
 import { Keyboard } from 'react-native';
+
+type RecommendUsersPresenterTypes = {
+  state: RecommendUsersStateTypes;
+  onChangeState: (name: RecommendUsersStateName, value: any) => void;
+  onValueChange: (value: any) => void;
+  inputState: {
+    searchInput: InputTypes;
+  };
+  bottomLeftPress: () => void;
+  bottomRightPress: () => void;
+  getRecommendRist: () => any;
+  onClickRecommendUser: (user: any) => void;
+};
 
 const Container = styled.ScrollView`
   background-color: ${theme.color.GRAY2};
@@ -53,10 +68,9 @@ function RecommendUsersPresenter({
   inputState,
   bottomLeftPress,
   bottomRightPress,
-  getRecommendUser,
   getRecommendRist,
   onClickRecommendUser,
-}) {
+}: RecommendUsersPresenterTypes) {
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
@@ -146,7 +160,7 @@ function RecommendUsersPresenter({
         rightTitle="선택"
         bottomRightPress={bottomRightPress}
         bottomLeftPress={bottomLeftPress}
-        isKeybordView={state?.isKeybordView}
+        isKeybordView={false}
       />
     </>
   );

@@ -45,7 +45,6 @@ export { default as PasswordInfo } from './Profile/PasswordInfo';
 export { default as BusinessInfo } from './Profile/BusinessInfo';
 export { default as Secession } from './Profile/Secession';
 export { default as Verification } from './Verification';
-export { default as Pay } from './Pay';
 export { default as MyInsu } from './MyInsu';
 export { default as InsuCertificate } from './InsuCertificate';
 export { default as MyInsuCertificate } from './MyInsuCertificate';

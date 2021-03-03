@@ -1,17 +1,26 @@
-import { EmptyLayout } from '@app/layout';
 import React from 'react';
+import { EmptyLayout } from '@app/layout';
 import Presenter from './CheckListPresenter';
 import Toast from 'react-native-simple-toast';
+import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
+
+type CheckListContainerTypes = {
+  state: StormFloodStateTypes;
+  onChangeState: (name: StormFloodName, value: any) => void;
+  handleNextButton: () => null | undefined;
+  handlePreviousButton: () => void;
+  termsChange: (name: any, value: any) => void;
+  onClickTermsModalAgree: () => void;
+};
 
 export default function CheckListContainer({
   state,
   onChangeState,
   handleNextButton,
-  onClickTermsModalOpen,
   handlePreviousButton,
   termsChange,
   onClickTermsModalAgree,
-}) {
+}: CheckListContainerTypes) {
   const checkterms = () => {
     if (state?.terms?.terms1?.isChecked === 0) {
       Toast.show('질문에 동의해주세요.');

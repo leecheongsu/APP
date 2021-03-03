@@ -1,37 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { FocusAwareStatusBar, FullLabel, Loading, MyInsuCard, Typhograph } from '@app/components';
-import styled from '@app/style/typed-components';
-import { Alert, BackHandler, Image, PermissionsAndroid, Platform } from 'react-native';
-import { insuIcon } from '@app/assets';
-import theme from '@app/style/theme';
-import { userApis } from '@app/api/User';
-import { handleApiError } from '@app/lib';
-import RNFetchBlob from 'rn-fetch-blob';
-import { useNavigation } from '@react-navigation/native';
+import MyInsuPresenter from '@app/screens/MyInsu/MyInsuPresenter';
+import { Alert, BackHandler, PermissionsAndroid, Platform } from 'react-native';
 import { PROD_URL } from '@env';
-const Container = styled.ScrollView``;
-const CountBox = styled.View`
-  padding: 30px 15px;
-`;
-const RowBox = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-const RowItem = styled.View``;
+import { useNavigation } from '@react-navigation/native';
+import RNFetchBlob from 'rn-fetch-blob';
+import { handleApiError } from '@app/lib';
+import { userApis } from '@app/api/User';
 
-const CardBox = styled.View`
-  padding: 0px 15px 100px;
-  background-color: ${theme.color.GRAY2};
-`;
-
-const EmptyBox = styled.View`
-  align-items: center;
-  justify-content: center;
-  height: 200px;
-`;
-
-export default function MyInsu() {
+export default function MyInsuContainer() {
   const navigation = useNavigation();
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState([]);
@@ -166,57 +142,11 @@ export default function MyInsu() {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', backAction);
 
     return () => backHandler.remove();
-  }, []);
+  }, [navigation]);
+
   useEffect(() => {
     getMyInsu();
   }, []);
-  return (
-    <>
-      <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
-      {loading ? (
-        <Loading height={500} />
-      ) : (
-        <Container>
-          <FullLabel title={`내 보험 에서는 내가 가입한 보험 정보를${'\n'}확인하실 수 있습니다.`} />
-          <CountBox>
-            <RowBox>
-              <RowItem>
-                <RowBox>
-                  <RowItem>
-                    <Image source={insuIcon.MY_LIST} />
-                  </RowItem>
-                  <RowItem style={{ marginLeft: 10 }}>
-                    <Typhograph type="NOTO" color="BLUE" weight="BOLD">
-                      총 보험 계약수
-                    </Typhograph>
-                  </RowItem>
-                </RowBox>
-              </RowItem>
-              <RowItem>
-                <Typhograph type="ROBOTO" color="SKYBLUE">
-                  {data?.length}{' '}
-                  <Typhograph type="ROBOTO" color="BLACK2">
-                    건
-                  </Typhograph>
-                </Typhograph>
-              </RowItem>
-            </RowBox>
-          </CountBox>
-          {data?.length === 0 ? (
-            <EmptyBox>
-              <Typhograph type="NOTO" color="GRAY" style={{ textAlign: 'center' }}>
-                계약한 보험이 없습니다.
-              </Typhograph>
-            </EmptyBox>
-          ) : (
-            <CardBox>
-              {data?.map((item) => {
-                return <MyInsuCard item={item} downloadfileButton={downloadfileButton} loading={loading} />;
-              })}
-            </CardBox>
-          )}
-        </Container>
-      )}
-    </>
-  );
+
+  return <MyInsuPresenter loading={loading} data={data} downloadfileButton={downloadfileButton} />;
 }

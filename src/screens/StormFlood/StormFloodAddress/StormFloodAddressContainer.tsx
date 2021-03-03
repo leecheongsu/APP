@@ -1,21 +1,25 @@
+import React, { useEffect } from 'react';
 import { insuApis } from '@app/api/Insurance';
 import { useGlobalDispatch } from '@app/context';
 import { useAsync, useInput } from '@app/hooks';
 import { EmptyLayout } from '@app/layout';
 import { handleApiError } from '@app/lib';
-import React, { useEffect } from 'react';
+import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import { Keyboard } from 'react-native';
 import SimpleToast from 'react-native-simple-toast';
 import StormFloodAddressPresenter from './StormFloodAddressPresenter';
-export default function Container({
+
+type StormFloodAddressContainerTypes = {
+  state: StormFloodStateTypes;
+  onChangeState: (name: StormFloodName, value: any) => void;
+  handleJoinTypeNextButton: () => void;
+};
+
+export default function StormFloodAddressContainer({
   state,
   onChangeState,
-  handleNextButton,
-  onClickTermsModalOpen,
-  handlePreviousButton,
-  termsChange,
   handleJoinTypeNextButton,
-}) {
+}: StormFloodAddressContainerTypes) {
   const globalDispatch = useGlobalDispatch();
   const inputState = {
     searchInput: useInput(''),
@@ -26,10 +30,6 @@ export default function Container({
     [],
     true
   );
-
-  const nextButton = () => {
-    handleNextButton();
-  };
 
   //사용자 셀렉트 박스 셋팅
   const setSelectItems = (data) => {
@@ -146,6 +146,7 @@ export default function Container({
     getAddressDispatch();
   };
 
+  //주소검색 api 후 도는 로직
   useEffect(() => {
     if (getAddress.data?.data?.results !== undefined) {
       const result = getAddress.data?.data?.results;
@@ -165,9 +166,7 @@ export default function Container({
     return (
       <StormFloodAddressPresenter
         state={state}
-        nextButton={nextButton}
         onChangeState={onChangeState}
-        handlePreviousButton={handlePreviousButton}
         submitSearchAddress={submitSearchAddress}
         inputState={inputState}
         loading={getAddress.loading || state.loading}

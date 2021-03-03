@@ -1,7 +1,18 @@
 import { EmptyLayout } from '@app/layout';
+import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import React from 'react';
 import ProductInfomationPresenter from './ProductInfomationPresenter';
-export default function ProductInfomationContainer({ state, onChangeState, handleNextButton, onClickTermsModalOpen }) {
+
+type ProductInfomationContainerTypes = {
+  state: StormFloodStateTypes;
+  handleNextButton: () => null | undefined;
+  onChangeState: (name: StormFloodName, value: any) => void;
+};
+export default function ProductInfomationContainer({
+  state,
+  onChangeState,
+  handleNextButton,
+}: ProductInfomationContainerTypes) {
   const nextButton = () => {
     handleNextButton();
   };
@@ -16,7 +27,6 @@ export default function ProductInfomationContainer({ state, onChangeState, handl
       <ProductInfomationPresenter
         state={state}
         nextButton={nextButton}
-        onClickTermsModalOpen={onClickTermsModalOpen}
         onClickTermsModalOpen2={onClickTermsModalOpen2}
         onChangeState={onChangeState}
       />

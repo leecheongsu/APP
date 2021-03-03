@@ -1,9 +1,9 @@
-import React from 'react';
+import { insuImg } from '@app/assets';
 import { BottomFixButton, FocusAwareStatusBar, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
-import { Image } from 'react-native';
-import { insuImg } from '@app/assets';
 import { useNavigation } from '@react-navigation/native';
+import React from 'react';
+import { Image } from 'react-native';
 
 const Container = styled.View`
   flex: 1;
@@ -15,8 +15,9 @@ const ContentsContainer = styled.View`
   margin-top: -200px;
 `;
 
-export default function JoinSuccess() {
+function JoinSuccessPresenter() {
   const navigation = useNavigation();
+
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
@@ -45,3 +46,5 @@ export default function JoinSuccess() {
     </>
   );
 }
+
+export default JoinSuccessPresenter;

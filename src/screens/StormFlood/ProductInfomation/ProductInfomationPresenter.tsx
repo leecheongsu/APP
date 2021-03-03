@@ -10,7 +10,6 @@ import { productInfoHtml } from '@app/lib/html';
 type ProductInfomationTypes = {
   state: StormFloodStateTypes;
   nextButton: () => void;
-  onClickTermsModalOpen: (name: any, html: any) => void;
   onChangeState: (name: StormFloodName, value: any) => void;
   onClickTermsModalOpen2: (name: any, html: any) => void;
 };
@@ -42,7 +41,6 @@ const ButtonBox = styled.View`
 function ProductInfomationPresenter({
   state,
   nextButton,
-  onClickTermsModalOpen,
   onClickTermsModalOpen2,
   onChangeState,
 }: ProductInfomationTypes) {

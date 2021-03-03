@@ -3,6 +3,15 @@ import { BottomFixButton, InfoList, Loading } from '@app/components';
 import { screenWidth } from '@app/lib';
 import styled from '@app/style/typed-components';
 import { WebView } from 'react-native-webview';
+import { StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
+
+type StormFloodInfoPresenterTypes = {
+  state: StormFloodStateTypes;
+  handleNextButton: () => null | undefined;
+  handlePreviousButton: () => void;
+  infoList: any;
+};
+
 const Container = styled.View`
   width: ${screenWidth()}px;
 `;
@@ -20,14 +29,21 @@ const PaddingBox = styled.View`
   height: 400px;
 `;
 
-function StormFloodInfoPresenter({ state, handleNextButton, handlePreviousButton, infoList }) {
+function StormFloodInfoPresenter({
+  state,
+  handleNextButton,
+  handlePreviousButton,
+  infoList,
+}: StormFloodInfoPresenterTypes) {
+  const MAP_API_KEY =
+    'https://dapi.kakao.com/v2/maps/sdk.js?appkey=ec77629929fd12e024fc9d54d34dbfbc&libraries=services';
   const html = `
   <html lang="en">
   <head>
       <meta charset="utf-8" />
       <meta http-equiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <script type="text/javascript" src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=ec77629929fd12e024fc9d54d34dbfbc&libraries=services"></script>
+      <script type="text/javascript" src=${MAP_API_KEY}></script>
   </head>
   <body>
     <div id="roadview" style="width:100%;height:300px;"></div>

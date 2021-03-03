@@ -1,5 +1,4 @@
 import * as styledComponents from 'styled-components/native';
-import { ReactNativeThemedStyledComponentsModule } from 'styled-components/native';
 import { DefaultTheme } from 'styled-components/native';
 const {
   default: styled,

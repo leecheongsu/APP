@@ -1,7 +1,7 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Calamity, CustomerCenter, Home, HouseFire, HouseInfoDetail, StormFlood, StormFlood2 } from '@app/screens';
-import { BackButton, DefaultAlert, LogoTitle, MenuButton, Typhograph } from '@app/components/index';
+import { Calamity, CustomerCenter, Home, HouseFire, StormFlood, StormFlood2 } from '@app/screens';
+import { BackButton, LogoTitle, MenuButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';
 import UserButton from '@app/components/Header/UserButton';
 import { useGlobalState } from '@app/context';

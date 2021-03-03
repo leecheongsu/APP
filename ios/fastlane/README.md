@@ -29,6 +29,11 @@ fastlane increase_build_number_and_push_to_beta
 fastlane ios test
 ```
 Build and run tests
+### ios codepush
+```
+fastlane ios codepush
+```
+
 ### ios beta
 ```
 fastlane ios beta

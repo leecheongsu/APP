@@ -10,7 +10,6 @@ import { insuImg } from '@app/assets';
 type StormFloodResultPresenterTypes = {
   state: StormFloodStateTypes;
   nextButton: () => void;
-  onClickTermsModalOpen: (name: any, html: any) => void;
   handlePreviousButton: () => void;
   onChangeState: (name: StormFloodName, value: any) => void;
   onChangeActive: (company: any) => void;
@@ -49,7 +48,6 @@ function StormFloodResultPresenter({
   state,
   nextButton,
   onChangeState,
-  onClickTermsModalOpen,
   handlePreviousButton,
   onChangeActive,
 }: StormFloodResultPresenterTypes) {
