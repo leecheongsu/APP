@@ -7,6 +7,7 @@
     "codepushDev": "appcenter codepush release-react -a insurobo-gmail.com/com.insurobo -d dev && appcenter codepush release-react -a insurobo-gmail.com/com.insurobo.insurobo -d Dev",
     "codepushStaging": "appcenter codepush release-react -a insurobo-gmail.com/com.insurobo -d Staging && appcenter codepush release-react -a insurobo-gmail.com/com.insurobo.insurobo -d Staging",
     "codepushProduct": "appcenter codepush release-react -a insurobo-gmail.com/com.insurobo -d Production && appcenter codepush release-react -a insurobo-gmail.com/com.insurobo.insurobo -d Production",
+    "setCodepush": "cd ios && fastlane codePush && cd .. && cd android && fastlane codePush && cd ..",
     "android:codepushStaging": "appcenter codepush release-react -a insurobo-gmail.com/com.insurobo -d Staging",
     "ios:codepushStaging": "appcenter codepush release-react -a insurobo-gmail.com/com.insurobo.insurobo -d Staging",
     "android:codepushProduction": "appcenter codepush release-react -a insurobo-gmail.com/com.insurobo -d Production",
