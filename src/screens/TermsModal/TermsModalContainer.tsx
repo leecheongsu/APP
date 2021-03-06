@@ -7,7 +7,7 @@ type TermsModalContainerTypes = {
   html: any;
   onPress: () => void;
   isButton: boolean;
-  buttonTitle: string;
+  buttonTitle?: string;
 };
 
 export default function TermsModalContainer({

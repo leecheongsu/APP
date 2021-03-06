@@ -1,17 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import { insuIcon } from '@app/assets';
 import IconButton from '@app/components/Button/IconButton';
-import { clearStoreData, handleApiError, screenHeight, setStoreData } from '@app/lib';
+import { clearStoreData, setStoreData } from '@app/lib';
 import styled from '@app/style/typed-components';
-import { Image, Linking, Platform } from 'react-native';
+import { Image, Linking, StyleSheet } from 'react-native';
 import { Avatar, LoginButton, TileButton, Typhograph } from '@app/components';
 import theme from '@app/style/theme';
 import { useGlobalDispatch, useGlobalState } from '@app/context';
 import { Switch } from 'react-native-gesture-handler';
-import { userApis } from '@app/api/User';
 import { KAKAO_CHAT_URL, CUMTOMER_NUMBER } from '@env';
+import { ifIphoneX } from 'react-native-iphone-x-helper';
+const styles = StyleSheet.create({
+  iphone: {
+    ...ifIphoneX({
+      paddingTop: 35,
+    }),
+  },
+});
 const Container = styled.View`
-  padding-top: ${Platform.OS === 'ios' ? screenHeight() / 20 : 10}px;
+  padding-top: 10px;
   background-color: ${theme.color.MENU_BACKGROUD_COLOR};
 `;
 
@@ -63,9 +70,6 @@ const SwitchBox = styled.View`
   border-bottom-width: 1px;
   border-bottom-color: ${theme.color.BORDER_GRAY};
 `;
-const CardTitleBox = styled.View`
-  padding: 10px 0px;
-`;
 
 const CardContainer = styled.View`
   background-color: ${theme.color.WHITE};
@@ -107,6 +111,7 @@ const BottomButtonWideItem = styled.TouchableOpacity`
 `;
 const BottomButtonBox = styled.View`
   flex-direction: row;
+  padding-bottom: 300px;
 `;
 
 const BottomButtonLeft = styled.TouchableOpacity`
@@ -138,7 +143,6 @@ export default function Menu(props) {
   const globalDispatch = useGlobalDispatch();
   const isLogin = globalState.user !== undefined;
   const [isEnabled, setIsEnabled] = useState(globalState.isAutoLogin);
-  const [data, setData] = useState([]);
   const logoutButton = () => {
     clearStoreData();
     globalDispatch({ type: 'RESET' });
@@ -169,7 +173,7 @@ export default function Menu(props) {
 
   return (
     <>
-      <Container>
+      <Container style={styles.iphone}>
         <Section1Container>
           <CloseButton>
             <IconButton onPress={() => navigation.closeDrawer()}>

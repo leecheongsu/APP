@@ -182,7 +182,7 @@ export default function HouseAddressContainer({
     getAddressDispatch();
   };
 
-  //주소검색후 데이터 셋팅
+  //주소검색후 데이터 셋팅ㄷ
   useEffect(() => {
     if (getAddress.data?.data?.results !== undefined) {
       const result = getAddress.data?.data?.results;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { BottomFixButton, CloseButton, FocusAwareStatusBar } from '@app/components';
-import { screenWidth } from '@app/lib';
+import { screenHeight, screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import { StyleSheet } from 'react-native';
@@ -38,13 +38,13 @@ const CloseButtonBox = styled.View`
   border-bottom-width: 0px;
   align-items: flex-end;
   position: absolute;
-  top: 10px;
+  top: ${screenHeight() / 28}px;
   right: 0px;
   z-index: 999;
 `;
 const BackButtonBox = styled.View``;
 const PaddingBox = styled.View`
-  height: 0px;
+  height: ${screenHeight() / 50}px;
   background-color: ${theme.color.WHITE};
 `;
 

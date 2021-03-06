@@ -40,7 +40,7 @@ const PaddingBox = styled.View`
   height: 220px;
 `;
 
-const TipBox = styled.View`
+const TipBox = styled.ScrollView`
   padding: 20px;
 `;
 
@@ -99,7 +99,7 @@ function HouseAddressPresenter({
           <Typhograph type="NOTO" color="BLACK" weight="BOLD" style={{ marginTop: 20 }}>
             세대별 가입
           </Typhograph>
-          <Typhograph type="NOTO" color="BROWN" size={12}>
+          <Typhograph type="NOTO" color="BROWN" size={12} style={{ paddingBottom: 100 }}>
             예) 하단 대진아파트, 중동 아남하이츠3차
           </Typhograph>
         </TipBox>

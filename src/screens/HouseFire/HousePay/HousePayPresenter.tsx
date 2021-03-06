@@ -141,6 +141,7 @@ function HousePayPresenter({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [inputState.cardMonth.value]);
+
   const html = `
   <html> 
   <head> 
@@ -209,6 +210,7 @@ function HousePayPresenter({
   </body>
   </html> 
   `;
+
   return (
     <Container>
       {state?.payway === 'card' ? (
@@ -314,7 +316,7 @@ function HousePayPresenter({
                 </InputContainer>
               </InputBox>
 
-              <InputBox>
+              <InputBox style={{ paddingBottom: 100 }}>
                 <LabelBox>
                   <Typhograph type="NOTO" color="BLACK2">
                     카드비밀번호 앞 2자리
