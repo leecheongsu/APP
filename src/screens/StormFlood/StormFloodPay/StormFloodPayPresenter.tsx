@@ -10,11 +10,10 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import ElectronicSign from '@app/screens/StormFlood/ElectronicSign';
 import { useGlobalState } from '@app/context';
 import SignConfirm from '@app/screens/StormFlood/SignConfirm';
-import SimpleToast from 'react-native-simple-toast';
+
 type StormFloodPayPresenterTypes = {
   state: StormFloodStateTypes;
   nextButton: () => void;
-  onClickTermsModalOpen: (name: any, html: any) => void;
   handlePreviousButton: () => void;
   onChangeState: (name: StormFloodName, value: any) => void;
   selectCard: (name: any) => void;
@@ -85,7 +84,6 @@ function StormFloodPayPresenter({
   state,
   nextButton,
   onChangeState,
-  onClickTermsModalOpen,
   handlePreviousButton,
   inputState,
   selectCard,

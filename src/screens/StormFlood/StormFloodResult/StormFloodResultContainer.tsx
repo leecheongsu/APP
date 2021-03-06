@@ -1,16 +1,23 @@
+import React from 'react';
 import { useGlobalState } from '@app/context';
 import { EmptyLayout } from '@app/layout';
 import { useNavigation } from '@react-navigation/native';
-import React from 'react';
 import SimpleToast from 'react-native-simple-toast';
 import StormFloodResultPresenter from './StormFloodResultPresenter';
+import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
+
+type StormFloodResultContainerTypes = {
+  state: StormFloodStateTypes;
+  onChangeState: (name: StormFloodName, value: any) => void;
+  handleNextButton: () => null | undefined;
+  handlePreviousButton: () => void;
+};
 export default function StormFloodResultContainer({
   state,
   onChangeState,
   handleNextButton,
-  onClickTermsModalOpen,
   handlePreviousButton,
-}) {
+}: StormFloodResultContainerTypes) {
   const navigation = useNavigation();
   const globalState = useGlobalState();
   const nextButton = () => {
@@ -25,6 +32,7 @@ export default function StormFloodResultContainer({
       return null;
     }
   };
+
   const onChangeActive = (company) => {
     onChangeState('selectInsuCompany', company);
   };
@@ -36,7 +44,6 @@ export default function StormFloodResultContainer({
         nextButton={nextButton}
         onChangeState={onChangeState}
         handlePreviousButton={handlePreviousButton}
-        onClickTermsModalOpen={onClickTermsModalOpen}
         onChangeActive={onChangeActive}
       />
     );

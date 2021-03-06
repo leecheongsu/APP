@@ -104,6 +104,7 @@ platform :ios do
     build_type =  prompt(text: "Please enter the build type\n(release, staging, dev): ")
     version = prompt(text: "Enter the version type or specific version\n(major, minor, patch or 1.0.0): ")
     updateVersion(build_type,version)
+    increment_build_number(xcodeproj: "insurobo.xcodeproj")
   end
 
 

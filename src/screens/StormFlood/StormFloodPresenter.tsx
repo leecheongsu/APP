@@ -1,8 +1,28 @@
-import { FocusAwareStatusBar, InfoModal } from '@app/components';
 import React from 'react';
+import { FocusAwareStatusBar, InfoModal } from '@app/components';
+import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import { ScrollView } from 'react-native-gesture-handler';
 
-function StormFloodPresenter({ state, scrollRef, returnComponent, onChangeState }) {
+type StormFloodPresenterTypes = {
+  state: StormFloodStateTypes;
+  scrollRef: any;
+  returnComponent: (
+    id:
+      | 'productInfomation'
+      | 'checkList'
+      | 'stormFloodAddress'
+      | 'info'
+      | 'guaranteeSelect'
+      | 'stormFloodResult'
+      | 'stormFloodInput'
+      | 'stormFloodTerms'
+      | 'stormFloodPay'
+      | 'stormFloodFinal'
+  ) => React.ReactNode;
+  onChangeState: (name: StormFloodName, value: any) => void;
+};
+
+function StormFloodPresenter({ state, scrollRef, returnComponent, onChangeState }: StormFloodPresenterTypes) {
   return (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />

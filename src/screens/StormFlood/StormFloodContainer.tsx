@@ -38,52 +38,52 @@ import { DefaultAlert } from '@app/components';
 import { useNavigation } from '@react-navigation/native';
 import { useGlobalDispatch } from '@app/context';
 export type StormFloodName =
-  | 'isInfoModal'
-  | 'infoTitle'
-  | 'infoContents'
-  | 'stepperTitle'
-  | 'isKeybordView'
-  | 'stepNumber'
-  | 'loading'
+  | 'isInfoModal' //infomodal flag
+  | 'infoTitle' //infomodal 제목
+  | 'infoContents' // infomodal 내용
+  | 'stepperTitle' //step 타이틀 네임
+  | 'isKeybordView' //키보드 view flag
+  | 'stepNumber' //step number
+  | 'loading' //loading
   | 'stormFlood'
-  | 'lat'
-  | 'lng'
-  | 'selectAddress'
-  | 'termsModal'
-  | 'termsHtml'
-  | 'termsName'
-  | 'addressCommon'
-  | 'addressData'
-  | 'addressErrorMessage'
-  | 'stormFloodStep'
-  | 'guaranteeSelect'
-  | 'joinType'
-  | 'stuffDivision'
-  | 'possessionDivision'
-  | 'selectSector'
-  | 'selectBuildingPrice'
-  | 'selectFacilityprice'
-  | 'selectSelfPrice'
-  | 'selectInventoryPrice'
-  | 'selectInsuCompany'
-  | 'termsPdf'
-  | 'selectCard'
-  | 'selectTerm'
-  | 'insuCertificateModal'
-  | 'basicSectorItems'
-  | 'factorySectorItems'
-  | 'basicBuildingPriceItems'
-  | 'factoryBuildingPriceItems'
-  | 'basicFacilityPriceItems'
-  | 'factoryFacilityPriceItems'
-  | 'inventoryPriceItems'
-  | 'selfPriceItems'
-  | 'resultPrice'
-  | 'electronicSignModal'
-  | 'signConfirmModal'
-  | 'signData'
-  | 'isSign'
-  | 'isSignConfirm';
+  | 'lat' //로드뷰를 표시하기위한 lat
+  | 'lng' //로드뷰를 표시하기위한 lang
+  | 'selectAddress' // 선택한주소
+  | 'termsModal' //약관 modal
+  | 'termsHtml' //약관 modalhtml
+  | 'termsName' //약관 이름
+  | 'addressCommon' //검색한주소 common
+  | 'addressData' //검색한 주소 data
+  | 'addressErrorMessage' //주소검색 error 메세지
+  | 'stormFloodStep' //풍수해 가입 단계
+  | 'guaranteeSelect' //풍수해 담보
+  | 'joinType' //가입 "개인" ? 법인
+  | 'stuffDivision' //담보내용 일반 ? 공장
+  | 'possessionDivision' // 소유구분 임차자 ? 소유자
+  | 'selectSector' //선택한 업종
+  | 'selectBuildingPrice' //선택한 건물가격
+  | 'selectFacilityprice' //선택한 시설집기인테리어 가격
+  | 'selectSelfPrice' //선택한 재고자산
+  | 'selectInventoryPrice' //선택한 자기 부담금
+  | 'selectInsuCompany' //선택한 보험사
+  | 'termsPdf' //약관 pdf
+  | 'selectCard' //선택한 카드사
+  | 'selectTerm' //클릭한 약관
+  | 'insuCertificateModal' //보험약관 모달 flag
+  | 'basicSectorItems' // 일반 업종 리스트
+  | 'factorySectorItems' // 공장 업종 리스트
+  | 'basicBuildingPriceItems' //일반 건물가격 리스트
+  | 'factoryBuildingPriceItems' //공장 건물가격 리스트
+  | 'basicFacilityPriceItems' //일반 시설집기인테리어 리스트
+  | 'factoryFacilityPriceItems' //공장 시설집기인터리어 리스트
+  | 'inventoryPriceItems' // 재고자산 리스트
+  | 'selfPriceItems' //자기부담금 리스트
+  | 'resultPrice' //최종 가격
+  | 'electronicSignModal' //전자서명 modal flag
+  | 'signConfirmModal' //전자서명 확인 modal flag
+  | 'signData' //전자서명 데이터
+  | 'isSign' //전자서명 flag
+  | 'isSignConfirm'; //전자서명 확인 flag
 
 export type StormFloodStateTypes = {
   stepperTitle: string;
@@ -108,7 +108,7 @@ export type StormFloodStateTypes = {
   joinType: string;
   stuffDivision: string;
   possessionDivision: string;
-  selectSector: string;
+  selectSector: any;
   selectBuildingPrice: any;
   selectFacilityprice: any;
   selectSelfPrice: any;
@@ -443,7 +443,7 @@ export default function StormFloodContainer() {
     hsArea: useInput(''),
   };
 
-  const onChangeState = useCallback((name, value) => {
+  const onChangeState = useCallback((name: StormFloodName, value) => {
     dispatch({ type: 'CHANGE', name, value });
   }, []);
 
@@ -568,13 +568,7 @@ export default function StormFloodContainer() {
     switch (id) {
       case 'productInfomation':
         return (
-          <ProductInfomation
-            key={id}
-            state={state}
-            onChangeState={onChangeState}
-            handleNextButton={handleNextButton}
-            onClickTermsModalOpen={onClickTermsModalOpen}
-          />
+          <ProductInfomation key={id} state={state} onChangeState={onChangeState} handleNextButton={handleNextButton} />
         );
       case 'checkList':
         return (
@@ -583,7 +577,6 @@ export default function StormFloodContainer() {
             state={state}
             onChangeState={onChangeState}
             handleNextButton={handleNextButton}
-            onClickTermsModalOpen={onClickTermsModalOpen}
             handlePreviousButton={handlePreviousButton}
             termsChange={termsChange}
             onClickTermsModalAgree={onClickTermsModalAgree}
@@ -595,10 +588,6 @@ export default function StormFloodContainer() {
             key={id}
             state={state}
             onChangeState={onChangeState}
-            handleNextButton={handleNextButton}
-            onClickTermsModalOpen={onClickTermsModalOpen}
-            handlePreviousButton={handlePreviousButton}
-            termsChange={termsChange}
             handleJoinTypeNextButton={handleJoinTypeNextButton}
           />
         );
@@ -607,7 +596,6 @@ export default function StormFloodContainer() {
           <StormFloodInfo
             key={id}
             state={state}
-            onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
             handleNextButton={handleNextButton}
           />
@@ -617,7 +605,6 @@ export default function StormFloodContainer() {
           <GuaranteeSelect
             key={id}
             state={state}
-            onClickTermsModalOpen={onClickTermsModalOpen}
             onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
             handleNextButton={handleNextButton}
@@ -630,7 +617,6 @@ export default function StormFloodContainer() {
           <StormFloodResult
             key={id}
             state={state}
-            onClickTermsModalOpen={onClickTermsModalOpen}
             onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
             handleNextButton={handleNextButton}
@@ -648,7 +634,6 @@ export default function StormFloodContainer() {
             termsChange={termsChange}
             onClickAllCheck={onClickAllCheck}
             onClickTermsModalAgree={onClickTermsModalAgree}
-            inputState={inputState}
           />
         );
       case 'stormFloodTerms':
@@ -670,7 +655,6 @@ export default function StormFloodContainer() {
           <StormFloodPay
             key={id}
             state={state}
-            onClickTermsModalOpen={onClickTermsModalOpen}
             onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
             handleNextButton={handleNextButton}
@@ -681,10 +665,8 @@ export default function StormFloodContainer() {
           <StormFloodFinal
             key={id}
             state={state}
-            onClickTermsModalOpen={onClickTermsModalOpen}
             onChangeState={onChangeState}
             handlePreviousButton={handlePreviousButton}
-            handleNextButton={handleNextButton}
           />
         );
     }

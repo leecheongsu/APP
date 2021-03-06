@@ -1,13 +1,21 @@
 import React from 'react';
-import { BackButton, BottomFixButton, CloseButton, FocusAwareStatusBar, Typhograph } from '@app/components';
-import styled from '@app/style/typed-components';
-import WebView from 'react-native-webview';
-import Modal from 'react-native-modal';
+import { BottomFixButton, CloseButton, FocusAwareStatusBar, Typhograph } from '@app/components';
+import { useGlobalState } from '@app/context';
 import { getInsuText, priceDot, recomendMasking, screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
+import styled from '@app/style/typed-components';
 import { Platform } from 'react-native';
-import { useGlobalState } from '@app/context';
 import moment from 'moment';
+import Modal from 'react-native-modal';
+
+type InsuCertificatePresenterTypes = {
+  state: any;
+  open: boolean;
+  close: () => void;
+  isButton: boolean;
+  insuPrice: any;
+};
+
 const ContentsBox = styled.View`
   width: ${screenWidth()}px;
   height: 100%;
@@ -75,7 +83,7 @@ const TableHeaderItem = styled.View`
   border-right-color: ${theme.color.WHITE};
 `;
 const TableBody = styled.View`
-  padding: 0px 0px;
+  padding: 10px 0px;
 `;
 const TableBodyItemBox = styled.View`
   flex-direction: row;
@@ -88,7 +96,7 @@ const TableBodyItem = styled.View`
   padding: 0px 10px;
 `;
 
-export default function InsuCertificate({ open, close, isButton = true, state, insuPrice, item }) {
+function InsuCertificatePresenter({ state, open, close, isButton = true, insuPrice }: InsuCertificatePresenterTypes) {
   const globalState = useGlobalState();
   const insuEndDateYear = Number(state?.contractInsuInfo?.insDate?.slice(0, 4)) + 1;
   const insuEndDateMonth = state?.contractInsuInfo?.insDate?.slice(5, 7);
@@ -102,6 +110,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
   const now = new Date();
   const startDay = moment(now.setDate(now.getDate() + 7)).format('YYYY.MM.DD');
   const endDate = moment(now.setDate(now.getDate() + 364)).format('YYYY.MM.DD');
+  const isSede = state?.selectType === 'S';
   return globalState?.insuType === 'ww' ? (
     <>
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
@@ -133,7 +142,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.polholder}
+                    {globalState?.user?.name}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -146,7 +155,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.email}
+                    {globalState?.user?.email}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -160,7 +169,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insstdt} ~ {item?.inseddt}({item?.insedtm})
+                    {startDay} ~ {endDate} (24:00)
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -174,7 +183,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insurant_a_mobile}
+                    {globalState?.user?.mobile}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -188,7 +197,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insurant_a_jumina} - {item?.insurant_a_sex}
+                    {globalState?.user?.jumina} - {globalState?.user?.sex}
                     <Typhograph type="NOTO" color="GRAY3" size={11}>
                       ●●●●●●
                     </Typhograph>
@@ -211,7 +220,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insurant_b}
+                    {globalState?.user?.name}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -219,12 +228,25 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
               <RowBox>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY">
-                    생년월일/사업자등록번호
+                    생년월일
                   </Typhograph>
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.pbohumja_birth}
+                    {globalState?.user?.jumina}
+                  </Typhograph>
+                </RowItem>
+              </RowBox>
+              {/* 보험기간 */}
+              <RowBox>
+                <RowItem>
+                  <Typhograph type="NOTO" color="GRAY">
+                    사업자등록번호
+                  </Typhograph>
+                </RowItem>
+                <RowItem>
+                  <Typhograph type="NOTO" color="BLACK2">
+                    -
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -238,7 +260,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.owner === 'o' ? '자가' : '임차'}
+                    {state?.possessionDivision}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -252,41 +274,40 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem style={{ width: '50%' }}>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insloc}
+                    {state?.selectAddress?.address}
                   </Typhograph>
                 </RowItem>
               </RowBox>
             </InfoBox>
             {/* 추천인 정보 */}
-            {item.advisor_company !== '' ||
-              (item.advisor_company !== undefined && (
-                <InfoBox>
-                  <RecommendUserBox>
-                    <TitleBox>
-                      <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
-                        추천인 정보
+            {globalState.recommendUser !== undefined && (
+              <InfoBox>
+                <RecommendUserBox>
+                  <TitleBox>
+                    <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
+                      추천인 정보
+                    </Typhograph>
+                  </TitleBox>
+                  <RowBox>
+                    <RowItem>
+                      <Typhograph type="NOTO" color="GRAY">
+                        {globalState.recommendUser?.company}
                       </Typhograph>
-                    </TitleBox>
-                    <RowBox>
-                      <RowItem>
-                        <Typhograph type="NOTO" color="GRAY">
-                          {item?.advisor_company}
-                        </Typhograph>
-                      </RowItem>
-                      <RowItem>
-                        <Typhograph type="NOTO" color="GRAY">
-                          {recomendMasking(String(item?.advisor_mobile))}
-                        </Typhograph>
-                      </RowItem>
-                      <RowItem>
-                        <Typhograph type="NOTO" color="GRAY">
-                          {item?.pbohumja_mobile}
-                        </Typhograph>
-                      </RowItem>
-                    </RowBox>
-                  </RecommendUserBox>
-                </InfoBox>
-              ))}
+                    </RowItem>
+                    <RowItem>
+                      <Typhograph type="NOTO" color="GRAY">
+                        {recomendMasking(globalState.recommendUser?.mobile)}
+                      </Typhograph>
+                    </RowItem>
+                    <RowItem>
+                      <Typhograph type="NOTO" color="GRAY">
+                        {globalState.recommendUser?.name}
+                      </Typhograph>
+                    </RowItem>
+                  </RowBox>
+                </RecommendUserBox>
+              </InfoBox>
+            )}
             <InfoBox>
               <TitleBox>
                 <Typhograph type="NOTO" weight="BOLD" color="BLUE" size={15}>
@@ -303,7 +324,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.prod_name}
+                    {state?.selectAddress?.product?.p_name}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -316,7 +337,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.inscompany}
+                    {state?.selectAddress?.product?.inscompany}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -329,7 +350,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.quote_no}
+                    {state?.selectAddress?.quote_no}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -342,7 +363,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insstdt} ~ {item?.inseddt}({item?.insedtm})
+                    {startDay} ~ {endDate} (24:00)
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -355,7 +376,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                    {priceDot(Math.floor(item.tpymprem))}
+                    {priceDot(state?.resultPrice?.tpymPrem)}
                     <Typhograph type="NOTO" color="GRAY">
                       원
                     </Typhograph>
@@ -371,7 +392,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                    {priceDot(Math.floor(item.govtprem))}
+                    {priceDot(state?.resultPrice?.govtPrem)}
                     <Typhograph type="NOTO" color="GRAY">
                       원
                     </Typhograph>
@@ -387,7 +408,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                    {priceDot(Math.floor(item.lgovtprem))}
+                    {priceDot(state?.resultPrice?.lgovtPrem)}
                     <Typhograph type="NOTO" color="GRAY">
                       원
                     </Typhograph>
@@ -403,7 +424,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="ROBOTO" color="SKYBLUE" size={16}>
-                    {priceDot(Math.floor(item.perprem))}
+                    {priceDot(state?.resultPrice?.perPrem)}
                     <Typhograph type="NOTO" color="GRAY">
                       원
                     </Typhograph>
@@ -437,7 +458,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                     </TableBodyItem>
                     <TableBodyItem>
                       <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                        {priceDot(Math.floor(item?.elagorgninsdamt1))}
+                        {state?.selectBuildingPrice?.val_name}
                         <Typhograph type="NOTO" color="GRAY">
                           원
                         </Typhograph>
@@ -453,7 +474,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                     </TableBodyItem>
                     <TableBodyItem>
                       <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                        {priceDot(Math.floor(item?.elagorgninsdamt2))}
+                        {state?.selectFacilityprice?.val_name}
                         <Typhograph type="NOTO" color="GRAY">
                           원
                         </Typhograph>
@@ -469,8 +490,9 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                     </TableBodyItem>
                     <TableBodyItem>
                       <Typhograph type="ROBOTO" color="BLACK2" size={16}>
+                        {state?.selectInventoryPrice?.val_name}
                         <Typhograph type="NOTO" color="GRAY">
-                          {priceDot(Math.floor(item?.elagorgninsdamt3)) === '0' ? '-' : '원'}
+                          {state?.selectInventoryPrice?.val_name === '미가입' ? '' : '원'}
                         </Typhograph>
                       </Typhograph>
                     </TableBodyItem>
@@ -484,7 +506,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                     </TableBodyItem>
                     <TableBodyItem>
                       <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                        {priceDot(Math.floor(item.elagorgninsdamt4))}
+                        {state?.selectSelfPrice?.val_name}
                         <Typhograph type="NOTO" color="GRAY">
                           원
                         </Typhograph>
@@ -533,7 +555,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.polholder}
+                    {globalState?.user?.name}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -546,7 +568,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.email}
+                    {globalState?.user?.email}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -560,7 +582,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insstdt} ~ {item?.inseddt}({item?.insedtm})
+                    {state?.contractInsuInfo?.insDate} ~ {insuEndDate} (24:00)
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -574,7 +596,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insurant_a_mobile}
+                    {globalState?.user?.mobile}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -588,7 +610,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insurant_a_jumina} - {item?.insurant_a_sex}
+                    {globalState?.user?.jumina} - {globalState?.user?.sex}
                     <Typhograph type="NOTO" color="GRAY3" size={11}>
                       ●●●●●●
                     </Typhograph>
@@ -596,7 +618,6 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
               </RowBox>
             </InfoBox>
-
             {/* 피보험자 정보 */}
             <InfoBox>
               <TitleBox>
@@ -612,12 +633,11 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insurant_b}
+                    {state?.contractInsuInfo?.name}
                   </Typhograph>
                 </RowItem>
               </RowBox>
-
-              {/* 생년월일/사업자등록번호 */}
+              {/* 이메일 */}
               <RowBox>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY">
@@ -626,12 +646,11 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.pbohumja_birth}
+                    {state?.contractInsuInfo?.jumin?.slice(0, 6)}
                   </Typhograph>
                 </RowItem>
               </RowBox>
-
-              {/* 보험목적물 소유자 */}
+              {/* 연락처 */}
               <RowBox>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY">
@@ -640,7 +659,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.owner === 'o' ? '자가' : '임차'}
+                    {state?.contractInsuInfo?.owner === 'o' ? '자가' : '임차'}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -654,14 +673,13 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem style={{ width: '50%' }}>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insloc}
+                    {isSede ? `${state?.selectAddress?.address}` : state?.selectAddress?.address}
                   </Typhograph>
                 </RowItem>
               </RowBox>
             </InfoBox>
-
             {/* 추천인 정보 */}
-            {item.advisor_company !== '' && (
+            {globalState.recommendUser !== undefined && (
               <InfoBox>
                 <RecommendUserBox>
                   <TitleBox>
@@ -672,17 +690,17 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                   <RowBox>
                     <RowItem>
                       <Typhograph type="NOTO" color="GRAY">
-                        {item?.advisor_company}
+                        {globalState.recommendUser?.company}
                       </Typhograph>
                     </RowItem>
                     <RowItem>
                       <Typhograph type="NOTO" color="GRAY">
-                        {recomendMasking(String(item?.advisor_mobile))}
+                        {recomendMasking(globalState.recommendUser?.mobile)}
                       </Typhograph>
                     </RowItem>
                     <RowItem>
                       <Typhograph type="NOTO" color="GRAY">
-                        {item?.pbohumja_mobile}
+                        {globalState.recommendUser?.name}
                       </Typhograph>
                     </RowItem>
                   </RowBox>
@@ -704,7 +722,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.prod_name}
+                    {state?.selectAddress?.product?.p_name}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -717,7 +735,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.inscompany}
+                    {state?.selectAddress?.product?.inscompany}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -730,7 +748,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.quote_no}
+                    {state?.selectAddress?.quote_no}
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -743,7 +761,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insstdt} ~ {item?.inseddt}({item?.insedtm})
+                    {state?.contractInsuInfo?.insDate} ~ {insuEndDate} (24:00)
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -804,7 +822,7 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </RowItem>
                 <RowItem>
                   <Typhograph type="ROBOTO" color="SKYBLUE" size={16}>
-                    {priceDot(item?.premium)}
+                    {insuPrice}
                     <Typhograph type="NOTO" color="GRAY">
                       원
                     </Typhograph>
@@ -829,21 +847,17 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
                 </TableHeader>
 
                 <TableBody>
-                  {item?.premiums?.map((item, index) => {
+                  {selectInsu?.map((item, index) => {
                     return (
                       <TableBodyItemBox key={index}>
                         <TableBodyItem>
-                          <Typhograph type="NOTO" size={12} color="GRAY">
+                          <Typhograph type="NOTO" size={12}>
                             {getInsuText(item.item_id)}
                           </Typhograph>
                         </TableBodyItem>
                         <TableBodyItem>
                           <Typhograph type="NOTO" size={12}>
-                            {priceDot(item.ins_amt)}
-                            <Typhograph type="NOTO" size={12} color="GRAY">
-                              {' '}
-                              원
-                            </Typhograph>
+                            {priceDot(item.ins_amt)}원
                           </Typhograph>
                         </TableBodyItem>
                       </TableBodyItemBox>
@@ -862,3 +876,5 @@ export default function InsuCertificate({ open, close, isButton = true, state, i
     </>
   );
 }
+
+export default InsuCertificatePresenter;

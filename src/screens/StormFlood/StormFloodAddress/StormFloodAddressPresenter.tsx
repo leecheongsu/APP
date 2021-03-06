@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddressCard, BottomFixButton, EmptyCard, FullLabel, Loading, SearchInput, Typhograph } from '@app/components';
+import { AddressCard, EmptyCard, FullLabel, Loading, SearchInput, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import { screenWidth } from '@app/lib';
 import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
@@ -7,8 +7,6 @@ import theme from '@app/style/theme';
 
 type StormFloodAddressPresenterTypes = {
   state: StormFloodStateTypes;
-  nextButton: () => void;
-  handlePreviousButton: () => void;
   onChangeState: (name: StormFloodName, value: any) => void;
   submitSearchAddress: () => void;
   inputState: any;
@@ -22,15 +20,6 @@ const Container = styled.View`
 
 const ContentsContainer = styled.View``;
 
-const RowBox = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-const RowItem = styled.View`
-  align-items: center;
-  width: ${(props) => (props.width ? props.width : '0px')};
-`;
 const SearchBox = styled.View`
   background-color: ${theme.color.WHITE};
   padding: 20px 20px;
@@ -48,13 +37,11 @@ const TipBox = styled.View`
 
 function StormFloodAddressPresenter({
   state,
-  nextButton,
   onChangeState,
   submitSearchAddress,
   inputState,
   loading,
   SelectAddress,
-  handlePreviousButton,
 }: StormFloodAddressPresenterTypes) {
   const isErrorAndEmpty = state.addressErrorMessage !== '' && state.addressErrorMessage !== '정상';
   const PLACEHOLDER = '도로명이나 건물명을 입력하세요.';

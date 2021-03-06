@@ -2,6 +2,13 @@ import React from 'react';
 import StormFloodInfoPresenter from './StormFloodInfoPresenter';
 import moment from 'moment';
 import { EmptyLayout } from '@app/layout';
+import { StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
+
+type HouseInfoContainerTypes = {
+  state: StormFloodStateTypes;
+  handleNextButton: () => null | undefined;
+  handlePreviousButton: () => void;
+};
 
 export type InfoListTypes = {
   address: string;
@@ -17,17 +24,14 @@ export type InfoListTypes = {
   roof_name: string;
 };
 
-export default function HouseInfoContainer({ state, onChangeState, handleNextButton, handlePreviousButton }) {
+export default function HouseInfoContainer({ state, handleNextButton, handlePreviousButton }: HouseInfoContainerTypes) {
   const infoList: InfoListTypes = {
     address: state.selectAddress?.address,
     bld_name: state.selectAddress?.bld_name,
     main_purps: state.selectAddress?.main_purps,
     flr_name: state.selectAddress?.flr_name,
     cnt_sedae: state.selectAddress?.cnt_sedae,
-    dong_info:
-      state.selectType === 'T' && state?.selectAddress?.dong_info
-        ? Object.entries(JSON.parse(state?.selectAddress?.dong_info)[0])
-        : state?.selectAddress?.dong_info,
+    dong_info: state?.selectAddress?.dong_info,
     total_area: state.selectAddress?.total_area,
     main_struct: state.selectAddress?.main_struct,
     main_struct2: state.selectAddress?.main_struct,

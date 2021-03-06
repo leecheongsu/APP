@@ -1,5 +1,4 @@
 import { DefaultTheme as DefaultNavigationTheme } from '@react-navigation/native';
-import { DefaultTheme } from 'styled-components/native';
 
 const WHITE = '#FFFFFF';
 const BLACK = '#000000';
@@ -34,7 +33,7 @@ const SOFTBLUE = '#40a1ef';
 const YELLOW = '#ffc75f';
 const BROWN = '#cc561e';
 
-const theme: DefaultTheme = {
+const theme = {
   color: {
     BLACK,
     BLACK2,

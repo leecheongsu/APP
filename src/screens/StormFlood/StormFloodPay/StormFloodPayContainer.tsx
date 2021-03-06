@@ -3,29 +3,37 @@ import { useGlobalState } from '@app/context';
 import { useInput } from '@app/hooks';
 import { EmptyLayout } from '@app/layout';
 import { handleApiError } from '@app/lib';
-import { useNavigation } from '@react-navigation/native';
+import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import React from 'react';
 import { Alert } from 'react-native';
 import StormFloodPayPresenter from './StormFloodPayPresenter';
+
+type StormFloodPayContainerTypes = {
+  state: StormFloodStateTypes;
+  onChangeState: (name: StormFloodName, value: any) => void;
+  handleNextButton: () => null | undefined;
+  handlePreviousButton: () => void;
+};
+
 export default function StormFloodPayContainer({
   state,
   onChangeState,
   handleNextButton,
-  onClickTermsModalOpen,
   handlePreviousButton,
-}) {
-  const navigation = useNavigation();
+}: StormFloodPayContainerTypes) {
   const globalState = useGlobalState();
   const inputState = {
-    card1: useInput(''),
-    card2: useInput(''),
-    card3: useInput(''),
-    card4: useInput(''),
-    cardYear: useInput(''),
-    cardMonth: useInput(''),
-    birthDay: useInput(''),
-    pw: useInput(''),
+    card1: useInput(''), //카드넘버1
+    card2: useInput(''), //카드넘버2
+    card3: useInput(''), //카드넘버3
+    card4: useInput(''), //카드넘버4
+    cardYear: useInput(''), //카드년도
+    cardMonth: useInput(''), //카드월
+    birthDay: useInput(''), //생년월일
+    pw: useInput(''), //카드 비밀번호
   };
+
+  //체크로직
   const checkInput = () => {
     const cardNumber =
       inputState.card1.value + inputState.card2.value + inputState.card3.value + inputState.card4.value;
@@ -59,13 +67,17 @@ export default function StormFloodPayContainer({
     }
   };
 
+  //카드 셀렉트 핸들러
   const selectCard = (name) => {
     onChangeState('selectCard', name);
   };
 
+  //할부개월수 셀렉트 핸들러
   const selectTerm = (name) => {
     onChangeState('selectTerm', name);
   };
+
+  //사인확인하기 핸들러
   const postDenial = () => {
     const data = {
       user_id: globalState.user.email,
@@ -84,6 +96,8 @@ export default function StormFloodPayContainer({
         handleApiError(e.response);
       });
   };
+
+  //결제하기 버튼
   const submitPay = () => {
     onChangeState('loading', true);
     const params = {
@@ -143,6 +157,7 @@ export default function StormFloodPayContainer({
       });
   };
 
+  //다음버튼
   const nextButton = () => {
     if (checkInput()) {
       submitPay();
@@ -155,7 +170,6 @@ export default function StormFloodPayContainer({
         nextButton={nextButton}
         onChangeState={onChangeState}
         handlePreviousButton={handlePreviousButton}
-        onClickTermsModalOpen={onClickTermsModalOpen}
         inputState={inputState}
         selectCard={selectCard}
         postDenial={postDenial}

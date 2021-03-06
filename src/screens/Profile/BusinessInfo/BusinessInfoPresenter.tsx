@@ -1,13 +1,17 @@
 import React from 'react';
-import { handleApiError, screenWidth, setStoreData } from '@app/lib';
+import { BottomFixButton, DefaultInput, Typhograph } from '@app/components';
+import { screenWidth } from '@app/lib';
+import { ProfileInputTypes, ProfileStateTypes } from '@app/screens/Profile/ProfileContainer';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import { Platform, StyleSheet } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { BottomFixButton, DefaultInput, Typhograph } from '@app/components';
-import { userApis } from '@app/api/User';
-import Toast from 'react-native-simple-toast';
-import { useGlobalDispatch, useGlobalState } from '@app/context';
+
+type BusinessInfoPresenterTypes = {
+  state: ProfileStateTypes;
+  inputState: ProfileInputTypes;
+  handleChangeButton: () => void;
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -48,64 +52,7 @@ const InputBox = styled.View`
   margin-top: 10px;
 `;
 
-function BusinessInfo({ state, inputState, onChangeState }) {
-  const globalState = useGlobalState();
-  const globalDispatch = useGlobalDispatch();
-  const checkInput = () => {
-    if (inputState.companyName.value === '') {
-      Toast.show('상호명을 입력해주세요.');
-      return false;
-    } else if (inputState.companyNumber.value === '') {
-      Toast.show('사업자번호를 입력해주세요.');
-      return false;
-    } else if (inputState.companyNumber.value.length !== 10) {
-      Toast.show('올바른 사업자번호를 입력해주세요.');
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const handleChangeButton = () => {
-    if (checkInput()) {
-      onChangeState('loading', true);
-      const email = globalState?.user?.email;
-      const params = {
-        comname: inputState?.companyName?.value,
-        businessnum: inputState?.companyNumber?.value,
-        sosok: '',
-      };
-      const existData = {
-        comname: globalState?.user?.companyName,
-        businessnum: globalState?.user?.companyNumber,
-        sosok: globalState?.user?.sosok,
-      };
-      const newUserInfo = {
-        ...globalState?.user,
-        comname: inputState?.companyName?.value,
-        businessnum: inputState?.companyNumber?.value,
-      };
-      if (JSON.stringify(params) === JSON.stringify(existData)) {
-        Toast.show('기본정보가 변경 되었습니다.');
-      } else {
-        userApis
-          .putChangeBusinessInfo(email, params)
-          .then((res) => {
-            if (res.data === 'OK') {
-              setStoreData('user', newUserInfo);
-              globalDispatch({ type: 'CHANGE', name: 'user', value: newUserInfo });
-              Toast.show('사업자정보가 수정되었습니다.');
-            }
-            onChangeState('loading', false);
-          })
-          .catch((e) => {
-            handleApiError(e.response);
-            onChangeState('loading', false);
-          });
-      }
-    }
-  };
-
+function BusinessInfoPresenter({ state, inputState, handleChangeButton }: BusinessInfoPresenterTypes) {
   return (
     <>
       <TopArrow />
@@ -148,11 +95,11 @@ function BusinessInfo({ state, inputState, onChangeState }) {
         rightTitle="변경"
         bottomRightPress={handleChangeButton}
         bottomLeftPress={() => null}
-        isKeybordView={state.isKeybordView}
+        isKeybordView={false}
         loading={state.loading}
       />
     </>
   );
 }
 
-export default BusinessInfo;
+export default BusinessInfoPresenter;

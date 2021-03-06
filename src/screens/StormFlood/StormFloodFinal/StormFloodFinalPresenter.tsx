@@ -9,7 +9,6 @@ import { useGlobalState } from '@app/context';
 type StormFloodFinalPresenterTypes = {
   state: StormFloodStateTypes;
   nextButton: () => void;
-  onClickTermsModalOpen: (name: any, html: any) => void;
   handlePreviousButton: () => void;
   onChangeState: (name: StormFloodName, value: any) => void;
   downloadfileButton: () => void;
@@ -23,15 +22,6 @@ const ContentsContainer = styled.View`
   padding: 20px 15px;
 `;
 
-const RowBox = styled.View`
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-`;
-const RowItem = styled.View`
-  align-items: center;
-  width: ${(props) => (props.width ? props.width : '0px')};
-`;
 const InfotextBox = styled.View``;
 const ButtonBox = styled.View`
   margin-top: 20px;
@@ -50,7 +40,6 @@ function StormFloodFinalPresenter({
   state,
   nextButton,
   onChangeState,
-  onClickTermsModalOpen,
   handlePreviousButton,
   downloadfileButton,
 }: StormFloodFinalPresenterTypes) {

@@ -1,10 +1,28 @@
+import React from 'react';
 import { BottomFixButton, DefaultInput, Typhograph } from '@app/components';
 import { screenWidth } from '@app/lib';
+import { JoinStateTypes } from '@app/screens/Join/JoinContainer';
 import styled from '@app/style/typed-components';
-import React from 'react';
+import { InputTypes } from '@app/types';
 import { Platform } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import SimpleToast from 'react-native-simple-toast';
+
+type BusinessFormPresenterTypes = {
+  state: JoinStateTypes;
+  inputState: {
+    email: InputTypes;
+    name: InputTypes;
+    phone: InputTypes;
+    idNumber: InputTypes;
+    sexNumber: InputTypes;
+    password: InputTypes;
+    passwordConfirm: InputTypes;
+    companyName: InputTypes;
+    companyNumber: InputTypes;
+  };
+  nextButton: () => void;
+  handlePreviousButton: () => void;
+};
 
 const Container = styled.View`
   width: ${screenWidth()}px;
@@ -22,28 +40,7 @@ const InputBox = styled.View`
 const CompanyNameInputBox = styled.View``;
 const CompanyNumberInputBox = styled.View``;
 
-export default function BusinessForm({ state, inputState, onChangeState, handleNextButton, handlePreviousButton }) {
-  const checkInput = () => {
-    if (inputState.companyName.value === '') {
-      SimpleToast.show('상호명을 입력해주세요.');
-      return false;
-    } else if (inputState.companyNumber.value === '') {
-      SimpleToast.show('사업자번호를 입력해주세요.');
-      return false;
-    } else if (inputState.companyNumber.value.length !== 10) {
-      SimpleToast.show('올바른 사업자번호를 입력해주세요.');
-      return false;
-    } else {
-      return true;
-    }
-  };
-
-  const nextButton = () => {
-    if (checkInput()) {
-      handleNextButton();
-    }
-  };
-
+function BusinessFormPresenter({ inputState, state, nextButton, handlePreviousButton }: BusinessFormPresenterTypes) {
   return (
     <Container>
       <KeyboardAwareScrollView
@@ -85,8 +82,10 @@ export default function BusinessForm({ state, inputState, onChangeState, handleN
         rightTitle="다음"
         bottomRightPress={() => nextButton()}
         bottomLeftPress={() => handlePreviousButton()}
-        isKeybordView={state.isKeybordView}
+        isKeybordView={false}
       />
     </Container>
   );
 }
+
+export default BusinessFormPresenter;

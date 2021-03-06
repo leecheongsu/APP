@@ -1,19 +1,23 @@
-import {
-  CustomButton,
-  DefaultInput,
-  FocusAwareStatusBar,
-  IconButton,
-  OverayLoading,
-  Typhograph,
-} from '@app/components';
+import React from 'react';
+import { CustomButton, DefaultInput, FocusAwareStatusBar, IconButton, Typhograph } from '@app/components';
 import { MainLayout } from '@app/layout';
 import styled from '@app/style/typed-components';
-import React from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { Button, Image } from 'react-native';
+import { Image } from 'react-native';
 import { insuIcon } from '@app/assets';
-import theme from '@app/style/theme';
 import { screenHeight } from '@app/lib';
+import { InputTypes } from '@app/types';
+import { LoginStateTypes } from '@app/screens/Login/LoginContainer';
+
+type LoginPresenterTypes = {
+  inputState: {
+    email: InputTypes;
+    password: InputTypes;
+  };
+  state: LoginStateTypes;
+  handleAutoLoginButton: () => void;
+  submitLogin: () => void;
+};
 
 const ContensContainer = styled.View`
   padding: 50px 20px;
@@ -51,7 +55,7 @@ const BottomBox = styled.View`
   align-items: center;
 `;
 
-function LoginPresenter({ inputState, state, handleAutoLoginButton, submitLogin }) {
+function LoginPresenter({ inputState, state, handleAutoLoginButton, submitLogin }: LoginPresenterTypes) {
   const navigation = useNavigation();
   return (
     <MainLayout>
