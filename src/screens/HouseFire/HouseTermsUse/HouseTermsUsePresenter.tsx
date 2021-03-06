@@ -19,7 +19,6 @@ type HouseTermsUsePresenterTypes = {
 
 const Container = styled.View`
   width: ${screenWidth()}px;
-  padding-bottom: 65px;
 `;
 const ContentsContainer = styled.ScrollView`
   padding: 20px;
@@ -39,6 +38,7 @@ const TermsListBox = styled.View`
 const TermsListItemBox = styled.View``;
 const ChoiceTermsBox = styled.View`
   margin-top: 40px;
+  padding-bottom: 100px;
 `;
 function HouseTermsUsePresenter({
   state,
@@ -170,6 +170,7 @@ function HouseTermsUsePresenter({
         html={state?.termsHtml}
         onPress={onClickTermsModalAgree}
         isButton
+        buttonTitle="동의"
       />
       <BottomFixButton
         index={state.stepNumber}

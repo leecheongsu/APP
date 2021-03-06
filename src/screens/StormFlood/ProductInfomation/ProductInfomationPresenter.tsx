@@ -18,7 +18,7 @@ const Container = styled.View`
   width: ${screenWidth()}px;
 `;
 
-const ContentsContainer = styled.View`
+const ContentsContainer = styled.ScrollView`
   padding: 20px 15px;
 `;
 
@@ -36,6 +36,7 @@ const RowItem = styled.View`
 
 const ButtonBox = styled.View`
   margin-top: 40px;
+  padding-bottom: 150px;
 `;
 
 function ProductInfomationPresenter({

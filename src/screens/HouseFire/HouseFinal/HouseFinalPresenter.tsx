@@ -18,7 +18,6 @@ type HouseFinalPresenterTypes = {
 
 const Container = styled.View`
   width: ${screenWidth()}px;
-  padding-bottom: 65px;
 `;
 const ContentsContainer = styled.ScrollView`
   padding: 20px;
@@ -200,7 +199,7 @@ function HouseFinalPresenter({
                 기간 내에 처리 바랍니다.
               </Typhograph>
             </HelperText>
-            <HelperText style={{ marginTop: 10 }}>
+            <HelperText style={{ marginTop: 10, paddingBottom: 100 }}>
               <Typhograph type="NOTO" color="GRAY" size={12}>
                 * 입금확인 이후 계약은 최종적으로 완료되며, 회원가입 시 등록하신 이메일로 통합청약서 및 증권이
                 발송됩니다.

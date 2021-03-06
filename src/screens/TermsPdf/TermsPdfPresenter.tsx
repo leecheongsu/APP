@@ -2,11 +2,18 @@ import React from 'react';
 import { screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
-import { Platform, View } from 'react-native';
+import { Platform, StyleSheet, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { BackButton, BottomFixButton, FocusAwareStatusBar } from '@app/components';
 import PDFView from 'react-native-view-pdf';
-
+import { ifIphoneX } from 'react-native-iphone-x-helper';
+const styles = StyleSheet.create({
+  iphonePaddingTop: {
+    ...ifIphoneX({
+      paddingTop: 40,
+    }),
+  },
+});
 type TermsPdfPresenterTypes = {
   open: boolean;
   close: () => void;
@@ -24,7 +31,7 @@ const ContentsBox = styled.View`
   height: 100%;
 `;
 const Header = styled.View`
-  padding: ${Platform.OS === 'ios' ? '50px 10px 0px 10px' : '10px 10px 10px 10px'};
+  padding: 25px 10px 10px 10px;
   background-color: ${theme.color.WHITE};
   border-bottom-width: 0px;
 `;
@@ -36,7 +43,7 @@ function TermsPdfPresenter({ open, close, onPress, isButton, resources, resource
       <FocusAwareStatusBar barStyle="dark-content" translucent={true} backgroundColor={'transparent'} />
       <Modal isVisible={open} style={{ padding: 0, margin: 0 }} onBackButtonPress={() => close()}>
         <ContentsBox>
-          <Header>
+          <Header style={styles.iphonePaddingTop}>
             <BackButtonBox>
               <BackButton onPress={() => close()} />
             </BackButtonBox>
