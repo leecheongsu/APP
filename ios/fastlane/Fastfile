@@ -1,0 +1,140 @@
+## beta 테스트플라이트에 올리는명령어
+# app version 설정 
+# codepush key 설정
+# app displayname 설정
+# testflight upload
+# 완료되면 slack message 전송
+
+default_platform(:ios)
+
+platform :ios do
+  desc "Build and run tests"
+  lane :test do
+    updateVersion()
+    # scan(scheme: "insurobo")
+  end
+
+  # 코드푸쉬 키 & diplay 네임 설정
+  def setCodepushkeyAndDisplayName(build_type,version)
+    info_path = "./insurobo/Info.plist"
+    dev_key = "_rJy62VyV3PBMHKyElhSa8rv_gJXZhQOUBiVm"
+    staging_key = "yzVnAy13Mi-4Ly7mkQ-0cRZS43fNF26Qcxpgy"
+    release_key = "QCnCtVRl7v8uDqqlNwJuWIG-kBOmgA4iS8GCW"
+    if (build_type == "dev")
+      set_info_plist_value(
+        path: info_path,
+        key:"CodePushDeploymentKey",
+        value:dev_key
+      )
+      update_info_plist( # Change the Display Name of your app
+        plist_path: info_path,
+        display_name: "인슈로보 #{version}"
+      )
+    elsif (build_type === "staging")
+      set_info_plist_value(
+        path: info_path,
+        key:"CodePushDeploymentKey",
+        value:staging_key
+      )
+      update_info_plist( # Change the Display Name of your app
+      plist_path: info_path,
+      display_name: "인슈로보 #{version}"
+      )
+    elsif (build_type === "release")
+      set_info_plist_value(
+        path: info_path,
+        key:"CodePushDeploymentKey",
+        value:release_key
+      )
+      update_info_plist( # Change the Display Name of your app
+      plist_path: info_path,
+      display_name: "인슈로보"
+      )
+    else 
+      UI.user_error!("[ERROR] Wrong build type!!!!!!")
+    end
+  end 
+
+  #버젼설정
+  def updateVersion(build_type,version)
+    
+    re = /\d+.\d+.\d+/
+    versionNum = version[re, 0]
+
+    if (versionNum)
+      increment_version_number(
+        version_number: versionNum
+      )
+      setCodepushkeyAndDisplayName(build_type,version)
+    else
+      UI.user_error!("[ERROR] Wrong version!!!!!!")
+    end
+  end
+
+  # 슬랙 메시지 설정
+  def sendSlack(build_type,version)
+    url = "https://hooks.slack.com/services/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"
+    channel = "#app-deploy"
+    if(build_type == "dev")
+      slack(
+        slack_url: url,
+        channel: "#dev",
+        message: "ios staging(#{version}) dev 배포완료",
+      )
+    elsif (build_type == "staging")
+      slack(
+        slack_url: url,
+        channel: channel,
+        message: "ios staging(#{version}) version 배포완료",
+      )
+    elsif (build_type === "release")
+      slack(
+        slack_url: url,
+        channel: channel,
+        message: "ios release(#{version}) version 배포완료",
+      )
+    else 
+      UI.user_error!("[ERROR] Wrong build type!!!!!!")
+    end
+  end
+
+
+  lane :codepush do |options|
+    desc "setCodepush"
+    build_type =  prompt(text: "Please enter the build type\n(release, staging, dev): ")
+    version = prompt(text: "Enter the version type or specific version\n(major, minor, patch or 1.0.0): ")
+    updateVersion(build_type,version)
+  end
+
+
+  # 테스트플라이 배포
+  lane :beta do | options |
+    desc "TesfFlight for IOS"
+    build_type =  prompt(text: "Please enter the build type\n(release, staging, dev): ")
+    version = prompt(text: "Enter the version type or specific version\n(1.0.0): ")
+    updateVersion(build_type,version)
+    increment_build_number(xcodeproj: "insurobo.xcodeproj")
+    # Circle CI does not create new code signing certificates or provisioning profiles.
+    sync_code_signing(type: "appstore", readonly: true, app_identifier: "com.insurobo.insurobo") # Bundle Identifier를 아까 만든 값으로 치환한다.
+    # see code signing guide for more information, readonly because of CircleCI
+    build_app(scheme: "insurobo")
+    upload_to_testflight(skip_waiting_for_build_processing: true)
+    sendSlack(build_type,version)
+  end
+end
+
+lane :increase_build_number_and_push_to_beta do |values|
+    # Increment the build number (not the version number)
+    # Providing the xcodeproj is optional
+    increment_build_number(xcodeproj: "insurobo.xcodeproj")
+    # Commit the version bump
+    commit_version_bump(xcodeproj: "insurobo.xcodeproj", force: true)
+    # Add a git tag for this build. This will automatically
+    # use an appropriate git tag name
+    # add_git_tag
+    # # Push the new commit and tag back to your git remote
+    # push_to_git_remote(
+    #     remote_branch: "master", # optional, default is set to local_branch
+    #     force: true,    # optional, default: false
+    # )
+end

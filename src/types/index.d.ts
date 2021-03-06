@@ -25,3 +25,12 @@ declare module '*.png' {
 declare type LooseObject = {
   [key: string]: any;
 };
+
+export type FontweightTypes = 'THIN' | 'LIGHT' | 'REGULAR' | 'MEDIUM' | 'BOLD';
+
+export type InputTypes = {
+  value: string;
+  onChangeText: (text: string) => void;
+  // eslint-disable-next-line no-undef
+  setValue: React.Dispatch<React.SetStateAction<string>>;
+};

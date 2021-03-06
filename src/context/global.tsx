@@ -5,18 +5,61 @@
 import React, { createContext, Dispatch, useReducer, useContext } from 'react';
 
 //type
-export type GlobalState = object | undefined | null;
+export type StateTypes = {
+  user: any;
+  isAutoLogin: boolean | undefined;
+  isLogin: boolean | undefined;
+  password: string | undefined;
+  recommendUser: any;
+  selectAddress: any;
+  isIdentityverification: boolean;
+  insuType: any;
+  isSplash: boolean;
+};
+type StateNames =
+  | 'user'
+  | 'isAutoLogin'
+  | 'isLogin'
+  | 'password'
+  | 'recommendUser'
+  | 'selectAddress'
+  | 'isIdentityverification'
+  | 'insuType'
+  | 'postWwPremium'
+  | 'jumina'
+  | 'juminb'
+  | 'electronicSignPreData'
+  | 'homeFireTitle'
+  | 'stormFloodTitle';
 type Action =
-  | { type: 'CREATE'; title: string; name: any }
-  | { type: 'UPDATE'; auth: string }
-  | { type: 'REMOVE'; title: string | null };
+  | { type: 'CHANGE'; name: StateNames; value: any }
+  | { type: 'REMOVE'; name: StateNames }
+  | { type: 'RESET' }
+  | { type: 'LOGOUT' };
+
 type GlobalDispatch = Dispatch<Action>;
 type Provider = {
   children: React.ReactNode;
 };
 
+const initialState = {
+  user: undefined,
+  isAutoLogin: undefined,
+  isLogin: undefined,
+  password: undefined,
+  recommendUser: undefined,
+  isIdentityverification: false,
+  insuType: undefined,
+  postWwPremium: undefined,
+  jumina: '',
+  juminb: '',
+  electronicSignPreData: undefined,
+  homeFireTitle: '가입구분',
+  stormFloodTitle: '상품안내',
+};
+
 //context
-const stateContext = createContext<object | undefined>(undefined);
+const stateContext = createContext<any>(undefined);
 const dispatchContext = createContext<GlobalDispatch | undefined>(undefined);
 
 /**
@@ -24,14 +67,40 @@ const dispatchContext = createContext<GlobalDispatch | undefined>(undefined);
  * @param {state}   : object
  * @param {action}  : action type
  */
-function globalReducer(state: GlobalState, action: Action): object {
+function globalReducer(state: StateTypes, action: Action): any {
   switch (action.type) {
-    case 'CREATE':
-      return action;
-    case 'UPDATE':
-      return { auth: action.auth };
+    case 'CHANGE':
+      return {
+        ...state,
+        [action.name]: action.value,
+      };
     case 'REMOVE':
-      return {};
+      return {
+        ...state,
+        [action.name]: undefined,
+      };
+    case 'RESET':
+      return {
+        ...state,
+        user: undefined,
+        isAutoLogin: undefined,
+        isLogin: undefined,
+        password: undefined,
+        recommendUser: undefined,
+        isIdentityverification: false,
+        insuType: undefined,
+        postWwPremium: undefined,
+        jumina: '',
+        juminb: '',
+        electronicSignPreData: undefined,
+      };
+    case 'LOGOUT':
+      return {
+        user: undefined,
+        isAutoLogin: false,
+        isLogin: false,
+        password: undefined,
+      };
     default:
       return { state };
     /**
@@ -43,10 +112,7 @@ function globalReducer(state: GlobalState, action: Action): object {
 
 // Provider
 export function GlobalContextProvider({ children }: Provider) {
-  const defaultState = {
-    auth: '',
-  };
-  const [state, dispatch] = useReducer(globalReducer, defaultState);
+  const [state, dispatch] = useReducer(globalReducer, initialState);
   return (
     <dispatchContext.Provider value={dispatch}>
       <stateContext.Provider value={state}>{children}</stateContext.Provider>

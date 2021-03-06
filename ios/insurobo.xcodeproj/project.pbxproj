@@ -19,6 +19,8 @@
 		38B9EE6AB2D215B83314BDED /* libPods-insurobo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B5C7252F95840ED31DEFDF /* libPods-insurobo.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		90E1EC50257A8ACCE2DCBFA3 /* libPods-insurobo-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 08F5B404C45C2E1B8A1E847A /* libPods-insurobo-tvOSTests.a */; };
+		E550E16725E8D2560010B0EA /* main.jsbundle in Resources */ = {isa = PBXBuildFile; fileRef = E550E16625E8D2560010B0EA /* main.jsbundle */; };
+		E55F5E4A25DAC10C008B5249 /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = E55F5E4925DAC10C008B5249 /* Fonts */; };
 		F8ED55F56703208AAEFC013C /* libPods-insurobo-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F6A93EB5A6E3EA46B635E19 /* libPods-insurobo-tvOS.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,8 @@
 		A1D83B0B264D1E077D962940 /* Pods-insurobo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insurobo.debug.xcconfig"; path = "Target Support Files/Pods-insurobo/Pods-insurobo.debug.xcconfig"; sourceTree = "<group>"; };
 		A720EC4E66CF0BB834AD5DA8 /* libPods-insurobo-insuroboTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-insurobo-insuroboTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE26C36DD30BE5499F22A337 /* Pods-insurobo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insurobo.release.xcconfig"; path = "Target Support Files/Pods-insurobo/Pods-insurobo.release.xcconfig"; sourceTree = "<group>"; };
+		E550E16625E8D2560010B0EA /* main.jsbundle */ = {isa = PBXFileReference; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		E55F5E4925DAC10C008B5249 /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F3800322D938A59997F3F4E6 /* Pods-insurobo-insuroboTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-insurobo-insuroboTests.release.xcconfig"; path = "Target Support Files/Pods-insurobo-insuroboTests/Pods-insurobo-insuroboTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				E550E16625E8D2560010B0EA /* main.jsbundle */,
+				E55F5E4925DAC10C008B5249 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* insurobo */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				00E356EF1AD99517003FC87E /* insuroboTests */,
@@ -194,7 +200,6 @@
 				4781D1867F9B6939C4168855 /* Pods-insurobo-tvOSTests.debug.xcconfig */,
 				1D7E19E383F29B8E40F825BF /* Pods-insurobo-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -291,10 +296,13 @@
 				TargetAttributes = {
 					00E356ED1AD99517003FC87E = {
 						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = ZGDUA22ZV8;
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = WLK553BG77;
 						LastSwiftMigration = 1120;
+						ProvisioningStyle = Automatic;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -340,6 +348,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E550E16725E8D2560010B0EA /* main.jsbundle in Resources */,
+				E55F5E4A25DAC10C008B5249 /* Fonts in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -375,7 +385,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -611,6 +621,7 @@
 			baseConfigurationReference = 4EA183F24591926FB9E35CAB /* Pods-insurobo-insuroboTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = ZGDUA22ZV8;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -635,6 +646,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = ZGDUA22ZV8;
 				INFOPLIST_FILE = insuroboTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -655,17 +667,22 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 22;
+				DEVELOPMENT_TEAM = WLK553BG77;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = insurobo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.insurobo.insurobo;
 				PRODUCT_NAME = insurobo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -678,16 +695,21 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CURRENT_PROJECT_VERSION = 1;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 22;
+				DEVELOPMENT_TEAM = WLK553BG77;
 				INFOPLIST_FILE = insurobo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.insurobo.insurobo;
 				PRODUCT_NAME = insurobo;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
