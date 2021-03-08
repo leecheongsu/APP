@@ -168,14 +168,14 @@ function CalamityPresenter({ leftValue, leftValue2, rightValue, rightValue2 }: C
             </TitleBox>
             <RowBox style={{ marginTop: 30 }}>
               <RowItem style={{ width: '70%' }}>
-                <Typhograph type="NOTO" color="GRAY" size={12}>
+                <Typhograph type="NOTO" color="GRAY" size={14}>
                   화재, 폭발, 붕괴 등 피해에 대한 사업장에 적합한 재난배상 든든하게 대비하세요. 보험설계사와 관계없이
                   간편하고 저렴하게 다이렉트 간편설계 드립니다.
                 </Typhograph>
-                <Typhograph type="NOTO" color="GRAY" size={12} style={{ marginTop: 10 }}>
+                <Typhograph type="NOTO" color="GRAY" size={14} style={{ marginTop: 10 }}>
                   - 음식점 등 20개 업종 대상 의무가입
                 </Typhograph>
-                <Typhograph type="NOTO" color="GRAY" size={12}>
+                <Typhograph type="NOTO" color="GRAY" size={14}>
                   - 일련번호 조회로 가입 대상 확인 가능
                 </Typhograph>
               </RowItem>
@@ -197,10 +197,10 @@ function CalamityPresenter({ leftValue, leftValue2, rightValue, rightValue2 }: C
             <CircleContainer>
               <RowItem>
                 <CircleBox>
-                  <Typhograph type="NOTO" color="BLACK2" size={12} lineheight={20}>
+                  <Typhograph type="NOTO" color="BLACK2" size={13} lineheight={20}>
                     화재보험
                   </Typhograph>
-                  <Typhograph type="NOTO" color="BLACK2" size={10} style={{ textAlign: 'center' }} lineheight={2}>
+                  <Typhograph type="NOTO" color="BLACK2" size={13} style={{ textAlign: 'center' }} lineheight={2}>
                     화재로 인한 재산상의{'\n'}
                     손해배상{'\n'}
                     (건물, 집기, 동산 등){'\n'}
@@ -212,10 +212,10 @@ function CalamityPresenter({ leftValue, leftValue2, rightValue, rightValue2 }: C
               </ArrowBox>
               <RowItem>
                 <CircleBox>
-                  <Typhograph type="NOTO" color="BLACK2" size={12} lineheight={20}>
+                  <Typhograph type="NOTO" color="BLACK2" size={13} lineheight={20}>
                     화재배상책임보험
                   </Typhograph>
-                  <Typhograph type="NOTO" color="BLACK2" size={10} style={{ textAlign: 'center' }} lineheight={2}>
+                  <Typhograph type="NOTO" color="BLACK2" size={13} style={{ textAlign: 'center' }} lineheight={2}>
                     화재 및 폭발로 인한{'\n'}
                     타인의 생명, 신체,{'\n'}
                     재산상의 손해 보상{'\n'}

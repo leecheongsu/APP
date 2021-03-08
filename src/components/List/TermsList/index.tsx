@@ -25,6 +25,10 @@ const RowButton = styled.TouchableOpacity`
   flex-direction: row;
   align-items: center;
 `;
+const RowButton2 = styled.View`
+  flex-direction: row;
+  align-items: center;
+`;
 const Item = styled.View``;
 const TextBox = styled.View`
   width: 95%;
@@ -45,17 +49,31 @@ export default function TermsList({
   return (
     <Container>
       <Item style={{ width: '80%' }}>
-        <RowButton onPress={() => (isButton ? onClickTermsModalOpen(item.name, item.html) : null)}>
-          <TextBox>
-            <Typhograph lineheight={3} type="NOTO" color="BLUE" size={11} style={{ marginRight: 5 }}>
-              {item.title}
-            </Typhograph>
-          </TextBox>
+        {item.name === 'TERMSG_1' ? (
+          <RowButton2>
+            <TextBox>
+              <Typhograph lineheight={3} type="NOTO" color="BLUE" size={13} style={{ marginRight: 5 }}>
+                {item.title}
+              </Typhograph>
+            </TextBox>
 
-          <ImageBox>
-            <Image style={{ width: 5, height: 8 }} source={insuIcon.ARR_RIGHT} />
-          </ImageBox>
-        </RowButton>
+            <ImageBox>
+              <Image style={{ width: 5, height: 8 }} source={insuIcon.ARR_RIGHT} />
+            </ImageBox>
+          </RowButton2>
+        ) : (
+          <RowButton onPress={() => (isButton ? onClickTermsModalOpen(item.name, item.html) : null)}>
+            <TextBox>
+              <Typhograph lineheight={3} type="NOTO" color="BLUE" size={13} style={{ marginRight: 5 }}>
+                {item.title}
+              </Typhograph>
+            </TextBox>
+
+            <ImageBox>
+              <Image style={{ width: 5, height: 8 }} source={insuIcon.ARR_RIGHT} />
+            </ImageBox>
+          </RowButton>
+        )}
       </Item>
       <Item style={{ width: '20%' }}>
         <RowBox>

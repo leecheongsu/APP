@@ -26,6 +26,7 @@ export { default as RightIconButton } from './Button/RightIconButton';
 //modal
 export { default as MainMenuModal } from './Modal/MainMenuModal';
 export { default as InfoModal } from './Modal/InfoModal';
+export { default as ConfirmModal } from './Modal/ConfirmModal';
 
 //avatar
 export { default as Avatar } from './Avatar';

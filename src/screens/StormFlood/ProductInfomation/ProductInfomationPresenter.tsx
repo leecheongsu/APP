@@ -1,5 +1,5 @@
 import React from 'react';
-import { BottomFixButton, RightIconButton, Typhograph } from '@app/components';
+import { BottomFixButton, ConfirmModal, RightIconButton, Typhograph } from '@app/components';
 import styled from '@app/style/typed-components';
 import { screenWidth } from '@app/lib';
 import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
@@ -50,12 +50,12 @@ function ProductInfomationPresenter({
       <Container>
         <ContentsContainer>
           <TextBox>
-            <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={20}>
+            <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={22}>
               태풍, 홍수 걱정된다면?
             </Typhograph>
           </TextBox>
           <TextBox>
-            <Typhograph type="NOTO" color="BLACK3" weight="MEDIUM" size={15}>
+            <Typhograph type="NOTO" color="BLACK3" weight="MEDIUM" size={15} style={{ marginTop: 20 }}>
               <Typhograph type="NOTO" color="SKYBLUE">
                 최대 92%까지{' '}
               </Typhograph>
@@ -67,7 +67,7 @@ function ProductInfomationPresenter({
             </Typhograph>
           </TextBox>
 
-          <RowBox style={{ marginTop: 40 }}>
+          <RowBox style={{ marginTop: 80 }}>
             <RowItem width="15%">
               <Typhograph type="ROBOTO" color="SKYBLUE" size={40} weight="BOLD" lineheight={1}>
                 1.

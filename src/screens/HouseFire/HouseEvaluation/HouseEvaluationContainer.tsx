@@ -105,35 +105,83 @@ export default function HouseEvaluationContainer({
     (name, isToggle, isSelect) => {
       const newList: any = [];
       if (!isSelect) {
-        state?.selectAddress?.premiums?.map((i) => {
-          if (i.item_id === name && i.already_group_ins === state.selectAddress.already_group_ins) {
-            const newItem = {
-              ...i,
-              aply_yn: isToggle ? 'Y' : 'N',
-            };
-            newList.push(newItem);
-          } else {
-            newList.push(i);
-          }
-        });
+        if (name === 'KFRE') {
+          state?.selectAddress?.premiums?.map((i) => {
+            if (i.item_id === 'KDRG' || i.item_id === 'KLCK' || i.item_id === 'KSTL') {
+              const newItem = {
+                ...i,
+                aply_yn: 'N',
+              };
+              newList.push(newItem);
+            } else {
+              if (i.item_id === name && i.already_group_ins === state.selectAddress.already_group_ins) {
+                const newItem = {
+                  ...i,
+                  aply_yn: isToggle ? 'Y' : 'N',
+                };
+                newList.push(newItem);
+              } else {
+                newList.push(i);
+              }
+            }
+          });
+        } else {
+          state?.selectAddress?.premiums?.map((i) => {
+            if (i.item_id === name && i.already_group_ins === state.selectAddress.already_group_ins) {
+              const newItem = {
+                ...i,
+                aply_yn: isToggle ? 'Y' : 'N',
+              };
+              newList.push(newItem);
+            } else {
+              newList.push(i);
+            }
+          });
+        }
       } else {
-        const select =
-          state?.selectAddress?.already_group_ins === 'Y' ? evaluationState['group' + name] : evaluationState[name];
-        state?.selectAddress?.premiums?.map((i) => {
-          if (
-            i.already_group_ins === select.already_group_ins &&
-            i.ins_name === select.ins_name &&
-            i.item_id === select.item_id
-          ) {
-            const newItem = {
-              ...i,
-              aply_yn: isToggle ? 'Y' : 'N',
-            };
-            newList.push(newItem);
-          } else {
-            newList.push(i);
-          }
-        });
+        if (name === 'KFRE') {
+          const select =
+            state?.selectAddress?.already_group_ins === 'Y' ? evaluationState['group' + name] : evaluationState[name];
+          state?.selectAddress?.premiums?.map((i) => {
+            if (i.item_id === 'KDRG' || i.item_id === 'KLCK' || i.item_id === 'KSTL') {
+              const newItem = {
+                ...i,
+                aply_yn: 'N',
+              };
+              newList.push(newItem);
+            } else if (
+              i.already_group_ins === select.already_group_ins &&
+              i.ins_name === select.ins_name &&
+              i.item_id === select.item_id
+            ) {
+              const newItem = {
+                ...i,
+                aply_yn: isToggle ? 'Y' : 'N',
+              };
+              newList.push(newItem);
+            } else {
+              newList.push(i);
+            }
+          });
+        } else {
+          const select =
+            state?.selectAddress?.already_group_ins === 'Y' ? evaluationState['group' + name] : evaluationState[name];
+          state?.selectAddress?.premiums?.map((i) => {
+            if (
+              i.already_group_ins === select.already_group_ins &&
+              i.ins_name === select.ins_name &&
+              i.item_id === select.item_id
+            ) {
+              const newItem = {
+                ...i,
+                aply_yn: isToggle ? 'Y' : 'N',
+              };
+              newList.push(newItem);
+            } else {
+              newList.push(i);
+            }
+          });
+        }
       }
       const newSelectAddress = {
         ...state?.selectAddress,

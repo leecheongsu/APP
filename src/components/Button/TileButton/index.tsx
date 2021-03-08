@@ -66,9 +66,9 @@ export default function TileButton({
           <Typhograph
             type="ROBOTO"
             color="SKYBLUE"
-            size={10}
+            size={14}
             lineheight={6}
-            style={{ width: 20, height: 20, textAlign: 'center' }}>
+            style={{ width: 24, height: 24, textAlign: 'center' }}>
             {badgeCount}
           </Typhograph>
         </BadgeBox>

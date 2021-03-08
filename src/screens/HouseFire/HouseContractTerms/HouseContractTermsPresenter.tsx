@@ -39,7 +39,7 @@ const HelperText = styled.View`
   margin-top: 10px;
 `;
 const SectionContainer = styled.View`
-  margin-top: 20px;
+  margin-top: 40px;
 `;
 const TermsListBox = styled.View`
   margin-top: 10px;

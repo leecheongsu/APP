@@ -30,7 +30,7 @@ function CheckLabelButton({ title, active = false, onPress, iscenter }) {
   return (
     <Container activeOpacity={0.6} onPress={onPress} backgroundcolor={active ? 'SKYBLUE' : 'WHITE'} active={active}>
       <Box active iscenter={iscenter}>
-        <Icon source={active ? insuIcon.BTN_OFF : insuIcon.BTN_ON} />
+        <Icon active={active} source={active ? insuIcon.BTN_OFF : insuIcon.BTN_ON} />
         <TextBox>
           <Typhograph type="NOTO" size={12} color={active ? 'WHITE' : 'BLUE'} weight="MEDIUM">
             {title}
