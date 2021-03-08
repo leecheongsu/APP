@@ -6,7 +6,7 @@ import { InsuCertificate } from '@app/screens';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import { HouseFireStateName, HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
-
+import moment from 'moment';
 type HouseFinalPresenterTypes = {
   state: HouseFireStateTypes;
   onChangeState: (name: HouseFireStateName, value: any) => void;
@@ -188,25 +188,53 @@ function HouseFinalPresenter({
                 </RowItem>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY" size={12}>
-                    2020년12월29일 23시59분00초
+                    {moment(state?.vbankResult?.P_VACT_DATE).format('YYYY년 MM월 DD일')} 23시59분
                   </Typhograph>
                 </RowItem>
               </RowBox>
             </InfoTextBox2>
             <HelperText>
-              <Typhograph type="NOTO" color="GRAY" size={10}>
-                * 입금마감일자가 지나면 계좌가 자동 폐쇄되어 입금이 되지 않고, 계약이 완료되지 않습니다. 이점 유의하시고
-                기간 내에 처리 바랍니다.
-              </Typhograph>
+              <RowBox>
+                <RowItem>
+                  <Typhograph type="NOTO" color="GRAY" size={10}>
+                    *{' '}
+                  </Typhograph>
+                </RowItem>
+                <RowItem>
+                  <Typhograph type="NOTO" color="GRAY" size={10}>
+                    입금마감일자가 지나면 계좌가 자동 폐쇄되어 입금이 되지 않고, 계약이 완료되지 않습니다. 이점
+                    유의하시고 기간 내에 처리 바랍니다.
+                  </Typhograph>
+                </RowItem>
+              </RowBox>
             </HelperText>
-            <HelperText style={{ marginTop: 10, paddingBottom: 100 }}>
-              <Typhograph type="NOTO" color="GRAY" size={12}>
-                * 입금확인 이후 계약은 최종적으로 완료되며, 회원가입 시 등록하신 이메일로 통합청약서 및 증권이
-                발송됩니다.
-              </Typhograph>
-              <Typhograph type="NOTO" color="GRAY" size={12} style={{ marginTop: 10 }}>
-                * 또한 [내 보험] 에서 계약 정보를 확인하실 수 있습니다.
-              </Typhograph>
+            <HelperText style={{ marginTop: 10, paddingBottom: 130 }}>
+              <RowBox>
+                <RowItem>
+                  <Typhograph type="NOTO" color="GRAY" size={14}>
+                    *{' '}
+                  </Typhograph>
+                </RowItem>
+                <RowItem>
+                  <Typhograph type="NOTO" color="GRAY" size={14}>
+                    입금확인 이후 계약은 최종적으로 완료되며, 회원가입 시 등록하신 이메일로 통합청약서 및 증권이
+                    발송됩니다.
+                  </Typhograph>
+                </RowItem>
+              </RowBox>
+
+              <RowBox style={{ justifyContent: 'flex-start' }}>
+                <RowItem>
+                  <Typhograph type="NOTO" color="GRAY" size={14}>
+                    *{' '}
+                  </Typhograph>
+                </RowItem>
+                <RowItem>
+                  <Typhograph type="NOTO" color="GRAY" size={14}>
+                    {'또한 [내 보험] 에서 계약 정보를 확인하실 수 있습니다.'}
+                  </Typhograph>
+                </RowItem>
+              </RowBox>
             </HelperText>
           </ContentsContainer>
         </>

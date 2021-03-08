@@ -615,12 +615,18 @@ export default function HouseFireContainer() {
 
   //terms모달 오픈
   const onClickTermsModalOpen = (name, html) => {
-    if (state.terms[name]?.isChecked !== undefined && state.terms[name]?.isChecked === 0) {
+    if (name === 'TERMSD_1' || name === 'TERMSD_2') {
+      if (state.terms[name]?.isChecked !== undefined && state.terms[name]?.isChecked === 0) {
+        onChangeState('termsName', name);
+        onChangeState('termsModal', true);
+        onChangeState('termsHtml', html);
+      } else {
+        onChangeTermsState(name, 0);
+      }
+    } else {
       onChangeState('termsName', name);
       onChangeState('termsModal', true);
       onChangeState('termsHtml', html);
-    } else {
-      onChangeTermsState(name, 0);
     }
   };
 
@@ -899,7 +905,7 @@ export default function HouseFireContainer() {
   useEffect(() => {
     setPageHeader();
     const backAction = () => {
-      DefaultAlert({ title: '알림', msg: '메인페이지로 돌아 가시겠습니까?', okPress: () => navigation.goBack() });
+      globalDispatch({ type: 'CHANGE', name: 'isMainModal', value: true });
       return true;
     };
 

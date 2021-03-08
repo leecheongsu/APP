@@ -52,7 +52,6 @@ const RowBox = styled.View`
   align-items: center;
 `;
 const RowItem = styled.View`
-  align-items: center;
   width: ${(props) => (props.width ? props.width : '0px')};
 `;
 const CollapseBox = styled.View`
@@ -96,7 +95,7 @@ function HouseProductInfoPresenter({
     <Container>
       <ContentsContainer>
         <TextBox>
-          <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={20}>
+          <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={22}>
             가족이 함께 머무는곳,{'\n'}
             “우리집” 안전하십니까?
           </Typhograph>
@@ -141,15 +140,15 @@ function HouseProductInfoPresenter({
                   1.
                 </Typhograph>
               </RowItem>
-              <RowItem width="75%">
+              <RowItem width="80%" style={{ paddingHorizontal: 5 }}>
                 <Typhograph type="NOTO" color="BLUE" lineheight={2} size={14}>
                   주택화재 중{'\n'}
                   54.6%는 부주의에 의해 일어납니다.
                 </Typhograph>
               </RowItem>
-              <RowItem width="12%">
+              <RowItem width="7%">
                 <Image
-                  style={{ transform: [{ rotate: collapsed.col1 ? '0deg' : '180deg' }] }}
+                  style={{ transform: [{ rotate: collapsed.col1 ? '180deg' : '0deg' }] }}
                   source={insuIcon.SELECT_ICON2}
                 />
               </RowItem>
@@ -180,15 +179,14 @@ function HouseProductInfoPresenter({
                   2.
                 </Typhograph>
               </RowItem>
-              <RowItem width="75%">
+              <RowItem width="80%" style={{ paddingHorizontal: 5 }}>
                 <Typhograph type="NOTO" color="BLUE" lineheight={2} size={14}>
-                  화재사고! 손해배상에 벌금까지 손해가{'\n'}
-                  너무나 큽니다.
+                  화재사고! 손해배상에 벌금까지{'\n'}손해가 너무나 큽니다.
                 </Typhograph>
               </RowItem>
-              <RowItem width="12%">
+              <RowItem width="7%">
                 <Image
-                  style={{ transform: [{ rotate: collapsed.col2 ? '0deg' : '180deg' }] }}
+                  style={{ transform: [{ rotate: collapsed.col2 ? '180deg' : '0deg' }] }}
                   source={insuIcon.SELECT_ICON2}
                 />
               </RowItem>
@@ -221,15 +219,15 @@ function HouseProductInfoPresenter({
                   3.
                 </Typhograph>
               </RowItem>
-              <RowItem width="75%">
+              <RowItem width="80%" style={{ paddingHorizontal: 5 }}>
                 <Typhograph type="NOTO" color="BLUE" lineheight={2} size={13}>
                   화재로 인한{'\n'}
                   경제적 손해 비용, 부담을 덜어드립니다.
                 </Typhograph>
               </RowItem>
-              <RowItem width="12%">
+              <RowItem width="7%">
                 <Image
-                  style={{ transform: [{ rotate: collapsed.col3 ? '0deg' : '180deg' }] }}
+                  style={{ transform: [{ rotate: collapsed.col3 ? '1800deg' : '0deg' }] }}
                   source={insuIcon.SELECT_ICON2}
                 />
               </RowItem>
@@ -265,16 +263,16 @@ function HouseProductInfoPresenter({
                   4.
                 </Typhograph>
               </RowItem>
-              <RowItem width="75%">
+              <RowItem width="80%" style={{ paddingHorizontal: 5 }}>
                 <Typhograph type="NOTO" color="BLUE" lineheight={2} size={13}>
                   화재 외에 일어날 수 있는
                   {'\n'}
                   우리 집 손해 비용을 보상해 드립니다.
                 </Typhograph>
               </RowItem>
-              <RowItem width="12%">
+              <RowItem width="7%">
                 <Image
-                  style={{ transform: [{ rotate: collapsed.col4 ? '0deg' : '180deg' }] }}
+                  style={{ transform: [{ rotate: collapsed.col4 ? '180deg' : '0deg' }] }}
                   source={insuIcon.SELECT_ICON2}
                 />
               </RowItem>

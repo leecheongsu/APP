@@ -34,7 +34,6 @@ import {
   wwTermsSf4,
 } from '@app/lib/html';
 import { useInput } from '@app/hooks';
-import { DefaultAlert } from '@app/components';
 import { useNavigation } from '@react-navigation/native';
 import { useGlobalDispatch } from '@app/context';
 export type StormFloodName =
@@ -523,12 +522,18 @@ export default function StormFloodContainer() {
 
   //terms모달 오픈
   const onClickTermsModalOpen = (name, html) => {
-    if (state.terms[name]?.isChecked !== undefined && state.terms[name]?.isChecked === 0) {
+    if (name === 'termsd1' || name === 'termsd2') {
+      if (state.terms[name]?.isChecked !== undefined && state.terms[name]?.isChecked === 0) {
+        onChangeState('termsName', name);
+        onChangeState('termsModal', true);
+        onChangeState('termsHtml', html);
+      } else {
+        termsChange(name, 0);
+      }
+    } else {
       onChangeState('termsName', name);
       onChangeState('termsModal', true);
       onChangeState('termsHtml', html);
-    } else {
-      termsChange(name, 0);
     }
   };
 
@@ -745,7 +750,7 @@ export default function StormFloodContainer() {
   useEffect(() => {
     setPageHeader();
     const backAction = () => {
-      DefaultAlert({ title: '알림', msg: '메인페이지로 돌아 가시겠습니까?', okPress: () => navigation.goBack() });
+      globalDispatch({ type: 'CHANGE', name: 'isMainModal', value: true });
       return true;
     };
 

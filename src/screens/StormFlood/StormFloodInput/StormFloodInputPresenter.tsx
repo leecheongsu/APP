@@ -87,7 +87,8 @@ function StormFloodInputPresenter({
     state?.terms?.termsb1.isChecked === 1 &&
     state?.terms?.termsb2.isChecked === 1 &&
     state?.terms?.termsb3.isChecked === 1 &&
-    state?.terms?.termsb4.isChecked === 1;
+    state?.terms?.termsb4.isChecked === 1 &&
+    state?.terms?.termsb5.isChecked === 1;
   return (
     <>
       <Container>

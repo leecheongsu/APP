@@ -28,6 +28,7 @@ type StateNames =
   | 'postWwPremium'
   | 'jumina'
   | 'juminb'
+  | 'isMainModal'
   | 'electronicSignPreData'
   | 'homeFireTitle'
   | 'stormFloodTitle';
@@ -53,6 +54,7 @@ const initialState = {
   postWwPremium: undefined,
   jumina: '',
   juminb: '',
+  isMainModal: false,
   electronicSignPreData: undefined,
   homeFireTitle: '가입구분',
   stormFloodTitle: '상품안내',

@@ -20,7 +20,7 @@ export default function InsuCard({ leftText, leftSubText, rightText }) {
   return (
     <Container>
       <LeftBox>
-        <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={14}>
+        <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
           {leftText}
         </Typhograph>
         <Typhograph type="NOTO" color="BLUE" weight="MEDIUM" size={13}>

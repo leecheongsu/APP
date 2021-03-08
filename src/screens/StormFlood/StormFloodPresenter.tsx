@@ -1,5 +1,5 @@
 import React from 'react';
-import { FocusAwareStatusBar, InfoModal } from '@app/components';
+import { ConfirmModal, FocusAwareStatusBar, InfoModal } from '@app/components';
 import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -39,6 +39,7 @@ function StormFloodPresenter({ state, scrollRef, returnComponent, onChangeState 
           return returnComponent(item.id);
         })}
       </ScrollView>
+      <ConfirmModal />
       <InfoModal
         open={state.isInfoModal}
         title={state.infoTitle}
