@@ -7,20 +7,22 @@ import { useGlobalDispatch, useGlobalState } from '@app/context';
 import { useNavigation } from '@react-navigation/native';
 
 const Container = styled.View`
-  max-height: 150px;
-  width: 100%;
-  background-color: white;
+  height: 150px;
+  background-color: transparent;
   justify-content: center;
+  flex: 1;
 `;
 
 const ContentsBox = styled.View`
-  height: 100%;
+  height: 100px;
+  width: 100%;
   align-items: center;
   justify-content: center;
-  padding-top: 50px;
+  background-color: ${theme.color.WHITE};
 `;
 const BottomButtonBox = styled.View`
   flex-direction: row;
+  width: 100%;
   height: 100px;
 `;
 const ButtonItem = styled.View`
@@ -30,14 +32,16 @@ const CustomButton1 = styled.TouchableOpacity`
   background-color: ${theme.color.INPUT_GRAY};
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  width: 100%;
+  height: 60px;
 `;
 
 const CustomButton2 = styled.TouchableOpacity`
   background-color: ${theme.color.BLUE};
   justify-content: center;
   align-items: center;
-  padding: 15px;
+  width: 100%;
+  height: 60px;
 `;
 
 export default function ConfirmModal() {

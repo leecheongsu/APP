@@ -80,7 +80,7 @@ export default function CheckButtonCard({
           <Image source={icon} />
         </IconButton>
         <InfoContainer>
-          <Typhograph style={{ width: 120 }} type="NOTO" color="BLACK2" size={14} weight="REGULAR">
+          <Typhograph style={{ width: '34%' }} type="NOTO" color="BLACK2" size={14} weight="REGULAR">
             {title}
           </Typhograph>
           {isSelect ? (
@@ -94,18 +94,18 @@ export default function CheckButtonCard({
               color="BLACK2"
               size={13}
               weight="REGULAR"
-              numberOfLines={1}>
+              numberOfLines={2}>
               {priceDot(value)}만원
             </Typhograph>
           )}
 
           <Typhograph
-            style={{ width: '30%', textAlign: 'right', paddingRight: 10 }}
+            style={{ width: '33%', textAlign: 'right', paddingRight: 10 }}
             type="NOTO"
             color="BLACK2"
             size={14}
             weight="REGULAR"
-            numberOfLines={1}>
+            numberOfLines={2}>
             {priceDot(value2)}원
           </Typhograph>
         </InfoContainer>

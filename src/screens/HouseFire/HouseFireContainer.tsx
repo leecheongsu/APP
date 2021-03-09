@@ -839,7 +839,6 @@ export default function HouseFireContainer() {
   const _keyboardDidShow = () => {
     onChangeState('isKeybordView', true);
   };
-
   const _keyboardDidHide = () => {
     onChangeState('isKeybordView', false);
   };

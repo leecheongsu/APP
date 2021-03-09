@@ -336,9 +336,9 @@ function MyInsuCertificatePresenter({ open, close, item, isButton, insuPrice }: 
                     보험기간
                   </Typhograph>
                 </RowItem>
-                <RowItem>
-                  <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insstdt} ~ {item?.inseddt}({item?.insedtm})
+                <RowItem style={{ width: '75%' }}>
+                  <Typhograph type="NOTO" color="BLACK2" numberOfLines={2} style={{ textAlign: 'right' }}>
+                    {item?.insstdt} (24:00) ~ {item?.inseddt}({item?.insedtm})
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -554,9 +554,9 @@ function MyInsuCertificatePresenter({ open, close, item, isButton, insuPrice }: 
                     보험기간
                   </Typhograph>
                 </RowItem>
-                <RowItem>
-                  <Typhograph type="NOTO" color="BLACK2">
-                    {item?.insstdt} ~ {item?.inseddt}({item?.insedtm})
+                <RowItem style={{ width: '75%' }}>
+                  <Typhograph type="NOTO" color="BLACK2" numberOfLines={2} style={{ textAlign: 'right' }}>
+                    {item?.insstdt} (24:00) ~ {item?.inseddt}({item?.insedtm})
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -743,59 +743,12 @@ function MyInsuCertificatePresenter({ open, close, item, isButton, insuPrice }: 
                   </Typhograph>
                 </RowItem>
               </RowBox>
-              {/* 총보험료 */}
-              <RowBox>
-                <RowItem>
-                  <Typhograph type="NOTO" color="GRAY">
-                    총보험료
-                  </Typhograph>
-                </RowItem>
-                <RowItem>
-                  <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                    0
-                    <Typhograph type="NOTO" color="GRAY">
-                      원
-                    </Typhograph>
-                  </Typhograph>
-                </RowItem>
-              </RowBox>
-              {/* 정부 부담 보험료 */}
-              <RowBox>
-                <RowItem>
-                  <Typhograph type="NOTO" color="GRAY">
-                    정부 부담 보험료
-                  </Typhograph>
-                </RowItem>
-                <RowItem>
-                  <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                    {insuPrice}
-                    <Typhograph type="NOTO" color="GRAY">
-                      원
-                    </Typhograph>
-                  </Typhograph>
-                </RowItem>
-              </RowBox>
-              {/* 지자체 부담 보험료 */}
-              <RowBox>
-                <RowItem>
-                  <Typhograph type="NOTO" color="GRAY">
-                    지자체 부담 보험료
-                  </Typhograph>
-                </RowItem>
-                <RowItem>
-                  <Typhograph type="ROBOTO" color="BLACK2" size={16}>
-                    0
-                    <Typhograph type="NOTO" color="GRAY">
-                      원
-                    </Typhograph>
-                  </Typhograph>
-                </RowItem>
-              </RowBox>
+
               {/* 결제 보험료 */}
               <RowBox>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY">
-                    결제 보험료
+                    총 결제 보험료
                   </Typhograph>
                 </RowItem>
                 <RowItem>
