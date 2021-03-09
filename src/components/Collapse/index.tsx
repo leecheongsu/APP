@@ -11,6 +11,7 @@ type CollapsePropsTypes = {
   value?: string | number | undefined;
   value2: string | number;
   children: any;
+  isTitle?: boolean;
 };
 
 const Container = styled.View`
@@ -22,6 +23,7 @@ const ToggleButton = styled.TouchableOpacity`
   padding: 20px;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
 `;
 const PriceInfo = styled.View`
   flex-direction: row;
@@ -36,7 +38,11 @@ const ChildContainer = styled.View`
   padding: 15px;
 `;
 
-export default function Collapse({ title, value, value2 = 0, children }: CollapsePropsTypes) {
+const TextBox = styled.View`
+  flex-direction: column;
+`;
+
+export default function Collapse({ title, value, value2 = 0, children, isTitle = false }: CollapsePropsTypes) {
   const [collapsed, setCollapsed] = useState(true);
   const animationHeight = useRef(new Animated.Value(0)).current;
 
@@ -74,12 +80,27 @@ export default function Collapse({ title, value, value2 = 0, children }: Collaps
         <Typhograph type="NOTO">{title}</Typhograph>
         <PriceInfo>
           {value !== undefined && (
-            <Typhograph type="NOTO" style={{ marginRight: 10, width: 130, textAlign: 'right' }}>
-              {priceDot(value)}만원
-            </Typhograph>
-          )}
+            <TextBox>
+              {isTitle && (
+                <Typhograph type="NOTO" style={{ marginRight: 10, width: 130, textAlign: 'center' }} weight="BOLD">
+                  보험가입금액
+                </Typhograph>
+              )}
 
-          <Typhograph type="NOTO">{priceDot(value2)}원</Typhograph>
+              <Typhograph type="NOTO" style={{ marginRight: 10, width: 130, textAlign: 'center' }}>
+                {priceDot(value)}만원
+              </Typhograph>
+            </TextBox>
+          )}
+          <TextBox>
+            {isTitle && (
+              <Typhograph type="NOTO" weight="BOLD" style={{ textAlign: 'center' }}>
+                보험료
+              </Typhograph>
+            )}
+            <Typhograph type="NOTO">{priceDot(value2)}원</Typhograph>
+          </TextBox>
+
           <IconBox>
             <Image style={{ transform: [{ rotate: collapsed ? '0deg' : '180deg' }] }} source={insuIcon.SELECT_ICON2} />
           </IconBox>

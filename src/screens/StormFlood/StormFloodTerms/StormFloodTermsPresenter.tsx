@@ -388,7 +388,7 @@ function StormFloodTermsPresenter({
               <RowBox>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY">
-                    보험목적물{'\n'} 소유구분
+                    보험목적물{'\n'}소유구분
                   </Typhograph>
                 </RowItem>
                 <RowItem>
@@ -457,7 +457,7 @@ function StormFloodTermsPresenter({
                 active={state.terms?.termsd2?.isChecked === 0 ? false : true}
                 onPress={() => onClickTermsModalOpen('termsd2', wwTermsSd2())}
                 iscenter
-                title={state.terms?.termsd1?.title}
+                title={state.terms?.termsd2?.title}
               />
             </ButtonBox>
             <ButtonBox>

@@ -163,7 +163,13 @@ function HouseEvaluationPresenter({
             )}
           </SectionTwoContainer>
 
-          <Collapse title="건물" value={sliceTenThousand(state?.selectAddress?.amt_ins)} value2={resultBuildPrice()}>
+          <Collapse
+            title="건물"
+            value={
+              state?.selectAddress?.already_group_ins === 'Y' ? '1000' : sliceTenThousand(state?.selectAddress?.amt_ins)
+            }
+            value2={resultBuildPrice()}
+            isTitle>
             <Typhograph type="NOTO" color="BLACK3">
               기본담보(보통약관)
             </Typhograph>
