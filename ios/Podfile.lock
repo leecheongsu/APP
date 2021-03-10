@@ -272,6 +272,8 @@ PODS:
     - React-Core
   - RNDateTimePicker (3.0.9):
     - React-Core
+  - RNDeviceInfo (8.0.2):
+    - React-Core
   - RNGestureHandler (1.9.0):
     - React-Core
   - RNPDF (0.11.0):
@@ -322,6 +324,7 @@ DEPENDENCIES:
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - "RNCPicker (from `../node_modules/@react-native-picker/picker`)"
   - "RNDateTimePicker (from `../node_modules/@react-native-community/datetimepicker`)"
+  - RNDeviceInfo (from `../node_modules/react-native-device-info`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNPDF (from `../node_modules/react-native-view-pdf`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -407,6 +410,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-picker/picker"
   RNDateTimePicker:
     :path: "../node_modules/@react-native-community/datetimepicker"
+  RNDeviceInfo:
+    :path: "../node_modules/react-native-device-info"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
   RNPDF:
@@ -457,6 +462,7 @@ SPEC CHECKSUMS:
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNCPicker: 77183d9b1cd80ae55505322f8ad09ba0036e29ba
   RNDateTimePicker: 8a51a2216c307769e69ef827293d59549ab1ca23
+  RNDeviceInfo: a9601119924a67d2479d3facf04cec7b658f44ed
   RNGestureHandler: 9b7e605a741412e20e13c512738a31bd1611759b
   RNPDF: b575ff11a65121f346b2851e3da736e7c51c18ab
   RNReanimated: e03f7425cb7a38dcf1b644d680d1bfc91c3337ad
