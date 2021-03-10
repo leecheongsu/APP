@@ -145,12 +145,12 @@ platform :android do
 
   lane :codepush do |options|
     desc "setCodepush"
+    build_type = prompt(text: "Please enter the build type\n(release, staging, dev): ")
+    version = prompt(text: "Enter the version type or specific version\n(major, minor, patch or 1.0.0): ")
+    updateVersion(build_type,version)
     increment_version_code(
       gradle_file_path: "app/build.gradle"
     )
-    build_type =  prompt(text: "Please enter the build type\n(release, staging, dev): ")
-    version = prompt(text: "Enter the version type or specific version\n(major, minor, patch or 1.0.0): ")
-    updateVersion(build_type,version)
   end
 
   desc "Deploy a new version to the Google Play"
