@@ -361,9 +361,9 @@ function InsuCertificatePresenter({ state, open, close, isButton = true, insuPri
                     보험기간
                   </Typhograph>
                 </RowItem>
-                <RowItem>
-                  <Typhograph type="NOTO" color="BLACK2">
-                    {startDay} ~ {endDate} (24:00)
+                <RowItem style={{ width: '75%' }}>
+                  <Typhograph type="NOTO" color="BLACK2" numberOfLines={2} style={{ textAlign: 'right' }}>
+                    {startDay}(24:00) ~ {endDate} (24:00)
                   </Typhograph>
                 </RowItem>
               </RowBox>
@@ -759,9 +759,9 @@ function InsuCertificatePresenter({ state, open, close, isButton = true, insuPri
                     보험기간
                   </Typhograph>
                 </RowItem>
-                <RowItem>
-                  <Typhograph type="NOTO" color="BLACK2">
-                    {state?.contractInsuInfo?.insDate} ~ {insuEndDate} (24:00)
+                <RowItem style={{ width: '75%' }}>
+                  <Typhograph type="NOTO" color="BLACK2" numberOfLines={2} style={{ textAlign: 'right' }}>
+                    {state?.contractInsuInfo?.insDate} (24:00) ~ {insuEndDate} (24:00)
                   </Typhograph>
                 </RowItem>
               </RowBox>

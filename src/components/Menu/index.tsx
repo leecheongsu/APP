@@ -143,6 +143,7 @@ export default function Menu(props) {
   const globalDispatch = useGlobalDispatch();
   const isLogin = globalState.user !== undefined;
   const [isEnabled, setIsEnabled] = useState(globalState.isAutoLogin);
+
   const logoutButton = () => {
     clearStoreData();
     globalDispatch({ type: 'RESET' });

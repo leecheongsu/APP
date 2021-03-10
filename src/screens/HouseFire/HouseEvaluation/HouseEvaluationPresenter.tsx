@@ -115,11 +115,7 @@ function HouseEvaluationPresenter({
             <InsuCard
               leftText="건물 평가 보험가액"
               leftSubText="(보험가입금액)"
-              rightText={
-                state?.selectAddress?.already_group_ins === 'Y'
-                  ? priceDot(10000000)
-                  : priceDot(state?.selectAddress?.amt_ins)
-              }
+              rightText={priceDot(state?.selectAddress?.amt_ins)}
             />
             <SubTextBox>
               <Typhograph type="NOTO" color="BLACK2" weight="LIGHT" size={10} lineheight={3}>

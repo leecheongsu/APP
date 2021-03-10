@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useLayoutEffect } from 'react';
 import HomePresenter from '@app/screens/Home/HomePresenter';
 import { getStoreData } from '@app/lib';
 import { useGlobalDispatch } from '@app/context';
@@ -32,9 +32,10 @@ export default function HomeContainer() {
       resetRecommendUser();
     });
     return unsubscribe;
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [navigation]);
+
+  useLayoutEffect(() => {}, [navigation]);
 
   return <HomePresenter />;
 }
