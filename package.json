@@ -7,7 +7,7 @@
     "setCodepush": "cd ios && fastlane codepush && cd .. && cd android && fastlane codepush && cd ..",
     "codepushStaging": "yarn setCodepush && appcenter codepush release-react -a insurobo-gmail.com/com.insurobo -d Staging && appcenter codepush release-react -a insurobo-gmail.com/com.insurobo.insurobo -d Staging",
     "codepushProduction": "yarn setCodepush && appcenter codepush release-react -a insurobo-gmail.com/com.insurobo -d Production && appcenter codepush release-react -a insurobo-gmail.com/com.insurobo.insurobo -d Production",
-    "android:release": "yarn setCodepush && cd android && fastlane release && cd ..",
+    "android:release": "cd android && fastlane release && cd ..",
     "android:distribute": "yarn cc && cd android && ./gradlew clean && fastlane distribute && cd ..",
     "ios:distribute": "yarn setCodepush && cd ios && fastlane beta && cd ..",
     "postinstall": "yarn cc && rndebugger-open",
