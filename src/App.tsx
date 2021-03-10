@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { GlobalContextProvider } from '@app/context';
 import theme, { navigationTheme } from '@app/style/theme';
-import { Alert, AppState, BackHandler, LogBox, Text } from 'react-native';
+import { Alert, AppState, BackHandler, Linking, LogBox, Platform, Text } from 'react-native';
 import { ignoreWarningLists } from '@app/lib/util/ignoreWarningLists';
 import { ThemeProvider } from '@app/style/typed-components';
 import { NavigationContainer } from '@react-navigation/native';
@@ -9,8 +9,10 @@ import DrawerStack from '@app/routes/DrawerStack';
 import { getStoreData, setStoreData, clearStoreData } from '@app/lib';
 import { userApis } from '@app/api/User';
 import { SplashScreen } from '@app/screens';
-import codePush from 'react-native-code-push';
 import NetInfo from '@react-native-community/netinfo';
+import DeviceInfo, { getVersion } from 'react-native-device-info';
+import codePush from 'react-native-code-push';
+import { DefaultAlert } from '@app/components';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare const global: { HermesInternal: null | {} };
 
@@ -24,7 +26,6 @@ const App = () => {
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
   const [loading, setLoading] = useState(false);
   const [isSplash, setIsSplash] = useState(true);
-
   //앱상태 변화 state설정
   const _handleAppStateChange = async (nextAppState) => {
     appState.current = nextAppState;
@@ -58,17 +59,18 @@ const App = () => {
   };
 
   //code push 설정
-  const codePushSync = () => {
-    codePush.sync({
-      updateDialog: {
-        //업데이트 다이얼로그 설정
-        title: '새로운 업데이트가 존재합니다.',
-        optionalUpdateMessage: '지금 업데이트하시겠습니까?',
-        optionalIgnoreButtonLabel: '나중에',
-        optionalInstallButtonLabel: '업데이트',
-      },
-      installMode: codePush.InstallMode.IMMEDIATE, //즉시 업데이트
-    });
+  const appUpdateCheck = () => {
+    const newVersion = '1.1.1'; //최근업데이트된 버젼
+    const deviceAppVersion = getVersion(); //디바이스애 깔려진 앱버젼
+    const androidURL = 'https://play.google.com/store/apps/details?id=com.insurobo';
+    const iosURL = 'itms-apps://apps.apple.com/app/id1553005091';
+    if (newVersion !== deviceAppVersion) {
+      DefaultAlert({
+        title: '알림',
+        msg: '새로운 업데이트가 존재합니다. 업데이트를 받으시겠습니까?',
+        okPress: () => Linking.openURL(Platform.OS === 'ios' ? iosURL : androidURL),
+      });
+    }
   };
 
   //앱 네트워크 상태체크 액션
@@ -82,7 +84,7 @@ const App = () => {
   useEffect(() => {
     if (appStateVisible === 'active') {
       getTokenHandle();
-      codePushSync();
+      appUpdateCheck();
     }
   }, [appStateVisible]);
 
@@ -153,4 +155,4 @@ const codePushOptions = {
   installMode: codePush.InstallMode.IMMEDIATE,
 };
 
-export default App;
+export default codePush(codePushOptions)(App);
