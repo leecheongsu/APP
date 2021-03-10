@@ -63,14 +63,16 @@ const App = () => {
   const appUpdateCheck = () => {
     VersionCheck.getLatestVersion() // Automatically choose profer provider using `Platform.select` by device platform.
       .then((latestVersion) => {
+        const androidURL = 'https://play.google.com/store/apps/details?id=com.insurobo';
+        const iosURL = 'itms-apps://apps.apple.com/app/id1553005091';
         const deviceAppVersion = getVersion();
-        if (latestVersion !== deviceAppVersion) {
-          DefaultAlert({
-            title: '알림',
-            msg: '새로운 업데이트가 존재합니다. 업데이트를 받으시겠습니까?',
-            okPress: () => Linking.openURL(Platform.OS === 'ios' ? iosURL : androidURL),
-          });
-        }
+        // if (latestVersion !== deviceAppVersion) {
+        //   DefaultAlert({
+        //     title: '알림',
+        //     msg: '새로운 업데이트가 존재합니다. 업데이트를 받으시겠습니까?',
+        //     okPress: () => Linking.openURL(Platform.OS === 'ios' ? iosURL : androidURL),
+        //   });
+        // }
       });
   };
 
