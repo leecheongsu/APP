@@ -10,7 +10,7 @@ import { getStoreData, setStoreData, clearStoreData } from '@app/lib';
 import { userApis } from '@app/api/User';
 import { SplashScreen } from '@app/screens';
 import NetInfo from '@react-native-community/netinfo';
-import DeviceInfo, { getVersion } from 'react-native-device-info';
+import { getVersion } from 'react-native-device-info';
 import codePush from 'react-native-code-push';
 import { DefaultAlert } from '@app/components';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -60,7 +60,7 @@ const App = () => {
 
   //code push 설정
   const appUpdateCheck = () => {
-    const newVersion = '1.1.1'; //최근업데이트된 버젼
+    const newVersion = '1.1.2'; //최근업데이트된 버젼
     const deviceAppVersion = getVersion(); //디바이스애 깔려진 앱버젼
     const androidURL = 'https://play.google.com/store/apps/details?id=com.insurobo';
     const iosURL = 'itms-apps://apps.apple.com/app/id1553005091';
@@ -71,6 +71,10 @@ const App = () => {
         okPress: () => Linking.openURL(Platform.OS === 'ios' ? iosURL : androidURL),
       });
     }
+  };
+
+  const codePushUpdate = () => {
+    codePush.sync({ installMode: codePush.InstallMode.IMMEDIATE });
   };
 
   //앱 네트워크 상태체크 액션
@@ -84,6 +88,7 @@ const App = () => {
   useEffect(() => {
     if (appStateVisible === 'active') {
       getTokenHandle();
+      codePushUpdate();
       appUpdateCheck();
     }
   }, [appStateVisible]);
@@ -149,10 +154,4 @@ const App = () => {
   );
 };
 
-// codepush 관련 옵션
-const codePushOptions = {
-  checkFrequency: [codePush.CheckFrequency.ON_APP_START, codePush.CheckFrequency.ON_APP_RESUME],
-  installMode: codePush.InstallMode.IMMEDIATE,
-};
-
-export default codePush(codePushOptions)(App);
+export default App;
