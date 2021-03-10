@@ -1,12 +1,13 @@
 import React from 'react';
 import HouseFinalPresenter from './HouseFinalPresenter';
-import { handleApiError, priceDot } from '@app/lib';
+import { getStoreData, handleApiError, priceDot, setStoreData } from '@app/lib';
 import { useNavigation } from '@react-navigation/native';
 import { EmptyLayout } from '@app/layout';
 import { Alert, PermissionsAndroid, Platform } from 'react-native';
 import RNFetchBlob from 'rn-fetch-blob';
 import { PROD_URL } from '@env';
 import { HouseFireStateName, HouseFireStateTypes, TermsNames } from '@app/screens/HouseFire/HouseFireContainer';
+import { userApis } from '@app/api/User';
 
 type HouseFinalContainerTypes = {
   state: HouseFireStateTypes;
@@ -135,8 +136,25 @@ export default function HouseFinalContainer({
   };
 
   //다음버튼
-  const submitNextButton = () => {
-    navigation.goBack();
+  const submitNextButton = async () => {
+    const user: any = await getStoreData('user');
+    const password = await getStoreData('password');
+    const params = {
+      id: user?.email,
+      pwd: password,
+    };
+    userApis
+      .postLogin(params)
+      .then((res) => {
+        if (res.status === 200) {
+          setStoreData('user', res.data);
+        }
+        navigation.goBack();
+      })
+      .catch((e) => {
+        handleApiError(e.response);
+        navigation.goBack();
+      });
   };
 
   if (state.stepNumber === 13) {

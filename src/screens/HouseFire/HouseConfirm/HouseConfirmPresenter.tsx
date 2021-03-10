@@ -166,8 +166,8 @@ function HouseConfirmPresenter({
               </Typhograph>
             </RowItem>
             <RowItem>
-              <Typhograph type="NOTO" color="BLACK2">
-                {state?.contractInsuInfo?.insDate} ~ {insuEndDate} (24:00)
+              <Typhograph type="NOTO" color="BLACK2" numberOfLines={2} style={{ width: '90%', textAlign: 'right' }}>
+                {state?.contractInsuInfo?.insDate} (24:00) ~ {insuEndDate} (24:00)
               </Typhograph>
             </RowItem>
           </RowBox>

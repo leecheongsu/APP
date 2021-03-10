@@ -4,6 +4,8 @@ import StormFloodFinalPresenter from './StormFloodFinalPresenter';
 import { Alert } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { StormFloodName, StormFloodStateTypes } from '@app/screens/StormFlood/StormFloodContainer';
+import { userApis } from '@app/api/User';
+import { getStoreData, handleApiError, setStoreData } from '@app/lib';
 
 type StormFloodFinalContainerTypes = {
   state: StormFloodStateTypes;
@@ -17,8 +19,25 @@ export default function StormFloodFinalContainer({
   handlePreviousButton,
 }: StormFloodFinalContainerTypes) {
   const navigation = useNavigation();
-  const nextButton = () => {
-    navigation.goBack();
+  const nextButton = async () => {
+    const user: any = await getStoreData('user');
+    const password = await getStoreData('password');
+    const params = {
+      id: user?.email,
+      pwd: password,
+    };
+    userApis
+      .postLogin(params)
+      .then((res) => {
+        if (res.status === 200) {
+          setStoreData('user', res.data);
+        }
+        navigation.goBack();
+      })
+      .catch((e) => {
+        handleApiError(e.response);
+        navigation.goBack();
+      });
   };
 
   const downloadfileButton = () => {

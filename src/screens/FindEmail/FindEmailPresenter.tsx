@@ -221,7 +221,7 @@ function InputConatiner({ inputState, state, onValueChange }) {
                   onBlur={() => {
                     setIsFocus(false);
                   }}
-                  ref={sexRef}
+                  propsRef={sexRef}
                   style={{ alignSelf: 'stretch', fontSize: 13 }}
                   maxLength={1}
                   onSubmitEditing={() => Keyboard.dismiss()}
