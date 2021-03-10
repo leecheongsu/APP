@@ -55,6 +55,36 @@ platform :ios do
     end
   end 
 
+  # 코드푸쉬 키 & diplay 네임 설정
+  def setReleaseCodepushkey(version)
+    info_path = "./insurobo/Info.plist"
+    release_key = "QCnCtVRl7v8uDqqlNwJuWIG-kBOmgA4iS8GCW"
+    set_info_plist_value(
+        path: info_path,
+        key:"CodePushDeploymentKey",
+        value:release_key
+      )
+      update_info_plist( # Change the Display Name of your app
+      plist_path: info_path,
+      display_name: "인슈로보"
+      )
+  end 
+
+  # 코드푸쉬 키 & diplay 네임 설정
+  def setStagingCodepushkey(version)
+    info_path = "./insurobo/Info.plist"
+    staging_key = "yzVnAy13Mi-4Ly7mkQ-0cRZS43fNF26Qcxpgy"
+    set_info_plist_value(
+        path: info_path,
+        key:"CodePushDeploymentKey",
+        value:staging_key
+      )
+      update_info_plist( # Change the Display Name of your app
+      plist_path: info_path,
+      display_name: "인슈로보 #{version}"
+      )
+  end 
+
   #버젼설정
   def updateVersion(build_type,version)
     
@@ -97,7 +127,6 @@ platform :ios do
       UI.user_error!("[ERROR] Wrong build type!!!!!!")
     end
   end
-
 
   lane :codepush do |options|
     desc "setCodepush"

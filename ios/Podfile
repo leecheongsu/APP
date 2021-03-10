@@ -8,6 +8,8 @@ target 'insurobo' do
 
   use_react_native!(:path => config["reactNativePath"])
 
+  pod 'react-native-version-check', :path => '../node_modules/react-native-version-check'
+
   target 'insuroboTests' do
     inherit! :complete
     # Pods for testing

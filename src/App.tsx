@@ -13,6 +13,7 @@ import NetInfo from '@react-native-community/netinfo';
 import { getVersion } from 'react-native-device-info';
 import codePush from 'react-native-code-push';
 import { DefaultAlert } from '@app/components';
+import VersionCheck from 'react-native-version-check';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 declare const global: { HermesInternal: null | {} };
 
@@ -60,17 +61,17 @@ const App = () => {
 
   //code push 설정
   const appUpdateCheck = () => {
-    const newVersion = '1.1.2'; //최근업데이트된 버젼
-    const deviceAppVersion = getVersion(); //디바이스애 깔려진 앱버젼
-    const androidURL = 'https://play.google.com/store/apps/details?id=com.insurobo';
-    const iosURL = 'itms-apps://apps.apple.com/app/id1553005091';
-    if (newVersion !== deviceAppVersion) {
-      DefaultAlert({
-        title: '알림',
-        msg: '새로운 업데이트가 존재합니다. 업데이트를 받으시겠습니까?',
-        okPress: () => Linking.openURL(Platform.OS === 'ios' ? iosURL : androidURL),
+    VersionCheck.getLatestVersion() // Automatically choose profer provider using `Platform.select` by device platform.
+      .then((latestVersion) => {
+        const deviceAppVersion = getVersion();
+        if (latestVersion !== deviceAppVersion) {
+          DefaultAlert({
+            title: '알림',
+            msg: '새로운 업데이트가 존재합니다. 업데이트를 받으시겠습니까?',
+            okPress: () => Linking.openURL(Platform.OS === 'ios' ? iosURL : androidURL),
+          });
+        }
       });
-    }
   };
 
   const codePushUpdate = () => {
