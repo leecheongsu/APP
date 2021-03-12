@@ -79,7 +79,7 @@ export default function HouseInputUserContainer({
     [onChangeState]
   );
 
-  //추천인 삭제 버튼
+  // 추천인 삭제 버튼
   const onDeleteRecommedUserButton = () => {
     globalDispatch({ type: 'CHANGE', name: 'recommendUser', value: undefined });
     Toast.show('추천인이 삭제되었습니다.');
@@ -124,15 +124,16 @@ export default function HouseInputUserContainer({
         advisor_no: globalState?.recommendUser === undefined ? '' : globalState?.recommendUser?.seq,
       };
       onChangeState('contractInsuInfo', newContractInsuInfo);
-      if (globalState.recommendUser === undefined) {
-        DefaultAlert({
-          title: '추천인을 선택하지않으셨습니다.',
-          msg: '이대로 진행하시겠습니까?',
-          okPress: handleNextButton,
-        });
-      } else {
-        handleNextButton();
-      }
+      handleNextButton();
+      // if (globalState.recommendUser === undefined) {
+      //   DefaultAlert({
+      //     title: '추천인을 선택하지않으셨습니다.',
+      //     msg: '이대로 진행하시겠습니까?',
+      //     okPress: handleNextButton,
+      //   });
+      // } else {
+      //   handleNextButton();
+      // }
     }
   };
 

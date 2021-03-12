@@ -29,6 +29,8 @@ export default function HousePayWayContainer({
   const nextButton = () => {
     if (state?.payway === '') {
       SimpleToast.show('결제방법을 선택해주세요.');
+    } else if (state?.payway !== null) {
+      SimpleToast.show('해당 상품은 보험사와 결제조건 조율중이니 인슈로보 고객센터로 문의바랍니다.');
     } else {
       handleNextButton();
     }

@@ -95,6 +95,7 @@ const TableBodyItem = styled.View`
   padding: 0px 10px;
 `;
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function MyInsuCertificatePresenter({ open, close, item, isButton, insuPrice }: MyInsuCertificatePresenterTypes) {
   const globalState = useGlobalState();
 
@@ -148,18 +149,18 @@ function MyInsuCertificatePresenter({ open, close, item, isButton, insuPrice }: 
               </RowBox>
 
               {/* 보험기간 */}
-              <RowBox>
-                <RowItem>
-                  <Typhograph type="NOTO" color="GRAY">
-                    보험기간
-                  </Typhograph>
-                </RowItem>
-                <RowItem>
-                  <Typhograph type="NOTO" color="BLACK2" numberOfLines={2} style={{ width: '90%', textAlign: 'right' }}>
-                    {item?.insstdt}({item?.insedtm}) ~ {item?.inseddt}({item?.insedtm})
-                  </Typhograph>
-                </RowItem>
-              </RowBox>
+              {/*<RowBox>*/}
+              {/*  <RowItem>*/}
+              {/*    <Typhograph type="NOTO" color="GRAY">*/}
+              {/*      보험기간*/}
+              {/*    </Typhograph>*/}
+              {/*  </RowItem>*/}
+              {/*  <RowItem>*/}
+              {/*    <Typhograph type="NOTO" color="BLACK2" numberOfLines={2} style={{ width: '90%', textAlign: 'right' }}>*/}
+              {/*      {item?.insstdt}({item?.insedtm}) ~ {item?.inseddt}({item?.insedtm})*/}
+              {/*    </Typhograph>*/}
+              {/*  </RowItem>*/}
+              {/*</RowBox>*/}
 
               {/* 연락처 */}
               <RowBox>
@@ -254,34 +255,34 @@ function MyInsuCertificatePresenter({ open, close, item, isButton, insuPrice }: 
               </RowBox>
             </InfoBox>
             {/* 추천인 정보 */}
-            {item.advisor_company !== '' && item.advisor_company !== undefined && item.advisor_company !== null && (
-              <InfoBox>
-                <RecommendUserBox>
-                  <TitleBox>
-                    <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
-                      추천인 정보
-                    </Typhograph>
-                  </TitleBox>
-                  <RowBox>
-                    <RowItem>
-                      <Typhograph type="NOTO" color="GRAY">
-                        {item?.advisor_company}
-                      </Typhograph>
-                    </RowItem>
-                    <RowItem>
-                      <Typhograph type="NOTO" color="GRAY">
-                        {recomendMasking(String(item?.advisor_mobile))}
-                      </Typhograph>
-                    </RowItem>
-                    <RowItem>
-                      <Typhograph type="NOTO" color="GRAY">
-                        {item?.pbohumja_mobile}
-                      </Typhograph>
-                    </RowItem>
-                  </RowBox>
-                </RecommendUserBox>
-              </InfoBox>
-            )}
+            {/*{item.advisor_company !== '' && item.advisor_company !== undefined && item.advisor_company !== null && (*/}
+            {/*  <InfoBox>*/}
+            {/*    <RecommendUserBox>*/}
+            {/*      <TitleBox>*/}
+            {/*        <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>*/}
+            {/*          추천인 정보*/}
+            {/*        </Typhograph>*/}
+            {/*      </TitleBox>*/}
+            {/*      <RowBox>*/}
+            {/*        <RowItem>*/}
+            {/*          <Typhograph type="NOTO" color="GRAY">*/}
+            {/*            {item?.advisor_company}*/}
+            {/*          </Typhograph>*/}
+            {/*        </RowItem>*/}
+            {/*        <RowItem>*/}
+            {/*          <Typhograph type="NOTO" color="GRAY">*/}
+            {/*            {recomendMasking(String(item?.advisor_mobile))}*/}
+            {/*          </Typhograph>*/}
+            {/*        </RowItem>*/}
+            {/*        <RowItem>*/}
+            {/*          <Typhograph type="NOTO" color="GRAY">*/}
+            {/*            {item?.pbohumja_mobile}*/}
+            {/*          </Typhograph>*/}
+            {/*        </RowItem>*/}
+            {/*      </RowBox>*/}
+            {/*    </RecommendUserBox>*/}
+            {/*  </InfoBox>*/}
+            {/*)}*/}
             <InfoBox>
               <TitleBox>
                 <Typhograph type="NOTO" weight="BOLD" color="BLUE" size={15}>
@@ -547,18 +548,18 @@ function MyInsuCertificatePresenter({ open, close, item, isButton, insuPrice }: 
               </RowBox>
 
               {/* 보험기간 */}
-              <RowBox>
-                <RowItem>
-                  <Typhograph type="NOTO" color="GRAY">
-                    보험기간
-                  </Typhograph>
-                </RowItem>
-                <RowItem>
-                  <Typhograph type="NOTO" color="BLACK2" numberOfLines={2} style={{ width: '90%', textAlign: 'right' }}>
-                    {item?.insstdt} (24:00) ~ {item?.inseddt}({item?.insedtm})
-                  </Typhograph>
-                </RowItem>
-              </RowBox>
+              {/*<RowBox>*/}
+              {/*  <RowItem>*/}
+              {/*    <Typhograph type="NOTO" color="GRAY">*/}
+              {/*      보험기간*/}
+              {/*    </Typhograph>*/}
+              {/*  </RowItem>*/}
+              {/*  <RowItem>*/}
+              {/*    <Typhograph type="NOTO" color="BLACK2" numberOfLines={2} style={{ width: '90%', textAlign: 'right' }}>*/}
+              {/*      {item?.insstdt} (24:00) ~ {item?.inseddt}({item?.insedtm})*/}
+              {/*    </Typhograph>*/}
+              {/*  </RowItem>*/}
+              {/*</RowBox>*/}
 
               {/* 연락처 */}
               <RowBox>
@@ -656,34 +657,34 @@ function MyInsuCertificatePresenter({ open, close, item, isButton, insuPrice }: 
             </InfoBox>
 
             {/* 추천인 정보 */}
-            {item.advisor_company !== '' && item.advisor_company !== undefined && item.advisor_company !== null && (
-              <InfoBox>
-                <RecommendUserBox>
-                  <TitleBox>
-                    <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
-                      추천인 정보
-                    </Typhograph>
-                  </TitleBox>
-                  <RowBox>
-                    <RowItem>
-                      <Typhograph type="NOTO" color="GRAY">
-                        {item?.advisor_company}
-                      </Typhograph>
-                    </RowItem>
-                    <RowItem>
-                      <Typhograph type="NOTO" color="GRAY">
-                        {recomendMasking(String(item?.advisor_mobile))}
-                      </Typhograph>
-                    </RowItem>
-                    <RowItem>
-                      <Typhograph type="NOTO" color="GRAY">
-                        {item?.pbohumja_mobile}
-                      </Typhograph>
-                    </RowItem>
-                  </RowBox>
-                </RecommendUserBox>
-              </InfoBox>
-            )}
+            {/*{item.advisor_company !== '' && item.advisor_company !== undefined && item.advisor_company !== null && (*/}
+            {/*  <InfoBox>*/}
+            {/*    <RecommendUserBox>*/}
+            {/*      <TitleBox>*/}
+            {/*        <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>*/}
+            {/*          추천인 정보*/}
+            {/*        </Typhograph>*/}
+            {/*      </TitleBox>*/}
+            {/*      <RowBox>*/}
+            {/*        <RowItem>*/}
+            {/*          <Typhograph type="NOTO" color="GRAY">*/}
+            {/*            {item?.advisor_company}*/}
+            {/*          </Typhograph>*/}
+            {/*        </RowItem>*/}
+            {/*        <RowItem>*/}
+            {/*          <Typhograph type="NOTO" color="GRAY">*/}
+            {/*            {recomendMasking(String(item?.advisor_mobile))}*/}
+            {/*          </Typhograph>*/}
+            {/*        </RowItem>*/}
+            {/*        <RowItem>*/}
+            {/*          <Typhograph type="NOTO" color="GRAY">*/}
+            {/*            {item?.pbohumja_mobile}*/}
+            {/*          </Typhograph>*/}
+            {/*        </RowItem>*/}
+            {/*      </RowBox>*/}
+            {/*    </RecommendUserBox>*/}
+            {/*  </InfoBox>*/}
+            {/*)}*/}
             <InfoBox>
               <TitleBox>
                 <Typhograph type="NOTO" weight="BOLD" color="BLUE" size={15}>

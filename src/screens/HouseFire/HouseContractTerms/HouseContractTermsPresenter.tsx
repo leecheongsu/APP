@@ -109,11 +109,11 @@ function HouseContractTermsPresenter({
               title={state.terms?.TERMSD_3?.title}
             />
           </ButtonItemBox>
-          <HelperText>
-            <Typhograph type="NOTO" color="WARING_RED" size={11}>
-              ※ 통합청약서 및 증권은 가입하신 이메일 주소로 발송됩니다.
-            </Typhograph>
-          </HelperText>
+          {/*<HelperText>*/}
+          {/*  <Typhograph type="NOTO" color="WARING_RED" size={11}>*/}
+          {/*    ※ 통합청약서 및 증권은 가입하신 이메일 주소로 발송됩니다.*/}
+          {/*  </Typhograph>*/}
+          {/*</HelperText>*/}
         </ButtonContainer>
         {/* (필수) 보험계약 체결, 이행을 위한 동의 */}
 

@@ -65,7 +65,7 @@ const App = () => {
       .then((latestVersion) => {
         const androidURL = 'https://play.google.com/store/apps/details?id=com.insurobo';
         const iosURL = 'itms-apps://apps.apple.com/app/id1553005091';
-        const deviceAppVersion = getVersion();
+        const deviceAppVersion = '1.1.4';
         // if (latestVersion !== deviceAppVersion) {
         //   DefaultAlert({
         //     title: '알림',

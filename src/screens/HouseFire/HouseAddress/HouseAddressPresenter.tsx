@@ -86,7 +86,7 @@ function HouseAddressPresenter({
             지역명(동/리) + 번지
           </Typhograph>
           <Typhograph type="NOTO" color="BROWN" size={12}>
-            예) 전포동 375-51
+            예) 둔내면 두원274-2
           </Typhograph>
           {/* 지역명(동/리) + 건물명(아파트명)*/}
           <Typhograph type="NOTO" color="BLACK" weight="BOLD" style={{ marginTop: 20 }}>
@@ -100,7 +100,7 @@ function HouseAddressPresenter({
             세대별 가입
           </Typhograph>
           <Typhograph type="NOTO" color="BROWN" size={12} style={{ paddingBottom: 100 }}>
-            예) 하단 대진아파트, 중동 아남하이츠3차
+            예) 남천 비치아파트, 중동 아남하이츠3
           </Typhograph>
         </TipBox>
       )}

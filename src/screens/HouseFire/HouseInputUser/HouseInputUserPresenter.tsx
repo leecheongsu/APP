@@ -318,11 +318,11 @@ function HouseInputUserPresenter({
               </RowBox>
             </InfoContainer>
 
-            <RecommendBox>
-              <RecommendButtonBox>
-                <CheckLabelButton title="추천인선택" iscenter onPress={() => navigation.navigate('RECOMMEND_USERS')} />
-              </RecommendButtonBox>
-            </RecommendBox>
+            {/*<RecommendBox>*/}
+            {/*  <RecommendButtonBox>*/}
+            {/*    <CheckLabelButton title="추천인선택" iscenter onPress={() => navigation.navigate('RECOMMEND_USERS')} />*/}
+            {/*  </RecommendButtonBox>*/}
+            {/*</RecommendBox>*/}
             {globalState?.recommendUser !== undefined && (
               <RecommendListBox>
                 <RowBox>

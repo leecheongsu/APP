@@ -188,9 +188,9 @@ function StormFloodInputPresenter({
               </Typhograph>
             </InfoTextBox>
 
-            <ButtonBox>
-              <CheckLabelButton iscenter title="추천인선택" onPress={() => navigation.navigate('RECOMMEND_USERS')} />
-            </ButtonBox>
+            {/*<ButtonBox>*/}
+            {/*  <CheckLabelButton iscenter title="추천인선택" onPress={() => navigation.navigate('RECOMMEND_USERS')} />*/}
+            {/*</ButtonBox>*/}
             {globalState?.recommendUser !== undefined && (
               <RecommendListBox>
                 <RowBox>
