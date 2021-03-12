@@ -130,9 +130,9 @@ function HouseEvaluationPresenter({
             {state.selectType === 'S' && (
               <>
                 <InfoIconTextBox1>
-                  <Typhograph type="NOTO"> 단체보험 가입여부</Typhograph>
+                  <Typhograph type="NOTO"> 화재보험 의무가입여부</Typhograph>
                   <IconButtonBox>
-                    <IconButton onPress={() => openInfoModal('단체보험 가입설명', danchInfoText())}>
+                    <IconButton onPress={() => openInfoModal('화재보험 가입설명', danchInfoText())}>
                       <Image source={insuIcon.ICON_INFO} />
                     </IconButton>
                   </IconButtonBox>
@@ -141,7 +141,7 @@ function HouseEvaluationPresenter({
                   <ButtonBox>
                     <CheckLabelButton
                       iscenter
-                      title="단체보험 가입"
+                      title="가입"
                       active={state.selectAddress.already_group_ins === 'Y'}
                       onPress={() => clickDancheButton('Y')}
                     />
@@ -149,7 +149,7 @@ function HouseEvaluationPresenter({
                   <ButtonBox>
                     <CheckLabelButton
                       iscenter
-                      title="단체보험 미가입"
+                      title="미가입"
                       active={state.selectAddress.already_group_ins === 'N'}
                       onPress={() => clickDancheButton('N')}
                     />

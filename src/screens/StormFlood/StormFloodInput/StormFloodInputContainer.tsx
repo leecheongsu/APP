@@ -61,15 +61,16 @@ export default function StormFloodInputContainer({
     if (checkInput()) {
       globalDispatch({ type: 'CHANGE', name: 'jumina', value: globalState?.user?.jumina });
       globalDispatch({ type: 'CHANGE', name: 'juminb', value: globalState?.user?.sex + juminb.value });
-      if (globalState?.recommendUser === undefined) {
-        DefaultAlert({
-          title: '추천인을 선택하지않으셨습니다.',
-          msg: '이대로 진행하시겠습니까?',
-          okPress: handleNextButton,
-        });
-      } else {
-        handleNextButton();
-      }
+      handleNextButton();
+      // if (globalState?.recommendUser === undefined) {
+      //   DefaultAlert({
+      //     title: '추천인을 선택하지않으셨습니다.',
+      //     msg: '이대로 진행하시겠습니까?',
+      //     okPress: handleNextButton,
+      //   });
+      // } else {
+      //   handleNextButton();
+      // }
     }
   };
 

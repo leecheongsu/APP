@@ -22,8 +22,8 @@ platform :android do
 
    # 코드푸쉬 키 & diplay 네임 설정
    def setCodepushkeyAndDisplayName(build_type, version)
-    require 'nokogiri'
-    path = '../app/src/main/res/values/strings.xml'
+    require = 'nokogiri'
+    path = 'android/app/src/main/res/values/strings.xml'
     doc = Nokogiri::XML(File.open(path),nil,"UTF-8")
     devAppname = "인슈로보 #{version}"
     stagingAppname = "인슈로보 #{version}"

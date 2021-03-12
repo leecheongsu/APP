@@ -62,17 +62,18 @@ const App = () => {
   //code push 설정
   const appUpdateCheck = () => {
     VersionCheck.getLatestVersion() // Automatically choose profer provider using `Platform.select` by device platform.
-      .then((latestVersion) => {
+      .then((latestVersion: string) => {
         const androidURL = 'https://play.google.com/store/apps/details?id=com.insurobo';
         const iosURL = 'itms-apps://apps.apple.com/app/id1553005091';
-        const deviceAppVersion = getVersion();
-        // if (latestVersion !== deviceAppVersion) {
-        //   DefaultAlert({
-        //     title: '알림',
-        //     msg: '새로운 업데이트가 존재합니다. 업데이트를 받으시겠습니까?',
-        //     okPress: () => Linking.openURL(Platform.OS === 'ios' ? iosURL : androidURL),
-        //   });
-        // }
+        const deviceAppVersion = Number(getVersion().replace(/\./g, '')); // 인슈로보 디바이스 앱버전
+        const marketAppVersion = Number(latestVersion.replace(/\./g, '')); // 인슈로보 마켓 앱버전
+        if (deviceAppVersion < marketAppVersion) {
+          DefaultAlert({
+            title: '알림',
+            msg: '새로운 업데이트가 존재합니다. 업데이트를 받으시겠습니까?',
+            okPress: () => Linking.openURL(Platform.OS === 'ios' ? iosURL : androidURL),
+          });
+        }
       });
   };
 

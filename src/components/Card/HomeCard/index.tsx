@@ -116,7 +116,7 @@ function HomeCard({ navigation }) {
             setIsClick(true);
           }}
           activeOpacity={0.9}>
-          <Typhograph type="NOTO" color="BLUE" size={18}>
+          <Typhograph type="NOTO" color="GRAY3" size={18}>
             주택화재
           </Typhograph>
         </CollapsHeader>
@@ -140,7 +140,7 @@ function HomeCard({ navigation }) {
           }}
           activeOpacity={0.9}
           style={[styles.borderBottom]}>
-          <Typhograph type="NOTO" color="BLUE" size={18}>
+          <Typhograph type="NOTO" color="GRAY3" size={18}>
             풍수해 Ⅵ
           </Typhograph>
         </CollapsHeader>
@@ -161,7 +161,7 @@ function HomeCard({ navigation }) {
           }}
           activeOpacity={0.9}
           style={styles.borderBottom}>
-          <Typhograph type="NOTO" color="BLUE" size={18}>
+          <Typhograph type="NOTO" color="GRAY3" size={18}>
             다중이용시설 화재배상책임
           </Typhograph>
         </CollapsHeader>
@@ -182,7 +182,7 @@ function HomeCard({ navigation }) {
             setIsClick(true);
           }}
           activeOpacity={0.9}>
-          <Typhograph type="NOTO" color="BLUE" size={18}>
+          <Typhograph type="NOTO" color="GRAY3" size={18}>
             재난 배상책임
           </Typhograph>
         </CollapsHeader>
