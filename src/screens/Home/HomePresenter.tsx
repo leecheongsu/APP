@@ -9,6 +9,7 @@ import { Image, Linking } from 'react-native';
 import theme from '@app/style/theme';
 // @ts-ignore
 import { KAKAO_CHAT_URL, CUMTOMER_NUMBER } from '@env';
+
 const Container = styled.View`
   padding-bottom: 10px;
 `;

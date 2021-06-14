@@ -6,7 +6,7 @@ import { HouseFireStateTypes } from '@app/screens/HouseFire/HouseFireContainer';
 
 type JoinTypeTypes = {
   state: HouseFireStateTypes;
-  selectJoinType: (value: 'T' | 'S') => void;
+  selectJoinType: (value: 'T' | 'S' | 'T2') => void;
   onClickNextButton: () => void;
   handlePreviousButton: () => void;
 };
@@ -32,30 +32,30 @@ const ButtonItemBox = styled.View`
 function JoinTypePresenter({ state, selectJoinType, onClickNextButton, handlePreviousButton }: JoinTypeTypes) {
   const dot = '\u2022';
   const INFO_TEXT = [
-    '공동주택(아파트 등)의 단지나 동을 대표하여 가입하는 것을 말합니다.',
-    '단체 가입 이외 세대별로 개인적으로 가입할 경우 선택합니다.',
+    '★단독주택 : 건물 소유주가 1인.\n                    주택, 다가구 주택, 다중 주택',
+    '★공동주택 : 건물 소유주가 다수.\n                    다세대 주택, 연립주택, 아파트(15층 이하)',
+      '※ 아파트 관리사무소인 경우에는 단독주택을 선택하세요,',
   ];
 
   return (
     <>
       <Container>
-        <FullLabel title="단체 가입과 세대 가입을 선택해 주세요." />
-        <InfoContainer>
-          {INFO_TEXT.map((item, index) => {
-            return (
-              <InfoBox key={index}>
-                <Typhograph type="NOTO" size={11} color="BLACK2">
-                  {dot}
-                  {'  '}
-                </Typhograph>
-                <Typhograph type="NOTO" size={14} color="BLACK2">
-                  {item}
-                </Typhograph>
-              </InfoBox>
-            );
-          })}
-        </InfoContainer>
-
+        <FullLabel title="가입하고자 하는 주택유형을 선택해 주세요." />
+        {/*<InfoContainer>*/}
+        {/*  {INFO_TEXT.map((item, index) => {*/}
+        {/*    return (*/}
+        {/*      <InfoBox key={index}>*/}
+        {/*        <Typhograph type="NOTO" size={11} color="BLACK2">*/}
+        {/*          {dot}*/}
+        {/*          {'  '}*/}
+        {/*        </Typhograph>*/}
+        {/*        <Typhograph type="NOTO" size={14} color="BLACK2">*/}
+        {/*          {item}*/}
+        {/*        </Typhograph>*/}
+        {/*      </InfoBox>*/}
+        {/*    );*/}
+        {/*  })}*/}
+        {/*</InfoContainer>*/}
         <ButtonBox>
           {state.joinType.map((item, index) => {
             return (

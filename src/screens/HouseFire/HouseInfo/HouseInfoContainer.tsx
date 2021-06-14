@@ -32,7 +32,7 @@ export default function HouseInfoContainer({ state, handleNextButton, handlePrev
     flr_name: state.selectAddress?.flr_name,
     cnt_sedae: state.selectAddress?.cnt_sedae,
     dong_info:
-      state.selectType === 'T' && state?.selectAddress?.dong_info
+        (state.selectType === 'T' || state.selectType === 'T2') && state?.selectAddress?.dong_info
         ? Object.entries(JSON.parse(state?.selectAddress?.dong_info)[0])
         : state?.selectAddress?.dong_info,
     total_area: state.selectAddress?.total_area,

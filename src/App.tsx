@@ -19,12 +19,15 @@ declare const global: { HermesInternal: null | {} };
 
 LogBox.ignoreLogs(ignoreWarningLists);
 //안드로이드 텍스트 크기설정
+// @ts-ignore
 Text.defaultProps = Text.defaultProps || {};
+// @ts-ignore
 Text.defaultProps.allowFontScaling = false;
 
 const App = () => {
   const appState = useRef(AppState.currentState);
   const [appStateVisible, setAppStateVisible] = useState(appState.current);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
   const [isSplash, setIsSplash] = useState(true);
   //앱상태 변화 state설정

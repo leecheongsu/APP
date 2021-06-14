@@ -308,7 +308,7 @@ function GuaranteeSelectPresenter({
               <Typhograph type="NOTO" color="BLACK2" weight="BOLD">
                 자기부담금
               </Typhograph>
-              <IconButton onPress={() => openInfoModal('자기부담금안내', jagibudamText())}>
+              <IconButton onPress={() => openInfoModal('자기부담금', jagibudamText())}>
                 <Image source={insuIcon.ICON_INFO} />
               </IconButton>
             </LabelBox2>

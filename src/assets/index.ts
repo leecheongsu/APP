@@ -55,6 +55,7 @@ const MAIN1 = require('./img/main1/main1.png');
 const MAIN2 = require('./img/main2/main2.png');
 const MAIN3 = require('./img/main3/main3.png');
 const MAIN4 = require('./img/main4/main4.png');
+const MAIN5 = require('./img/main5/main5.png');
 const SPLASH_IMAGE = require('./img/splashImage/splashImage.png');
 const INTRO = require('./img/intro/intro.png');
 const INTRO_LOGO = require('./img/intro-logo/intro-logo.png');
@@ -124,6 +125,7 @@ export const insuImg = {
   MAIN2,
   MAIN3,
   MAIN4,
+  MAIN5,
   SPLASH_IMAGE,
   INTRO_LOGO,
   INTRO,

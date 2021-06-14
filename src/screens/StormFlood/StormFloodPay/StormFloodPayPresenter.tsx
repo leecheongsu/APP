@@ -100,6 +100,7 @@ function StormFloodPayPresenter({
     { label: '신한', value: '신한' },
     { label: '삼성', value: '삼성' },
     { label: 'KB국민', value: 'KB국민' },
+    { label: '기타', value: '기타' },
   ];
   const selectItem2 = [
     { label: '일시불', value: '0' },

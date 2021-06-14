@@ -208,7 +208,6 @@ function StormFloodResultPresenter({
             />
           </CardContainer>
         </ContentsContainer>
-
         <TermsModal
           open={state?.termsModal}
           close={() => onChangeState('termsModal', false)}

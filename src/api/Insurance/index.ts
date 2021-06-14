@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { commonApiConfig } from '@app/api/config';
 import { getStoreData } from '@app/lib';
+import {insuImg} from '@app/assets';
 export const insuApis = {
   // const TOKEN = await AsyncStorage.getItem('access_token');
   async getAddress(params) {
@@ -146,6 +147,15 @@ export const insuApis = {
       headers: {
         Authorization: `Bearer ${user.token}`,
       },
+    });
+    return res;
+  },
+
+  async getHsartInfo(params) {
+    const res = await commonApiConfig({
+      method: 'POST',
+      url: 'hsart/can',
+      params,
     });
     return res;
   },

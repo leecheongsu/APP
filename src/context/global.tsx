@@ -15,6 +15,10 @@ export type StateTypes = {
   isIdentityverification: boolean;
   insuType: any;
   isSplash: boolean;
+  contractorAddress: any;
+  isInfoModal: boolean;
+  infoTitle: string;
+  infoContents: any;
 };
 type StateNames =
   | 'user'
@@ -31,7 +35,11 @@ type StateNames =
   | 'isMainModal'
   | 'electronicSignPreData'
   | 'homeFireTitle'
-  | 'stormFloodTitle';
+  | 'stormFloodTitle'
+  | 'contractorAddress'
+  | 'infoTitle' //안내모달 타이틀
+  | 'infoContents' // 안내모달 컨텐츠
+  | 'isInfoModal'; // 안내모달 flag
 type Action =
   | { type: 'CHANGE'; name: StateNames; value: any }
   | { type: 'REMOVE'; name: StateNames }
@@ -50,6 +58,7 @@ const initialState = {
   password: undefined,
   recommendUser: undefined,
   isIdentityverification: false,
+  isKakaoLogin: false,
   insuType: undefined,
   postWwPremium: undefined,
   jumina: '',
@@ -58,6 +67,10 @@ const initialState = {
   electronicSignPreData: undefined,
   homeFireTitle: '가입구분',
   stormFloodTitle: '상품안내',
+  constractorAddress: '',
+  isInfoModal: false,
+  infoTitle: '',
+  infoContents: '',
 };
 
 //context

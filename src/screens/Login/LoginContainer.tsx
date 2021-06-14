@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useEffect, useReducer } from 'react';
 import LoginPresenter from '@app/screens/Login/LoginPresenter';
 import { useInput } from '@app/hooks';
 import Toast from 'react-native-simple-toast';
@@ -34,6 +34,8 @@ export default function LoginContainer({ route }) {
   const [state, dispatch] = useReducer(reducer, initialState);
   const emailCheck = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
   const globalDispatch = useGlobalDispatch();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const globalState = useGlobalState();
   const inputState = {
     email: useInput(''),
     password: useInput(''),
@@ -59,6 +61,10 @@ export default function LoginContainer({ route }) {
     } else {
       return true;
     }
+  };
+
+  const submitKakaoLogin = () => {
+    navigation.navigate('KakaoLogin');
   };
 
   const submitLogin = () => {
@@ -112,6 +118,7 @@ export default function LoginContainer({ route }) {
       state={state}
       handleAutoLoginButton={handleAutoLoginButton}
       submitLogin={submitLogin}
+      submitKakaoLogin={submitKakaoLogin}
     />
   );
 }

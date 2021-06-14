@@ -17,7 +17,7 @@ type ResultCardProps = {
 };
 const Container = styled.TouchableOpacity`
   background-color: ${theme.color.WHITE};
-  border-width: 1px;
+  border-width: 3px;
   border-color: ${(props: any) => (props.isActive ? theme.color.BLUE : theme.color.BORDER_GRAY)};
   border-radius: 10px;
   padding: 20px;

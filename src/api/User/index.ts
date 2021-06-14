@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-community/async-storage';
-import { userApiConfig } from '@app/api/config';
+import {kakaoLoginConfig, userApiConfig} from '@app/api/config';
 import { getStoreData } from '@app/lib';
 export const userApis = {
   async postJoin(params) {

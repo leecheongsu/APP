@@ -191,7 +191,7 @@ function HouseInputUserPresenter({
                 <RowBox>
                   <RowItem>
                     <Typhograph type="NOTO" color="GRAY" weight="REGULAR">
-                      보험기간 시작일
+                      보험계약 체결일
                     </Typhograph>
                   </RowItem>
                   <RowItem>
@@ -210,7 +210,7 @@ function HouseInputUserPresenter({
                   </RowItem>
                 </RowBox>
                 <Typhograph type="NOTO" color="GRAY" size={10}>
-                  * 보험기간은 시작일기준 1년입니다.
+                  *보험기간은 계약 체결일 24시 00분 기준 1년입니다.
                 </Typhograph>
               </InfoBox>
 
@@ -237,7 +237,6 @@ function HouseInputUserPresenter({
                   </RowItem>
                 </RowBox>
               </TitleBox>
-
               <RowBox style={{ marginTop: 10 }}>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY" weight="REGULAR">
@@ -248,7 +247,6 @@ function HouseInputUserPresenter({
                   <DefaultInput {...inputState.insuName} width={200} placeholder="성명/상호명 입력" />
                 </RowItem>
               </RowBox>
-
               <RowBox>
                 <RowItem>
                   <Typhograph type="NOTO" color="GRAY" weight="REGULAR">
@@ -317,38 +315,53 @@ function HouseInputUserPresenter({
                 </RowItem>
               </RowBox>
             </InfoContainer>
-
+            {/*<RecommendBox>*/}
+            {/*  <RecommendButtonBox>*/}
+            {/*    <CheckLabelButton*/}
+            {/*      title="계약자 주소 입력"*/}
+            {/*      iscenter*/}
+            {/*      onPress={() => navigation.navigate('CONTRANCTOR_ADDRESS')}*/}
+            {/*    />*/}
+            {/*  </RecommendButtonBox>*/}
+            {/*</RecommendBox>*/}
+            {/*<RowBox>*/}
+            {/*  <RowItem>*/}
+            {/*    <Typhograph type="NOTO" color="SKYBLUE">*/}
+            {/*      {globalState?.contractorAddress}*/}
+            {/*    </Typhograph>*/}
+            {/*  </RowItem>*/}
+            {/*</RowBox>*/}
             {/*<RecommendBox>*/}
             {/*  <RecommendButtonBox>*/}
             {/*    <CheckLabelButton title="추천인선택" iscenter onPress={() => navigation.navigate('RECOMMEND_USERS')} />*/}
             {/*  </RecommendButtonBox>*/}
             {/*</RecommendBox>*/}
-            {globalState?.recommendUser !== undefined && (
-              <RecommendListBox>
-                <RowBox>
-                  <RowItem>
-                    <Typhograph type="NOTO" color="GRAY">
-                      {globalState?.recommendUser?.company}
-                    </Typhograph>
-                  </RowItem>
-                  <RowItem>
-                    <Typhograph type="NOTO" color="GRAY">
-                      {recomendMasking(globalState.recommendUser?.mobile)}
-                    </Typhograph>
-                  </RowItem>
-                  <RowItem>
-                    <Typhograph type="NOTO" color="GRAY">
-                      {globalState?.recommendUser?.name}
-                    </Typhograph>
-                  </RowItem>
-                  <RowItem>
-                    <IconButton onPress={() => onDeleteRecommedUserButton()}>
-                      <Image style={{ width: 15, height: 15 }} source={insuIcon.CLOSE_ICON} />
-                    </IconButton>
-                  </RowItem>
-                </RowBox>
-              </RecommendListBox>
-            )}
+            {/*{globalState?.recommendUser !== undefined && (*/}
+            {/*  <RecommendListBox>*/}
+            {/*    <RowBox>*/}
+            {/*      <RowItem>*/}
+            {/*        <Typhograph type="NOTO" color="GRAY">*/}
+            {/*          {globalState?.recommendUser?.company}*/}
+            {/*        </Typhograph>*/}
+            {/*      </RowItem>*/}
+            {/*      <RowItem>*/}
+            {/*        <Typhograph type="NOTO" color="GRAY">*/}
+            {/*          {recomendMasking(globalState.recommendUser?.mobile)}*/}
+            {/*        </Typhograph>*/}
+            {/*      </RowItem>*/}
+            {/*      <RowItem>*/}
+            {/*        <Typhograph type="NOTO" color="GRAY">*/}
+            {/*          {globalState?.recommendUser?.name}*/}
+            {/*        </Typhograph>*/}
+            {/*      </RowItem>*/}
+            {/*      <RowItem>*/}
+            {/*        <IconButton onPress={() => onDeleteRecommedUserButton()}>*/}
+            {/*          <Image style={{ width: 15, height: 15 }} source={insuIcon.CLOSE_ICON} />*/}
+            {/*        </IconButton>*/}
+            {/*      </RowItem>*/}
+            {/*    </RowBox>*/}
+            {/*  </RecommendListBox>*/}
+            {/*)}*/}
             <PaddingBox />
           </ContentsContainer>
         </KeyboardAwareScrollView>

@@ -7,13 +7,18 @@ import Login from '@app/screens/Login';
 import MainStack from '@app/routes/MainStack';
 import { useNavigation } from '@react-navigation/native';
 import RecommendUsers from '@app/screens/RecommendUsers';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import ContractorAddress from '@app/screens/ContractorAddress';
+import { useGlobalState } from '@app/context';
+import KakaoLogin from '@app/screens/KakaoLogin';
 
 function RootStack() {
   const Stacks = createStackNavigator();
   const navigation = useNavigation();
+  const globalState = useGlobalState();
   return (
     <Stacks.Navigator
-      initialRouteName="MAIN_STACK"
+      initialRouteName="HOME"
       mode="modal"
       screenOptions={{
         headerStyle: null,
@@ -90,7 +95,57 @@ function RootStack() {
           },
         }}
       />
-
+      <Stacks.Screen
+        name="KakaoLogin"
+        component={KakaoLogin}
+        options={{
+          headerLeft: () => <BackButton onPress={() => navigation.navigate('MAIN_STACK')} />,
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              카카오 로그인
+            </Typhograph>
+          ),
+          title: '',
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+      <Stacks.Screen
+        name="VERIFICATION"
+        component={Verification}
+        options={{
+          headerLeft: () => null,
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              본인인증
+            </Typhograph>
+          ),
+          headerRight: () => <CloseButton onPress={() => navigation.goBack()} />,
+          title: '',
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
       <Stacks.Screen
         name="JOIN_SUCCESS"
         component={JoinSuccess}
@@ -169,33 +224,6 @@ function RootStack() {
         }}
       />
       <Stacks.Screen
-        name="VERIFICATION"
-        component={Verification}
-        options={{
-          headerLeft: () => null,
-          headerTitle: () => (
-            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
-              본인인증
-            </Typhograph>
-          ),
-          headerRight: () => <CloseButton onPress={() => navigation.goBack()} />,
-          title: '',
-          headerShown: true,
-          animationEnabled: true,
-          headerStyle: {
-            backgroundColor: theme.color.WHITE,
-            borderBottomWidth: 1,
-            shadowRadius: 0,
-            shadowOffset: {
-              width: 0,
-              height: 0,
-            },
-            elevation: 0,
-          },
-        }}
-      />
-
-      <Stacks.Screen
         name="FIND_EMAIL"
         component={FindEmail}
         options={{
@@ -253,6 +281,32 @@ function RootStack() {
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
               추천인 선택
+            </Typhograph>
+          ),
+          headerRight: () => <CloseButton onPress={() => navigation.goBack()} />,
+          title: '',
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+      <Stacks.Screen
+        name="CONTRANCTOR_ADDRESS"
+        component={ContractorAddress}
+        options={{
+          headerLeft: () => null,
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              {globalState?.contractorTitle}
             </Typhograph>
           ),
           headerRight: () => <CloseButton onPress={() => navigation.goBack()} />,

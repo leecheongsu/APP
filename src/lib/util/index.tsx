@@ -225,21 +225,21 @@ export const handleApiError = async (value) => {
 export const getInsuText = (value) => {
   switch (value) {
     case 'BFRE':
-      return '(건물) 화재/폭발/파열';
+      return '(건물)\n 화재/폭발/파열';
     case 'BDRG':
-      return '(건물) 급배수누출손해';
-    case 'BGLS':
-      return '(건물) 유리손해';
+      return '(건물)\n 급배수누출손해';
     case 'BCMP':
-      return '(건물) 대물배상책임';
+      return '(건물)\n 대물배상책임';
+    case 'BGLS':
+      return '(건물)\n 유리손해';
     case 'KFRE':
-      return '(가재도구) 화재/폭발/파열';
+      return '(가재도구)\n 화재/폭발/파열';
     case 'KDRG':
-      return '(가재도구) 급배수누출손해';
+      return '(가재도구)\n 급배수누출손해';
     case 'KSTL':
-      return '(가재도구) 가재도난위험';
+      return '(가재도구)\n 가재도난위험';
     case 'KLCK':
-      return '(가재도구) 잠금장치';
+      return '(가재도구)\n 잠금장치';
     default:
       return null;
   }
@@ -247,4 +247,40 @@ export const getInsuText = (value) => {
 
 export const recomendMasking = (value) => {
   return value.slice(0, 3) + '****' + value.slice(7, 11);
+};
+declare module '*.bmp' {
+  const src: string;
+  export default src;
+}
+declare module '*.gif' {
+  const src: string;
+  export default src;
+}
+
+declare module '*.jpg' {
+  const src: string;
+  export default src;
+}
+
+declare module '*.jpeg' {
+  const src: string;
+  export default src;
+}
+
+declare module '*.png' {
+  const src: string;
+  export default src;
+}
+
+declare type LooseObject = {
+  [key: string]: any;
+};
+
+export type FontweightTypes = 'THIN' | 'LIGHT' | 'REGULAR' | 'MEDIUM' | 'BOLD';
+
+export type InputTypes = {
+  value: string;
+  onChangeText: (text: string) => void;
+  // eslint-disable-next-line no-undef
+  setValue: React.Dispatch<React.SetStateAction<string>>;
 };

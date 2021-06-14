@@ -717,7 +717,7 @@ export default function StormFloodContainer() {
         globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '풍수해Ⅵ' });
         return;
       case 2:
-        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '소상공인 체크리스트' });
+        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '소상인 체크리스트' });
         return;
       case 3:
         globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '주소찾기' });
@@ -729,10 +729,10 @@ export default function StormFloodContainer() {
         globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '담보 선택' });
         return;
       case 6:
-        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '보험료 확인' });
+          globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '보험료 확인' });
         return;
       case 7:
-        globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '고객정보 입력 및 동의	' });
+          globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '고객정보 입력 및 동의 	' });
         return;
       case 8:
         globalDispatch({ type: 'CHANGE', name: 'stormFloodTitle', value: '청약확인' });

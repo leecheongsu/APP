@@ -221,7 +221,7 @@ function StormFloodInputPresenter({
           <TermsBox>
             <TitleBox>
               <Typhograph type="NOTO" weight="BOLD" color="BLUE" size={15}>
-                가입 설계를 위한 개인정보처리에 대한 동의
+                [필수]가입 설계를 위한 개인정보처리에 대한 동의
               </Typhograph>
             </TitleBox>
             <ButtonBox>

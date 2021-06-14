@@ -65,7 +65,7 @@ function HouseTermsUsePresenter({
         <RequireTermsBox>
           <TermsTitleBox>
             <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={13}>
-              (필수) 가입 설계를 위한 개인정보처리에 대한 동의
+              [필수] 가입·설계를 위한 개인정보처리에 대한 동의
             </Typhograph>
           </TermsTitleBox>
           <TermsButtonBox>
@@ -120,7 +120,7 @@ function HouseTermsUsePresenter({
         <ChoiceTermsBox>
           <TermsTitleBox>
             <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={13}>
-              (선택) 상품소개 등에 관한 개인정보처리에 대한 동의
+              [선택] 상품소개 등에 관한 개인정보처리에 대한 동의
             </Typhograph>
           </TermsTitleBox>
           <TermsButtonBox>

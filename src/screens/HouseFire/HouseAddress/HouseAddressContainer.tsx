@@ -45,7 +45,7 @@ export default function HouseAddressContainer({
       bun: Number(item?.lnbrMnnm),
       ji: Number(item?.lnbrSlno),
     };
-    if (state.selectType === 'T') {
+    if (state.selectType === 'T' || state.selectType === 'T2') {
       onChangeState('loading', true);
       insuApis
         .getDancheInfo(params)
@@ -182,7 +182,7 @@ export default function HouseAddressContainer({
     getAddressDispatch();
   };
 
-  //주소검색후 데이터 셋팅ㄷ
+  //주소검색후 데이터 셋팅
   useEffect(() => {
     if (getAddress.data?.data?.results !== undefined) {
       const result = getAddress.data?.data?.results;

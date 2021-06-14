@@ -17,6 +17,7 @@ type LoginPresenterTypes = {
   state: LoginStateTypes;
   handleAutoLoginButton: () => void;
   submitLogin: () => void;
+  submitKakaoLogin: () => void;
 };
 
 const ContensContainer = styled.View`
@@ -55,7 +56,7 @@ const BottomBox = styled.View`
   align-items: center;
 `;
 
-function LoginPresenter({ inputState, state, handleAutoLoginButton, submitLogin }: LoginPresenterTypes) {
+function LoginPresenter({ inputState, state, handleAutoLoginButton, submitLogin, submitKakaoLogin }: LoginPresenterTypes) {
   const navigation = useNavigation();
   return (
     <MainLayout>
@@ -83,6 +84,13 @@ function LoginPresenter({ inputState, state, handleAutoLoginButton, submitLogin 
           <CustomButton onPress={() => submitLogin()} background="SKYBLUE" radius={30} isLoading={state.loading}>
             <Typhograph type="NOTO" color="WHITE">
               로그인
+            </Typhograph>
+          </CustomButton>
+        </ButtonBox>
+        <ButtonBox>
+          <CustomButton onPress={() => submitKakaoLogin()} background="SKYBLUE" radius={30} isLoading={state.loading}>
+            <Typhograph type="NOTO" color="WHITE">
+              카카오 로그인
             </Typhograph>
           </CustomButton>
         </ButtonBox>

@@ -23,13 +23,14 @@ const CollapsBody = styled.TouchableOpacity`
 
 function HomeCard({ navigation }) {
   // const navigation = useNavigation();
-  const colList = ['col1', 'col2', 'col3', 'col4'];
+  const colList = ['col1', 'col2', 'col3', 'col4', 'col5'];
   const [isClick, setIsClick] = useState(false);
   const [collapsed, setCollapsed] = useState({
     col1: false,
     col2: false,
     col3: false,
     col4: false,
+    col5: false,
   });
 
   const colAnimationheight = {
@@ -37,6 +38,7 @@ function HomeCard({ navigation }) {
     col2: useRef(new Animated.Value(0)).current,
     col3: useRef(new Animated.Value(0)).current,
     col4: useRef(new Animated.Value(0)).current,
+    col5: useRef(new Animated.Value(0)).current,
   };
 
   const toggleCollapsed = (name) => {
@@ -46,6 +48,7 @@ function HomeCard({ navigation }) {
       col2: false,
       col3: false,
       col4: false,
+      col5: false,
     };
     colList.map((item) => {
       if (item === name) {
@@ -89,6 +92,8 @@ function HomeCard({ navigation }) {
       } else if (collapsed.col3) {
         return toggleCollapsed('col4');
       } else if (collapsed.col4) {
+        return toggleCollapsed('col5');
+      } else if (collapsed.col5) {
         return toggleCollapsed('col1');
       } else {
         return null;
@@ -176,7 +181,7 @@ function HomeCard({ navigation }) {
 
       {!collapsed.col4 && (
         <CollapsHeader
-          style={!collapsed.col4 && styles.bottomRadius}
+          style={styles.borderBottom}
           onPress={() => {
             toggleCollapsed('col4');
             setIsClick(true);
@@ -194,6 +199,30 @@ function HomeCard({ navigation }) {
             onPress={() => navigation.navigate('CALAMITY')}
             activeOpacity={0.9}>
             <Image style={styles.image} source={insuImg.MAIN4} />
+          </CollapsBody>
+        )}
+      </Animated.View>
+
+      {!collapsed.col5 && (
+        <CollapsHeader
+          style={!collapsed.col5 && styles.bottomRadius}
+          onPress={() => {
+            toggleCollapsed('col5');
+            setIsClick(true);
+          }}
+          activeOpacity={0.9}>
+          <Typhograph type="NOTO" color="GRAY3" size={18}>
+            일반화재
+          </Typhograph>
+        </CollapsHeader>
+      )}
+      <Animated.View style={{ maxHeight: colAnimationheight.col5 }}>
+        {collapsed.col5 && (
+          <CollapsBody
+            style={collapsed.col5 && styles.bottomRadius}
+            onPress={() => navigation.navigate('SALES')}
+            activeOpacity={0.9}>
+            <Image style={styles.image} source={insuImg.MAIN5} />
           </CollapsBody>
         )}
       </Animated.View>

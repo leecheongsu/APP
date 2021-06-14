@@ -82,7 +82,7 @@ function HouseContractTermsPresenter({
         <ButtonContainer>
           <TitleBox>
             <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
-              (필수) 계약전 확인사항
+              [필수] 계약전 확인사항
             </Typhograph>
           </TitleBox>
           <ButtonItemBox>
@@ -120,7 +120,7 @@ function HouseContractTermsPresenter({
         <SectionContainer>
           <TitleBox>
             <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
-              (필수) 보험계약 체결, 이행을 위한 동의
+              [필수] 보험계약 체결, 이행을 위한 동의
             </Typhograph>
           </TitleBox>
           <TermsButtonBox>
@@ -207,7 +207,7 @@ function HouseContractTermsPresenter({
         <SectionContainer>
           <TitleBox>
             <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
-              (필수) 결제 약관 동의
+              [필수] 결제 약관 동의
             </Typhograph>
           </TitleBox>
           <TermsButtonBox>
@@ -248,7 +248,7 @@ function HouseContractTermsPresenter({
         <SectionContainer>
           <TitleBox>
             <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
-              (필수) 전자서명
+              [필수] 전자서명
             </Typhograph>
           </TitleBox>
 

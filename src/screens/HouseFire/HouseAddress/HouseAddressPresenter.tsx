@@ -100,7 +100,7 @@ function HouseAddressPresenter({
             세대별 가입
           </Typhograph>
           <Typhograph type="NOTO" color="BROWN" size={12} style={{ paddingBottom: 100 }}>
-            예) 남천 비치아파트, 중동 아남하이츠3
+            예) 남천 비치아파트, 중동 아남하이츠3차
           </Typhograph>
         </TipBox>
       )}

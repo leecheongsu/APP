@@ -474,7 +474,7 @@ function StormFloodTermsPresenter({
             <Terms2Box>
               <TitleBox>
                 <Typhograph type="NOTO" weight="BOLD" color="BLUE" size={15}>
-                  계약의 체결, 이행 등을 위한 개인정보처리 동의
+                  [필수]계약의 체결, 이행 등을 위한 개인정보처리 동의
                 </Typhograph>
               </TitleBox>
               <ButtonBox>

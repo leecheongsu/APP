@@ -30,6 +30,7 @@ export default function HomeContainer() {
     const unsubscribe = navigation.addListener('focus', () => {
       loadUser();
       resetRecommendUser();
+      // alert('[인슈로보-현대해상 풍수해VI보험]\n\n현대해상 오픈API 서버 점검으로 인해 서비스가 원활하지 않을 수 있습니다.\n\n* 서버 점검 일시 : \n2021년 5월 28일 16:00 ~ ');
     });
     return unsubscribe;
     // eslint-disable-next-line react-hooks/exhaustive-deps

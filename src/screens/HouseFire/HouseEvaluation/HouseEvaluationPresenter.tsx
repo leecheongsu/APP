@@ -106,7 +106,7 @@ function HouseEvaluationPresenter({
   gajeListClick,
 }: HouseEvaluationPresenterTypes) {
   const subText =
-    '건물 보험가입금액은 한국감정원 신축단가표와 건축물대장의 연면적, 건물구조를 반영하여 평가한 금액입니다.';
+    '건물 보험가입금액은 한국부동산원 신축단가표와 건축물대장의 연면적, 건물구조를 반영하여 평가한 금액입니다.';
   return (
     <>
       <Container>

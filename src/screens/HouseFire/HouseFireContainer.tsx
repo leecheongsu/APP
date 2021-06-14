@@ -355,6 +355,7 @@ const terms = {
   },
 };
 
+// @ts-ignore
 const initialState: HouseFireStateTypes = {
   stepperTitle: '가입유형',
   isKeybordView: false,
@@ -366,8 +367,9 @@ const initialState: HouseFireStateTypes = {
   selectAddress: {},
   sedeAddress: {},
   joinType: [
-    { title: '단체 가입 보험료 확인', value: 'T' },
-    { title: '세대 가입 보험료 확인', value: 'S' },
+    { title: '개인주택(아파트,다세대)', value: 'S' },
+    { title: '개인주택(단독)', value: 'T' },
+    { title: '아파트단체', value: 'T2' },
   ],
   lat: '',
   lng: '',

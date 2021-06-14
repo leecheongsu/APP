@@ -18,7 +18,7 @@ export default function JoinTypeCotainer({
   handlePreviousButton,
 }: JoinTypeCotainerTypes) {
   //가입유형 단체or세대가입 버튼 클릭시 타입 셋팅
-  const selectJoinType = (value: 'T' | 'S') => {
+  const selectJoinType = (value: 'T' | 'S' | 'T2') => {
     onChangeState('selectType', value);
   };
 

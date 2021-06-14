@@ -20,6 +20,7 @@ export default function StormFloodResultContainer({
 }: StormFloodResultContainerTypes) {
   const navigation = useNavigation();
   const globalState = useGlobalState();
+
   const nextButton = () => {
     if (state.selectInsuCompany === '') {
       SimpleToast.show('보험상품을 선택해주세요.');

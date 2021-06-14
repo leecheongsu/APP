@@ -80,7 +80,7 @@ function HouseResultPresenter({
           <ResultRow>
             <ResultRowItem>
               <Typhograph type="NOTO" color="BLUE" weight="BOLD" size={15}>
-                연보험료
+                연 보험료
               </Typhograph>
             </ResultRowItem>
             <ResultRowItem>

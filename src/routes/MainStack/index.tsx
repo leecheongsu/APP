@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Calamity, CustomerCenter, Home, HouseFire, StormFlood, StormFlood2 } from '@app/screens';
+import { Calamity, CustomerCenter, Home, HouseFire, StormFlood, StormFlood2, Sales } from '@app/screens';
 import { BackButton, LogoTitle, MenuButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';
 import UserButton from '@app/components/Header/UserButton';
@@ -148,6 +148,33 @@ function MainStack() {
           },
         }}
       />
+      <Stacks.Screen
+        name="SALES"
+        component={Sales}
+        options={{
+          headerLeft: () => <BackButton />,
+          headerLeftContainerStyle: { paddingHorizontal: 10 },
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+            {globalState?.salesTitle}
+            </Typhograph>
+          ),
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomColor: theme.color.BORDER_GRAY,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+
       <Stacks.Screen
         name="CUSTOMER_CENTER"
         component={CustomerCenter}
