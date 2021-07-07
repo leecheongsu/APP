@@ -1,13 +1,22 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { FindEmail, Join, JoinSuccess, FindPassword, Profile, Secession, Verification, MyInsu } from '@app/screens';
+import {
+  FindEmail,
+  Join,
+  JoinSuccess,
+  FindPassword,
+  Profile,
+  Secession,
+  Verification,
+  MyInsu,
+  Camera,
+} from '@app/screens';
 import { BackButton, CloseButton, Typhograph } from '@app/components/index';
 import theme from '@app/style/theme';
 import Login from '@app/screens/Login';
 import MainStack from '@app/routes/MainStack';
 import { useNavigation } from '@react-navigation/native';
 import RecommendUsers from '@app/screens/RecommendUsers';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import ContractorAddress from '@app/screens/ContractorAddress';
 import { useGlobalState } from '@app/context';
 import KakaoLogin from '@app/screens/KakaoLogin';
@@ -99,12 +108,39 @@ function RootStack() {
         name="KakaoLogin"
         component={KakaoLogin}
         options={{
-          headerLeft: () => <BackButton onPress={() => navigation.navigate('MAIN_STACK')} />,
+          headerLeft: () => null,
           headerTitle: () => (
             <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
               카카오 로그인
             </Typhograph>
           ),
+          headerRight: () => <CloseButton onPress={() => navigation.goBack()} />,
+          title: '',
+          headerShown: true,
+          animationEnabled: true,
+          headerStyle: {
+            backgroundColor: theme.color.WHITE,
+            borderBottomWidth: 1,
+            shadowRadius: 0,
+            shadowOffset: {
+              width: 0,
+              height: 0,
+            },
+            elevation: 0,
+          },
+        }}
+      />
+      <Stacks.Screen
+        name="CAMERA"
+        component={Camera}
+        options={{
+          headerLeft: () => null,
+          headerTitle: () => (
+            <Typhograph type="NOTO" weight="BOLD" size={16} color="BLACK2">
+              {globalState?.cameraTitle}
+            </Typhograph>
+          ),
+          headerRight: () => <CloseButton onPress={() => navigation.goBack()} />,
           title: '',
           headerShown: true,
           animationEnabled: true,

@@ -61,3 +61,6 @@ export { default as ContractorGetAddress } from './ContractorAddress/ContractorG
 
 export { default as KakaoLogin } from './KakaoLogin/KakaoLoginContainer';
 
+export { default as Camera } from './Camera/CameraContainer';
+export { default as TakePicture } from './Camera/TakePicture';
+export { default as ImageConfirm } from './Camera/ImageConfirm';

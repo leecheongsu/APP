@@ -1,7 +1,7 @@
 require_relative '../node_modules/react-native/scripts/react_native_pods'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-platform :ios, '10.0'
+platform :ios, '11.0'
 
 target 'insurobo' do
   config = use_native_modules!
@@ -9,7 +9,14 @@ target 'insurobo' do
   use_react_native!(:path => config["reactNativePath"])
 
   pod 'react-native-version-check', :path => '../node_modules/react-native-version-check'
+  pod 'KakaoOpenSDK', '~> 1.16.0'
 
+  permissions_path = '../node_modules/react-native-permissions/ios'
+
+    pod 'Permission-Camera', :path => "#{permissions_path}/Camera"
+    
+    pod 'RNFS', :path => '../node_modules/react-native-fs'
+  
   target 'insuroboTests' do
     inherit! :complete
     # Pods for testing
@@ -25,11 +32,11 @@ target 'insurobo' do
   end
 end
 
-target 'insurobo-tvOS' do
+# target 'insurobo-tvOS' do
   # Pods for insurobo-tvOS
 
-  target 'insurobo-tvOSTests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-end
+ # target 'insurobo-tvOSTests' do
+  # inherit! :search_paths
+   # Pods for testing
+ # end
+# end

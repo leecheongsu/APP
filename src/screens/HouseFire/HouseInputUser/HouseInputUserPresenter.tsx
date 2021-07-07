@@ -160,7 +160,6 @@ function HouseInputUserPresenter({
                     </Typhograph>
                   </RowItem>
                 </RowBox>
-
                 <RowBox>
                   <RowItem>
                     <Typhograph type="NOTO" color="GRAY" weight="REGULAR">

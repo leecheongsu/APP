@@ -16,6 +16,8 @@ export type StateTypes = {
   insuType: any;
   isSplash: boolean;
   contractorAddress: any;
+  companyName: any;
+  companyNumber: any;
   isInfoModal: boolean;
   infoTitle: string;
   infoContents: any;
@@ -37,6 +39,8 @@ type StateNames =
   | 'homeFireTitle'
   | 'stormFloodTitle'
   | 'contractorAddress'
+  | 'companyName'
+  | 'companyNumber'
   | 'infoTitle' //안내모달 타이틀
   | 'infoContents' // 안내모달 컨텐츠
   | 'isInfoModal'; // 안내모달 flag
@@ -68,6 +72,8 @@ const initialState = {
   homeFireTitle: '가입구분',
   stormFloodTitle: '상품안내',
   constractorAddress: '',
+  companyName: null,
+  companyNumber: null,
   isInfoModal: false,
   infoTitle: '',
   infoContents: '',

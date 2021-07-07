@@ -2,6 +2,14 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>사진 라이브러리  이미지 저장을 허용해주세요</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>사진 라이브러리 사용을 허용해주세요</string>
+	<key>NSCameraUsageDescription</key>
+	<string>OCR을 위한 카메라 사용을 허용해주세요.</string>
+	<key>KAKAO_APP_KEY</key>
+	<string>c31ddf064ab5cc7e37e377bbd34a2ea0</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>ko</string>
 	<key>CFBundleDisplayName</key>
@@ -28,6 +36,14 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>insurobo</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>kakaoc31ddf064ab5cc7e37e377bbd34a2ea0</string>
 			</array>
 		</dict>
 	</array>
@@ -68,6 +84,8 @@
 		<string>wooripay</string>
 		<string>nhallonepayansimclick</string>
 		<string>hanawalletmembers</string>
+		<string>kakaokompathauth</string>
+		<string>kakaolink</string>
 	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>

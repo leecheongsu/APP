@@ -3,10 +3,14 @@ import { screenWidth } from '@app/lib';
 import theme from '@app/style/theme';
 import styled from '@app/style/typed-components';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { BottomFixButton, CustomButton, DefaultInput, ServiceSelect, Typhograph } from '@app/components';
-import { Platform } from 'react-native';
+import { BottomFixButton, CustomButton, DefaultInput, IconButton, ServiceSelect, Typhograph } from '@app/components';
+import { Image, Platform } from 'react-native';
 import { JoinStateTypes } from '@app/screens/Join/JoinContainer';
 import { InputTypes } from '@app/types';
+import { useNavigation } from '@react-navigation/core';
+import { insuIcon } from '@app/assets';
+import { PERMISSIONS, request, RESULTS } from 'react-native-permissions';
+import { useGlobalState } from '@app/context';
 
 type BasicFormPresenterTypes = {
   state: JoinStateTypes;
@@ -71,6 +75,26 @@ const NumberBox = styled.View`
   width: 58%;
 `;
 
+const SimpleInputBox = styled.View`
+  margin-top: 5px;
+  border-radius: 10px;
+  padding: 0px 10px 0px 10px;
+  border-width: 1px;
+  background-color: white;
+  border-color: ${theme.color.INPUT_GRAY};
+  height: 50px;
+`;
+
+const CompanyNameInputBox = styled.View``;
+const CompanyNumberInputBox = styled.View``;
+
+const CameraButton = styled.View`
+  justify-content: center;
+  align-items: center;
+  margin-top: 25px;
+  margin-bottom: 50px;
+`;
+
 function BasicFormPresenter({
   state,
   handleClickButton,
@@ -79,6 +103,8 @@ function BasicFormPresenter({
   nextButton,
   sexRef,
 }: BasicFormPresenterTypes) {
+  const navigation = useNavigation();
+  const globalState = useGlobalState();
   return (
     <>
       <Container>
@@ -110,89 +136,144 @@ function BasicFormPresenter({
               </CustomButton>
             </ButtonItem>
           </ButtonBox>
-          <ContentsContainer>
-            <EmailInputBox>
-              <LabelBox>
-                <Typhograph type="NOTO" weight="MEDIUM">
-                  이메일
-                </Typhograph>
-              </LabelBox>
-              <InputBox>
-                <DefaultInput
-                  {...inputState?.email}
-                  keyboardType="email-address"
-                  placeholder="이메일주소를 입력하세요."
-                  textContentType="emailAddress"
-                />
-              </InputBox>
-            </EmailInputBox>
-
-            <NameInputBox>
-              <LabelBox>
-                <Typhograph type="NOTO" weight="MEDIUM">
-                  이름
-                </Typhograph>
-              </LabelBox>
-              <InputBox>
-                <DefaultInput {...inputState?.name} placeholder="이름을 입력하세요.(예:홍길동)" />
-              </InputBox>
-            </NameInputBox>
-
-            <NameInputBox>
-              <LabelBox>
-                <Typhograph type="NOTO" weight="MEDIUM">
-                  휴대전화
-                </Typhograph>
-              </LabelBox>
-              <InputBox>
-                <RowBox>
-                  <SelectBox style={{ width: '40%', marginRight: '2%' }}>
-                    <ServiceSelect
-                      value={state.selectService}
-                      items={state.serviceType}
-                      right={15}
-                      onValueChange={onValueChange}
-                    />
-                  </SelectBox>
-                  <NumberBox>
-                    <DefaultInput
-                      {...inputState?.phone}
-                      maxLength={11}
-                      keyboardType="phone-pad"
-                      placeholder="숫자만 입력해주세요."
-                    />
-                  </NumberBox>
-                </RowBox>
-              </InputBox>
-            </NameInputBox>
-
-            <JuminInputBox>
-              <LabelBox>
-                <Typhograph type="NOTO" weight="MEDIUM">
-                  주민등록번호
-                </Typhograph>
-              </LabelBox>
-              <RowBox>
-                <InputBox style={{ width: '50%' }}>
+          {state?.selectType === 'individual' && (
+            <ContentsContainer>
+              <EmailInputBox>
+                <LabelBox>
+                  <Typhograph type="NOTO" weight="MEDIUM">
+                    이메일
+                  </Typhograph>
+                </LabelBox>
+                <InputBox>
                   <DefaultInput
-                    {...inputState?.idNumber}
-                    keyboardType="numeric"
-                    maxLength={6}
-                    placeholder="생년월일 6자리"
+                    {...inputState?.email}
+                    keyboardType="email-address"
+                    placeholder="이메일주소를 입력하세요."
+                    textContentType="emailAddress"
                   />
                 </InputBox>
-                <Typhograph type="NOTO" style={{ marginLeft: 10, marginRight: 10 }} lineheight={20}>
-                  -
-                </Typhograph>
-                <InputBox style={{ width: 30, marginRight: 2 }}>
-                  <DefaultInput {...inputState?.sexNumber} propsRef={sexRef} maxLength={1} keyboardType="numeric" />
+              </EmailInputBox>
+
+              <NameInputBox>
+                <LabelBox>
+                  <Typhograph type="NOTO" weight="MEDIUM">
+                    이름
+                  </Typhograph>
+                </LabelBox>
+                <InputBox>
+                  <DefaultInput {...inputState?.name} placeholder="이름을 입력하세요.(예:홍길동)" />
                 </InputBox>
-                <Typhograph type="NOTO" color="GRAY3">
-                  ●●●●●●
+              </NameInputBox>
+
+              <NameInputBox>
+                <LabelBox>
+                  <Typhograph type="NOTO" weight="MEDIUM">
+                    휴대전화
+                  </Typhograph>
+                </LabelBox>
+                <InputBox>
+                  <RowBox>
+                    <SelectBox style={{ width: '40%', marginRight: '2%' }}>
+                      <ServiceSelect
+                        value={state.selectService}
+                        items={state.serviceType}
+                        right={15}
+                        onValueChange={onValueChange}
+                      />
+                    </SelectBox>
+                    <NumberBox>
+                      <DefaultInput
+                        {...inputState?.phone}
+                        maxLength={11}
+                        keyboardType="phone-pad"
+                        placeholder="숫자만 입력해주세요."
+                      />
+                    </NumberBox>
+                  </RowBox>
+                </InputBox>
+              </NameInputBox>
+
+              <JuminInputBox>
+                <LabelBox>
+                  <Typhograph type="NOTO" weight="MEDIUM">
+                    주민등록번호
+                  </Typhograph>
+                </LabelBox>
+                <RowBox>
+                  <InputBox style={{ width: '50%' }}>
+                    <DefaultInput
+                      {...inputState?.idNumber}
+                      keyboardType="numeric"
+                      maxLength={6}
+                      placeholder="생년월일 6자리"
+                    />
+                  </InputBox>
+                  <Typhograph type="NOTO" style={{ marginLeft: 10, marginRight: 10 }} lineheight={20}>
+                    -
+                  </Typhograph>
+                  <InputBox style={{ width: 30, marginRight: 2 }}>
+                    <DefaultInput {...inputState?.sexNumber} propsRef={sexRef} maxLength={1} keyboardType="numeric" />
+                  </InputBox>
+                  <Typhograph type="NOTO" color="GRAY3">
+                    ●●●●●●
+                  </Typhograph>
+                </RowBox>
+              </JuminInputBox>
+            </ContentsContainer>
+          )}
+          {state?.selectType === 'buisness' && (
+            <ContentsContainer>
+              <CameraButton>
+                <IconButton onPress={() => navigation.navigate('CAMERA')}>
+                  <Image source={insuIcon.BTN_CAMERA} />
+                </IconButton>
+                <Typhograph type="NOTO" color="GRAY" weight="BOLD" style={{ marginTop: 25 }}>
+                  사업자 등록증을 촬영해주세요.
                 </Typhograph>
-              </RowBox>
-            </JuminInputBox>
-          </ContentsContainer>
+              </CameraButton>
+              <CompanyNameInputBox>
+                <LabelBox>
+                  <Typhograph type="NOTO" weight="MEDIUM">
+                    상호명
+                  </Typhograph>
+                </LabelBox>
+                {globalState?.companyName === null ? (
+                  <InputBox>
+                    <DefaultInput {...inputState?.companyName} placeholder="사업자명을 입력하세요." />
+                  </InputBox>
+                ) : (
+                  <SimpleInputBox>
+                    <Typhograph type="NOTO" weight="MEDIUM" style={{ marginTop: 10 }} color="GRAY">
+                      {globalState.companyName}
+                    </Typhograph>
+                  </SimpleInputBox>
+                )}
+              </CompanyNameInputBox>
+              <CompanyNumberInputBox>
+                <LabelBox>
+                  <Typhograph type="NOTO" weight="MEDIUM">
+                    사업자 번호
+                  </Typhograph>
+                </LabelBox>
+                {globalState?.companyNumber === null ? (
+                  <InputBox>
+                    <DefaultInput
+                      {...inputState?.companyNumber}
+                      placeholder="사업자번호를 입력하세요."
+                      maxLength={10}
+                      keyboardType="numeric"
+                    />
+                  </InputBox>
+                ) : (
+                  <SimpleInputBox>
+                    <Typhograph type="NOTO" weight="MEDIUM" style={{ marginTop: 10 }} color="GRAY">
+                      {globalState.companyNumber}
+                    </Typhograph>
+                  </SimpleInputBox>
+                )}
+              </CompanyNumberInputBox>
+            </ContentsContainer>
+          )}
         </KeyboardAwareScrollView>
         <BottomFixButton
           index={state.stepNumber}

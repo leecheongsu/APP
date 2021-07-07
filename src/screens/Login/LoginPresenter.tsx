@@ -88,7 +88,7 @@ function LoginPresenter({ inputState, state, handleAutoLoginButton, submitLogin,
           </CustomButton>
         </ButtonBox>
         <ButtonBox>
-          <CustomButton onPress={() => submitKakaoLogin()} background="SKYBLUE" radius={30} isLoading={state.loading}>
+          <CustomButton onPress={() => submitKakaoLogin()} background="YELLOW" radius={30} isLoading={state.loading}>
             <Typhograph type="NOTO" color="WHITE">
               카카오 로그인
             </Typhograph>

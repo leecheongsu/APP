@@ -2,6 +2,12 @@ package com.insurobo;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
+import android.util.Base64;
+import android.util.Log;
+
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
 import io.xogus.reactnative.versioncheck.RNVersionCheckPackage;
@@ -12,6 +18,8 @@ import com.facebook.soloader.SoLoader;
 import com.microsoft.codepush.react.CodePush;
 import java.lang.reflect.InvocationTargetException;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 public class MainApplication extends Application implements ReactApplication {

@@ -108,6 +108,7 @@ export default function JoinContainer() {
     passwordConfirm: useInput(''),
     companyName: useInput(''),
     companyNumber: useInput(''),
+    bKey: useInput(''),
   };
   const onChangeState = useCallback((name: JoinStateName, value: any) => {
     dispatch({ type: 'CHANGE', name, value });
@@ -154,6 +155,12 @@ export default function JoinContainer() {
           }
         });
     } else {
+      if (inputState.bKey.value === '') {
+        inputState.bKey.value = 'globalZero';
+      } else {
+        inputState.bKey.value = 'globalBKEY';
+      }
+
       const params = {
         email: inputState.email.value,
         name: inputState.name.value,
@@ -166,6 +173,7 @@ export default function JoinContainer() {
         sosok: '',
         comname: inputState.companyName.value,
         businessnum: inputState.companyNumber.value,
+        bKey: inputState.bKey.value,
       };
       userApis
         .postBusinessJoin(params)

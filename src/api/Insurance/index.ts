@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-community/async-storage';
 import { commonApiConfig } from '@app/api/config';
 import { getStoreData } from '@app/lib';
-import {insuImg} from '@app/assets';
+import { insuImg } from '@app/assets';
 export const insuApis = {
   // const TOKEN = await AsyncStorage.getItem('access_token');
   async getAddress(params) {
@@ -156,6 +156,24 @@ export const insuApis = {
       method: 'POST',
       url: 'hsart/can',
       params,
+    });
+    return res;
+  },
+  async postUploadImage(data, number) {
+    const res = await commonApiConfig({
+      method: 'POST',
+      url: 'upload/business',
+      data: {
+        file: data,
+        bKey: number,
+      },
+    });
+    return res;
+  },
+  async getUploadNumber() {
+    const res = await commonApiConfig({
+      method: 'GET',
+      url: 'upload/number',
     });
     return res;
   },

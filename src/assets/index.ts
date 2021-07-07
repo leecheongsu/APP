@@ -65,7 +65,10 @@ const IMG_19_2 = require('./img/img-019-02/img-019-02.png');
 const IMG_19_3 = require('./img/img-019-03/img-019-03.png');
 const IMG_19_4 = require('./img/img-019-04/img-019-04.png');
 
+const BTN_CAMERA = require('./icon/ico-camera/ico-camera.png');
+
 export const insuIcon = {
+  BTN_CAMERA,
   CLOSE_ICON,
   AVATAR_ICON,
   HEADER_LOGO,
