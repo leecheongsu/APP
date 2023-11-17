@@ -10,6 +10,7 @@ import { useGlobalDispatch, useGlobalState } from '@app/context';
 import { Switch } from 'react-native-gesture-handler';
 import { KAKAO_CHAT_URL, CUMTOMER_NUMBER } from '@env';
 import { ifIphoneX } from 'react-native-iphone-x-helper';
+
 const styles = StyleSheet.create({
   iphone: {
     ...ifIphoneX({
